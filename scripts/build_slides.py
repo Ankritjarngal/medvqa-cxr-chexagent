@@ -222,7 +222,7 @@ foot = s1.shapes.add_textbox(Inches(0.9), Inches(6.0), Inches(11.0), Inches(1.0)
 tf = foot.text_frame
 tf.word_wrap = True
 p = tf.paragraphs[0]
-p.text = "Papers reviewed: PubMedCLIP (EACL'23) \u00b7 LLaVA-Med \u00b7 Med-Flamingo  (team)   +   CheXagent \u00b7 PMC-VQA/MedVInT \u00b7 RULE  (new)"
+p.text = "Papers reviewed: PubMedCLIP (EACL'23) \u00b7 LLaVA-Med \u00b7 Med-Flamingo \u00b7 CheXagent \u00b7 PMC-VQA/MedVInT \u00b7 RULE"
 p.font.size = Pt(13)
 p.font.color.rgb = RGBColor(0xA9, 0xBE, 0xC6)
 p.font.italic = True
@@ -250,9 +250,9 @@ rows = [
     ("PubMedCLIP (EACL'23)", "Domain-tuned CLIP visual encoder plugged into classifier", "Discriminative", "No"),
     ("LLaVA-Med", "GPT-4 self-instruct data + curriculum tuning of LLaVA", "Generative chatbot", "No (1 of 5 modalities)"),
     ("Med-Flamingo", "Few-shot in-context learning on textbook corpus", "Generative, few-shot", "No"),
-    ("CheXagent  \u2605 new", "8.5M-sample CXR-only instruction dataset + 3.1B model", "Generative + discriminative", "Yes \u2014 fully"),
-    ("PMC-VQA / MedVInT  \u2605 new", "227K ChatGPT-generated QA pairs, pretrain\u2192fine-tune", "Generative", "No (mixed modality)"),
-    ("RULE  \u2605 new", "Retrieval-augmented generation + factuality-risk fixes", "Generative + RAG", "Partial (MIMIC-CXR, IU X-ray)"),
+    ("CheXagent", "8.5M-sample CXR-only instruction dataset + 3.1B model", "Generative + discriminative", "Yes \u2014 fully"),
+    ("PMC-VQA / MedVInT", "227K ChatGPT-generated QA pairs, pretrain\u2192fine-tune", "Generative", "No (mixed modality)"),
+    ("RULE", "Retrieval-augmented generation + factuality-risk fixes", "Generative + RAG", "Partial (MIMIC-CXR, IU X-ray)"),
 ]
 n_rows, n_cols = len(rows), len(rows[0])
 tbl_left, tbl_top, tbl_w, tbl_h = Inches(0.5), Inches(2.55), Inches(12.3), Inches(4.3)
@@ -268,19 +268,17 @@ for r in range(n_rows):
         if r == 0:
             set_cell(table.cell(r, c), text, size=12.5, bold=True, color=WHITE, bg=NAVY, align=PP_ALIGN.LEFT)
         else:
-            new_flag = "\u2605 new" in text
-            bg = TEAL_LIGHT if new_flag else (ROW_ALT if r % 2 == 0 else WHITE)
-            bold = new_flag and c == 0
-            set_cell(table.cell(r, c), text, size=11.5, bold=bold, color=NAVY, bg=bg)
+            bg = ROW_ALT if r % 2 == 0 else WHITE
+            set_cell(table.cell(r, c), text, size=11.5, bold=False, color=NAVY, bg=bg)
 
 add_footer(s2, "Medical VQA for Chest X-ray Analysis \u2014 Literature Review", 2)
 
 # =========================================================================
-# SLIDE 3 — Deep dive: the 3 new papers (key numbers / insights)
+# SLIDE 3 — Deep dive: three key papers (key numbers / insights)
 # =========================================================================
 s3 = prs.slides.add_slide(BLANK)
 add_background(s3, WHITE)
-add_top_bar(s3, "Deep Dive: The 3 New Papers We Added", kicker="DEEP DIVE")
+add_top_bar(s3, "Deep Dive: Three Key Papers", kicker="DEEP DIVE")
 
 card_w, card_h = Inches(3.95), Inches(5.2)
 gap = Inches(0.2)
