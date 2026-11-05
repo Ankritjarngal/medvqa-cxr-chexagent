@@ -27,13 +27,18 @@ not for clinical use.
 
 Target: https://github.com/Ankritjarngal/medvqa-cxr-chexagent (exists, currently empty).
 
-- A secret named `GITHUB_TOKEN` should be available as an environment variable. Check with
-  `env | grep -c GITHUB_TOKEN` (never print the value).
-- Add the remote and push the full history of `main`:
-  ```bash
-  git remote add github https://github.com/Ankritjarngal/medvqa-cxr-chexagent.git
-  git push https://x-access-token:${GITHUB_TOKEN}@github.com/Ankritjarngal/medvqa-cxr-chexagent.git main
-  ```
+- The user connected GitHub to Cursor, and may also have saved a `GITHUB_TOKEN` secret.
+  Try these in order and use the first that works:
+  1. Add the remote and push with the existing credentials:
+     ```bash
+     git remote add github https://github.com/Ankritjarngal/medvqa-cxr-chexagent.git
+     GIT_TERMINAL_PROMPT=0 git push github main
+     ```
+  2. If that asks for a login, and `env | grep -c GITHUB_TOKEN` is non-zero (never print the
+     value), push with the token:
+     ```bash
+     git push https://x-access-token:${GITHUB_TOKEN}@github.com/Ankritjarngal/medvqa-cxr-chexagent.git main
+     ```
   Do not store the token in git config or in any file. Do not use `--force`.
 - Verify with `git ls-remote https://github.com/Ankritjarngal/medvqa-cxr-chexagent.git`.
 - If there is no token, or the push is rejected, stop and report the exact error. Do not try
