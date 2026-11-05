@@ -1,0 +1,18 @@
+# Phase 1 (baseline testing) dependencies.
+#
+# data.py / categorize.py / evaluate.py only need the first three -- those
+# run fine on any machine (no GPU needed), which is how they were developed
+# and tested.
+#
+# model.py (actual CheXagent inference) additionally needs torch +
+# transformers + accelerate + a CUDA GPU. On Google Colab's free T4 runtime,
+# torch/accelerate are already preinstalled; transformers may need upgrading.
+requests>=2.31
+pandas>=2.0
+pillow>=10.0
+
+# GPU-only, needed for baseline/model.py:
+torch>=2.1
+transformers>=4.41
+accelerate>=0.30
+einops>=0.7

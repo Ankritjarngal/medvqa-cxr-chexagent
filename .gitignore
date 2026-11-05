@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Generated baseline outputs (images, test sets, results) -- regenerate via
+# `python -m baseline.run_baseline` or the Colab notebook, don't commit them.
+data/*
+!data/.gitkeep

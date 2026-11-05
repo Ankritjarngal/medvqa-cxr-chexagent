@@ -7,19 +7,41 @@ can improve answer quality and reliability.
 
 This is **not** a diagnostic tool and is intended for educational/research purposes only.
 
+## Project roadmap
+
+1. **Phase 1 — Baseline testing (current stage, see below):** run pretrained CheXagent-2-3b
+   zero-shot on a chest-X-ray question set, broken down by question difficulty, to measure
+   where it's actually weak.
+2. **Phase 2 — RAG layer:** add knowledge-grounded retrieval (authoritative finding
+   definitions/criteria, not just similar patients' reports) targeted at whatever Phase 1
+   shows is weak, designed around RULE's documented RAG failure modes.
+3. **Phase 3 — Fine-tuning (only if needed):** a targeted LoRA fine-tune, only if Phase 2's
+   RAG layer doesn't close the gap on its own.
+
 ## Repository contents
 
 ```
 docs/
-  literature_review.md         # Deep-dive review of 6 papers, dataset catalogue, gap analysis
-  papers/                       # The 6 source PDFs (3 found by teammate, 3 found in this review)
+  literature_review.md          # Deep-dive review of 6 papers, dataset catalogue, gap analysis
+  papers/                        # The 6 source PDFs (3 found by teammate, 3 found in this review)
+  walkthrough.md / .pdf          # Plain-language walkthrough of the literature review findings
+baseline/
+  categorize.py                  # Tags each question general / laterality / severity (GPU-free)
+  data.py                        # Builds the chest-X-ray-only test set from SLAKE + VQA-RAD (GPU-free)
+  evaluate.py                    # Exact-match / loose-match scoring + category breakdown (GPU-free)
+  model.py                       # CheXagent-2-3b inference wrapper (needs GPU + torch/transformers)
+  run_baseline.py                 # CLI entry point tying the above together
+tests/                           # Unit tests for the GPU-free parts of baseline/
+notebooks/
+  01_baseline_chexagent.ipynb     # Self-contained Phase 1 notebook -- upload straight to Colab
 scripts/
-  build_slides.py                # Regenerates the slide deck (python-pptx)
+  build_slides.py                 # Regenerates the slide deck (python-pptx)
+  build_baseline_notebook.py      # Regenerates notebooks/01_baseline_chexagent.ipynb
 slides/
   Medical_VQA_CXR_Literature_Review.pptx   # 5-slide presentation deck for the supervisor meeting
 ```
 
-## Current stage: Literature review (Week 1)
+## Literature review
 
 Six papers were reviewed to map out the Medical VQA landscape before deciding between a
 fine-tuning vs. RAG improvement strategy:
@@ -52,6 +74,48 @@ for a presentation.
   hand-built Open-I-based set with a qualitative rubric for relevance and unsupported/misleading
   claims — not just automated text-overlap metrics, which Med-Flamingo shows can diverge sharply
   from real clinical usefulness.
+
+## Running Phase 1 (baseline testing)
+
+The easiest way: open **`notebooks/01_baseline_chexagent.ipynb`** directly in Google Colab
+(Runtime → Change runtime type → **T4 GPU**, then Run all). It is fully self-contained —
+no need to clone this repo into Colab — and will:
+
+1. Build a ~45-60 question chest-X-ray-only test set from SLAKE (metadata-filtered) and
+   VQA-RAD (keyword-filtered), stratified across `general` / `laterality` / `severity`.
+2. Download and run `StanfordAIMI/CheXagent-2-3b` zero-shot on every question.
+3. Score predictions (exact-match + loose-match) and print a breakdown **by category**,
+   which is the number that actually matters for deciding what Phase 2's RAG layer should
+   target.
+4. Show a handful of image/question/answer cases for a manual spot-check (automated
+   metrics alone are not trustworthy — see Med-Flamingo's findings in the literature review).
+5. Save `baseline_results.csv` / `.jsonl` for the write-up.
+
+To run the same pipeline from the command line instead (e.g. a Colab terminal, or any
+machine with a CUDA GPU):
+
+```bash
+pip install -r requirements-baseline.txt
+python -m baseline.run_baseline --n-per-category 20
+```
+
+Add `--dry-run` to build and inspect the test set without a GPU (useful for checking the
+data pipeline on a laptop before spending GPU time). Outputs land in `data/`.
+
+**Note on what this does and doesn't measure:** CheXagent's own training corpus
+(CheXinstruct) already includes VQA-RAD, SLAKE, and Open-I among its 32 source datasets,
+so this is not a clean held-out generalization test — it's close to in-distribution, same
+as every other paper in our review that reuses these benchmarks. The goal is to get our
+own measured numbers on the known laterality/severity weak spot, not to claim a novel
+accuracy figure.
+
+### Regenerating the notebook or the test harness
+
+```bash
+pip install nbformat
+python3 scripts/build_baseline_notebook.py   # regenerates notebooks/01_baseline_chexagent.ipynb
+python3 -m pytest tests/                      # runs unit tests for the GPU-free logic
+```
 
 ## Regenerating the slide deck
 
