@@ -40,6 +40,18 @@ Target: https://github.com/Ankritjarngal/medvqa-cxr-chexagent (exists, currently
      git push https://x-access-token:${GITHUB_TOKEN}@github.com/Ankritjarngal/medvqa-cxr-chexagent.git main
      ```
   Do not store the token in git config or in any file. Do not use `--force`.
+- Known situation: the GitHub repo is NOT empty. It has one auto-generated "Initial commit"
+  (`8bbff6e`) that shares no history with this repo, so a plain push will be rejected. Do this:
+  ```bash
+  git fetch https://x-access-token:${GITHUB_TOKEN}@github.com/Ankritjarngal/medvqa-cxr-chexagent.git main:github-main
+  git merge github-main --allow-unrelated-histories -m "Merge GitHub initial commit"
+  ```
+  If files conflict (likely `README.md`, `LICENSE` or `.gitignore`), keep OUR version of each
+  file (`git checkout --ours <file>`), `git add` it, and finish the merge. Then run the unit tests
+  (`python -m pytest tests/`) before pushing. Then push normally (no force) as above.
+- Previous attempts: two agent runs failed with "could not read Username" because no token was
+  set. The GitHub integration alone did not provide push credentials. A `GITHUB_TOKEN` secret is
+  required.
 - Verify with `git ls-remote https://github.com/Ankritjarngal/medvqa-cxr-chexagent.git`.
 - If there is no token, or the push is rejected, stop and report the exact error. Do not try
   other forges or workarounds.
