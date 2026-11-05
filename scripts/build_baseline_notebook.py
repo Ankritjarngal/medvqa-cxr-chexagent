@@ -49,8 +49,13 @@ free tier's 16GB VRAM and disk quota.
 """)
 
 md("## 1. Setup")
-code(r"""#@title Install dependencies (torch/accelerate are preinstalled on Colab)
-!pip install -q transformers accelerate einops
+md("""CheXagent ships its own model code, which the authors pin to `transformers==4.40.0`
+(see the model card). Newer versions often break it, so we pin the same version here.
+If Colab asks you to **restart the runtime** after this cell, do so, then continue from the next cell
+(do not re-run the install cell).
+""")
+code(r"""#@title Install dependencies (torch is preinstalled on Colab)
+!pip install -q transformers==4.40.0 accelerate einops sentencepiece protobuf pyarrow opencv-python albumentations
 import torch
 print("CUDA available:", torch.cuda.is_available())
 if torch.cuda.is_available():

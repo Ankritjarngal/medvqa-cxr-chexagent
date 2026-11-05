@@ -13,6 +13,13 @@ pillow>=10.0
 
 # GPU-only, needed for baseline/model.py:
 torch>=2.1
-transformers>=4.41
+# CheXagent's remote code is pinned to this version by its authors (see model card).
+transformers==4.40.0
 accelerate>=0.30
 einops>=0.7
+sentencepiece
+protobuf
+pyarrow
+opencv-python
+albumentations
+torchvision
