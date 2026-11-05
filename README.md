@@ -1,5 +1,7 @@
 # Medical Visual Question Answering for Chest X-ray Analysis
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Ankritjarngal/medvqa-cxr-chexagent/blob/main/notebooks/01_baseline_chexagent.ipynb)
+
 A research project investigating how well AI can answer natural-language questions about
 chest X-rays, using a pretrained vision-language model (VLM) as a baseline and exploring
 whether retrieval-augmented generation (RAG), fine-tuning, and/or uncertainty communication
