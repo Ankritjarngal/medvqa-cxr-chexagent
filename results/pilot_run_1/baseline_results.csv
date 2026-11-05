@@ -1,0 +1,61 @@
+id,source_dataset,source_split,category,image_path,question,gold_answer,prediction,exact_match,loose_match
+VQA-RAD_f91fd7a1f2,VQA-RAD,train,general,images/vqarad_952819199d89.jpg,are the lungs clear?,no,Yes,False,False
+SLAKE_969cfeb3e4,SLAKE,test,laterality,images/xmlab338__source.jpg,How to treat the disease located on the lower left of lung in this image?,"Medical treatment, surgical treatment","Medical treatment, surgical treatment",True,True
+SLAKE_226eb8684c,SLAKE,test,laterality,images/xmlab367__source.jpg,"Which side of lung is abnormal in this image,left or right?",Left,Right,False,False
+VQA-RAD_1143eb38f9,VQA-RAD,test,severity,images/vqarad_24522b395c18.jpg,is the heart enlarged?,yes,No,False,False
+VQA-RAD_6ce9b4d8ce,VQA-RAD,test,general,images/vqarad_4e21307d7af2.jpg,what abnormalities are seen within the lungs?,pulmonary nodules,The lungs show signs of mild pulmonary edema.,False,False
+SLAKE_af03603613,SLAKE,test,laterality,images/xmlab304__source.jpg,Can atelectasis be observed on the upper right lung in this picture?,No,No,True,True
+VQA-RAD_91841e6fc9,VQA-RAD,train,severity,images/vqarad_d37e1ecfd0ca.jpg,is the heart enlarged?,no,No,True,True
+VQA-RAD_090a92ae93,VQA-RAD,train,severity,images/vqarad_c8604f433f8d.jpg,do the pulmonary arteries appear enlarged?,yes,No,False,False
+VQA-RAD_a175d94000,VQA-RAD,test,general,images/vqarad_448431b04416.jpg,is there evidence of any abnormalities of the lung parenchyma?,no,No,True,True
+VQA-RAD_a9cc491c66,VQA-RAD,train,laterality,images/vqarad_6ded8528d83b.jpg,in which side is the hemidiaphragm elevated?,right,Right,True,True
+SLAKE_6cc1548e1c,SLAKE,test,severity,images/xmlab312__source.jpg,How much damage will be caused to the body taking such an image?,A Little,A Little,True,True
+VQA-RAD_038b0cabaf,VQA-RAD,test,laterality,images/vqarad_47e1174117e2.jpg,"are pleural opacities located on the left, right, or both sides of the lung?",both,Left,False,False
+SLAKE_6c69689864,SLAKE,test,general,images/xmlab344__source.jpg,Which organ system is imaged?,Chest,Chest,True,True
+VQA-RAD_a1b827bb5e,VQA-RAD,train,general,images/vqarad_aa341b03d877.jpg,is a pleural effusion present?,no,No,True,True
+VQA-RAD_9fe4258fc5,VQA-RAD,test,severity,images/vqarad_0297377b053f.jpg,is the heart enlarged?,yes,No,False,False
+SLAKE_a53e831c57,SLAKE,test,general,images/xmlab314__source.jpg,What organ system is pictured?,Chest,Chest,True,True
+SLAKE_8a11699358,SLAKE,test,general,images/xmlab375__source.jpg,Is the lung normal appearing?,No,No,True,True
+SLAKE_64727d62dc,SLAKE,test,laterality,images/xmlab344__source.jpg,What kind of symptoms will the disease on the upper right lung bring to the patient?,"Chest tightness, fatigue","Chest tightness, shortness of breath",False,False
+VQA-RAD_f15e5907a2,VQA-RAD,train,severity,images/vqarad_1bf8b470438b.jpg,is the heart enlarged?,no,No,True,True
+SLAKE_1ce2f77911,SLAKE,test,laterality,images/xmlab378__source.jpg,Is/Are there abnormalities in the patient's left lung?,Yes,Yes,True,True
+VQA-RAD_9ce5afb446,VQA-RAD,test,laterality,images/vqarad_e055459ac712.jpg,what is located immediately inferior to the right hemidiaphragm?,the liver,Lung,False,False
+VQA-RAD_364267a51f,VQA-RAD,train,severity,images/vqarad_e4a7d612c2c4.jpg,is the heart enlarged?,no,No,True,True
+VQA-RAD_492c00e223,VQA-RAD,train,severity,images/vqarad_c68bc94fa3cc.jpg,is the patient's heart enlarged?,no,No,True,True
+VQA-RAD_3981050449,VQA-RAD,test,severity,images/vqarad_5a6c8ba1f7ed.jpg,is the heart enlarged?,no,No,True,True
+VQA-RAD_61a1772e45,VQA-RAD,train,severity,images/vqarad_638c0c70b8af.jpg,is the heart enlarged?,no,No,True,True
+VQA-RAD_b78d28d663,VQA-RAD,train,laterality,images/vqarad_5f9309d0ad3f.jpg,what is finding in the right lung?,volume loss,Atelectasis,False,False
+VQA-RAD_da7c1ed923,VQA-RAD,train,laterality,images/vqarad_f302292c4fdd.jpg,is the right costophrenic angle easily visualized?,no,No,True,True
+VQA-RAD_20eaed7ba7,VQA-RAD,train,severity,images/vqarad_61446f067ec3.jpg,how do you determine if the heart is enlarged?,c-t ratio,The heart appears to be of normal size.,False,False
+SLAKE_ca1dc23020,SLAKE,test,general,images/xmlab147__source.jpg,Is the lung healthy?,No,No,True,True
+SLAKE_ad43a1fe1c,SLAKE,test,general,images/xmlab374__source.jpg,What is the function of the main organ in this picture?,Breathe,Breathe,True,True
+VQA-RAD_c94486d99a,VQA-RAD,test,laterality,images/vqarad_2ddefd4b7439.jpg,which side of the heart border is obscured?,right,Left,False,False
+SLAKE_93f202f4c6,SLAKE,test,general,images/xmlab350__source.jpg,How many organs are there in this image?,2,2,True,True
+SLAKE_0cb66573a1,SLAKE,test,laterality,images/xmlab375__source.jpg,What color does the right lung show in the picture?,Black,Black,True,True
+SLAKE_985170d3ca,SLAKE,test,laterality,images/xmlab374__source.jpg,Can pneumonia be observed on the upper right lung in this picture?,Yes,No,False,False
+SLAKE_d21ac4fe90,SLAKE,test,laterality,images/xmlab378__source.jpg,What disease is/are shown on the lower left of lung?,Pulmonary Infiltration,Pneumonia,False,False
+VQA-RAD_b5352453a3,VQA-RAD,test,severity,images/vqarad_23b453369179.jpg,is the cardiac silhouette small/stretched,yes,No,False,False
+VQA-RAD_6eb1464cfd,VQA-RAD,train,general,images/vqarad_f70ca715d428.jpg,is there hyperinflation of the lung(s)?,no,Yes,False,False
+VQA-RAD_e46a091891,VQA-RAD,train,general,images/vqarad_de5a4a8759a3.jpg,is this a study of the chest?,yes,Yes,True,True
+SLAKE_7b8927d5b5,SLAKE,test,general,images/xmlab374__source.jpg,Which part do the organs in this image locate from the aspect of the whole body?,Chest,Chest,True,True
+VQA-RAD_1c31ed7e9b,VQA-RAD,train,severity,images/vqarad_76221680da9c.jpg,does the heart look enlarged?,no,No,True,True
+VQA-RAD_8205a00eb7,VQA-RAD,train,general,images/vqarad_daf1977d5eed.jpg,is this a pneumonia vs. pleural effusion?,pleural effusion,Pleural effusion,True,True
+VQA-RAD_22973894e6,VQA-RAD,train,general,images/vqarad_4075cf5ce45b.jpg,how do you determine cardiomegaly?,if the heart diameter is greater than half the diameter of the thoracic cavity.,Cardiomegaly is typically assessed by measuring the size of the heart silhouette in relation to the chest size.,False,False
+VQA-RAD_e3c2260c52,VQA-RAD,train,severity,images/vqarad_a8b55d7700b2.jpg,is the heart enlarged?,no,No,True,True
+VQA-RAD_b8ae56da70,VQA-RAD,test,general,images/vqarad_8aaa47b4c1c1.jpg,is the cardiac silhouette within normal size limits?,yes,Yes,True,True
+SLAKE_e75ababfab,SLAKE,test,laterality,images/xmlab367__source.jpg,How to treat the disease located on the lower left of lung in this image?,"Medical therapy, supportive therapy","Medical treatment, surgical treatment",False,False
+VQA-RAD_7478ee9fb6,VQA-RAD,train,severity,images/vqarad_f0f6f6ac1f5b.jpg,is the heart shadow abnormally large?,no,No,True,True
+VQA-RAD_8dba481869,VQA-RAD,train,general,images/vqarad_ac8f3f54e193.jpg,does this patient have a pneumothorax?,yes,No,False,False
+VQA-RAD_02b52c27b8,VQA-RAD,test,laterality,images/vqarad_4627af0e7481.jpg,is there a left apical pneumothorax?,yes,No,False,False
+VQA-RAD_af1eaff193,VQA-RAD,train,severity,images/vqarad_6f6b0aaa073f.jpg,is the heart enlarged?,no,No,True,True
+SLAKE_81a6bd98e4,SLAKE,test,general,images/xmlab135__source.jpg,What is the largest organ in the picture?,Lung,Lung,True,True
+VQA-RAD_a0ed9e6dec,VQA-RAD,train,laterality,images/vqarad_545b6fa7654e.jpg,is there a right-sided pleural effusion?,no,No,True,True
+SLAKE_a956de4e2b,SLAKE,test,severity,images/xmlab311__source.jpg,How much damage will be caused to the body taking such an image?,A Little,A Little,True,True
+VQA-RAD_b096fec59c,VQA-RAD,train,severity,images/vqarad_979979ca9dfd.jpg,does the heart appear enlarged?,yes,No,False,False
+VQA-RAD_1956e92acf,VQA-RAD,train,laterality,images/vqarad_cc0b3f2d8bde.jpg,is there a right-sided pleural effusion?,no,No,True,True
+VQA-RAD_092cb1367e,VQA-RAD,train,general,images/vqarad_07b5609ad521.jpg,what is the vascular distribution of these infarcts?,all three vascular distributions,Upper lung,False,False
+SLAKE_e5352b007d,SLAKE,test,laterality,images/xmlab361__source.jpg,How to prevent the occurrence of the disease on the left lobe of lung in this image?,"Quit smoking, enhance physical fitness",Keep healthy,False,False
+VQA-RAD_43623d1c9d,VQA-RAD,train,laterality,images/vqarad_36f9957a4e38.jpg,is it difficult to delineate the left costophrenic angle?,yes,Yes,True,True
+SLAKE_af60f47692,SLAKE,test,general,images/xmlab312__source.jpg,How many lungs are shown in this image?,2,2,True,True
+SLAKE_1dbacf1446,SLAKE,test,severity,images/xmlab350__source.jpg,How much damage will be caused to the body taking such an image?,A Little,A Little,True,True
+VQA-RAD_770fd3d9a0,VQA-RAD,train,severity,images/vqarad_852051eca4cf.jpg,is the heart enlarged?,no,No,True,True

@@ -77,20 +77,30 @@ for a presentation.
   claims — not just automated text-overlap metrics, which Med-Flamingo shows can diverge sharply
   from real clinical usefulness.
 
+## Pilot run 1 (60 questions) and findings
+
+A first 60-question pilot on Colab gave 62% overall (general 70%, laterality 45%, severity 70%), with
+wide confidence intervals, and showed the model under-calls findings (sensitivity 33% on yes/no
+questions). Details, caveats and the test-set problems it exposed:
+[`docs/pilot_run_1_findings.md`](docs/pilot_run_1_findings.md). Raw results are in
+`results/pilot_run_1/`.
+
 ## Running Phase 1 (baseline testing)
 
 The easiest way: open **`notebooks/01_baseline_chexagent.ipynb`** directly in Google Colab
 (Runtime → Change runtime type → **T4 GPU**, then Run all). It is fully self-contained —
 no need to clone this repo into Colab — and will:
 
-1. Build a ~45-60 question chest-X-ray-only test set from SLAKE (metadata-filtered) and
-   VQA-RAD (keyword-filtered), stratified across `general` / `laterality` / `severity`.
+1. Build a chest-X-ray-only test set (up to 100 questions per category, roughly 220 in total,
+   because severity questions are rare) from SLAKE (metadata-filtered) and VQA-RAD
+   (keyword-filtered), stratified across `general` / `laterality` / `severity`. The non-clinical
+   radiation-damage template question is dropped and repeated questions are capped.
 2. Download and run `StanfordAIMI/CheXagent-2-3b` zero-shot on every question.
-3. Score predictions (exact-match + loose-match) and print a breakdown **by category**,
-   which is the number that actually matters for deciding what Phase 2's RAG layer should
-   target.
-4. Show a handful of image/question/answer cases for a manual spot-check (automated
-   metrics alone are not trustworthy — see Med-Flamingo's findings in the literature review).
+3. Score predictions (exact, loose, token-F1, each with a 95% confidence interval) and print
+   breakdowns by category, answer format, knowledge-vs-perception, plus yes/no sensitivity and
+   specificity against an always-answer-"no" baseline. These decide what Phase 2 should target.
+4. Show images for the wrong answers (laterality first) for a manual spot-check; automated
+   metrics alone are not trustworthy, and the VQA-RAD chest filter is a heuristic.
 5. Save `baseline_results.csv` / `.jsonl` for the write-up.
 
 To run the same pipeline from the command line instead (e.g. a Colab terminal, or any
@@ -98,7 +108,7 @@ machine with a CUDA GPU):
 
 ```bash
 pip install -r requirements-baseline.txt
-python -m baseline.run_baseline --n-per-category 20
+python -m baseline.run_baseline --n-per-category 100
 ```
 
 Add `--dry-run` to build and inspect the test set without a GPU (useful for checking the

@@ -14,6 +14,17 @@ nb = nbf.v4.new_notebook()
 cells = []
 
 
+def inline_module(relpath):
+    """Return the source of a baseline/ module with package-relative imports
+    stripped, so the notebook runs the exact same tested code as the repo."""
+    keep = []
+    for line in open(relpath).read().splitlines():
+        if line.startswith("from __future__") or line.startswith("from ."):
+            continue
+        keep.append(line)
+    return "\n".join(keep).strip() + "\n"
+
+
 def md(text):
     cells.append(nbf.v4.new_markdown_cell(text))
 
@@ -73,211 +84,42 @@ else:
 md("""## 2. Build the chest X-ray test set
 
 Two sources, combined:
-- **SLAKE** — has structured `location` + `modality` metadata, so chest X-ray rows are
-  filtered precisely (`modality == "X-Ray"` and `location` in the chest/lung/heart labels).
+- **SLAKE** (test + validation) — has structured `location` + `modality` metadata, so chest
+  X-ray rows are filtered precisely.
 - **VQA-RAD** — has no organ metadata, so chest rows are selected with a keyword heuristic
-  (noisier — flagged here, not hidden). Used as a secondary source to backfill categories
-  (especially "severity", which SLAKE's test split barely covers).
+  (noisier — flagged here, not hidden; a few non-chest items may still slip through, which is
+  why section 6 shows images of wrong answers for you to check).
 
-Every question is tagged `general` / `laterality` / `severity` by simple keyword rules
-(see the `categorize_question` cell below) so results can be broken down by category
-instead of reported as one aggregate number.
+Every question is tagged by simple keyword rules (the next cell shows them):
+- `category`: `laterality` / `severity` / `general`
+- `answer_format`: `yes/no` vs `open`
+- `is_knowledge`: answered from medical knowledge (symptoms, treatment...) vs by looking at the image
+
+Changes after the first pilot run (60 questions): the radiation-damage template question is
+dropped (it is not clinical severity), identical question text is capped at 4 per category, more
+questions are sampled, and question IDs are stable so Phase 2 can be compared row by row.
+
+The two cells below are the repo's own `baseline/categorize.py` and `baseline/data.py`,
+inlined unchanged (they are unit-tested in the repo).
 """)
 
-code(r'''import re
+code(inline_module('baseline/categorize.py'))
 
-LATERALITY_PATTERNS = [
-    r"\bleft\b", r"\bright\b", r"\bbilateral\b", r"\bwhich side\b",
-    r"\blaterality\b", r"\bunilateral\b",
-]
-SEVERITY_PATTERNS = [
-    r"\bmild\b", r"\bmoderate\b", r"\bsevere\b", r"\benlarge(d|ment)?\b",
-    r"\bdegree\b", r"\bextent\b", r"\bhow (much|severe|large|big)\b",
-    r"\bsize of\b", r"\bworsen(ed|ing)?\b", r"\bimprov(ed|ing|ement)\b",
-    r"\bsmall\b", r"\blarge\b",
-]
+code(inline_module('baseline/data.py'))
 
-def categorize_question(question: str) -> str:
-    """Laterality checked first: it is the harder, more specifically-flagged
-    failure mode in CheXagent's own reported numbers, so a question with both
-    kinds of words ("is the left-sided effusion severe?") is tagged laterality."""
-    q = question.lower().strip()
-    if any(re.search(p, q) for p in LATERALITY_PATTERNS):
-        return "laterality"
-    if any(re.search(p, q) for p in SEVERITY_PATTERNS):
-        return "severity"
-    return "general"
-''')
-
-code(r'''import hashlib, time, zipfile
-from pathlib import Path
-import requests
-
-SLAKE_DATASET = "BoKelvin/SLAKE"
-SLAKE_IMAGES_ZIP_URL = "https://huggingface.co/datasets/BoKelvin/SLAKE/resolve/main/imgs.zip"
-VQA_RAD_DATASET = "flaviagiammarino/vqa-rad"
-DATASETS_SERVER_ROWS_URL = "https://datasets-server.huggingface.co/rows"
-
-SLAKE_CHEST_LOCATIONS = {"Chest_heart", "Chest_lung", "Chest_mediastinal", "Lung"}
-
-VQA_RAD_CHEST_KEYWORDS = {
-    "lung", "lungs", "chest", "pulmonary", "pleural", "pneumothorax", "cardiac",
-    "heart", "mediastin", "rib", "costophrenic", "consolidation", "effusion",
-    "atelectasis", "diaphragm", "thora", "cardiomegaly", "pneumonia", "hilar", "bronch",
-}
-VQA_RAD_EXCLUDE_KEYWORDS = {
-    "brain", "skull", "head", "abdomen", "abdominal", "liver", "kidney", "pelvis",
-    "pelvic", "spine", "spinal", "bowel", "intestine", "stomach", "bladder", "uterus",
-    "ovary", "appendix", "cerebral", "cranial", "sinus",
-}
-
-
-def _get_rows(dataset, split, offset, length=100, retries=5, backoff=1.5):
-    last_exc = None
-    for attempt in range(retries):
-        try:
-            resp = requests.get(DATASETS_SERVER_ROWS_URL, params={
-                "dataset": dataset, "config": "default", "split": split,
-                "offset": offset, "length": length,
-            }, timeout=30)
-            if resp.status_code == 200:
-                return resp.json()
-        except requests.RequestException as exc:
-            last_exc = exc
-        time.sleep(backoff * (attempt + 1))
-    if last_exc:
-        raise last_exc
-    resp.raise_for_status()
-
-
-def _iter_all_rows(dataset, split, page_size=100):
-    offset = 0
-    while True:
-        data = _get_rows(dataset, split, offset, length=page_size)
-        rows = data.get("rows", [])
-        if not rows:
-            return
-        for row in rows:
-            yield row["row"]
-        offset += len(rows)
-        if offset >= data.get("num_rows_total", 0):
-            return
-
-
-def fetch_slake_chest_records(split="test"):
-    records = []
-    for rr in _iter_all_rows(SLAKE_DATASET, split):
-        if (rr.get("modality") == "X-Ray" and rr.get("location") in SLAKE_CHEST_LOCATIONS
-                and rr.get("q_lang") == "en"):
-            records.append({
-                "source_dataset": "SLAKE", "source_split": split,
-                "question": rr["question"], "gold_answer": rr["answer"],
-                "image_key": rr["img_name"], "category": categorize_question(rr["question"]),
-            })
-    return records
-
-
-def fetch_vqa_rad_chest_records(splits=("test", "train")):
-    records = []
-    for split in splits:
-        for rr in _iter_all_rows(VQA_RAD_DATASET, split):
-            q = rr["question"].lower()
-            if (any(k in q for k in VQA_RAD_CHEST_KEYWORDS)
-                    and not any(k in q for k in VQA_RAD_EXCLUDE_KEYWORDS)):
-                records.append({
-                    "source_dataset": "VQA-RAD", "source_split": split,
-                    "question": rr["question"], "gold_answer": rr["answer"],
-                    "image_key": rr["image"]["src"], "category": categorize_question(rr["question"]),
-                })
-    return records
-
-
-def stratified_sample(records, n_per_category, seed=0):
-    import random
-    rng = random.Random(seed)
-    by_cat = {}
-    for r in records:
-        by_cat.setdefault(r["category"], []).append(r)
-    sampled = []
-    for items in by_cat.values():
-        shuffled = items[:]
-        rng.shuffle(shuffled)
-        sampled.extend(shuffled[:n_per_category])
-    rng.shuffle(sampled)
-    return sampled
-
-
-def download_slake_images(records, dest_dir, zip_cache_path=None):
-    dest_dir = Path(dest_dir); dest_dir.mkdir(parents=True, exist_ok=True)
-    needed_keys = {r["image_key"] for r in records if r["source_dataset"] == "SLAKE"}
-    if not needed_keys:
-        return {}
-    zip_cache_path = Path(zip_cache_path) if zip_cache_path else dest_dir / "_slake_imgs.zip"
-    if not zip_cache_path.exists():
-        resp = requests.get(SLAKE_IMAGES_ZIP_URL, stream=True, timeout=180)
-        resp.raise_for_status()
-        with open(zip_cache_path, "wb") as f:
-            for chunk in resp.iter_content(chunk_size=1 << 20):
-                f.write(chunk)
-    local_paths = {}
-    with zipfile.ZipFile(zip_cache_path) as zf:
-        for key in needed_keys:
-            out_path = dest_dir / key.replace("/", "__")
-            if not out_path.exists():
-                with zf.open(f"imgs/{key}") as src, open(out_path, "wb") as dst:
-                    dst.write(src.read())
-            local_paths[key] = str(out_path)
-    return local_paths
-
-
-def download_vqa_rad_images(records, dest_dir):
-    dest_dir = Path(dest_dir); dest_dir.mkdir(parents=True, exist_ok=True)
-    local_paths = {}
-    for r in records:
-        if r["source_dataset"] != "VQA-RAD":
-            continue
-        url = r["image_key"]
-        if url in local_paths:
-            continue
-        digest = hashlib.md5(url.encode()).hexdigest()[:12]
-        out_path = dest_dir / f"vqarad_{digest}.jpg"
-        if not out_path.exists():
-            resp = requests.get(url, timeout=60)
-            resp.raise_for_status()
-            with open(out_path, "wb") as f:
-                f.write(resp.content)
-        local_paths[url] = str(out_path)
-    return local_paths
-
-
-def build_baseline_test_set(images_dir, n_per_category=20, seed=0):
-    slake = fetch_slake_chest_records(split="test")
-    vqa_rad = fetch_vqa_rad_chest_records(splits=("test", "train"))
-    sampled = stratified_sample(slake + vqa_rad, n_per_category=n_per_category, seed=seed)
-
-    slake_records = [r for r in sampled if r["source_dataset"] == "SLAKE"]
-    vqa_rad_records = [r for r in sampled if r["source_dataset"] == "VQA-RAD"]
-    slake_paths = download_slake_images(slake_records, images_dir)
-    vqa_rad_paths = download_vqa_rad_images(vqa_rad_records, images_dir)
-
-    for r in sampled:
-        paths = slake_paths if r["source_dataset"] == "SLAKE" else vqa_rad_paths
-        r["image_path"] = paths[r["image_key"]]
-        digest = hashlib.md5((r["source_dataset"] + r["question"] + r["image_key"]).encode()).hexdigest()[:10]
-        r["id"] = f"{r['source_dataset']}_{digest}"
-    return sampled
-''')
-
-code(r'''# N_PER_CATEGORY questions per category (general / laterality / severity) -> up to 3x that many total.
-# 20/category (~45-60 total after dedup) keeps the full run well under 10 minutes on a free T4.
-N_PER_CATEGORY = 20
+code(r'''# Up to N_PER_CATEGORY questions per category (general / laterality / severity).
+# Severity questions are rare in public CXR VQA sets, so that bucket may come out smaller than
+# the others -- the printed pool summary shows exactly how many exist.
+N_PER_CATEGORY = 100
 
 test_set = build_baseline_test_set(images_dir="images", n_per_category=N_PER_CATEGORY, seed=0)
 
 from collections import Counter
 print(f"Built {len(test_set)} questions")
-print("By category:", Counter(r["category"] for r in test_set))
-print("By source:  ", Counter(r["source_dataset"] for r in test_set))
+print("By category:     ", Counter(r["category"] for r in test_set))
+print("By answer format:", Counter(r["answer_format"] for r in test_set))
+print("By source:       ", Counter(r["source_dataset"] for r in test_set))
+print("Knowledge-type:  ", sum(r["is_knowledge"] for r in test_set))
 ''')
 
 md("""## 3. Load CheXagent-2-3b
@@ -365,107 +207,55 @@ print(test_set[0]["question"], "->", test_set[0]["prediction"])
 
 md("""## 5. Score predictions
 
-Two automated scores are reported side by side, not blended into one number --
+Several automated scores are reported side by side, not blended into one number --
 Med-Flamingo's own finding was that automated text-overlap metrics can *disagree sharply*
-with what a clinician would call correct, so neither score here should be taken as the
-final word (see the qualitative spot-check in section 6).
+with what a clinician would call correct, so none of them is the final word (see section 6).
 
-- `exact_match`: strict, normalized string equality. Fair for yes/no questions, harsh for
-  open-ended ones (a correct but differently-worded answer scores 0).
-- `loose_match`: substring containment after normalization. More forgiving for open-ended
-  answers, more generous than it should be on a few easy cases.
+- `exact`: strict normalized equality. Fair for yes/no, harsh for open answers.
+- `loose`: substring containment either way.
+- `token_f1`: word overlap, gives partial credit to open answers.
+- Every accuracy has a **95% confidence interval**. With a few dozen questions per bucket,
+  intervals that overlap mean the difference between buckets is not proven.
+- **Yes/no block:** sensitivity (correct when the finding IS present) and specificity (correct
+  when it is NOT), plus the accuracy of always answering the majority class. A model that says
+  "no" to almost everything looks fine on accuracy but misses real findings.
+
+The next cell is the repo's own `baseline/evaluate.py`, inlined unchanged.
 """)
 
-code(r'''import re as _re
-from dataclasses import dataclass, field
+code(inline_module('baseline/evaluate.py'))
 
-_YES_SYNONYMS = {"yes", "y", "yeah", "affirmative", "true", "present"}
-_NO_SYNONYMS = {"no", "n", "nope", "negative", "false", "absent", "not present"}
-_PUNCT_RE = _re.compile(r"[^a-z0-9\s]")
-_WS_RE = _re.compile(r"\s+")
-
-def normalize(text):
-    text = text.lower().strip()
-    text = _PUNCT_RE.sub(" ", text)
-    text = _WS_RE.sub(" ", text).strip()
-    if text in _YES_SYNONYMS:
-        return "yes"
-    if text in _NO_SYNONYMS:
-        return "no"
-    return text
-
-def exact_match(prediction, gold):
-    return normalize(prediction) == normalize(gold)
-
-def loose_match(prediction, gold):
-    p, g = normalize(prediction), normalize(gold)
-    if not p or not g:
-        return False
-    if p == g:
-        return True
-    shorter, longer = (p, g) if len(p) <= len(g) else (g, p)
-    if len(shorter) < 3:
-        return False
-    return shorter in longer
-
-
-@dataclass
-class CategoryStats:
-    total: int = 0
-    exact_correct: int = 0
-    loose_correct: int = 0
-    @property
-    def exact_accuracy(self):
-        return self.exact_correct / self.total if self.total else float("nan")
-    @property
-    def loose_accuracy(self):
-        return self.loose_correct / self.total if self.total else float("nan")
-
-
-per_category, per_source = {}, {}
-overall = CategoryStats()
-for r in test_set:
-    em = exact_match(r["prediction"], r["gold_answer"])
-    lm = loose_match(r["prediction"], r["gold_answer"])
-    r["exact_match"], r["loose_match"] = em, lm
-    for bucket, key in ((per_category, r["category"]), (per_source, r["source_dataset"])):
-        s = bucket.setdefault(key, CategoryStats())
-        s.total += 1; s.exact_correct += int(em); s.loose_correct += int(lm)
-    overall.total += 1; overall.exact_correct += int(em); overall.loose_correct += int(lm)
-
-print("=== Overall ===")
-print(f"n={overall.total}  exact_acc={overall.exact_accuracy:.1%}  loose_acc={overall.loose_accuracy:.1%}\n")
-print("=== By question category (THE key breakdown -- this is what Phase 2 should move) ===")
-for cat, s in sorted(per_category.items()):
-    print(f"{cat:>12}: n={s.total:<4} exact_acc={s.exact_accuracy:.1%}  loose_acc={s.loose_accuracy:.1%}")
-print("\n=== By source dataset ===")
-for src, s in sorted(per_source.items()):
-    print(f"{src:>10}: n={s.total:<4} exact_acc={s.exact_accuracy:.1%}  loose_acc={s.loose_accuracy:.1%}")
+code(r'''report = evaluate(test_set)
+test_set = report.rows   # same records, now with exact_match / loose_match / token_f1
+print(format_report(report))
 ''')
 
 md("""## 6. Qualitative spot-check (don't skip this)
 
-Med-Flamingo's paper found automated metrics can diverge sharply from what a clinician
-would actually call correct. Before trusting the numbers above, eyeball a handful of
-cases yourself -- especially any `laterality`/`severity` questions marked wrong.
+Automated metrics can diverge from what a clinician would call correct, and the VQA-RAD chest
+filter is a keyword heuristic. So look at the **wrong** answers yourself: is the image really a
+chest X-ray? Is the model's answer actually wrong, or just worded differently? Laterality and
+open-ended mistakes are shown first.
 """)
 
 code(r'''import random
 from PIL import Image
 import matplotlib.pyplot as plt
 
-sample_for_review = random.Random(1).sample(test_set, min(6, len(test_set)))
+wrong = [r for r in test_set if not r["exact_match"]]
+wrong.sort(key=lambda r: (r["category"] != "laterality", r["answer_format"] != "open"))
+to_review = wrong[:12]
+print(f"{len(wrong)} wrong answers in total; showing {len(to_review)}")
 
-for r in sample_for_review:
+for r in to_review:
     img = Image.open(r["image_path"]).convert("RGB")
     plt.figure(figsize=(3, 3))
-    plt.imshow(img)
+    plt.imshow(img, cmap="gray")
     plt.axis("off")
-    plt.title(r["category"])
+    plt.title(f"{r['category']} / {r['answer_format']} / {r['source_dataset']}", fontsize=8)
     plt.show()
     print(f"Q: {r['question']}")
-    print(f"Gold: {r['gold_answer']!r}   Pred: {r['prediction']!r}")
-    print(f"exact_match={r['exact_match']}  loose_match={r['loose_match']}")
+    print(f"Gold: {r['gold_answer']!r}   Pred: {r['prediction']!r}   token_f1={r['token_f1']}")
     print("-" * 60)
 ''')
 
@@ -474,10 +264,11 @@ code(r'''import json, csv
 
 with open("baseline_results.jsonl", "w") as f:
     for r in test_set:
-        f.write(json.dumps(r) + "\n")
+        f.write(json.dumps({k: v for k, v in r.items() if k != "image_key"}) + "\n")
 
-fieldnames = ["id", "source_dataset", "source_split", "category", "image_path",
-              "question", "gold_answer", "prediction", "exact_match", "loose_match"]
+fieldnames = ["id", "source_dataset", "source_split", "category", "answer_format", "is_knowledge",
+              "image_path", "question", "gold_answer", "prediction", "exact_match", "loose_match",
+              "token_f1"]
 with open("baseline_results.csv", "w", newline="") as f:
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
@@ -497,15 +288,17 @@ print("Keep these files: the Colab VM is wiped when the session ends.")
 
 md("""## What's next (Phase 2)
 
-Look at the category breakdown from section 5:
-- If `laterality` and/or `severity` accuracy is meaningfully lower than `general`
-  (the pattern CheXagent's own paper reports — ~77-79% vs ~90%+), that confirms the target
-  for the RAG layer: retrieve **authoritative finding definitions / diagnostic criteria**
-  (not just similar patients' reports, which is what RULE's case-based retrieval does) for
-  exactly the laterality/severity questions this baseline got wrong.
-- Keep `baseline_results.csv` — Phase 2's RAG-augmented run will be scored the same way and
-  compared row-by-row against this baseline, specifically on the categories where this
-  baseline was weak.
+Read the report in section 5 with these questions:
+1. **Which buckets are lowest, and do their confidence intervals really separate from the others?**
+   (the paper's weak spot is fine-grained laterality/severity)
+2. **Yes/no block:** is sensitivity far below specificity? That means the model under-calls findings,
+   which retrieved text cannot fix because the error is in what the model *sees*.
+3. **Knowledge vs perception:** errors on `knowledge` questions (symptoms, treatment, how a finding is
+   measured) are what a retrieval layer can help with; perception errors point to confidence scoring
+   or targeted fine-tuning instead.
+
+Keep `baseline_results.csv`. Phase 2 results will be scored by the same code and compared row by
+row (IDs are stable) against this baseline.
 """)
 
 nb["cells"] = cells

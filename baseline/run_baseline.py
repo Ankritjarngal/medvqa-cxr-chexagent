@@ -2,7 +2,7 @@
 score the predictions, and save a category breakdown.
 
 Usage (GPU runtime, e.g. Colab):
-    python -m baseline.run_baseline --n-per-category 20
+    python -m baseline.run_baseline --n-per-category 100
 
 Usage (no GPU, just to sanity-check the data pipeline):
     python -m baseline.run_baseline --n-per-category 5 --dry-run
@@ -21,7 +21,7 @@ from .evaluate import evaluate, format_report
 
 def parse_args():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--n-per-category", type=int, default=20,
+    parser.add_argument("--n-per-category", type=int, default=100,
                          help="Max questions sampled per category (general/laterality/severity).")
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--images-dir", default="data/images")
@@ -70,8 +70,9 @@ def main():
     print("\n" + format_report(report))
 
     results_csv_path = output_dir / "baseline_results.csv"
-    fieldnames = ["id", "source_dataset", "source_split", "category", "image_path",
-                  "question", "gold_answer", "prediction", "exact_match", "loose_match"]
+    fieldnames = ["id", "source_dataset", "source_split", "category", "answer_format",
+                  "is_knowledge", "image_path", "question", "gold_answer", "prediction",
+                  "exact_match", "loose_match", "token_f1"]
     with open(results_csv_path, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()

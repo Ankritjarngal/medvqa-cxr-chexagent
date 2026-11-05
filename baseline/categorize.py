@@ -42,6 +42,24 @@ SEVERITY_PATTERNS = [
     r"\blarge\b",
 ]
 
+KNOWLEDGE_PATTERNS = [
+    r"\bsymptoms?\b",
+    r"\bhow to (treat|prevent|cure)\b",
+    r"\b(treatment|therapy|prevention)\b",
+    r"\bfunction of\b",
+    r"\bcause[sd]?\b",
+    r"\bhow do you (determine|diagnose|assess|measure)\b",
+]
+
+# Questions that are templates about the imaging procedure, not about the
+# patient's findings (e.g. SLAKE's "How much damage will be caused to the body
+# taking such an image?"). They match the severity keywords ("how much") but are
+# not clinical severity, so the data pipeline drops them.
+NON_CLINICAL_PATTERNS = [
+    r"\bdamage\b.*\btaking such an image\b",
+    r"\bradiation\b",
+]
+
 CATEGORY_LATERALITY = "laterality"
 CATEGORY_SEVERITY = "severity"
 CATEGORY_GENERAL = "general"
@@ -67,3 +85,29 @@ def categorize_question(question: str) -> str:
     if _matches_any(q, SEVERITY_PATTERNS):
         return CATEGORY_SEVERITY
     return CATEGORY_GENERAL
+
+
+def is_knowledge_question(question: str) -> bool:
+    """True for questions answered mostly from medical knowledge (symptoms,
+    treatment, prevention, how a finding is measured) rather than from looking
+    at the image. These are what a retrieval layer can plausibly help with;
+    perception questions (is X present, which side) are not.
+
+    Independent of `categorize_question`: a question can be both a laterality
+    question and a knowledge question ("How to treat the disease on the lower
+    left of lung?")."""
+    q = question.lower().strip()
+    return _matches_any(q, KNOWLEDGE_PATTERNS)
+
+
+def is_non_clinical_question(question: str) -> bool:
+    q = question.lower().strip()
+    return _matches_any(q, NON_CLINICAL_PATTERNS)
+
+
+def answer_format(gold_answer: str) -> str:
+    """'yes/no' for closed questions, 'open' otherwise. Reported separately
+    because a model that mostly answers 'no' looks decent on yes/no questions
+    when most true answers are 'no'."""
+    g = gold_answer.lower().strip().rstrip(".")
+    return "yes/no" if g in ("yes", "no") else "open"
