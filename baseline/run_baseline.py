@@ -26,7 +26,7 @@ def parse_args():
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--images-dir", default="data/images")
     parser.add_argument("--output-dir", default="data")
-    parser.add_argument("--max-new-tokens", type=int, default=256)
+    parser.add_argument("--max-new-tokens", type=int, default=128)
     parser.add_argument("--dry-run", action="store_true",
                          help="Build and save the test set, but skip model inference "
                               "(use this on a machine without a GPU).")
@@ -57,7 +57,7 @@ def main():
 
     from .model import CheXagentRunner, prompt_for_category
 
-    print("Loading StanfordAIMI/CheXagent-2-3b (first run downloads ~6-7GB of weights)...")
+    print("Loading StanfordAIMI/CheXagent-2-3b (first run downloads ~12.6GB of weights)...")
     runner = CheXagentRunner()
 
     for i, r in enumerate(records, start=1):

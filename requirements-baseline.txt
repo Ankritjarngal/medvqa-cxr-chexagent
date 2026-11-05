@@ -13,8 +13,10 @@ pillow>=10.0
 
 # GPU-only, needed for baseline/model.py:
 torch>=2.1
-# CheXagent's remote code is pinned to this version by its authors (see model card).
-transformers==4.40.0
+# 4.46.3 was tested working with CheXagent's remote code (tokenizer, image handling, generate) and
+# installs on current Colab Pythons; the authors' 4.40.0 does not. 4.50.3 and 4.57.1 were tested and
+# break generate(); 4.47-4.49 were not tested. See baseline/model.py.
+transformers==4.46.3
 accelerate>=0.30
 einops>=0.7
 sentencepiece

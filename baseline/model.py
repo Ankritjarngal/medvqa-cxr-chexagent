@@ -9,7 +9,31 @@ inference pattern documented on the model card.
 
 from __future__ import annotations
 
+import glob
+import re
+
 MODEL_NAME = "StanfordAIMI/CheXagent-2-3b"
+
+# CheXagent's remote code hard-codes `assert transformers.__version__ == "4.40.0"`.
+# That version cannot be installed on current Colab Pythons (no prebuilt
+# `tokenizers` 0.19 wheel), and transformers > 4.46 breaks the model's generate
+# code. We run on 4.46.3 and neutralize those two asserts in a local copy.
+_VERSION_ASSERT = re.compile(r'^assert transformers\.__version__ == "4\.40\.0".*$', flags=re.M)
+
+
+def patch_version_asserts(model_dir: str) -> int:
+    """Replace the hard-coded transformers-version asserts with `pass`.
+    Returns the number of lines patched (2 for the released model code)."""
+    patched = 0
+    for path in glob.glob(f"{model_dir}/*.py"):
+        with open(path) as f:
+            text = f.read()
+        new_text, n = _VERSION_ASSERT.subn("pass", text)
+        if n:
+            with open(path, "w") as f:
+                f.write(new_text)
+            patched += n
+    return patched
 
 GENERAL_PROMPT = "{question}"
 LATERALITY_SEVERITY_PROMPT = (
@@ -23,6 +47,7 @@ class CheXagentRunner:
     def __init__(self, model_name: str = MODEL_NAME, device: str = "cuda",
                  dtype=None):
         import torch
+        from huggingface_hub import snapshot_download
         from transformers import AutoModelForCausalLM, AutoTokenizer
 
         self.torch = torch
@@ -33,13 +58,16 @@ class CheXagentRunner:
                      else torch.float16)
         self.dtype = dtype
 
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+        model_dir = snapshot_download(model_name, local_dir=model_name.split("/")[-1])
+        patch_version_asserts(model_dir)
+
+        self.tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
         self.model = AutoModelForCausalLM.from_pretrained(
-            model_name, device_map="auto", trust_remote_code=True
-        ).to(self.dtype)
+            model_dir, device_map="auto", torch_dtype=self.dtype, trust_remote_code=True
+        )
         self.model.eval()
 
-    def ask(self, image_paths: list[str], question: str, max_new_tokens: int = 256) -> str:
+    def ask(self, image_paths: list[str], question: str, max_new_tokens: int = 128) -> str:
         query = self.tokenizer.from_list_format(
             [*[{"image": p} for p in image_paths], {"text": question}]
         )
@@ -55,6 +83,7 @@ class CheXagentRunner:
                 input_ids.to(self.device),
                 do_sample=False,
                 num_beams=1,
+                use_cache=True,
                 max_new_tokens=max_new_tokens,
             )[0]
         response = self.tokenizer.decode(output[input_ids.size(1):-1])

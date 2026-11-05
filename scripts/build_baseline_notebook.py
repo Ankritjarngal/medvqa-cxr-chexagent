@@ -49,13 +49,18 @@ free tier's 16GB VRAM and disk quota.
 """)
 
 md("## 1. Setup")
-md("""CheXagent ships its own model code, which the authors pin to `transformers==4.40.0`
-(see the model card). Newer versions often break it, so we pin the same version here.
-If Colab asks you to **restart the runtime** after this cell, do so, then continue from the next cell
-(do not re-run the install cell).
+md("""CheXagent ships its own model code, written for `transformers==4.40.0`. That exact version
+cannot be installed on Colab's current Python (its `tokenizers` dependency has no prebuilt
+package there), and versions newer than 4.46 break the model's `generate` code. So we use
+**`transformers==4.46.3`** and, in section 3, patch the two hard-coded version checks in a local
+copy of the model code. This combination was tested end-to-end (tokenizer, image handling,
+model build, `generate`) on a small random-weight copy of the model before shipping.
+
+If Colab asks you to **restart the runtime** after this cell, do so, then continue from the next
+cell (do not re-run the install cell).
 """)
 code(r"""#@title Install dependencies (torch is preinstalled on Colab)
-!pip install -q transformers==4.40.0 accelerate einops sentencepiece protobuf pyarrow opencv-python albumentations
+!pip install -q "transformers==4.46.3" accelerate einops sentencepiece protobuf pyarrow albumentations huggingface_hub
 import torch
 print("CUDA available:", torch.cuda.is_available())
 if torch.cuda.is_available():
@@ -277,12 +282,18 @@ print("By source:  ", Counter(r["source_dataset"] for r in test_set))
 
 md("""## 3. Load CheXagent-2-3b
 
-First run downloads ~6-7GB of weights from Hugging Face (not gated, MIT license, no token
-needed). Loaded in half precision (`float16` on a T4, which has no native `bfloat16`;
-`bfloat16` on newer GPUs) — comfortably fits a free T4's 16GB VRAM.
+First run downloads the model from Hugging Face (not gated, MIT license, no token needed).
+The repo stores the weights in float32, so the **download is ~12.6GB** (a few minutes; Colab has
+the disk space). It is then loaded in half precision (`float16` on a T4, which has no native
+`bfloat16`; `bfloat16` on newer GPUs), which fits a free T4's 16GB VRAM.
+
+We download to a local folder first so we can patch the two `assert transformers.__version__ ==
+"4.40.0"` lines in the model's own code (see section 1).
 """)
 
-code(r'''from transformers import AutoModelForCausalLM, AutoTokenizer
+code(r'''import glob, re
+from huggingface_hub import snapshot_download
+from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
 MODEL_NAME = "StanfordAIMI/CheXagent-2-3b"
@@ -290,10 +301,27 @@ DEVICE = "cuda"
 DTYPE = torch.bfloat16 if torch.cuda.get_device_capability()[0] >= 8 else torch.float16
 print("Using dtype:", DTYPE)
 
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
+_VERSION_ASSERT = re.compile(r'^assert transformers\.__version__ == "4\.40\.0".*$', flags=re.M)
+
+def patch_version_asserts(model_dir):
+    """Neutralize the model code's hard-coded transformers==4.40.0 checks.
+    Returns the number of lines patched (expected: 2)."""
+    patched = 0
+    for path in glob.glob(f"{model_dir}/*.py"):
+        text = open(path).read()
+        new_text, n = _VERSION_ASSERT.subn("pass", text)
+        if n:
+            open(path, "w").write(new_text)
+            patched += n
+    return patched
+
+model_dir = snapshot_download(MODEL_NAME, local_dir="CheXagent-2-3b")
+print("Patched version checks:", patch_version_asserts(model_dir))
+
+tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(
-    MODEL_NAME, device_map="auto", trust_remote_code=True
-).to(DTYPE)
+    model_dir, device_map="auto", torch_dtype=DTYPE, trust_remote_code=True
+)
 model.eval()
 print("Model loaded.")
 ''')
@@ -309,7 +337,7 @@ def prompt_for_category(question, category):
     return GENERAL_PROMPT.format(question=question)
 
 
-def ask_chexagent(image_path, question, max_new_tokens=256):
+def ask_chexagent(image_path, question, max_new_tokens=128):
     query = tokenizer.from_list_format([{"image": image_path}, {"text": question}])
     conv = [
         {"from": "system", "value": "You are a helpful radiology assistant. Answer the question as concisely as possible based only on the image."},
@@ -318,7 +346,8 @@ def ask_chexagent(image_path, question, max_new_tokens=256):
     input_ids = tokenizer.apply_chat_template(conv, add_generation_prompt=True, return_tensors="pt")
     with torch.no_grad():
         output = model.generate(
-            input_ids.to(DEVICE), do_sample=False, num_beams=1, max_new_tokens=max_new_tokens,
+            input_ids.to(DEVICE), do_sample=False, num_beams=1, use_cache=True,
+            max_new_tokens=max_new_tokens,
         )[0]
     return tokenizer.decode(output[input_ids.size(1):-1]).strip()
 ''')
