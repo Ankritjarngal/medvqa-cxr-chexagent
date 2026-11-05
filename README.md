@@ -85,6 +85,11 @@ questions). Details, caveats and the test-set problems it exposed:
 [`docs/pilot_run_1_findings.md`](docs/pilot_run_1_findings.md). Raw results are in
 `results/pilot_run_1/`.
 
+**Run 2 (224 questions, improved test set):** 57% overall; the model never answered "yes" on 8
+enlargement questions where "yes" was correct; laterality is lower than general but partly
+confounded by dataset; knowledge-type questions are mostly missed. See
+[`docs/baseline_run_2_findings.md`](docs/baseline_run_2_findings.md) and `results/run_2/`.
+
 ## Running Phase 1 (baseline testing)
 
 The easiest way: open **`notebooks/01_baseline_chexagent.ipynb`** directly in Google Colab

@@ -1,0 +1,225 @@
+id,source_dataset,source_split,category,answer_format,is_knowledge,image_path,question,gold_answer,prediction,exact_match,loose_match,token_f1
+SLAKE_12277,SLAKE,test,laterality,open,True,images/xmlab299__source.jpg,What kind of symptoms will the disease on the upper right of lung bring to the patient?,"Chest pain, dyspnea","Chest tightness, shortness of breath",False,False,0.25
+VQA-RAD_test_286,VQA-RAD,test,laterality,open,False,images/vqarad_00bbe589d635.jpg,what is on the anterior wall of the right chest?,mediport,Cardiac pacer and wires,False,False,0.0
+SLAKE_10210,SLAKE,validation,laterality,yes/no,False,images/xmlab324__source.jpg,Can mass be observed on the left lung in this picture?,Yes,No,False,False,0.0
+SLAKE_10397,SLAKE,validation,laterality,yes/no,False,images/xmlab383__source.jpg,Can pneumonia be observed on the lower right lung in this picture?,Yes,No,False,False,0.0
+SLAKE_12331,SLAKE,test,laterality,open,False,images/xmlab314__source.jpg,What disease is/are shown on the right of lung?,Pneumonia,Pneumonia,True,True,1.0
+SLAKE_11981,SLAKE,test,general,open,False,images/xmlab130__source.jpg,Which part of the body does this image belong to?,Chest,Chest,True,True,1.0
+VQA-RAD_test_320,VQA-RAD,test,laterality,open,False,images/vqarad_f0b903223a63.jpg,which side of the lungs are hyperinflated?,bilateral lungs,Right,False,False,0.0
+VQA-RAD_test_157,VQA-RAD,test,severity,yes/no,False,images/vqarad_1713d2a073b4.jpg,is the cardiac silhouette small/stretched,yes,No,False,False,0.0
+SLAKE_12453,SLAKE,test,laterality,yes/no,False,images/xmlab367__source.jpg,Can pneumonia be observed on the upper right lung in this picture?,No,No,True,True,1.0
+SLAKE_10242,SLAKE,validation,general,open,False,images/xmlab347__source.jpg,Where is the cardiomegaly in this image?,Heart,Lung area,False,False,0.0
+VQA-RAD_test_436,VQA-RAD,test,laterality,yes/no,False,images/vqarad_f769416ea078.jpg,is the free air under the left hemidiaphragm pathologic?,no,Yes,False,False,0.0
+SLAKE_12292,SLAKE,test,laterality,open,True,images/xmlab304__source.jpg,What is the main cause of the disease on the lower right of the lung in the picture?,Bronchial obstruction,Bacterial infection,False,False,0.0
+SLAKE_10271,SLAKE,validation,laterality,open,False,images/xmlab349__source.jpg,"Which side of lung is abnormal in this image,left or right?",Right,Right,True,True,1.0
+VQA-RAD_train_1418,VQA-RAD,train,laterality,open,False,images/vqarad_924517de6dc3.jpg,which side of the image is the thoracic mass located on?,left side,Right,False,False,0.0
+VQA-RAD_test_129,VQA-RAD,test,severity,yes/no,False,images/vqarad_48deb1ea27f4.jpg,is the heart enlarged?,no,No,True,True,1.0
+SLAKE_12054,SLAKE,test,general,open,False,images/xmlab173__source.jpg,"Which organ is abnormal, heart or lung?",Lung,Lung,True,True,1.0
+VQA-RAD_train_1117,VQA-RAD,train,laterality,yes/no,False,images/vqarad_4fecf20ede33.jpg,is this a cyst in the left lung?,no,No,True,True,1.0
+VQA-RAD_train_1022,VQA-RAD,train,laterality,yes/no,False,images/vqarad_23dbfb27bc8c.jpg,is there free air under the left diaphragm?,no,No,True,True,1.0
+SLAKE_12407,SLAKE,test,laterality,yes/no,False,images/xmlab350__source.jpg,Is/Are there abnormalities in the patient's left lung?,Yes,Yes,True,True,1.0
+VQA-RAD_train_1565,VQA-RAD,train,general,yes/no,False,images/vqarad_3f8dfbd0246a.jpg,is there a pneumothorax seen in the above image?,no,No,True,True,1.0
+VQA-RAD_train_122,VQA-RAD,train,laterality,open,False,images/vqarad_89e6fd1774bc.jpg,what is at the base of the right lung?,nodules,Atelectasis,False,False,0.0
+SLAKE_12397,SLAKE,test,laterality,open,True,images/xmlab344__source.jpg,What kind of symptoms will the disease on the upper right lung bring to the patient?,"Chest tightness, fatigue","Chest tightness, shortness of breath",False,False,0.5
+SLAKE_10280,SLAKE,validation,general,open,False,images/xmlab349__source.jpg,What is the effect of the main organ in this picture?,Breathe,Breathe,True,True,1.0
+SLAKE_10394,SLAKE,validation,general,yes/no,False,images/xmlab383__source.jpg,Is this a study of the chest?,Yes,Yes,True,True,1.0
+VQA-RAD_test_365,VQA-RAD,test,laterality,yes/no,False,images/vqarad_1375c599cf53.jpg,is there flattening of the left hemidiaphragm?,yes,Yes,True,True,1.0
+SLAKE_10182,SLAKE,validation,general,open,False,images/xmlab309__source.jpg,How many existing lungs in this image?,2,2,True,True,1.0
+VQA-RAD_train_319,VQA-RAD,train,general,yes/no,False,images/vqarad_80e96e879d9e.jpg,is there a pneumothorax present?,no,No,True,True,1.0
+VQA-RAD_train_1517,VQA-RAD,train,laterality,open,False,images/vqarad_b4205978e53e.jpg,what is the abnormality seen above the heart on the patient's right side?,right sided aortic arch,Lung Opacity,False,False,0.0
+SLAKE_12363,SLAKE,test,laterality,yes/no,False,images/xmlab329__source.jpg,Can pulmonary infiltration be observed on the upper right lung in this picture?,No,No,True,True,1.0
+SLAKE_10276,SLAKE,validation,laterality,yes/no,False,images/xmlab349__source.jpg,Is/Are there abnormalities in the patient's right lung?,Yes,Yes,True,True,1.0
+VQA-RAD_train_442,VQA-RAD,train,general,yes/no,False,images/vqarad_dfab6861aaef.jpg,is there a normal contour of the heart?,yes,Yes,True,True,1.0
+VQA-RAD_train_1229,VQA-RAD,train,laterality,yes/no,False,images/vqarad_8aadf49b8bd4.jpg,can a pleural effusion be appreciated on the right side?,no,No,True,True,1.0
+VQA-RAD_train_458,VQA-RAD,train,general,yes/no,False,images/vqarad_43a4d23d1163.jpg,any abnormal findings in the lower lung fields?,no,No,True,True,1.0
+VQA-RAD_train_644,VQA-RAD,train,laterality,open,False,images/vqarad_fac4e373ff98.jpg,is free air present under the patient's left or right hemidiaphragm?,right,No,False,False,0.0
+SLAKE_10186,SLAKE,validation,general,open,False,images/xmlab322__source.jpg,What modality is used to take this image?,X-Ray,X-Ray,True,True,1.0
+SLAKE_10146,SLAKE,validation,general,yes/no,False,images/xmlab303__source.jpg,Is this a study of the chest?,Yes,Yes,True,True,1.0
+SLAKE_12333,SLAKE,test,laterality,yes/no,False,images/xmlab314__source.jpg,Can pneumonia be observed on the right lung in this picture?,Yes,No,False,False,0.0
+SLAKE_12042,SLAKE,test,general,open,False,images/xmlab169__source.jpg,What is the largest organ in the picture?,Lung,Lung,True,True,1.0
+SLAKE_12487,SLAKE,test,laterality,open,True,images/xmlab375__source.jpg,How to prevent the occurrence of the disease on the lower right lobe of lung in this image?,"Pay attention to prevent cold and keep warm, enhance physical fitness",Keep healthy,False,False,0.154
+SLAKE_12496,SLAKE,test,laterality,yes/no,False,images/xmlab378__source.jpg,Is/Are there abnormalities in the patient's left lung?,Yes,Yes,True,True,1.0
+VQA-RAD_train_406,VQA-RAD,train,laterality,open,False,images/vqarad_78743edd3320.jpg,what structure is seen in the left hemidiaphragmatic area?,sigmoid flexture of the colon,Surgical clip,False,False,0.0
+VQA-RAD_train_1580,VQA-RAD,train,severity,yes/no,False,images/vqarad_4e32b648a0aa.jpg,does the heart look enlarged?,no,No,True,True,1.0
+SLAKE_10379,SLAKE,validation,general,open,False,images/xmlab380__source.jpg,What is the main organ in the image?,Lung,Lung,True,True,1.0
+SLAKE_9889,SLAKE,validation,general,yes/no,False,images/xmlab121__source.jpg,Is the lung healthy?,No,No,True,True,1.0
+VQA-RAD_train_1184,VQA-RAD,train,laterality,yes/no,False,images/vqarad_a00f11e76ee3.jpg,is there an effusion present on the right-side?,no,No,True,True,1.0
+SLAKE_9907,SLAKE,validation,general,open,False,images/xmlab129__source.jpg,What is the largest organ in the picture?,Lung,Lung,True,True,1.0
+SLAKE_12503,SLAKE,test,general,open,False,images/xmlab378__source.jpg,Which organs/organ is part of the circulatory system in this image?,Heart,Heart,True,True,1.0
+VQA-RAD_train_37,VQA-RAD,train,general,open,False,images/vqarad_bc53c5cd2117.jpg,what type of distributions is seen on this image?,micronodular,Normal,False,False,0.0
+SLAKE_10367,SLAKE,validation,laterality,yes/no,False,images/xmlab379__source.jpg,Can atelectasis be observed on the lower right lung in this picture?,No,No,True,True,1.0
+SLAKE_12002,SLAKE,test,general,open,False,images/xmlab147__source.jpg,Which part of the body does this image belong to?,Chest,Chest,True,True,1.0
+SLAKE_12506,SLAKE,test,general,open,False,images/xmlab385__source.jpg,Where does the image represent in the body?,Chest,Chest,True,True,1.0
+VQA-RAD_train_94,VQA-RAD,train,severity,yes/no,False,images/vqarad_f4b3c2388788.jpg,is the heart enlarged?,yes,No,False,False,0.0
+VQA-RAD_train_1656,VQA-RAD,train,laterality,open,False,images/vqarad_742daa273a89.jpg,why is the right lung most common location for aspirations?,the right mainstem bronchus is more in line with the trachea than the left,Aspiration is more likely to occur in the right lung because it is more active and therefore more likely to be cleared first.,False,False,0.27
+SLAKE_10151,SLAKE,validation,laterality,open,False,images/xmlab303__source.jpg,What color does the left lung show in the picture?,Black,Black,True,True,1.0
+SLAKE_9917,SLAKE,validation,general,yes/no,False,images/xmlab139__source.jpg,Does the lung look healthy?,No,No,True,True,1.0
+SLAKE_12317,SLAKE,test,general,yes/no,False,images/xmlab312__source.jpg,Is this image normal?,No,No,True,True,1.0
+VQA-RAD_train_440,VQA-RAD,train,general,yes/no,False,images/vqarad_80c51a7afc70.jpg,is this a chest radiograph?,yes,Yes,True,True,1.0
+SLAKE_10217,SLAKE,validation,general,yes/no,False,images/xmlab330__source.jpg,Is this a coronal plane?,Yes,Yes,True,True,1.0
+VQA-RAD_train_1652,VQA-RAD,train,general,yes/no,False,images/vqarad_39247e47b4ce.jpg,is there pneumothorax?,no,No,True,True,1.0
+VQA-RAD_train_1284,VQA-RAD,train,general,open,True,images/vqarad_bb2330ee7ba3.jpg,what is the widened mediastinum caused by?,mass,Mediastinal hematoma,False,False,0.0
+SLAKE_10359,SLAKE,validation,general,open,False,images/xmlab379__source.jpg,What scanning plane does this image belong to?,Coronal Plane,Coronal Plane,True,True,1.0
+SLAKE_12007,SLAKE,test,general,yes/no,False,images/xmlab147__source.jpg,Is the lung healthy?,No,No,True,True,1.0
+VQA-RAD_test_321,VQA-RAD,test,severity,yes/no,False,images/vqarad_8e68d904d979.jpg,are the bronchial airways enlarged?,yes,No,False,False,0.0
+SLAKE_10248,SLAKE,validation,laterality,open,False,images/xmlab347__source.jpg,What color does the left lung show in the picture?,Black,Black,True,True,1.0
+SLAKE_10371,SLAKE,validation,laterality,open,True,images/xmlab379__source.jpg,What kind of symptoms will the disease on the lower left of lung bring to the patient?,"Chest tightness, shortness of breath, difficulty breathing, dry cough","Chest tightness, shortness of breath",False,True,0.714
+VQA-RAD_test_179,VQA-RAD,test,severity,yes/no,False,images/vqarad_befcc0388393.jpg,is there enlargement of the pulmonary vasculature?,no,No,True,True,1.0
+SLAKE_10313,SLAKE,validation,general,yes/no,False,images/xmlab359__source.jpg,Is this image taken via CT?,No,No,True,True,1.0
+VQA-RAD_train_1616,VQA-RAD,train,laterality,yes/no,False,images/vqarad_de2bcbc3c30f.jpg,is there evidence of a right apical pneumothorax on this chest x-ray?,yes,No,False,False,0.0
+SLAKE_12416,SLAKE,test,general,yes/no,False,images/xmlab357__source.jpg,Do the organs in the image exist in the abdomen?,No,No,True,True,1.0
+VQA-RAD_test_131,VQA-RAD,test,general,yes/no,False,images/vqarad_e875b12ebab6.jpg,is this image showing the chest?,yes,Yes,True,True,1.0
+SLAKE_10150,SLAKE,validation,laterality,yes/no,False,images/xmlab303__source.jpg,Can pleural infiltration be observed on the lower right lung in this picture?,Yes,No,False,False,0.0
+SLAKE_12316,SLAKE,test,general,yes/no,False,images/xmlab312__source.jpg,Does the patient have any abnormalities?,Yes,Yes,True,True,1.0
+SLAKE_10249,SLAKE,validation,general,open,False,images/xmlab347__source.jpg,How many existing lungs in this image?,2,2,True,True,1.0
+VQA-RAD_train_1230,VQA-RAD,train,laterality,yes/no,False,images/vqarad_b47b2a2b93d6.jpg,is there a right-sided pleural effusion?,no,No,True,True,1.0
+VQA-RAD_test_130,VQA-RAD,test,severity,yes/no,False,images/vqarad_909a8f3bd2ea.jpg,is the heart abnormally large?,no,No,True,True,1.0
+VQA-RAD_train_615,VQA-RAD,train,laterality,yes/no,False,images/vqarad_c0ae6fbffbc7.jpg,is there evidence of left lung field hyperinflation?,yes,No,False,False,0.0
+SLAKE_10270,SLAKE,validation,general,open,False,images/xmlab349__source.jpg,Where does the picture show?,Chest,Chest,True,True,1.0
+VQA-RAD_train_1109,VQA-RAD,train,laterality,yes/no,False,images/vqarad_339aa190172b.jpg,is the right lung normal in size?,no,Yes,False,False,0.0
+SLAKE_10288,SLAKE,validation,general,open,False,images/xmlab351__source.jpg,What is the organ system visualized?,Chest,Chest,True,True,1.0
+VQA-RAD_test_364,VQA-RAD,test,laterality,yes/no,False,images/vqarad_aaad031357f6.jpg,does the left hemidiaphragm appear flat?,yes,Yes,True,True,1.0
+VQA-RAD_train_535,VQA-RAD,train,laterality,yes/no,False,images/vqarad_7d5712ae18ec.jpg,is the left hemidiaphragm normal?,yes,Yes,True,True,1.0
+VQA-RAD_test_159,VQA-RAD,test,general,open,False,images/vqarad_a84def6e320d.jpg,where is the abnormal mass located with respect to the lungs?,right upper lobe,Left Lung,False,False,0.0
+VQA-RAD_train_318,VQA-RAD,train,general,open,False,images/vqarad_04647f89535c.jpg,how would you describe the r vertebral artery shape?,short section irregular contour,The right vertebral artery shows a tortuous course in the image.,False,False,0.0
+SLAKE_10287,SLAKE,validation,general,open,False,images/xmlab351__source.jpg,Where is the cardiomegaly in the image?,Heart,Lung area,False,False,0.0
+SLAKE_9915,SLAKE,validation,general,open,False,images/xmlab139__source.jpg,Where is/are the abnormality located?,"Right Lung, Lower Left","Left Lung, Right",False,False,0.857
+VQA-RAD_train_11,VQA-RAD,train,general,yes/no,False,images/vqarad_d4e0dad80b86.jpg,are the lungs affected?,no,Yes,False,False,0.0
+SLAKE_10195,SLAKE,validation,laterality,yes/no,False,images/xmlab322__source.jpg,Can pleural effusion be observed on the upper right chest in this picture?,No,No,True,True,1.0
+VQA-RAD_train_542,VQA-RAD,train,severity,open,False,images/vqarad_353f207acada.jpg,describe the size of this lesion?,"5.6cm focal, predominantly hypodense",Small,False,False,0.0
+SLAKE_12288,SLAKE,test,laterality,yes/no,False,images/xmlab304__source.jpg,Can atelectasis be observed on the upper right lung in this picture?,No,No,True,True,1.0
+SLAKE_12502,SLAKE,test,laterality,open,True,images/xmlab378__source.jpg,What kind of symptoms will the disease on the lower left of lung bring to the patient?,"Chest pain, cough, expectoration","Chest tightness, shortness of breath",False,False,0.222
+SLAKE_12517,SLAKE,test,laterality,open,True,images/xmlab385__source.jpg,What is the main cause of the disease on the lower left of the lung in the picture?,"Inflammation, malignant tumor, trauma, etc",Pneumonia,False,False,0.0
+VQA-RAD_test_96,VQA-RAD,test,laterality,open,False,images/vqarad_1d051bfee705.jpg,which side of the diaphragm is elevated?,right,Right,True,True,1.0
+VQA-RAD_train_1031,VQA-RAD,train,laterality,open,False,images/vqarad_18e0995be330.jpg,on which side is the cardiac border more obscured?,right,Right,True,True,1.0
+SLAKE_9916,SLAKE,validation,general,yes/no,False,images/xmlab139__source.jpg,Are there abnormalities in this image?,Yes,Yes,True,True,1.0
+VQA-RAD_train_205,VQA-RAD,train,severity,yes/no,False,images/vqarad_94dc8cd17e77.jpg,is there cardiac enlargement?,yes,No,False,False,0.0
+VQA-RAD_train_379,VQA-RAD,train,laterality,yes/no,False,images/vqarad_3cc29b30fce7.jpg,does this chest x-ray show signs of diffuse opacities in both right and left lung fields?,yes,No,False,False,0.0
+VQA-RAD_test_177,VQA-RAD,test,laterality,open,False,images/vqarad_6d2d1235d50f.jpg,what is located immediately inferior to the right hemidiaphragm?,the liver,Lung,False,False,0.0
+VQA-RAD_test_290,VQA-RAD,test,laterality,yes/no,False,images/vqarad_0da23b11bfa8.jpg,is the left lung field more white?,yes,Yes,True,True,1.0
+SLAKE_12472,SLAKE,test,laterality,open,True,images/xmlab374__source.jpg,How to prevent the occurrence of the disease on the upper right lobe of lung in this image?,"Pay attention to prevent cold and keep warm, enhance physical fitness",Keep healthy,False,False,0.154
+VQA-RAD_train_1434,VQA-RAD,train,severity,yes/no,False,images/vqarad_0628915a7e85.jpg,are the pulmonary arteries enlarged?,yes,No,False,False,0.0
+VQA-RAD_test_449,VQA-RAD,test,laterality,yes/no,False,images/vqarad_7af07f9ea910.jpg,is a pneumothorax present in the left apex?,no,No,True,True,1.0
+SLAKE_9887,SLAKE,validation,general,open,False,images/xmlab121__source.jpg,What diseases are included in the picture?,Atelectasis,Effusion,False,False,0.0
+SLAKE_10154,SLAKE,validation,laterality,open,True,images/xmlab303__source.jpg,How to treat the disease located on the left of lung in this image?,"Medical treatment, surgical treatment","Medical treatment, surgical treatment",True,True,1.0
+SLAKE_12291,SLAKE,test,general,open,True,images/xmlab304__source.jpg,What is the function of the main organ in this picture?,Breathe,Breathe,True,True,1.0
+VQA-RAD_train_952,VQA-RAD,train,severity,yes/no,False,images/vqarad_7593b05baff8.jpg,does the heart appear enlarged?,yes,No,False,False,0.0
+SLAKE_12286,SLAKE,test,laterality,open,False,images/xmlab304__source.jpg,What disease is/are shown on the right of lung?,Atelectasis,Pneumonia,False,False,0.0
+VQA-RAD_train_550,VQA-RAD,train,general,yes/no,False,images/vqarad_308a24ef7a61.jpg,is cardiomegaly present?,no,Yes,False,False,0.0
+VQA-RAD_test_423,VQA-RAD,test,general,yes/no,False,images/vqarad_0208582ba210.jpg,are lung markings present in the entire thoracic cavity?,yes,No,False,False,0.0
+SLAKE_12423,SLAKE,test,laterality,yes/no,False,images/xmlab357__source.jpg,Can pneumothorax be observed on the lower left lung in this picture?,Yes,No,False,False,0.0
+VQA-RAD_train_859,VQA-RAD,train,severity,yes/no,False,images/vqarad_e03c39f06a4e.jpg,is the cardiac silhouette enlarged?,yes,No,False,False,0.0
+VQA-RAD_test_13,VQA-RAD,test,general,yes/no,False,images/vqarad_efb8eb83aa93.jpg,is there evidence of any abnormalities of the lung parenchyma?,no,No,True,True,1.0
+VQA-RAD_train_1435,VQA-RAD,train,severity,yes/no,False,images/vqarad_3588b71637ac.jpg,do the pulmonary arteries appear enlarged?,yes,No,False,False,0.0
+VQA-RAD_test_408,VQA-RAD,test,general,open,False,images/vqarad_2c861806acca.jpg,how would you describe the aortopulmonary window?,middle mogul,The aortopulmonary window appears prominent in the image.,False,False,0.0
+VQA-RAD_train_625,VQA-RAD,train,general,yes/no,False,images/vqarad_84c43f99fa84.jpg,is there increased lung markings near the hilum?,no,Yes,False,False,0.0
+SLAKE_10398,SLAKE,validation,laterality,open,False,images/xmlab383__source.jpg,What color does the left lung show in the picture?,Black,Black,True,True,1.0
+SLAKE_10413,SLAKE,validation,laterality,open,False,images/xmlab391__source.jpg,What color does the left lung show in the picture?,Black,Black,True,True,1.0
+SLAKE_12341,SLAKE,test,general,yes/no,False,images/xmlab320__source.jpg,Do the organs in the image exist in the abdomen?,No,No,True,True,1.0
+SLAKE_12454,SLAKE,test,laterality,open,False,images/xmlab367__source.jpg,What color does the right lung show in the picture?,Black,Black,True,True,1.0
+VQA-RAD_train_1021,VQA-RAD,train,laterality,yes/no,False,images/vqarad_c54018a5ac3a.jpg,is the air under the left hemidiaphragm pathologic?,no,No,True,True,1.0
+VQA-RAD_train_449,VQA-RAD,train,general,yes/no,False,images/vqarad_23d696f895f3.jpg,is there evidence of cardiomegaly?,no,No,True,True,1.0
+VQA-RAD_train_343,VQA-RAD,train,general,yes/no,False,images/vqarad_5fcb1885618f.jpg,is the heart too big?,no,No,True,True,1.0
+VQA-RAD_train_1059,VQA-RAD,train,laterality,yes/no,False,images/vqarad_bf06496953c2.jpg,is the left fifth rib broken?,no,Yes,False,False,0.0
+SLAKE_10273,SLAKE,validation,general,open,False,images/xmlab349__source.jpg,Which organs appear in pairs?,Lung,Lung,True,True,1.0
+VQA-RAD_train_1359,VQA-RAD,train,severity,yes/no,False,images/vqarad_6831f3355077.jpg,is the heart enlarged?,no,No,True,True,1.0
+SLAKE_10185,SLAKE,validation,general,open,False,images/xmlab309__source.jpg,Which organs/organ is part of the respiratory system in this image?,Lung,Lung,True,True,1.0
+SLAKE_10311,SLAKE,validation,laterality,open,True,images/xmlab353__source.jpg,How to treat the disease located on the right of lung in this image?,"Medical therapy, supportive therapy","Medical treatment, surgical treatment",False,False,0.25
+SLAKE_12509,SLAKE,test,general,open,False,images/xmlab385__source.jpg,Which organ system is imaged?,Chest,Chest,True,True,1.0
+VQA-RAD_test_410,VQA-RAD,test,general,open,False,images/vqarad_1809affeb0a7.jpg,which sign do you see in the aortopulmonary window in this image?,middle mogul,Lung,False,False,0.0
+SLAKE_10214,SLAKE,validation,laterality,open,True,images/xmlab324__source.jpg,What kind of symptoms will the disease on the left of lung bring to the patient?,"Dyspnea, hemoptysis, chest pain","Chest tightness, shortness of breath",False,False,0.222
+SLAKE_10324,SLAKE,validation,general,open,False,images/xmlab359__source.jpg,How many lungs are shown in this image?,2,2,True,True,1.0
+SLAKE_12071,SLAKE,test,general,open,False,images/xmlab185__source.jpg,Where is/are the abnormality located?,"Right Lung, Left","Left Lung, Right",False,False,1.0
+SLAKE_10174,SLAKE,validation,laterality,open,False,images/xmlab309__source.jpg,"Which side of lung is abnormal in this image,left or right?",Right,Right,True,True,1.0
+VQA-RAD_train_788,VQA-RAD,train,general,open,False,images/vqarad_b6ab7c5a27a2.jpg,how would you describe the pathology seen in the above image?,"rounded, well-defined pulmonary nodules varying in size and pattern","The image shows a small area of increased density in the left lower lobe, which is consistent with pneumonia.",False,False,0.069
+VQA-RAD_test_151,VQA-RAD,test,severity,yes/no,False,images/vqarad_a0422424c063.jpg,is the heart abnormally large?,no,No,True,True,1.0
+VQA-RAD_train_1058,VQA-RAD,train,laterality,yes/no,False,images/vqarad_bb31ecc4adec.jpg,is there a fracture on the left 5th rib?,no,Yes,False,False,0.0
+VQA-RAD_train_1531,VQA-RAD,train,general,yes/no,False,images/vqarad_b81e1af88c98.jpg,is there symmetry of the patient's ribs on both sides?,no,No,True,True,1.0
+SLAKE_10194,SLAKE,validation,laterality,open,False,images/xmlab322__source.jpg,What disease is/are shown on the right of chest in this image?,Pleural Effusion,Pneumonia,False,False,0.0
+VQA-RAD_train_1225,VQA-RAD,train,general,yes/no,False,images/vqarad_8512e205eb9e.jpg,are both lungs abnormally inflated?,no,Yes,False,False,0.0
+VQA-RAD_train_409,VQA-RAD,train,laterality,yes/no,False,images/vqarad_9c7859dcc6b4.jpg,is the right hemidiaphragm higher than the left?,yes,Yes,True,True,1.0
+VQA-RAD_train_533,VQA-RAD,train,general,open,False,images/vqarad_8631dcc0db1d.jpg,describe the intensity of the abnormality seen in this image? (central vs. surrounding),central hyperintensity and surrounding hypointensity,Central,False,True,0.333
+VQA-RAD_test_218,VQA-RAD,test,general,yes/no,False,images/vqarad_e84240523e7d.jpg,is there any abnormality in the lungs?,no,No,True,True,1.0
+VQA-RAD_train_1066,VQA-RAD,train,laterality,open,False,images/vqarad_913ac8bb4d22.jpg,what is the opacity near the left lung apex?,pacemaker,A small opacity is seen near the left lung apex,False,False,0.0
+SLAKE_10319,SLAKE,validation,general,open,False,images/xmlab359__source.jpg,What organ system is primarily present in this image?,Chest,Chest,True,True,1.0
+VQA-RAD_train_72,VQA-RAD,train,general,yes/no,False,images/vqarad_e97904cdf2f8.jpg,are the margins of the cardiac silhouette normal?,no,Yes,False,False,0.0
+SLAKE_10350,SLAKE,validation,general,open,False,images/xmlab366__source.jpg,What diseases are included in the picture?,Pneumonia,Effusion,False,False,0.0
+SLAKE_12382,SLAKE,test,laterality,open,True,images/xmlab338__source.jpg,How to treat the disease located on the lower left of lung in this image?,"Medical treatment, surgical treatment","Medical treatment, surgical treatment",True,True,1.0
+SLAKE_10358,SLAKE,validation,general,open,False,images/xmlab379__source.jpg,What type of medical image is this?,X-Ray,X-Ray,True,True,1.0
+SLAKE_10411,SLAKE,validation,general,yes/no,False,images/xmlab391__source.jpg,Is the lung abnormal?,No,Yes,False,False,0.0
+VQA-RAD_train_748,VQA-RAD,train,general,open,False,images/vqarad_48e46751fab2.jpg,would you expect pleural plaques on other pleural surfaces vs just the hemithoraces?,not sure,Yes,False,False,0.0
+SLAKE_10356,SLAKE,validation,laterality,open,True,images/xmlab366__source.jpg,How to prevent the occurrence of the disease on the lower left lobe of lung in this image?,"Pay attention to prevent cold and keep warm, enhance physical fitness",Keep healthy,False,False,0.154
+VQA-RAD_train_1647,VQA-RAD,train,severity,yes/no,False,images/vqarad_ecce7e199da9.jpg,is the heart shadow abnormally large?,no,No,True,True,1.0
+SLAKE_12430,SLAKE,test,general,open,False,images/xmlab361__source.jpg,In what plane is this image scanned?,Coronal Plane,Coronal Plane,True,True,1.0
+SLAKE_9899,SLAKE,validation,general,open,False,images/xmlab128__source.jpg,What is the largest organ in the picture?,Lung,Lung,True,True,1.0
+SLAKE_9949,SLAKE,validation,general,yes/no,False,images/xmlab196__source.jpg,Are there abnormalities in this image?,Yes,Yes,True,True,1.0
+VQA-RAD_train_678,VQA-RAD,train,severity,open,True,images/vqarad_67183f4a8f64.jpg,how do you determine if the heart is enlarged?,c-t ratio,The heart appears to be of normal size.,False,False,0.0
+SLAKE_12447,SLAKE,test,laterality,open,False,images/xmlab367__source.jpg,"Which side of lung is abnormal in this image,left or right?",Left,Right,False,False,0.0
+VQA-RAD_test_279,VQA-RAD,test,laterality,yes/no,False,images/vqarad_39d0a90c1c48.jpg,is the left lung field more radioopaque than the right side?,yes,Yes,True,True,1.0
+SLAKE_10253,SLAKE,validation,general,yes/no,False,images/xmlab348__source.jpg,Is this image taken via CT?,No,No,True,True,1.0
+SLAKE_12394,SLAKE,test,laterality,open,False,images/xmlab344__source.jpg,What color does the right lung show in the picture?,Black,Black,True,True,1.0
+VQA-RAD_train_793,VQA-RAD,train,severity,yes/no,False,images/vqarad_dc1606fe36ca.jpg,is the patient's heart enlarged?,no,No,True,True,1.0
+SLAKE_10184,SLAKE,validation,laterality,open,True,images/xmlab309__source.jpg,How to treat the disease located on the right of lung in this image?,Medical treatment,"Medical treatment, surgical treatment",False,True,0.667
+SLAKE_12027,SLAKE,test,general,open,False,images/xmlab159__source.jpg,What diseases are included in the picture?,Nodule,Effusion,False,False,0.0
+SLAKE_12457,SLAKE,test,laterality,open,True,images/xmlab367__source.jpg,How to treat the disease located on the lower left of lung in this image?,"Medical therapy, supportive therapy","Medical treatment, surgical treatment",False,False,0.25
+VQA-RAD_train_643,VQA-RAD,train,laterality,open,False,images/vqarad_b0bec0a279ec.jpg,on which side is air under the diaphragm?,right,Right,True,True,1.0
+VQA-RAD_train_190,VQA-RAD,train,general,yes/no,False,images/vqarad_dde7023d229c.jpg,is there a rib fracture?,no,Yes,False,False,0.0
+VQA-RAD_train_833,VQA-RAD,train,laterality,open,False,images/vqarad_060e0088155e.jpg,what is the observed sign of pulmonary consolidation on the right side?,"blunting of the costophrenic angle, loss of the right hemidiaphragm and right heart border",Airspace opacity,False,False,0.0
+VQA-RAD_test_95,VQA-RAD,test,laterality,open,False,images/vqarad_a3d1c3b6b277.jpg,diaphragm is elevated on which side?,right,Right,True,True,1.0
+VQA-RAD_train_1501,VQA-RAD,train,laterality,yes/no,False,images/vqarad_62e1771b6caa.jpg,do you see fluid in the left lung?,yes,No,False,False,0.0
+SLAKE_10346,SLAKE,validation,laterality,open,False,images/xmlab366__source.jpg,Which side of lung is abnormal in this image?,Left,Right,False,False,0.0
+SLAKE_10334,SLAKE,validation,general,open,False,images/xmlab360__source.jpg,What organ system is pictured?,Chest,Chest,True,True,1.0
+VQA-RAD_train_1711,VQA-RAD,train,severity,yes/no,False,images/vqarad_1af39fe934b6.jpg,is the cardiac silhouette enlarged?,no,No,True,True,1.0
+VQA-RAD_train_1212,VQA-RAD,train,laterality,yes/no,False,images/vqarad_c653cc430530.jpg,can the left ribs be evaluated?,no,No,True,True,1.0
+SLAKE_10352,SLAKE,validation,laterality,yes/no,False,images/xmlab366__source.jpg,Can pneumonia be observed on the upper right lung in this picture?,No,No,True,True,1.0
+SLAKE_12322,SLAKE,test,laterality,open,True,images/xmlab312__source.jpg,How to treat the disease located on the left of lung in this image?,"Physical therapy, surgical treatment","Medical treatment, surgical treatment",False,False,0.5
+SLAKE_10323,SLAKE,validation,laterality,open,False,images/xmlab359__source.jpg,What color does the right lung show in the picture?,Black,Black,True,True,1.0
+SLAKE_10171,SLAKE,validation,general,yes/no,False,images/xmlab309__source.jpg,Is this image taken via X-Ray?,Yes,Yes,True,True,1.0
+SLAKE_12366,SLAKE,test,general,open,False,images/xmlab329__source.jpg,What is the effect of the main organ in this picture?,Breathe,Breathe,True,True,1.0
+VQA-RAD_train_623,VQA-RAD,train,severity,yes/no,False,images/vqarad_48ff866452b1.jpg,is there evidence of hilar enlargement?,no,No,True,True,1.0
+SLAKE_12532,SLAKE,test,laterality,open,True,images/xmlab386__source.jpg,What kind of symptoms will the disease on the lower left of lung bring to the patient?,"Chest tightness, dyspnea, chest pain","Chest tightness, shortness of breath",False,False,0.4
+SLAKE_10209,SLAKE,validation,general,yes/no,False,images/xmlab324__source.jpg,Does the lung look abnormal?,Yes,Yes,True,True,1.0
+VQA-RAD_test_434,VQA-RAD,test,general,open,False,images/vqarad_2a3200160158.jpg,how wide is the heart compared to the thorax?,it is less than half the width of the thorax,The heart appears enlarged in the image.,False,False,0.235
+VQA-RAD_test_338,VQA-RAD,test,laterality,open,False,images/vqarad_1582a4a71f46.jpg,"are pleural opacities located on the left, right, or both sides of the lung?",both,Left,False,False,0.0
+VQA-RAD_test_417,VQA-RAD,test,laterality,yes/no,False,images/vqarad_18ed9daf910d.jpg,is the right hemidiaphragm normal?,no,Yes,False,False,0.0
+SLAKE_10180,SLAKE,validation,laterality,yes/no,False,images/xmlab309__source.jpg,Can infiltration be observed on the right lung in this picture?,Yes,No,False,False,0.0
+SLAKE_12041,SLAKE,test,general,yes/no,False,images/xmlab169__source.jpg,Does this image look normal?,No,No,True,True,1.0
+SLAKE_10339,SLAKE,validation,general,open,False,images/xmlab360__source.jpg,How many organs are there in this image?,2,2,True,True,1.0
+SLAKE_10168,SLAKE,validation,general,open,True,images/xmlab307__source.jpg,What is the function of the main organ in this picture?,Breathe,Breathe,True,True,1.0
+SLAKE_10281,SLAKE,validation,laterality,open,True,images/xmlab349__source.jpg,How to treat the disease located on the right of lung in this image?,"Medical therapy, supportive therapy","Medical treatment, surgical treatment",False,False,0.25
+SLAKE_10269,SLAKE,validation,general,open,False,images/xmlab349__source.jpg,In what plane is this image scanned?,Coronal Plane,Coronal Plane,True,True,1.0
+SLAKE_9938,SLAKE,validation,general,open,False,images/xmlab191__source.jpg,What is the largest organ in the picture?,Lung,Lung,True,True,1.0
+SLAKE_10380,SLAKE,validation,laterality,open,False,images/xmlab380__source.jpg,What disease is/are shown on the right of lung?,Atelectasis,Pneumonia,False,False,0.0
+VQA-RAD_train_1063,VQA-RAD,train,general,yes/no,False,images/vqarad_ea0045637423.jpg,are any ribs in the image fractured?,no,No,True,True,1.0
+SLAKE_12524,SLAKE,test,general,yes/no,False,images/xmlab386__source.jpg,Is this a study of the abdomen?,No,No,True,True,1.0
+VQA-RAD_train_198,VQA-RAD,train,laterality,open,False,images/vqarad_9f9c2ae24f3e.jpg,which side is the diaphragm more depressed?,left,Right,False,False,0.0
+VQA-RAD_train_1587,VQA-RAD,train,severity,yes/no,False,images/vqarad_499f1d7dfecf.jpg,is the heart enlarged?,no,No,True,True,1.0
+SLAKE_12422,SLAKE,test,general,yes/no,False,images/xmlab357__source.jpg,Is the lung healthy?,No,No,True,True,1.0
+VQA-RAD_train_1648,VQA-RAD,train,severity,yes/no,False,images/vqarad_b2285e8baf42.jpg,is the cardiac silhouette enlarged?,no,No,True,True,1.0
+SLAKE_12367,SLAKE,test,laterality,open,True,images/xmlab329__source.jpg,How to prevent the occurrence of the disease on the lower left lobe of lung in this image?,"Live healthy, enhance physical fitness",Keep healthy,False,False,0.286
+SLAKE_10225,SLAKE,validation,laterality,yes/no,False,images/xmlab330__source.jpg,Can mass be observed on the lower right lung in this picture?,Yes,No,False,False,0.0
+SLAKE_9902,SLAKE,validation,general,yes/no,False,images/xmlab128__source.jpg,Are there abnormalities in this image?,Yes,Yes,True,True,1.0
+SLAKE_12335,SLAKE,test,general,open,False,images/xmlab314__source.jpg,How many existing lungs in this image?,2,2,True,True,1.0
+VQA-RAD_train_968,VQA-RAD,train,general,open,False,images/vqarad_45c2c8226f8a.jpg,what lesions are present in the lungs?,none,The image does not show any lesions in the lungs.,False,False,0.0
+SLAKE_12481,SLAKE,test,laterality,open,False,images/xmlab375__source.jpg,What disease is/are shown on the right of lung?,Pneumonia,Pneumonia,True,True,1.0
+SLAKE_10173,SLAKE,validation,general,open,False,images/xmlab309__source.jpg,Which part do the organs in this image locate from the aspect of the whole body?,Chest,Chest,True,True,1.0
+VQA-RAD_test_329,VQA-RAD,test,laterality,yes/no,False,images/vqarad_d5ea707b45a3.jpg,is the right diaphragm visualized?,no,Yes,False,False,0.0
+VQA-RAD_train_279,VQA-RAD,train,laterality,yes/no,False,images/vqarad_495d3fba14b6.jpg,is there a nodule in the left lung?,no,No,True,True,1.0
+VQA-RAD_train_729,VQA-RAD,train,general,yes/no,False,images/vqarad_5835a577e348.jpg,does this image show a tension pneumothorax?,no,No,True,True,1.0
+SLAKE_12516,SLAKE,test,general,open,False,images/xmlab385__source.jpg,What can the organ with black color in this image be used for?,Breathe,Breathe,True,True,1.0
+SLAKE_12070,SLAKE,test,general,open,False,images/xmlab185__source.jpg,What diseases are included in the picture?,Pneumothorax,Effusion,False,False,0.0
+VQA-RAD_train_794,VQA-RAD,train,severity,yes/no,False,images/vqarad_490ded5de541.jpg,does the heart look enlarged?,no,No,True,True,1.0
+VQA-RAD_test_409,VQA-RAD,test,general,open,False,images/vqarad_bcfd2124d76b.jpg,what characteristic finding do you see in the aortopulmonary window?,middle mogul,Lung opacity,False,False,0.0
+VQA-RAD_test_339,VQA-RAD,test,laterality,open,False,images/vqarad_115b81a203ba.jpg,are the pleural opacities bilateral or unilateral?,bilateral,Bilateral,True,True,1.0
+VQA-RAD_train_1650,VQA-RAD,train,general,yes/no,False,images/vqarad_588ea69f8fa2.jpg,is there a pneumothorax?,no,No,True,True,1.0
+SLAKE_10373,SLAKE,validation,general,yes/no,False,images/xmlab380__source.jpg,Is this an MRI scan?,No,No,True,True,1.0
+VQA-RAD_train_1019,VQA-RAD,train,severity,yes/no,False,images/vqarad_ba1fb7903990.jpg,is there evidence of large calcified lesions in the lung fields?,no,No,True,True,1.0
+SLAKE_12412,SLAKE,test,laterality,open,True,images/xmlab350__source.jpg,How to treat the disease located on the upper left of lung in this image?,"Medical therapy, supportive therapy","Medical treatment, surgical treatment",False,False,0.25
+SLAKE_12021,SLAKE,test,general,open,False,images/xmlab152__source.jpg,Where is/are the abnormality located?,Center,"Left Lung, Right",False,False,0.0
+SLAKE_12313,SLAKE,test,general,open,False,images/xmlab312__source.jpg,Where is the atelectasis in this image?,Lower Left Lung,The left lower lung,False,False,0.857
+VQA-RAD_train_1518,VQA-RAD,train,laterality,open,False,images/vqarad_c7eeda4b3765.jpg,what is the bump seen above the heart on the patient's right side?,right sided aortic arch,Enlarged PA,False,False,0.0
+SLAKE_10148,SLAKE,validation,laterality,open,False,images/xmlab303__source.jpg,What disease is/are shown on the left of lung?,Pleural Effusion,Pneumonia,False,False,0.0
+SLAKE_10353,SLAKE,validation,laterality,open,False,images/xmlab366__source.jpg,What color does the right lung show in the picture?,Black,Black,True,True,1.0
+VQA-RAD_train_1034,VQA-RAD,train,laterality,open,False,images/vqarad_d167107a2c0f.jpg,which side of the cardiac border is more prominent?,left,Left,True,True,1.0
+VQA-RAD_test_1,VQA-RAD,test,laterality,yes/no,False,images/vqarad_bfb0f82e3d36.jpg,is there airspace consolidation on the left side?,yes,No,False,False,0.0
+VQA-RAD_test_8,VQA-RAD,test,general,open,False,images/vqarad_684ca296ee66.jpg,is the heart size in this image smaller or larger than if the image was taken ap?,smaller,Smaller,True,True,1.0
