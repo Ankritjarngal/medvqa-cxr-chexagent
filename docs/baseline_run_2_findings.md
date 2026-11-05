@@ -34,8 +34,9 @@ SLAKE 64.7%, VQA-RAD 48.6%. Token-overlap F1 is higher than exact match on open 
      correctly). Within VQA-RAD: general 46% vs laterality 46% (no difference; VQA-RAD is hard throughout).
    - So "fine-grained side questions are harder" is supported in SLAKE yes/no questions (95% vs 56%,
      p = 0.005) but not demonstrated in VQA-RAD. Treat it as likely, not settled.
-   - Only 14 questions ask the model to choose a side; it got 7 right and answered "Right" 11 times
-     across open questions. Too few to call a side bias.
+   - Only 13 open questions ask the model to choose a side (left/right/both). It answered "right" on 11
+     of them, but "right" was correct for only 7. When the correct side was left or both (6 questions),
+     it answered "right" 5 times. Suggestive of defaulting to "right", but n is far too small to claim it.
 3. **Knowledge questions are mostly missed, with canned answers.** 4 of 24 exact; the model repeated
    "Medical treatment, surgical treatment" 8 times, "Chest tightness, shortness of breath" 6 times and
    "Keep healthy" for prevention questions regardless of image. SLAKE's gold answers are annotator-written
