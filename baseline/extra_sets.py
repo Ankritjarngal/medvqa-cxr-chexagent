@@ -19,6 +19,7 @@ Train rows make the set larger, not cleaner.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import random
 from pathlib import Path
@@ -119,6 +120,20 @@ def select_side_records(pool: list[dict], n_per_side: int = 60, n_both: int = 20
         chosen += taken
     rng.shuffle(chosen)
     return chosen
+
+
+def split_dev_heldout(records: list[dict], dev_fraction: float = 0.3) -> tuple[list[dict], list[dict]]:
+    """Deterministic split by image so no image appears on both sides.
+
+    Retrieval design (what to retrieve, how many passages, prompt wording) may
+    be tuned on the dev part only; the held-out part is scored once, at the end.
+    Without this, a small test set gets tuned until it shows an improvement.
+    """
+    dev, held = [], []
+    for r in records:
+        bucket = int(hashlib.md5(_image_identity(r).encode()).hexdigest(), 16) % 1000
+        (dev if bucket < dev_fraction * 1000 else held).append(r)
+    return dev, held
 
 
 def attach_images(records: list[dict], images_dir: str | Path) -> list[dict]:

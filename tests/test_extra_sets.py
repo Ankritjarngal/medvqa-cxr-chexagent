@@ -49,3 +49,14 @@ def test_describe_set_counts():
 def test_prompts_differ_between_sets():
     assert prompt_for_set("knowledge", "Why?", "laterality") == "Why?"
     assert "visible in the image" in prompt_for_set("side", "Which side?", "laterality")
+
+
+def test_dev_heldout_split_never_shares_an_image_and_is_stable():
+    from baseline.extra_sets import split_dev_heldout
+    recs = [_rec(f"q{i}", "a", key=f"img{i % 40}") for i in range(200)]
+    dev, held = split_dev_heldout(recs, 0.3)
+    assert len(dev) + len(held) == 200
+    assert {r["image_key"] for r in dev}.isdisjoint({r["image_key"] for r in held})
+    assert 0.15 < len(dev) / 200 < 0.45
+    dev2, _ = split_dev_heldout(recs, 0.3)
+    assert [r["uid"] for r in dev] == [r["uid"] for r in dev2]

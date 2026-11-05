@@ -24,6 +24,10 @@ This is **not** a diagnostic tool and is intended for educational/research purpo
 
 ```
 docs/
+  experiment_log.md              # Chronological record: what was done, found, fixed and corrected
+  evaluation_protocol.md         # How Phase 2 will be judged (fixed before any retrieval result)
+  phase1b_test_sets.md           # Knowledge and side test sets: design, caveats, reference numbers
+  baseline_run_2_findings.md     # 224-question baseline analysis (pilot: pilot_run_1_findings.md)
   literature_review.md          # Deep-dive review of 6 papers, dataset catalogue, gap analysis
   papers/README.md               # Links to the 6 source papers (PDFs are not redistributed)
   walkthrough.md / .pdf          # Plain-language walkthrough of the literature review findings
@@ -32,13 +36,21 @@ baseline/
   data.py                        # Builds the chest-X-ray-only test set from SLAKE + VQA-RAD (GPU-free)
   evaluate.py                    # Exact-match / loose-match scoring + category breakdown (GPU-free)
   model.py                       # CheXagent-2-3b inference wrapper (needs GPU + torch/transformers)
-  run_baseline.py                 # CLI entry point tying the above together
+  run_baseline.py                 # CLI entry point tying the above together (--set baseline|knowledge|side)
+  extra_sets.py                  # Knowledge (130 q) and left/right-balanced side (140 q) test sets (GPU-free)
+  sides.py                       # Side extraction, confusion table, right-default test (GPU-free)
+  knowledge.py                   # Item-level scoring for knowledge answers, blind review sheets (GPU-free)
+  compare.py, stats.py           # Paired baseline-vs-candidate comparison, exact tests (GPU-free)
+results/
+  pilot_run_1/, run_2/           # Raw per-question results of each model run
 tests/                           # Unit tests for the GPU-free parts of baseline/
 notebooks/
   01_baseline_chexagent.ipynb     # Self-contained Phase 1 notebook -- upload straight to Colab
+  02_knowledge_and_side_baselines.ipynb  # Phase 1b: knowledge + side sets (same model, same settings)
 scripts/
   build_slides.py                 # Regenerates the slide deck (python-pptx)
   build_baseline_notebook.py      # Regenerates notebooks/01_baseline_chexagent.ipynb
+  build_extra_notebook.py         # Regenerates notebooks/02_knowledge_and_side_baselines.ipynb
 slides/
   Medical_VQA_CXR_Literature_Review.pptx   # 5-slide presentation deck for the supervisor meeting
 ```
@@ -126,11 +138,22 @@ as every other paper in our review that reuses these benchmarks. The goal is to 
 own measured numbers on the known laterality/severity weak spot, not to claim a novel
 accuracy figure.
 
+### Phase 1b: knowledge and side questions
+
+Run 2 left two questions open, so two supplementary test sets were built and are run with the same model
+and settings: **130 knowledge questions** (symptoms, treatment, prevention, cause, function, "why"; the
+reference for Phase 2 retrieval) and **140 side questions with equal numbers of left and right answers** (does
+the model default to "right"?). Run `notebooks/02_knowledge_and_side_baselines.ipynb` on Colab. Design and
+caveats: [`docs/phase1b_test_sets.md`](docs/phase1b_test_sets.md). How Phase 2 will be judged:
+[`docs/evaluation_protocol.md`](docs/evaluation_protocol.md). Full history:
+[`docs/experiment_log.md`](docs/experiment_log.md).
+
 ### Regenerating the notebook or the test harness
 
 ```bash
 pip install nbformat
 python3 scripts/build_baseline_notebook.py   # regenerates notebooks/01_baseline_chexagent.ipynb
+python3 scripts/build_extra_notebook.py      # regenerates notebooks/02_knowledge_and_side_baselines.ipynb (run after 01)
 python3 -m pytest tests/                      # runs unit tests for the GPU-free logic
 ```
 

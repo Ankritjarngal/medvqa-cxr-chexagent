@@ -16,7 +16,11 @@ not for clinical use.
 ## Current state
 
 - Phase 1 code is complete and committed: `baseline/`, `notebooks/01_baseline_chexagent.ipynb`,
-  `tests/` (8 passing unit tests), CI workflow in `.github/workflows/tests.yml`.
+  `tests/` (54 passing unit tests), CI workflow in `.github/workflows/tests.yml`.
+- Phase 1 has been run on Colab twice (pilot of 60 questions, then 224). Results are in `results/`,
+  analysis in `docs/`. Read `docs/experiment_log.md` for the history and `docs/evaluation_protocol.md`
+  for how Phase 2 must be evaluated. Phase 1b (knowledge and side test sets, notebook 02) is built and
+  tested but the model has not been run on it yet.
 - The data pipeline and scoring were tested against real SLAKE and VQA-RAD data. The model
   itself has NOT been run: the cloud sandbox has no GPU. The first real model run happens on
   Google Colab (free T4), so expect to fix small issues in `baseline/model.py` or the notebook.
@@ -62,6 +66,14 @@ Target: https://github.com/Ankritjarngal/medvqa-cxr-chexagent (exists, currently
   other forges or workarounds.
 - Do not open pull requests unless asked.
 
+## Standing task: keep GitHub in sync
+
+The cloud agent that does the analysis has no GitHub credentials; it commits to the Cursor remote. When
+asked to sync: `git fetch` both remotes, push local `main` to GitHub as a fast-forward (never force), run
+`python -m pytest tests/` first, and report the resulting commit id. Commits not yet on GitHub as of the
+Phase 1b work: everything after `b1f850a` and `d34777f`, up to the newest on the Cursor remote (the run 2
+results, the Phase 1b code, and the documentation).
+
 ## Task 2: after the push
 
 - Confirm the "Open in Colab" badge URL in `README.md` matches the GitHub repo path.
@@ -75,5 +87,7 @@ Target: https://github.com/Ankritjarngal/medvqa-cxr-chexagent (exists, currently
 - Keep answers plain-language and short. The user is presenting this to a supervisor and wants
   to say the project is feasible for free (Colab T4, CheXagent 3.1B fits in about 8 GB VRAM).
 - Slides are uniform: no "new paper" tags. Dataset recommendation stars stay.
+- Documentation rule: every piece of work gets an entry in `docs/experiment_log.md`, and corrections
+  to earlier statements are recorded there and in the affected note, not made silently.
 - Known limitation to state honestly: CheXagent's training data (CheXinstruct) already includes
   VQA-RAD, SLAKE and Open-I, so the Phase 1 test is close to in-distribution, not clean zero-shot.

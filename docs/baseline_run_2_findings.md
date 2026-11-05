@@ -19,6 +19,14 @@ in-distribution, not a clean held-out test. Images were not manually reviewed fo
 
 SLAKE 64.7%, VQA-RAD 48.6%. Token-overlap F1 is higher than exact match on open answers (0.54 vs 0.47).
 
+## Corrections after this note was first written
+
+- **Five rows should not be in the test set.** A keyword-filter bug (`rib` matching inside `describe`,
+  `distribution`, ...) admitted 5 VQA-RAD questions that are probably not chest images. All five were answered
+  wrong. Without them (`results/run_2/excluded_ids.txt`): overall 58.4% (219 questions), general 72.9%,
+  laterality 44.0%, severity 60.9%. The enlargement result is unchanged. Details in `docs/phase1b_test_sets.md`.
+- The headline table below still shows the original 224-question numbers.
+
 ## Findings, with how much weight each can bear
 
 1. **The model never says "yes" to enlargement/size questions.** On the 22 severity yes/no questions
@@ -37,11 +45,17 @@ SLAKE 64.7%, VQA-RAD 48.6%. Token-overlap F1 is higher than exact match on open 
    - Only 13 open questions ask the model to choose a side (left/right/both). It answered "right" on 11
      of them, but "right" was correct for only 7. When the correct side was left or both (6 questions),
      it answered "right" 5 times. Suggestive of defaulting to "right", but n is far too small to claim it.
-3. **Knowledge questions are mostly missed, with canned answers.** 4 of 24 exact; the model repeated
-   "Medical treatment, surgical treatment" 8 times, "Chest tightness, shortness of breath" 6 times and
-   "Keep healthy" for prevention questions regardless of image. SLAKE's gold answers are annotator-written
-   lists ("Medical therapy, supportive therapy"), so exact match is a poor judge here; any retrieval
-   experiment on these needs a semantic or human judge.
+3. **Knowledge questions: weak on cause and prevention, partly right on treatment and symptoms.**
+   By exact match only 4 of 24 were right (17%), and the model repeated the same answers regardless of
+   image ("Medical treatment, surgical treatment" 8 times, "Chest tightness, shortness of breath" 6 times,
+   "Keep healthy" for prevention). Re-scored with item-level scoring (`docs/phase1b_test_sets.md`), 15 of 25
+   had at least one correct item; treatment (8 questions) averaged 69% item recall and symptoms (6) 46%, while
+   cause (3), prevention (4) and "why" (2) scored 0%. The treatment credit comes mostly from one generic answer
+   that overlaps the gold lists. SLAKE's gold answers are annotator-written lists ("Medical therapy, supportive
+   therapy"), so exact match is a poor judge here. **Correction:** an earlier summary called these questions
+   "mostly missed"; that overstated treatment and symptoms. Also, 20 of the 24 got the prompt suffix "based only
+   on what is visible in the image", which is the wrong instruction for a knowledge question; the larger
+   knowledge set uses the plain question.
 4. **Naming a finding**: 2 of 11 correct. The model answered "Pneumonia" or "Effusion" for most. Small n.
 5. **Dataset effects are large**: SLAKE yes/no laterality questions show the model saying "yes" 3 times
    where "yes" was correct 10 times (under-calling); VQA-RAD laterality yes/no is balanced (12 vs 11).
