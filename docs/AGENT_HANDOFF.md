@@ -40,7 +40,12 @@ Target: https://github.com/Ankritjarngal/medvqa-cxr-chexagent (exists, currently
      git push https://x-access-token:${GITHUB_TOKEN}@github.com/Ankritjarngal/medvqa-cxr-chexagent.git main
      ```
   Do not store the token in git config or in any file. Do not use `--force`.
-- Known situation: the GitHub repo is NOT empty. It has one auto-generated "Initial commit"
+- UPDATE: GitHub `main` already contains this project's history (merged at `b1f850a`). Newer
+  commits exist on the Cursor remote's `main`. First run `git fetch` for both remotes; if GitHub's
+  `main` is an ancestor of local `main` (`git merge-base --is-ancestor`), skip the merge below and
+  just push local `main` normally (fast-forward, no force). Always run `python -m pytest tests/`
+  before pushing.
+- Older situation (already resolved, keep for reference): the GitHub repo was NOT empty. It has one auto-generated "Initial commit"
   (`8bbff6e`) that shares no history with this repo, so a plain push will be rejected. Do this:
   ```bash
   git fetch https://x-access-token:${GITHUB_TOKEN}@github.com/Ankritjarngal/medvqa-cxr-chexagent.git main:github-main

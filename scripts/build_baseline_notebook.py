@@ -278,7 +278,8 @@ print("By source:  ", Counter(r["source_dataset"] for r in test_set))
 md("""## 3. Load CheXagent-2-3b
 
 First run downloads ~6-7GB of weights from Hugging Face (not gated, MIT license, no token
-needed). Loaded in `bfloat16` — comfortably fits a free T4's 16GB VRAM.
+needed). Loaded in half precision (`float16` on a T4, which has no native `bfloat16`;
+`bfloat16` on newer GPUs) — comfortably fits a free T4's 16GB VRAM.
 """)
 
 code(r'''from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -286,7 +287,8 @@ import torch
 
 MODEL_NAME = "StanfordAIMI/CheXagent-2-3b"
 DEVICE = "cuda"
-DTYPE = torch.bfloat16
+DTYPE = torch.bfloat16 if torch.cuda.get_device_capability()[0] >= 8 else torch.float16
+print("Using dtype:", DTYPE)
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(
@@ -454,7 +456,14 @@ with open("baseline_results.csv", "w", newline="") as f:
         writer.writerow({k: r.get(k) for k in fieldnames})
 
 print("Saved baseline_results.jsonl and baseline_results.csv")
-print("Download them from the Colab file browser (left sidebar) to keep for the write-up.")
+
+try:
+    from google.colab import files
+    files.download("baseline_results.csv")
+    files.download("baseline_results.jsonl")
+except Exception as exc:
+    print("Auto-download unavailable; use the Colab file browser (left sidebar) instead.", exc)
+print("Keep these files: the Colab VM is wiped when the session ends.")
 ''')
 
 md("""## What's next (Phase 2)

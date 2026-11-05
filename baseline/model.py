@@ -27,7 +27,11 @@ class CheXagentRunner:
 
         self.torch = torch
         self.device = device
-        self.dtype = dtype or torch.bfloat16
+        # T4 (compute capability 7.5) has no native bfloat16; use float16 there.
+        if dtype is None:
+            dtype = (torch.bfloat16 if torch.cuda.get_device_capability()[0] >= 8
+                     else torch.float16)
+        self.dtype = dtype
 
         self.tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
         self.model = AutoModelForCausalLM.from_pretrained(
