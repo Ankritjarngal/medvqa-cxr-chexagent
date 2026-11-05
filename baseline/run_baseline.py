@@ -6,6 +6,10 @@ Usage (GPU runtime, e.g. Colab):
 
 Usage (no GPU, just to sanity-check the data pipeline):
     python -m baseline.run_baseline --n-per-category 5 --dry-run
+
+Supplementary sets (same model, same scoring code, plus set-specific metrics):
+    python -m baseline.run_baseline --set knowledge
+    python -m baseline.run_baseline --set side
 """
 
 from __future__ import annotations
@@ -17,10 +21,15 @@ from pathlib import Path
 
 from .data import build_baseline_test_set
 from .evaluate import evaluate, format_report
+from .extra_sets import build_knowledge_test_set, build_side_test_set, prompt_for_set
+from .knowledge import format_knowledge_summary, score_knowledge_rows, summarize_knowledge
+from .sides import format_side_report, score_side_rows, side_report
 
 
 def parse_args():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--set", choices=("baseline", "knowledge", "side"), default="baseline",
+                         help="Which test set to run (default: the 224-question baseline).")
     parser.add_argument("--n-per-category", type=int, default=100,
                          help="Max questions sampled per category (general/laterality/severity).")
     parser.add_argument("--seed", type=int, default=0)
@@ -38,13 +47,19 @@ def main():
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    print("Building chest X-ray test set (SLAKE metadata-filtered + VQA-RAD keyword-filtered)...")
-    records = build_baseline_test_set(
-        images_dir=args.images_dir, n_per_category=args.n_per_category, seed=args.seed
-    )
+    print(f"Building the '{args.set}' chest X-ray test set...")
+    if args.set == "knowledge":
+        records = build_knowledge_test_set(images_dir=args.images_dir)
+    elif args.set == "side":
+        records = build_side_test_set(images_dir=args.images_dir, seed=args.seed)
+    else:
+        records = build_baseline_test_set(
+            images_dir=args.images_dir, n_per_category=args.n_per_category, seed=args.seed
+        )
     print(f"{len(records)} questions ready.")
 
-    test_set_path = output_dir / "baseline_test_set.jsonl"
+    prefix = "baseline" if args.set == "baseline" else args.set
+    test_set_path = output_dir / f"{prefix}_test_set.jsonl"
     with open(test_set_path, "w") as f:
         for r in records:
             f.write(json.dumps(r) + "\n")
@@ -61,28 +76,43 @@ def main():
     runner = CheXagentRunner()
 
     for i, r in enumerate(records, start=1):
-        prompt = prompt_for_category(r["question"], r["category"])
+        if args.set == "baseline":
+            prompt = prompt_for_category(r["question"], r["category"])
+        else:
+            prompt = prompt_for_set(args.set, r["question"], r["category"])
         r["prediction"] = runner.ask([r["image_path"]], prompt, max_new_tokens=args.max_new_tokens)
         print(f"[{i}/{len(records)}] ({r['category']}) Q: {r['question']!r}  "
               f"gold={r['gold_answer']!r}  pred={r['prediction']!r}")
 
     report = evaluate(records)
+    rows, extra_text = report.rows, ""
+    extra_fields: list[str] = []
+    if args.set == "knowledge":
+        rows = score_knowledge_rows(rows)
+        extra_text = format_knowledge_summary(summarize_knowledge(rows))
+        extra_fields = ["knowledge_subtype", "item_recall", "item_precision", "item_f1"]
+    elif args.set == "side":
+        rows = score_side_rows(rows)
+        extra_text = format_side_report(side_report(rows))
+        extra_fields = ["side_granularity", "gold_side", "pred_side", "side_given", "side_correct"]
     print("\n" + format_report(report))
+    if extra_text:
+        print("\n" + extra_text)
 
-    results_csv_path = output_dir / "baseline_results.csv"
+    results_csv_path = output_dir / f"{prefix}_results.csv"
     fieldnames = ["id", "source_dataset", "source_split", "category", "answer_format",
                   "is_knowledge", "image_path", "question", "gold_answer", "prediction",
-                  "exact_match", "loose_match", "token_f1"]
+                  "exact_match", "loose_match", "token_f1", *extra_fields]
     with open(results_csv_path, "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
-        for row in report.rows:
+        for row in rows:
             writer.writerow({k: row.get(k) for k in fieldnames})
     print(f"\nSaved per-question results to {results_csv_path}")
 
-    report_txt_path = output_dir / "baseline_report.txt"
+    report_txt_path = output_dir / f"{prefix}_report.txt"
     with open(report_txt_path, "w") as f:
-        f.write(format_report(report))
+        f.write(format_report(report) + ("\n\n" + extra_text if extra_text else ""))
     print(f"Saved summary report to {report_txt_path}")
 
 
