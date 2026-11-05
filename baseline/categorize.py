@@ -49,6 +49,11 @@ KNOWLEDGE_PATTERNS = [
     r"\bfunction of\b",
     r"\bcause[sd]?\b",
     r"\bhow do you (determine|diagnose|assess|measure)\b",
+    # Added with the knowledge test set: 'why ...?' and 'how can you tell ...?'
+    # are answered from anatomy/physiology knowledge. Run 2's saved tags were
+    # produced before these two were added.
+    r"\bwhy\b",
+    r"\bhow can you tell\b",
 ]
 
 # Questions that are templates about the imaging procedure, not about the
@@ -98,6 +103,28 @@ def is_knowledge_question(question: str) -> bool:
     left of lung?")."""
     q = question.lower().strip()
     return _matches_any(q, KNOWLEDGE_PATTERNS)
+
+
+_SUBTYPE_RULES = [
+    ("symptoms", r"\bsymptoms?\b"),
+    ("treatment", r"\b(how to treat|treatment|therapy)\b"),
+    ("prevention", r"\b(prevent|prevention)\b"),
+    ("cause", r"\bcause[sd]?\b"),
+    ("function", r"\bfunction of\b"),
+    ("explanation", r"\b(why|how can you tell|how do you (determine|diagnose|assess|measure))\b"),
+]
+
+
+def knowledge_subtype(question: str) -> str:
+    """Which kind of knowledge question this is (symptoms / treatment /
+    prevention / cause / function / explanation / other). Reported separately
+    because the SLAKE knowledge questions come from a few fixed templates and
+    a model can score well on one template and not another."""
+    q = question.lower().strip()
+    for name, pattern in _SUBTYPE_RULES:
+        if re.search(pattern, q):
+            return name
+    return "other"
 
 
 def is_non_clinical_question(question: str) -> bool:

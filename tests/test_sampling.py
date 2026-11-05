@@ -28,3 +28,21 @@ def test_pool_summary_counts():
     assert s["category"] == {"general": 1, "severity": 1}
     assert s["source"] == {"SLAKE": 1, "VQA-RAD": 1}
     assert s["answer_format"] == {"yes/no": 1, "open": 1}
+
+
+def test_rib_matches_whole_words_only():
+    from baseline.data import mentions_chest_term
+    assert mentions_chest_term("Are the ribs fractured?")
+    assert mentions_chest_term("Is there a rib fracture?")
+    assert not mentions_chest_term("How would you describe the lesion?")
+    assert not mentions_chest_term("what type of distributions is seen on this image?")
+    assert not mentions_chest_term("is the mass well circumscribed?")
+    assert not mentions_chest_term("what two tributaries of blood vessels are impacted?")
+
+
+def test_chest_words_inside_compound_terms_still_match():
+    from baseline.data import mentions_chest_term
+    assert mentions_chest_term("is the right hemidiaphragm normal?")
+    assert mentions_chest_term("is a pneumothorax present?")
+    assert mentions_chest_term("how would you describe the aortopulmonary window?")
+    assert mentions_chest_term("does this patient have pneumomediastinum?")

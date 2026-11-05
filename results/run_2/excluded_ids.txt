@@ -1,0 +1,7 @@
+# Run 2 rows that entered the test set only because of the 'rib' substring bug (matched describe/distribution/circumscribed).
+# Fixed in baseline/data.py. Exclude these ids when comparing against run 2. All five were answered wrong.
+VQA-RAD_train_37
+VQA-RAD_train_318
+VQA-RAD_train_533
+VQA-RAD_train_542
+VQA-RAD_train_788

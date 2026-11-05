@@ -29,6 +29,7 @@ from __future__ import annotations
 
 import hashlib
 import random
+import re
 import time
 import zipfile
 from pathlib import Path
@@ -55,6 +56,13 @@ VQA_RAD_CHEST_KEYWORDS = {
     "effusion", "atelectasis", "diaphragm", "thora", "cardiomegaly",
     "pneumonia", "hilar", "bronch",
 }
+# Keywords that must match as a whole word. "rib" is the one that matters: as a
+# substring it matched "describe", "circumscribed", "distribution" and
+# "tributaries", which let brain/abdominal "describe the lesion" questions into
+# the chest set (found by looking at the images of the side set).
+VQA_RAD_WHOLE_WORD_KEYWORDS = {"rib", "ribs"}
+_WHOLE_WORD_RE = re.compile(r"\b(" + "|".join(sorted(VQA_RAD_WHOLE_WORD_KEYWORDS)) + r")\b")
+
 VQA_RAD_EXCLUDE_KEYWORDS = {
     "brain", "skull", "head", "abdomen", "abdominal", "liver", "kidney",
     "pelvis", "pelvic", "spine", "spinal", "bowel", "intestine", "stomach",
@@ -66,6 +74,15 @@ VQA_RAD_EXCLUDE_KEYWORDS = {
     "hepatic", "splenic", "spleen", "adrenal", "pancrea", "gallbladder",
     "renal", "psoas", "femur", "knee", "shoulder", "orbit",
 }
+
+
+def mentions_chest_term(question: str) -> bool:
+    """True if the question text contains a chest keyword (substring match,
+    except for short words listed in VQA_RAD_WHOLE_WORD_KEYWORDS)."""
+    q = question.lower()
+    if _WHOLE_WORD_RE.search(q):
+        return True
+    return any(k in q for k in VQA_RAD_CHEST_KEYWORDS if k not in VQA_RAD_WHOLE_WORD_KEYWORDS)
 
 
 def _get_rows(dataset: str, split: str, offset: int, length: int = 100,
@@ -138,7 +155,7 @@ def fetch_vqa_rad_chest_records(splits: tuple[str, ...] = ("test", "train")) -> 
         for rr in _iter_all_rows(VQA_RAD_DATASET, split):
             q = rr["question"].lower()
             if (
-                any(k in q for k in VQA_RAD_CHEST_KEYWORDS)
+                mentions_chest_term(q)
                 and not any(k in q for k in VQA_RAD_EXCLUDE_KEYWORDS)
                 and not is_non_clinical_question(rr["question"])
             ):
