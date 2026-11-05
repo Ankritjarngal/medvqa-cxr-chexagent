@@ -6,3 +6,6 @@ __pycache__/
 # `python -m baseline.run_baseline` or the Colab notebook, don't commit them.
 data/*
 !data/.gitkeep
+
+# Source paper PDFs are not redistributed; see docs/papers/README.md
+docs/papers/*.pdf

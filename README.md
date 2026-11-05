@@ -23,7 +23,7 @@ This is **not** a diagnostic tool and is intended for educational/research purpo
 ```
 docs/
   literature_review.md          # Deep-dive review of 6 papers, dataset catalogue, gap analysis
-  papers/                        # The 6 source PDFs (3 found by teammate, 3 found in this review)
+  papers/README.md               # Links to the 6 source papers (PDFs are not redistributed)
   walkthrough.md / .pdf          # Plain-language walkthrough of the literature review findings
 baseline/
   categorize.py                  # Tags each question general / laterality / severity (GPU-free)
@@ -125,3 +125,18 @@ python3 scripts/build_slides.py
 ```
 
 Output is written to `slides/Medical_VQA_CXR_Literature_Review.pptx`.
+
+## License and attribution
+
+Code in this repository is released under the [MIT License](LICENSE).
+
+Third-party assets are fetched at runtime and are **not** redistributed here:
+
+- [CheXagent-2-3b](https://huggingface.co/StanfordAIMI/CheXagent-2-3b) — MIT license (Stanford AIMI).
+- [SLAKE](https://huggingface.co/datasets/BoKelvin/SLAKE) — CC-BY-4.0; please cite Liu et al., ISBI 2021.
+- [VQA-RAD](https://huggingface.co/datasets/flaviagiammarino/vqa-rad) — CC0-1.0 (Lau et al., 2018).
+
+## Disclaimer
+
+This project is for research and education only. It is not a medical device and must not
+be used for clinical decision-making.
