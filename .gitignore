@@ -9,3 +9,7 @@ data/*
 
 # Source paper PDFs are not redistributed; see docs/papers/README.md
 docs/papers/*.pdf
+
+# Retrieval corpora (textbooks are copyrighted; never commit) and dataset caches
+rag_cache/
+raw_cache/

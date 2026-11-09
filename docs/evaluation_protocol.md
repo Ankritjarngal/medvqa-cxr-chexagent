@@ -150,7 +150,7 @@ enlargement "yes" answers). Before building a retrieval corpus, run the cheap di
 `docs/run_3_findings.md` and decide, from their results, whether Phase 2 should be retrieval, a perception fix, or both. The diagnostics and how each
 outcome will be read are fixed in `docs/phase1c_diagnostics.md` (written before the model was run on them).
 
-### Amendment 5 (11 Nov 2026): Phase 2 design, oracle arms and a stricter claim
+### Amendment 5 (10 Nov 2026): Phase 2 design, oracle arms and a stricter claim
 
 Reason: the knowledge answers in SLAKE are fixed by the disease on the image (`docs/phase2_rag_plan.md`, section 1), so a
 retrieval gain cannot be separated from a gain from knowing the disease unless both are measured. Made before any Phase 2

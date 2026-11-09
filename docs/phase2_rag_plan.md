@@ -131,3 +131,29 @@ cannot tell them apart). Retrieved context wording: "Reference: {passages}".
   score low on item recall; the blind rating decides, and the rater is a student.
 - A 2048-token context allows about one to three short passages.
 - Results say nothing about Medical VQA in general and are not clinical evidence.
+
+## 10. Frozen settings and clarifications (added before any model run and before any held-out retrieval number)
+
+**Clarifications to sections 3 and 4**
+- Passages in the prompt are limited to 1400 characters in total (about 350 tokens), because the model's context is
+  2048 tokens including the image. The Stage 2 grid only contains settings within that limit.
+- If the model's guessed disease is "No Finding", or no disease name can be parsed, A5 gets no disease hint and A6
+  retrieves with the question text only (`usable_disease`, `build_query`).
+- Retrieval sources considered in Stage 2: `textbooks`, `medlineplus`, `medlineplus_topic` (BM25 restricted to the
+  MedlinePlus topics for the disease, `MEDLINEPLUS_TOPICS` in `baseline/rag.py`) and `topic+textbooks` (the best topic
+  passage first, the remaining passages from the textbooks).
+
+**Stage 2 result on dev questions (16 oracle questions, 16 images; no model; no held-out question touched)**
+Two rounds, both logged in `docs/experiment_log.md` (entry 14).
+1. Round 1, query = radiology name plus question-type words, sources textbooks / MedlinePlus / both: best strict
+   coverage 0.27, under the 0.30 gate. Diagnosis (dev only): the question-type words pulled in unrelated articles, and some
+   diseases are filed under another name (cardiomegaly under cardiomyopathy and "enlarged heart", atelectasis and
+   pneumothorax under "collapsed lung", effusion under "pleural disorders").
+2. Round 2, after adding alternative disease words (`QUERY_NAMES`) and the topic lookup: best strict coverage 0.42.
+
+**Frozen retrieval setting for Stage 3, chosen by the pre-stated rule (`choose_setting`):**
+source = `topic+textbooks`, k = 2 passages, 700 characters each, disease weight 1.
+
+The coverage numbers on 16 questions come from picking the best of 24 settings and are optimistic; the held-out
+numbers, reported after this commit, are the honest ones.
+

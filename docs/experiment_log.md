@@ -210,7 +210,7 @@ symptoms clearly beat the floor; answers barely vary with the image.
 **Next (proposed, pending decision):** a diagnostics notebook: (a) flipped-image side test; (b) prompt variants on the
 explicit side questions; (c) heart-size questions with "describe the heart size first". All zero training, free GPU.
 
-## 11. Phase 1c: perception diagnostics notebook (11 Nov 2026)
+## 11. Phase 1c: perception diagnostics notebook (10 Nov 2026)
 
 **Why:** run 3 showed perception faults (constant "Right", no "yes" on enlargement). Amendment 4 puts cheap diagnostics
 before any retrieval work.
@@ -268,4 +268,53 @@ wordings is a small hand-picked set; the model is tested on questions from its o
 
 **Decisions pending (not made):** Phase 3 fine-tuning for laterality / enlargement, or a second model on the same
 test sets; a larger heart-size set to test the `plain` lead once; knowledge answers still need a blind manual rating.
+
+## 13. Phase 2 design from the data (10 Nov 2026)
+
+Question: what scope gives the most informative RAG experiment? Looked at the data behind run 3's knowledge questions
+before building anything.
+
+**Found**
+- SLAKE knowledge answers are a lookup keyed by the disease on the image; the question text never names the disease.
+  Joined to SLAKE's own disease question on the same image: for the 50 non-function questions with a known single disease
+  (31 train, 11 validation, 8 test) the gold answer is the same for the same disease and question type.
+- 130 SLAKE chest images carry a disease label (8 classes after merging spellings; Cardiomegaly 29, Atelectasis 21,
+  Mass 19, Nodule 18, Pneumonia 17, Effusion 13, Pneumothorax 10, Infiltration 9; 5 images with two labels). The majority
+  label covers 22%.
+- CheXagent-2-3b has a 2048-token context. Corpora checked as downloadable from this VM: MedRAG textbooks (125,847
+  chunks), MedlinePlus bulk XML (1,017 English topics).
+
+**Built (no model run)**
+- `docs/phase2_rag_plan.md` and Amendment 5 (written first): arms A0 to A6, oracle arms labelled as upper bounds, the
+  disease-naming test, which method is used downstream (best on the 20 validation images), and a fifth decision
+  condition (retrieval must beat the same model-guessed disease without retrieval).
+- `baseline/disease_labels.py` and `tests/test_disease_labels.py`: label extraction, spelling map, free-text parser,
+  accuracy against majority and shuffled labels, per-class AUC.
+- `baseline/rag.py` and `tests/test_rag.py`: BM25 (own implementation), corpus loaders, query and prompt builders,
+  gold-item coverage scorer. The MedRAG textbooks are downloaded at run time into `rag_cache/`, which is git-ignored
+  (copyrighted).
+
+**Corrections to what I wrote earlier:** the dates of Amendment 5 and entry 11 said 11 Nov; today is 10 Nov. Fixed.
+
+## 14. Stage 2: retrieval check without a model (10 Nov 2026)
+
+`scripts/retrieval_check.py tune` measures, for the oracle questions on dev images only (16 questions), how many of the
+gold answer's items appear in the retrieved text (strict: all words of an item inside one sentence; loose: anywhere).
+It uses no model.
+
+- **Round 1** (radiology disease name plus question-type words; sources textbooks / MedlinePlus / both; 30 settings): best
+  strict coverage 0.27 (`medlineplus`, k=3, 400 characters). Under the 0.30 gate that was fixed in the plan.
+- **Diagnosis (dev questions only):** the question-type words ("treatment management therapy") pulled in unrelated
+  articles ("Clinical Trials", "Retinal Disorders"). Diseases that reference texts file under another name returned
+  nothing relevant ("cardiac enlargement" gave Sudden Cardiac Arrest; "lung mass" gave bone mass). Prevention gold answers
+  ("Live healthy, enhance physical fitness", "Keep healthy") are generic and cannot be matched by disease-specific text,
+  which puts a ceiling on this metric for that subtype regardless of the corpus.
+- **Round 2 changes** (made after seeing round 1, declared): alternative disease words in `QUERY_NAMES` and a topic lookup
+  (`MEDLINEPLUS_TOPICS`), chosen from MedlinePlus's list of topic titles and medical knowledge, not from gold answers.
+  Grid of 24 settings, with k x characters limited to 1400. Best strict coverage 0.42 (`topic+textbooks`, k=2, 700
+  characters, weight 1), 0.47 loose. Passes the gate.
+- **Frozen for Stage 3:** `topic+textbooks`, k=2, 700 characters, disease weight 1 (also recorded in the plan, section
+  10, before any held-out number was produced).
+- **Limits:** 16 dev questions; the best of 24 settings is optimistic. The held-out coverage, with a wrong-disease control
+  and a question-only control, is reported next (entry 15).
 
