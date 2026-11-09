@@ -94,3 +94,18 @@ def test_light_stemming_matches_inflections_but_not_different_words():
     assert item_scores("lungs", "lung").f1 == 1.0
     assert item_scores("Pneumonia", "Pneumothorax").f1 == 0.0
     assert item_scores("class", "clas").f1 == 0.0
+
+
+def test_constant_floor_is_leave_one_out_and_distinct_answers():
+    from baseline.knowledge import constant_floor, distinct_answers
+    rows = [{"knowledge_subtype": "cause", "gold_answer": a} for a in
+            ["Bacterial infection", "Bacterial infection", "Bacterial infection", "Tumor"]]
+    f = constant_floor(rows)
+    # rows 0-2: the best other answer is "Bacterial infection" (2 of 3 others) -> 1.0 each; row 3: also bacterial -> 0
+    assert f["cause"] == 0.75 and f["all"] == 0.75
+    lone = constant_floor([{"knowledge_subtype": "x", "gold_answer": "a"}])
+    assert lone["all"] != lone["all"]                      # nan: nothing to leave in
+    d = distinct_answers([{"knowledge_subtype": "cause", "prediction": "Infection."},
+                          {"knowledge_subtype": "cause", "prediction": "infection"},
+                          {"knowledge_subtype": "symptoms", "prediction": "Cough"}])
+    assert d == {"cause": 1, "symptoms": 1, "all": 2}

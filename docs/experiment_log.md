@@ -345,3 +345,40 @@ Held-out: symptoms 0.60, cause 0.35, treatment 0.27, prevention 0.00.
   the model does; the blind rating is the fairer judge there.
 - A wrong disease still reaches 0.13 to 0.17 because some items are generic ("surgery", "chest pain").
 - This is a ceiling on what retrieved text offers a perfect reader, not a model result.
+
+## 16. Phase 2 notebooks and analysis tools built; Stage 4 router check (10 Nov 2026)
+
+**Built, none run on the model yet**
+- `notebooks/04_disease_naming.ipynb` (builder `scripts/build_disease_notebook.py`): Stage 1. 130 labelled SLAKE chest images,
+  three ways of asking (open, forced choice, per-class yes-minus-no score read from one generated token), reported against the
+  majority label and shuffled labels, train and validation/test separately; prints `CHOSEN_METHOD` (best on the 20
+  validation images) and the pre-stated reading.
+- `notebooks/05_rag_knowledge_arms.ipynb` (builder `scripts/build_rag_notebook.py`): Stage 3. Arms A1 to A6 on the 130 knowledge
+  questions (A2 to A4 on the 50 with a known disease), the frozen retrieval setting, a token-budget check, checkpointing every
+  20 answers. `DISEASE_METHOD` must be pasted in from notebook 04; the notebook refuses to run without it.
+- `baseline/rag_analysis.py`, `scripts/analyze_rag.py`, `scripts/analyze_disease.py`: item recall by arm with the constant-answer
+  floor and distinct answers, all planned paired comparisons (image-clustered bootstrap, train and validation/test split), blind
+  rating sheets for A1 vs A6, A5 vs A6 and A3 vs A4 (identical answer pairs are tied by definition and left off the sheets), and
+  the decision rule of Amendment 5 as PASS / FAIL / PENDING lines. `constant_floor` and `distinct_answers` added to
+  `baseline/knowledge.py` (the scorer itself is unchanged, version 2).
+- `scripts/stub_run_notebook.py`: runs a notebook's code cells here with a stand-in model.
+
+**Checks done without the model:** both notebooks ran end to end with two stand-in models. A model that ignores the image gives
+disease-naming accuracy at or below the 22% majority rate and the "NOT shown to be above chance" reading; one that reads the
+hidden label gives 100% and "above chance". The 05 run produced the 540 expected answers (A1, A5, A6 on 130 questions; A2 to
+A4 on 50), the analysis script ran on its output, and a completed dummy rating sheet unblinded correctly. These say nothing about
+CheXagent. 119 unit tests pass.
+
+**Untested on the real model (first Colab run may need a fix):** the yes/no score (`yes_no_score` reads `scores[0]` of
+`generate(..., output_scores=True)` for one token and the yes/no token ids), and the token counts (the stand-in used a word-count
+estimate). Run each notebook with `QUICK = True` first.
+
+**Stage 4 router check** (`scripts/router_check.py`, output `results/phase2/router_check.json`): of the 219 baseline-set questions,
+25 match the knowledge router (cause 3, explanation 2, function 2, prevention 4, symptoms 6, treatment 8). All 25 are
+questions of the knowledge test set, so Stage 3 already covers them; the other 194 never reach retrieval and are unchanged by
+construction. Protocol condition 4 is therefore evaluated on those 25 (run 2's answer against A6), plus the 25 `function`
+questions that must still answer "Breathe". No extra run is needed.
+
+**Limits stated again:** the second passage in the frozen setting is often off-topic (a sample A6 prompt for pneumonia symptoms
+carried a Harrison passage on interstitial lung disease history after the correct MedlinePlus section), so the prompt is noisier
+than the coverage numbers suggest. This is the frozen setting; a change would have to be logged before the model sees it.

@@ -204,3 +204,35 @@ def summarize_blind_review(sheet: list[dict], key: list[dict], candidate_name: s
         "wins": wins, "losses": losses, "ties": ties,
         "sign_test_p": binom_two_sided(wins, wins + losses, 0.5) if wins + losses else float("nan"),
     }
+
+
+def constant_floor(rows: list[dict]) -> dict[str, float]:
+    """Item recall of a system that ignores the image and always writes the most common gold answer for the
+    question type (leave-one-out, so a question's own answer is never used). Amendment 2 of the protocol.
+    rows need: knowledge_subtype, gold_answer. Returns {'all': ..., subtype: ...}."""
+    from collections import Counter
+    by_sub: dict[str, list[int]] = {}
+    for i, r in enumerate(rows):
+        by_sub.setdefault(r["knowledge_subtype"], []).append(i)
+    scores: dict[str, list[float]] = {}
+    for sub, idx in by_sub.items():
+        for i in idx:
+            others = Counter(rows[j]["gold_answer"] for j in idx if j != i)
+            if not others:
+                continue
+            best = sorted(others.items(), key=lambda kv: (-kv[1], kv[0]))[0][0]
+            scores.setdefault(sub, []).append(item_scores(best, rows[i]["gold_answer"]).recall)
+    out = {sub: sum(v) / len(v) for sub, v in scores.items()}
+    flat = [x for v in scores.values() for x in v]
+    out["all"] = sum(flat) / len(flat) if flat else float("nan")
+    return out
+
+
+def distinct_answers(rows: list[dict], key: str = "prediction") -> dict[str, int]:
+    """Number of different answers (after normalisation) per knowledge subtype and overall."""
+    seen: dict[str, set] = {}
+    for r in rows:
+        seen.setdefault(r["knowledge_subtype"], set()).add(normalize(str(r[key])))
+    out = {sub: len(v) for sub, v in seen.items()}
+    out["all"] = len({normalize(str(r[key])) for r in rows})
+    return out

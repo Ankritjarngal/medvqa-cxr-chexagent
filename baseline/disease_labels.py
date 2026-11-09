@@ -129,7 +129,16 @@ DISEASE_PROMPTS = {
     "forced": ("Which of these is present in this chest X-ray: " + ", ".join(CANDIDATES) + "? "
                "Answer with one name from the list."),
 }
-PERCLASS_PROMPT = "Is there {name} in this chest X-ray? Answer yes or no."
+PERCLASS_PROMPT = "{name} Answer yes or no."
+_PERCLASS_NAMES = {"Effusion": "pleural effusion", "Mass": "a mass", "Nodule": "a nodule", "Edema": "pulmonary edema",
+                   "Fibrosis": "pulmonary fibrosis", "Hernia": "a hernia", "Infiltration": "infiltration"}
+
+
+def perclass_question(name: str) -> str:
+    """Yes/no question for one candidate. 'No Finding' is asked as 'Is this chest X-ray normal?'."""
+    if name == NO_FINDING:
+        return PERCLASS_PROMPT.format(name="Is this chest X-ray normal?")
+    return PERCLASS_PROMPT.format(name=f"Is there {_PERCLASS_NAMES.get(name, name.lower())} in this chest X-ray?")
 
 
 # ---------------------------------------------------------------------- scoring
@@ -211,6 +220,19 @@ def format_disease_report(by_method: dict[str, dict]) -> str:
         L.append("   " + "; ".join(f"{c} {v['n']}, {v['recall']:.0%}, {v['predicted']}" for c, v in r["per_class"].items()))
         L.append("   by split: " + "; ".join(f"{sp} {v['acc_top']}/{v['n']}" for sp, v in r["by_split"].items()))
     return "\n".join(L)
+
+
+def disease_reading(rep: dict) -> str:
+    """The pre-stated reading (docs/phase2_rag_plan.md, section 3) for one method's report."""
+    above = (rep["acc_top"] > rep["majority_acc"] and rep["p_vs_majority"] < 0.05
+             and rep["acc_top"] > rep["shuffled_p95"])
+    lo, hi = rep["acc_top_ci"]
+    head = (f"top-choice accuracy {rep['acc_top']:.0%} (95% CI {lo:.0%}-{hi:.0%}) against majority "
+            f"{rep['majority_acc']:.0%} (p = {rep['p_vs_majority']:.3f}) and shuffled 95th percentile "
+            f"{rep['shuffled_p95']:.0%}")
+    if above:
+        return head + ": above chance by both criteria."
+    return head + ": NOT shown to be above chance. Perception is the bottleneck for naming the disease."
 
 
 def choose_method(by_method_validation: dict[str, dict]) -> str:

@@ -157,3 +157,21 @@ source = `topic+textbooks`, k = 2 passages, 700 characters each, disease weight 
 The coverage numbers on 16 questions come from picking the best of 24 settings and are optimistic; the held-out
 numbers, reported after this commit, are the honest ones.
 
+## 11. Status and how to run it
+
+Stage 2 (retrieval check) is done and Stage 4 (router check) is done; see `docs/experiment_log.md`, entries 13 to 16. Nothing
+has been run on the model yet.
+
+1. Open `notebooks/04_disease_naming.ipynb` in Colab (T4). Run with `QUICK = True` first, then `False`. Note the
+   `CHOSEN_METHOD` it prints, and download `disease_results.csv` and `disease_checkpoint.json`.
+2. Open `notebooks/05_rag_knowledge_arms.ipynb`, paste `CHOSEN_METHOD` into the build cell (`DISEASE_METHOD = None`), run with
+   `QUICK = True` then `False`. Download `rag_results.csv`, `rag_settings.json` and `rag_checkpoint.json`.
+3. Upload the files. Analysis here:
+   `python3 scripts/analyze_disease.py disease_results.csv` and
+   `python3 scripts/analyze_rag.py rag_results.csv --make-sheets ratings/`; the reviewer fills `rating_1` / `rating_2`
+   (0, 1, 2) in the three sheets, then `python3 scripts/analyze_rag.py rag_results.csv --ratings ratings/` prints the decision
+   rule.
+
+**Stage 4 result:** 25 of the 219 baseline questions are routed to retrieval, all of them also in the knowledge test set. The
+rest are unchanged by construction, so protocol condition 4 uses those 25 plus the `function` questions.
+

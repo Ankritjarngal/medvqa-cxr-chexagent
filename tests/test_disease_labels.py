@@ -3,7 +3,7 @@ import pytest
 from baseline.disease_labels import (
     attach_oracle_disease, auc_one_vs_rest, build_image_labels, canonical_labels, choose_method, class_table,
     disease_id_items, disease_report, format_disease_report, is_disease_naming_question, parse_diseases,
-    perclass_predictions,
+    perclass_predictions, perclass_question, disease_reading,
 )
 
 
@@ -114,3 +114,26 @@ def test_format_report_runs():
     rep = disease_report(_rows([["Mass"]] * 4, [["Mass"], ["Mass"], ["Nodule"], ["Nodule"]],
                                ["train", "train", "test", "validation"]))
     assert "Disease naming" in format_disease_report({"open": rep})
+
+
+def test_perclass_question_wording():
+    assert perclass_question("Pneumonia") == "Is there pneumonia in this chest X-ray? Answer yes or no."
+    assert perclass_question("Effusion") == "Is there pleural effusion in this chest X-ray? Answer yes or no."
+    assert perclass_question("Mass") == "Is there a mass in this chest X-ray? Answer yes or no."
+    assert perclass_question("Pleural Thickening") == "Is there pleural thickening in this chest X-ray? Answer yes or no."
+    assert perclass_question("No Finding") == "Is this chest X-ray normal? Answer yes or no."
+
+
+def test_disease_reading_flags_chance_level_and_clear_signal():
+    golds = [["Mass"]] * 30 + [["Nodule"]] * 20 + [["Pneumonia"]] * 20 + [["Effusion"]] * 30
+    chance = disease_report(_rows([["Mass"]] * 100, golds))
+    assert "NOT shown to be above chance" in disease_reading(chance)
+    good = disease_report(_rows([g[:] for g in golds], golds))
+    assert "above chance by both criteria" in disease_reading(good)
+
+
+def test_disease_reading_does_not_call_below_majority_a_signal():
+    golds = [["Mass"]] * 40 + [["Nodule"]] * 10 + [["Effusion"]] * 10
+    below = disease_report(_rows([["Nodule"]] * 60, golds))      # 17% against a 67% majority: significantly different, but worse
+    assert below["p_vs_majority"] < 0.05
+    assert "NOT shown to be above chance" in disease_reading(below)

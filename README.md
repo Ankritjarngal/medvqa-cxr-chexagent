@@ -30,6 +30,7 @@ docs/
   run_3_findings.md              # Results of the model on the knowledge and side sets
   phase1c_diagnostics.md         # Perception diagnostics (flip test, prompt variants, heart size): plan and readings
   phase1c_findings.md            # Results of those diagnostics (run 4)
+  phase2_rag_plan.md             # Phase 2 RAG: pre-registered design, frozen settings, how to run
   baseline_run_2_findings.md     # 224-question baseline analysis (pilot: pilot_run_1_findings.md)
   literature_review.md          # Deep-dive review of 6 papers, dataset catalogue, gap analysis
   papers/README.md               # Links to the 6 source papers (PDFs are not redistributed)
@@ -51,11 +52,19 @@ notebooks/
   01_baseline_chexagent.ipynb     # Self-contained Phase 1 notebook -- upload straight to Colab
   02_knowledge_and_side_baselines.ipynb  # Phase 1b: knowledge + side sets (same model, same settings)
   03_perception_diagnostics.ipynb        # Phase 1c: flip test, side prompt variants, heart-size prompts
+  04_disease_naming.ipynb                # Phase 1d / Phase 2 Stage 1: can the model name the disease?
+  05_rag_knowledge_arms.ipynb            # Phase 2 Stage 3: no-retrieval, oracle and RAG arms on the knowledge questions
 scripts/
   build_slides.py                 # Regenerates the slide deck (python-pptx)
   build_baseline_notebook.py      # Regenerates notebooks/01_baseline_chexagent.ipynb
   build_extra_notebook.py         # Regenerates notebooks/02_knowledge_and_side_baselines.ipynb
   build_diagnostics_notebook.py   # Regenerates notebooks/03_perception_diagnostics.ipynb
+  build_disease_notebook.py       # Regenerates notebooks/04_disease_naming.ipynb
+  build_rag_notebook.py           # Regenerates notebooks/05_rag_knowledge_arms.ipynb
+  retrieval_check.py              # Phase 2 Stage 2: does the corpus hold the gold items? (no model)
+  router_check.py                 # Phase 2 Stage 4: which baseline questions reach retrieval
+  analyze_rag.py, analyze_disease.py, analyze_diagnostics.py   # Re-run reports from uploaded result files
+  stub_run_notebook.py            # Run a notebook's cells here with a stand-in model
 slides/
   Medical_VQA_CXR_Literature_Review.pptx   # 5-slide presentation deck for the supervisor meeting
 ```
@@ -168,6 +177,16 @@ was written before running: [`docs/phase1c_diagnostics.md`](docs/phase1c_diagnos
 question fixed it; the wording sets the default answer. For heart enlargement the wording moves the yes-rate far more
 than the image does, with one weak lead. Details: [`docs/phase1c_findings.md`](docs/phase1c_findings.md).
 
+### Phase 2: knowledge-grounded RAG
+
+Built from what the data shows: SLAKE's knowledge answers are fixed by the disease on the image (8 chest diseases), and
+the question never names it. So the experiment separates (1) can the model name the disease (notebook 04), (2) does retrieved
+text from MedlinePlus and medical textbooks hold the answer once the disease is known (done without a model: 33% of gold
+items with the true disease, 13% with a wrong one, 4% from the question alone), and (3) does the full system beat a
+style-matched baseline and the disease guess alone (notebook 05). Design, frozen settings and the decision rule were written
+before any model run: [`docs/phase2_rag_plan.md`](docs/phase2_rag_plan.md), Amendment 5 in
+[`docs/evaluation_protocol.md`](docs/evaluation_protocol.md). Not yet run on the model.
+
 ### Regenerating the notebook or the test harness
 
 ```bash
@@ -175,6 +194,8 @@ pip install nbformat
 python3 scripts/build_baseline_notebook.py   # regenerates notebooks/01_baseline_chexagent.ipynb
 python3 scripts/build_extra_notebook.py      # regenerates notebooks/02_knowledge_and_side_baselines.ipynb (run after 01)
 python3 scripts/build_diagnostics_notebook.py # regenerates notebooks/03_perception_diagnostics.ipynb (run after 01)
+python3 scripts/build_disease_notebook.py     # regenerates notebooks/04_disease_naming.ipynb (run after 01)
+python3 scripts/build_rag_notebook.py         # regenerates notebooks/05_rag_knowledge_arms.ipynb (run after 01)
 python3 -m pytest tests/                      # runs unit tests for the GPU-free logic
 ```
 

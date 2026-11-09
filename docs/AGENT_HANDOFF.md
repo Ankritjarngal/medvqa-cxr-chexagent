@@ -23,6 +23,11 @@ not for clinical use.
   run on Colab (run 3, `docs/run_3_findings.md`). Phase 1c (perception diagnostics, notebook 03,
   `docs/phase1c_diagnostics.md`) was run on Colab (run 4, `docs/phase1c_findings.md`, data in `results/run_4/`): left/right answers do not follow the
   image and no wording fixed it; heart size shows one weak lead. Next decision: Phase 3 fine-tuning or a second model.
+- Phase 2 (RAG) is built but NOT run on the model: `docs/phase2_rag_plan.md` (pre-registered; frozen retrieval setting in
+  section 10; run order in section 11), `baseline/disease_labels.py`, `baseline/rag.py`, `baseline/rag_analysis.py`,
+  notebooks 04 and 05, analysis scripts. Retrieval check and router check are done (`docs/experiment_log.md`, entries 13-16).
+  Do not change the frozen settings or the scorer after seeing model results without logging the reason first. The user runs
+  the notebooks on Colab and uploads the CSVs; the corpora are downloaded at run time into `rag_cache/` (git-ignored).
 - The data pipeline and scoring were tested against real SLAKE and VQA-RAD data. The model
   itself has NOT been run: the cloud sandbox has no GPU. The first real model run happens on
   Google Colab (free T4), so expect to fix small issues in `baseline/model.py` or the notebook.
