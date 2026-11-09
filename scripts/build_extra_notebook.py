@@ -77,8 +77,11 @@ md("## 2. Build both test sets\n\nThe cells below are the repo's own modules, in
 for mod in ("categorize", "data", "evaluate", "stats", "sides", "knowledge", "extra_sets"):
     code(inline_module(f"baseline/{mod}.py"))
 
-code(r'''knowledge_set = build_knowledge_test_set(images_dir="images")
-side_set = build_side_test_set(images_dir="images")
+code(r'''# One download of the dataset files (about 5 requests, a minute at most), shared by both sets.
+# Earlier versions paged through the Hugging Face API (~150 requests) and got HTTP 429 on Colab.
+pool = fetch_full_pool()
+knowledge_set = build_knowledge_test_set(images_dir="images", pool=pool)
+side_set = build_side_test_set(images_dir="images", pool=pool)
 import json
 for name, s in (("knowledge", knowledge_set), ("side", side_set)):
     print(name, json.dumps(describe_set(s), indent=1))

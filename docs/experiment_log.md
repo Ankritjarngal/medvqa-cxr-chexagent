@@ -136,3 +136,34 @@ Commits: `27208cc`, `4c19a73` and the documentation commit that adds this entry.
 2. Read the side result using the table in `docs/phase1b_test_sets.md`; read the knowledge result per subtype
    against the most-common-answer floor.
 3. Choose a retrieval corpus and record it here before building the retriever.
+
+---
+
+## 9. Colab failure: HTTP 429 when building the sets (10 Nov 2026)
+
+**Symptom.** Notebook 02 stopped at the first build cell with `HTTPError: 429 Too Many Requests` from
+`datasets-server.huggingface.co` (SLAKE train, offset 7600).
+
+**Causes, all mine.**
+1. Both datasets were read by paging through the Hugging Face `datasets-server` API at 100 rows per request:
+   about 150 requests for the full pool. Colab's shared addresses are rate-limited by it.
+2. The notebook fetched the full pool twice, once for each set.
+3. Retries waited a few seconds and ignored the server's Retry-After.
+
+My earlier tests ran from a different network and never hit the limit, so this was not caught.
+
+**Fix.**
+- Read the datasets' own files instead (SLAKE JSON x3, VQA-RAD parquet x2); the paging API is the fallback.
+- Fetch the pool once and share it between the two sets.
+- Retries honour Retry-After on 429 and back off exponentially; downloads are streamed to a temp file.
+- Side effect: VQA-RAD images come from the parquet (no expiring URLs) and are identified by content hash.
+  This changed the dev/held-out split (now 42 / 88) and the distinct-image counts (103 and 106); set sizes
+  and source/split counts are unchanged (130 and 140). Docs updated.
+
+**Verified.** Records identical between the two paths on SLAKE test and VQA-RAD test; all 224 run-2 ids
+unchanged; a from-scratch build of both sets takes about 20 seconds; notebook 02's cells run end to end
+with a stand-in model from an empty directory; 59 unit tests pass, including simulated 429 / 503 / 404
+responses. Not verified: a run from a Colab address (that is the next real test).
+
+**Lesson recorded.** Network behaviour on Colab differs from this sandbox. Any new data download should be
+checked for request count and rate-limit handling before it goes into a notebook.

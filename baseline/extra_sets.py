@@ -66,7 +66,9 @@ def fetch_full_pool(include_train: bool = True, cache_path: str | Path | None = 
 
 
 def _image_identity(r: dict) -> str:
-    return r["image_key"].split("?")[0]
+    """Stable identity of the image behind a question. VQA-RAD rows carry a
+    content hash, so questions about one image are recognised as sharing it."""
+    return f"{r['source_dataset']}:{r.get('image_id') or r['image_key'].split('?')[0]}"
 
 
 def select_knowledge_records(pool: list[dict]) -> list[dict]:
@@ -167,14 +169,16 @@ def describe_set(records: list[dict]) -> dict:
 
 
 def build_knowledge_test_set(images_dir: str | Path, include_train: bool = True,
-                             cache_path: str | Path | None = None) -> list[dict]:
-    pool = fetch_full_pool(include_train=include_train, cache_path=cache_path)
+                             cache_path: str | Path | None = None, pool: list[dict] | None = None) -> list[dict]:
+    """Pass `pool` (from `fetch_full_pool`) to build several sets from one fetch."""
+    pool = pool if pool is not None else fetch_full_pool(include_train=include_train, cache_path=cache_path)
     return attach_images(select_knowledge_records(pool), images_dir)
 
 
 def build_side_test_set(images_dir: str | Path, n_per_side: int = 60, n_both: int = 20, seed: int = 0,
-                        include_train: bool = True, cache_path: str | Path | None = None) -> list[dict]:
-    pool = fetch_full_pool(include_train=include_train, cache_path=cache_path)
+                        include_train: bool = True, cache_path: str | Path | None = None,
+                        pool: list[dict] | None = None) -> list[dict]:
+    pool = pool if pool is not None else fetch_full_pool(include_train=include_train, cache_path=cache_path)
     return attach_images(select_side_records(pool, n_per_side=n_per_side, n_both=n_both, seed=seed), images_dir)
 
 
@@ -189,9 +193,7 @@ def main() -> None:
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    # VQA-RAD image URLs are signed and expire, so a cached pool is only safe
-    # when no images are being downloaded.
-    pool = fetch_full_pool(cache_path=out / "cache" / "pools_full.json" if args.skip_images else None)
+    pool = fetch_full_pool(cache_path=out / "cache" / "pools_full.json")
     sets = {"knowledge": select_knowledge_records(pool), "side": select_side_records(pool)}
     summary = {}
     for name, records in sets.items():

@@ -29,7 +29,7 @@ by their stable `id`.
 ## Rules that protect the result
 
 1. **Dev and held-out split.** `split_dev_heldout()` in `baseline/extra_sets.py` splits the knowledge set
-   by image (dev about 30%, held-out about 70%; 33 / 97 questions). What is retrieved, how many passages,
+   by image (dev about 30%, held-out about 70%; 42 / 88 questions). What is retrieved, how many passages,
    and the prompt wording may be tuned on the dev part only. The held-out part is scored once, after the
    design is frozen. The frozen design is recorded in the experiment log first.
 2. **Retrieval source independence.** SLAKE's gold answers come from its own knowledge graph. The
@@ -94,10 +94,10 @@ the two systems disagree (`m`) to reach p < 0.05:
 | 40 | 27 : 13 |
 | 60 | 39 : 21 |
 
-Held-out knowledge has 97 questions from 79 images, 36 distinct question wordings and 31 distinct gold
+Held-out knowledge has 88 questions from 72 images, 35 distinct question wordings and 26 distinct gold
 answers. If most answers do not change between systems, m will be small and only a
 clear improvement will register. Set-wide differences of a few points will not be detectable, and the
-held-out test/validation rows alone (34) can only confirm a direction, not prove an effect.
+held-out test/validation rows alone (28) can only confirm a direction, not prove an effect.
 
 ## What this protocol will not support
 

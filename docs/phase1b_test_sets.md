@@ -33,7 +33,7 @@ symptoms / treatment / prevention / cause / function / how-do-you-determine patt
 | Source | SLAKE 124, VQA-RAD 6 |
 | Split | train 84, validation 22, test 24 |
 | Subtype | treatment 30, cause 25, function 25, prevention 23, symptoms 22, explanation 5 |
-| Distinct images / question wordings / gold answers | 105 / 42 / 33 |
+| Distinct images / question wordings / gold answers | 103 / 42 / 33 |
 
 **What this means for interpretation.**
 
@@ -46,7 +46,7 @@ symptoms / treatment / prevention / cause / function / how-do-you-determine patt
   description of the image), without using gold annotations.
 - Train rows (84) are very probably in CheXagent's training data. They are kept because the set would
   otherwise be too small, and every result is split by `source_split`.
-- A dev / held-out split by image (33 / 97) is provided for tuning retrieval without touching the final test.
+- A dev / held-out split by image (42 / 88) is provided for tuning retrieval without touching the final test.
 
 **Prompt.** The plain question, for every row. Run 2 appended "Answer concisely based only on what is
 visible in the image" to rows tagged laterality or severity, which covered 20 of its 24 knowledge
@@ -68,7 +68,7 @@ seed to **60 left, 60 right, 20 both**, so that guessing one side cannot score w
 | Gold side | left 60, right 60, both 20 |
 | Source | SLAKE 111, VQA-RAD 29 |
 | Split | train 87, validation 19, test 34 |
-| Distinct images / question wordings / gold answers | 114 / 67 / 27 |
+| Distinct images / question wordings / gold answers | 106 / 67 / 27 |
 
 **Scoring.** A prediction is correct on side when `side_of(prediction) == side_of(gold)`. "Left lung" is
 correct for "Lower Left Lung". Exact match, loose match and token F1 are still reported but understate
@@ -82,6 +82,17 @@ named"), the rate at which gold-left questions get "right" versus gold-right que
 datasets do not state whether they follow the patient's side or the side of the picture, and the model may
 not follow the same convention. A consistent flip would show as accuracy well below 50% on left/right items,
 and would be reported as such, not as a "right default".
+
+## Data download
+
+Both datasets are read from their own files on the Hugging Face Hub (SLAKE: `train.json`, `validation.json`,
+`test.json`; VQA-RAD: two parquet files), about 5 downloads in total, with retries that honour the server's
+Retry-After on HTTP 429. The first version paged through the `datasets-server` API (about 150 requests); on
+Colab this returned `429 Too Many Requests` and stopped the notebook. The paging API remains as an automatic
+fallback. VQA-RAD's parquet also contains the images, so there are no expiring signed URLs, and images are
+identified by content hash, which lets questions about the same picture share one image identity. Checked:
+the file path and the paging API return identical records (SLAKE test 358 / 358, VQA-RAD test 104 / 104), and
+all 224 question ids of run 2 resolve to the same question and answer.
 
 ## Bug found while building these sets
 

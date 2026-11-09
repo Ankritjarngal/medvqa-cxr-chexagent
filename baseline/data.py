@@ -28,6 +28,7 @@ be compared with this baseline row by row.
 from __future__ import annotations
 
 import hashlib
+import json
 import random
 import re
 import time
@@ -42,6 +43,19 @@ SLAKE_DATASET = "BoKelvin/SLAKE"
 SLAKE_IMAGES_ZIP_URL = "https://huggingface.co/datasets/BoKelvin/SLAKE/resolve/main/imgs.zip"
 VQA_RAD_DATASET = "flaviagiammarino/vqa-rad"
 DATASETS_SERVER_ROWS_URL = "https://datasets-server.huggingface.co/rows"
+
+# Preferred data path: download each dataset's own files once (5 requests).
+# The paging API (`datasets-server`, ~150 requests) rate-limits Colab with HTTP
+# 429, so it is kept only as a fallback. Row ids are identical on both paths,
+# checked against all 224 question ids of run 2.
+HF_RESOLVE_URL = "https://huggingface.co/datasets/{repo}/resolve/main/{path}"
+SLAKE_SPLIT_FILES = {"test": "test.json", "validation": "validation.json", "train": "train.json"}
+VQA_RAD_PARQUET_FILES = {
+    "test": "data/test-00000-of-00001-e5bc3d208bb4deeb.parquet",
+    "train": "data/train-00000-of-00001-eb8844602202be60.parquet",
+}
+VQA_RAD_PARQUET_KEY_PREFIX = "vqarad-parquet"
+RAW_CACHE_DIR = Path("raw_cache")
 
 # SLAKE's `location` field uses these labels for chest X-ray images.
 SLAKE_CHEST_LOCATIONS = {"Chest_heart", "Chest_lung", "Chest_mediastinal", "Lung"}
@@ -85,8 +99,49 @@ def mentions_chest_term(question: str) -> bool:
     return any(k in q for k in VQA_RAD_CHEST_KEYWORDS if k not in VQA_RAD_WHOLE_WORD_KEYWORDS)
 
 
+def _retry_wait(resp, attempt: int, backoff: float) -> float:
+    """Seconds to wait before retrying. Honours Retry-After on HTTP 429 and
+    otherwise backs off exponentially (capped at 60 s)."""
+    if resp is not None and resp.status_code == 429:
+        try:
+            return min(120.0, max(float(resp.headers.get("Retry-After", 0)), backoff * 4 * (attempt + 1)))
+        except ValueError:
+            pass
+    return min(60.0, backoff * (2 ** attempt))
+
+
+def _download_file(url: str, dest: str | Path, retries: int = 8, backoff: float = 2.0) -> Path:
+    """Download `url` to `dest` once (skipped if present), streaming, with
+    retries on 429 / 5xx / connection errors. Written via a temp file so an
+    interrupted download is never mistaken for a complete one."""
+    dest = Path(dest)
+    if dest.exists() and dest.stat().st_size > 0:
+        return dest
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    last_exc: Exception | None = None
+    for attempt in range(retries):
+        resp = None
+        try:
+            resp = requests.get(url, stream=True, timeout=180)
+            if resp.status_code == 200:
+                tmp = dest.with_suffix(dest.suffix + ".part")
+                with open(tmp, "wb") as f:
+                    for chunk in resp.iter_content(chunk_size=1 << 20):
+                        f.write(chunk)
+                tmp.replace(dest)
+                return dest
+            if resp.status_code not in (429, 500, 502, 503, 504):
+                resp.raise_for_status()
+        except requests.RequestException as exc:
+            last_exc = exc
+            if resp is not None and resp.status_code not in (429, 500, 502, 503, 504):
+                raise
+        time.sleep(_retry_wait(resp, attempt, backoff))
+    raise last_exc or RuntimeError(f"could not download {url}")
+
+
 def _get_rows(dataset: str, split: str, offset: int, length: int = 100,
-              retries: int = 5, backoff: float = 1.5) -> dict:
+              retries: int = 8, backoff: float = 1.5) -> dict:
     last_exc = None
     for attempt in range(retries):
         try:
@@ -102,7 +157,8 @@ def _get_rows(dataset: str, split: str, offset: int, length: int = 100,
                 return resp.json()
         except requests.RequestException as exc:
             last_exc = exc
-        time.sleep(backoff * (attempt + 1))
+            resp = None
+        time.sleep(_retry_wait(resp, attempt, backoff))
     if last_exc:
         raise last_exc
     resp.raise_for_status()
@@ -123,10 +179,23 @@ def _iter_all_rows(dataset: str, split: str, page_size: int = 100):
             return
 
 
+def _iter_slake_rows(split: str):
+    """SLAKE rows from the dataset's own JSON file; paging API as fallback."""
+    try:
+        url = HF_RESOLVE_URL.format(repo=SLAKE_DATASET, path=SLAKE_SPLIT_FILES[split])
+        path = _download_file(url, RAW_CACHE_DIR / f"slake_{split}.json")
+        rows = json.loads(path.read_text())
+    except Exception as exc:
+        print(f"[data] SLAKE {split}: file download failed ({exc!r}); falling back to the paging API")
+        yield from _iter_all_rows(SLAKE_DATASET, split)
+        return
+    yield from rows
+
+
 def fetch_slake_chest_records(split: str = "test") -> list[dict]:
     """English chest-X-ray rows from SLAKE, filtered via structured metadata."""
     records = []
-    for rr in _iter_all_rows(SLAKE_DATASET, split):
+    for rr in _iter_slake_rows(split):
         if (
             rr.get("modality") == "X-Ray"
             and rr.get("location") in SLAKE_CHEST_LOCATIONS
@@ -148,11 +217,43 @@ def fetch_slake_chest_records(split: str = "test") -> list[dict]:
     return records
 
 
+def _vqa_rad_parquet_path(split: str) -> Path:
+    url = HF_RESOLVE_URL.format(repo=VQA_RAD_DATASET, path=VQA_RAD_PARQUET_FILES[split])
+    return _download_file(url, RAW_CACHE_DIR / f"vqa_rad_{split}.parquet")
+
+
+def _iter_vqa_rad_rows(split: str):
+    """VQA-RAD rows from the dataset's parquet file (images are embedded, so
+    there are no expiring signed URLs, and an image's content hash gives a real
+    image identity); paging API as fallback if pyarrow or the download fails.
+
+    Yields dicts with question, answer, _row_idx, _image_key, _image_id."""
+    try:
+        import pyarrow.parquet as pq
+        table = pq.read_table(_vqa_rad_parquet_path(split))
+        images, questions, answers = table.column("image"), table.column("question"), table.column("answer")
+        rows = []
+        for idx in range(table.num_rows):
+            img_bytes = images[idx].as_py()["bytes"]
+            rows.append({
+                "question": questions[idx].as_py(), "answer": answers[idx].as_py(), "_row_idx": idx,
+                "_image_key": f"{VQA_RAD_PARQUET_KEY_PREFIX}:{split}:{idx}",
+                "_image_id": hashlib.md5(img_bytes).hexdigest()[:12],
+            })
+    except Exception as exc:
+        print(f"[data] VQA-RAD {split}: parquet path failed ({exc!r}); falling back to the paging API")
+        for rr in _iter_all_rows(VQA_RAD_DATASET, split):
+            yield {"question": rr["question"], "answer": rr["answer"], "_row_idx": rr["_row_idx"],
+                   "_image_key": rr["image"]["src"], "_image_id": None}
+        return
+    yield from rows
+
+
 def fetch_vqa_rad_chest_records(splits: tuple[str, ...] = ("test", "train")) -> list[dict]:
     """Chest-ish rows from VQA-RAD, filtered via keyword heuristic (noisier)."""
     records = []
     for split in splits:
-        for rr in _iter_all_rows(VQA_RAD_DATASET, split):
+        for rr in _iter_vqa_rad_rows(split):
             q = rr["question"].lower()
             if (
                 mentions_chest_term(q)
@@ -166,7 +267,8 @@ def fetch_vqa_rad_chest_records(splits: tuple[str, ...] = ("test", "train")) -> 
                     "gold_answer": rr["answer"],
                     "answer_type": None,
                     "uid": f"VQA-RAD_{split}_{rr['_row_idx']}",
-                    "image_key": rr["image"]["src"],  # temporary signed URL (not stable)
+                    "image_key": rr["_image_key"],
+                    "image_id": rr["_image_id"],  # content hash of the image (None on the fallback path)
                     "category": categorize_question(rr["question"]),
                     "answer_format": answer_format(rr["answer"]),
                     "is_knowledge": is_knowledge_question(rr["question"]),
@@ -228,12 +330,7 @@ def download_slake_images(records: list[dict], dest_dir: str | Path,
         return {}
 
     zip_cache_path = Path(zip_cache_path) if zip_cache_path else dest_dir / "_slake_imgs.zip"
-    if not zip_cache_path.exists():
-        resp = requests.get(SLAKE_IMAGES_ZIP_URL, stream=True, timeout=180)
-        resp.raise_for_status()
-        with open(zip_cache_path, "wb") as f:
-            for chunk in resp.iter_content(chunk_size=1 << 20):
-                f.write(chunk)
+    _download_file(SLAKE_IMAGES_ZIP_URL, zip_cache_path)
 
     local_paths = {}
     with zipfile.ZipFile(zip_cache_path) as zf:
@@ -248,23 +345,37 @@ def download_slake_images(records: list[dict], dest_dir: str | Path,
 
 
 def download_vqa_rad_images(records: list[dict], dest_dir: str | Path) -> dict[str, str]:
+    """Write each needed VQA-RAD image to `dest_dir`. Records from the parquet
+    path are extracted from the parquet file and named by image content hash, so
+    questions about the same image share one file. Records from the paging
+    fallback are fetched from their (expiring) signed URLs."""
     dest_dir = Path(dest_dir)
     dest_dir.mkdir(parents=True, exist_ok=True)
     local_paths: dict[str, str] = {}
+    tables: dict[str, object] = {}
     for r in records:
         if r["source_dataset"] != "VQA-RAD":
             continue
-        url = r["image_key"]
-        if url in local_paths:
+        key = r["image_key"]
+        if key in local_paths:
             continue
-        digest = hashlib.md5(url.encode()).hexdigest()[:12]
-        out_path = dest_dir / f"vqarad_{digest}.jpg"
-        if not out_path.exists():
-            resp = requests.get(url, timeout=60)
-            resp.raise_for_status()
-            with open(out_path, "wb") as f:
-                f.write(resp.content)
-        local_paths[url] = str(out_path)
+        if key.startswith(VQA_RAD_PARQUET_KEY_PREFIX + ":"):
+            _, split, idx = key.split(":")
+            out_path = dest_dir / f"vqarad_{r['image_id']}.jpg"
+            if not out_path.exists():
+                if split not in tables:
+                    import pyarrow.parquet as pq
+                    tables[split] = pq.read_table(_vqa_rad_parquet_path(split), columns=["image"])
+                out_path.write_bytes(tables[split].column("image")[int(idx)].as_py()["bytes"])
+        else:
+            digest = hashlib.md5(key.encode()).hexdigest()[:12]
+            out_path = dest_dir / f"vqarad_{digest}.jpg"
+            if not out_path.exists():
+                resp = requests.get(key, timeout=60)
+                resp.raise_for_status()
+                with open(out_path, "wb") as f:
+                    f.write(resp.content)
+        local_paths[key] = str(out_path)
     return local_paths
 
 
