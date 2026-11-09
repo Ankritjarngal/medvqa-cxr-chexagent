@@ -21,7 +21,8 @@ not for clinical use.
   analysis in `docs/`. Read `docs/experiment_log.md` for the history and `docs/evaluation_protocol.md`
   for how Phase 2 must be evaluated. Phase 1b (knowledge and side test sets, notebook 02) is built and
   run on Colab (run 3, `docs/run_3_findings.md`). Phase 1c (perception diagnostics, notebook 03,
-  `docs/phase1c_diagnostics.md`) is built and tested with stand-in models; the model has NOT been run on it yet.
+  `docs/phase1c_diagnostics.md`) was run on Colab (run 4, `docs/phase1c_findings.md`, data in `results/run_4/`): left/right answers do not follow the
+  image and no wording fixed it; heart size shows one weak lead. Next decision: Phase 3 fine-tuning or a second model.
 - The data pipeline and scoring were tested against real SLAKE and VQA-RAD data. The model
   itself has NOT been run: the cloud sandbox has no GPU. The first real model run happens on
   Google Colab (free T4), so expect to fix small issues in `baseline/model.py` or the notebook.

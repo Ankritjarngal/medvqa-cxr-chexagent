@@ -29,6 +29,7 @@ docs/
   phase1b_test_sets.md           # Knowledge and side test sets: design, caveats, reference numbers
   run_3_findings.md              # Results of the model on the knowledge and side sets
   phase1c_diagnostics.md         # Perception diagnostics (flip test, prompt variants, heart size): plan and readings
+  phase1c_findings.md            # Results of those diagnostics (run 4)
   baseline_run_2_findings.md     # 224-question baseline analysis (pilot: pilot_run_1_findings.md)
   literature_review.md          # Deep-dive review of 6 papers, dataset catalogue, gap analysis
   papers/README.md               # Links to the 6 source papers (PDFs are not redistributed)
@@ -161,7 +162,11 @@ answer. Details: [`docs/run_3_findings.md`](docs/run_3_findings.md).
 Three zero-training tests of why the model fails on left/right and heart size: a mirror-image test (does the
 answer change when the image is flipped?), six wordings of the side question, and four wordings of the
 heart-enlargement question. Run `notebooks/03_perception_diagnostics.ipynb` on a Colab T4. What each outcome will mean
-was written before running: [`docs/phase1c_diagnostics.md`](docs/phase1c_diagnostics.md). No model result yet.
+was written before running: [`docs/phase1c_diagnostics.md`](docs/phase1c_diagnostics.md).
+
+**Run 4 result:** mirroring the image changed the left/right answer in only 2 of 73 cases (3%), and no wording of the
+question fixed it; the wording sets the default answer. For heart enlargement the wording moves the yes-rate far more
+than the image does, with one weak lead. Details: [`docs/phase1c_findings.md`](docs/phase1c_findings.md).
 
 ### Regenerating the notebook or the test harness
 

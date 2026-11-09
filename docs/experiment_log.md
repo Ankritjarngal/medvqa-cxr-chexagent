@@ -238,4 +238,34 @@ more often cannot look like improvement.
 **Not done / limits:** the model has not been run on these tests. The VM has no GPU, so the notebook must be run on
 Colab by the user (the assistant cannot drive Colab). Samples are small (29 explicit side questions, 22 enlarged hearts).
 
-**Next:** run the notebook on Colab, upload `diagnostics_results.csv`, analyse against the pre-stated readings.
+**Next:** run the notebook on Colab, upload `diagnostics_results.csv`, analyse against the pre-stated readings (done, entry 12).
+
+## 12. Run 4: perception diagnostics run on Colab (10 Nov 2026)
+
+Full run (788 generations) uploaded as `results/run_4/`. Analysis: `scripts/analyze_diagnostics.py`; write-up:
+`docs/phase1c_findings.md`. Readings applied are the ones fixed in `docs/phase1c_diagnostics.md` before the run.
+
+**Findings**
+1. Flip test: left/right answers swapped when the image was mirrored in 2 of 73 cases (3%, 95% CI 1-9%); 112 of 120
+   answers were byte-identical on both images (29 of 29 on explicit questions). Repeatability 20 of 20. The model's side
+   answer does not depend on the image's orientation.
+2. Side wording: the default flips with the wording ("Right" with run 3's wording; "Left" in 52 of 60 with the one-word
+   wording) and no wording made answers depend on the true side (all p > 0.25). No fix found.
+3. Heart size: the wording moves the yes-rate (2% / 26% / 94% / 0% across four wordings) more than the image does. The
+   plain wording (no instruction) found 9 of 22 enlarged hearts and wrongly flagged 3 of 25 normal (Fisher p = 0.042, not
+   corrected for 4 wordings; Youden J 0.29). Under the pre-stated rule this is "partial", not a fix. "Describe first"
+   answered a bare "Yes" 94% of the time and did not describe anything.
+
+**Things that mattered in the analysis**
+- Accuracy is reported next to the swap rate, and Youden's J next to sensitivity, so a changed default cannot pass as skill.
+- The best heart wording (`plain`) was chosen after seeing four results, so its p-value is flagged as uncorrected; its
+  gain over run 2's wording on the same questions is not significant (McNemar p = 0.23).
+- A possible alternative explanation for the flip result (training with random mirroring) is stated in the findings as
+  something we cannot check.
+
+**Not done / limits:** small samples (29 explicit side questions, 22 enlarged hearts); six side wordings and four heart
+wordings is a small hand-picked set; the model is tested on questions from its own probable training sets.
+
+**Decisions pending (not made):** Phase 3 fine-tuning for laterality / enlargement, or a second model on the same
+test sets; a larger heart-size set to test the `plain` lead once; knowledge answers still need a blind manual rating.
+
