@@ -318,3 +318,30 @@ It uses no model.
 - **Limits:** 16 dev questions; the best of 24 settings is optimistic. The held-out coverage, with a wrong-disease control
   and a question-only control, is reported next (entry 15).
 
+
+## 15. Stage 2 result: frozen setting on held-out questions, with controls (10 Nov 2026)
+
+`python3 scripts/retrieval_check.py report 2 topic+textbooks 700 1`, output in `results/phase2/retrieval_check.json`.
+Strict gold-item coverage of the retrieved text (no model):
+
+| Questions | n | true disease | wrong disease | question only |
+|---|---|---|---|---|
+| dev | 16 | 0.42 | 0.16 | 0.05 |
+| held-out | 34 | 0.29 | 0.17 | 0.03 |
+| all | 50 | 0.33 | 0.13 | 0.04 |
+
+By subtype with the true disease, all 50: symptoms 0.67 (n=11), cause 0.44 (11), treatment 0.23 (15), prevention 0.08 (13).
+Held-out: symptoms 0.60, cause 0.35, treatment 0.27, prevention 0.00.
+
+**Reading**
+- Knowing the disease matters for retrieval: 0.33 with the true disease against 0.13 with a wrong one and 0.04 from the
+  question alone. Question-only retrieval finds almost none of the gold items, so A2 is expected to add nothing.
+- The dev figure (0.42) shrank to 0.29 on held-out, as expected for a setting picked as the best of 24 on 16 questions.
+  The held-out figure is the one to quote.
+- The corpus holds the gold items for symptoms and cause (0.67, 0.44) but little for treatment and almost nothing for
+  prevention. Gold treatment answers are generic category words ("Medical treatment, surgical treatment") and
+  prevention answers are generic advice ("Live healthy, enhance physical fitness", "Keep healthy"), which disease-specific
+  text rarely states in those words. This limits how much retrieval can raise item recall on those two subtypes whatever
+  the model does; the blind rating is the fairer judge there.
+- A wrong disease still reaches 0.13 to 0.17 because some items are generic ("surgery", "chest pain").
+- This is a ceiling on what retrieved text offers a perfect reader, not a model result.
