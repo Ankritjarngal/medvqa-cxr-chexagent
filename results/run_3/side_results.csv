@@ -1,0 +1,141 @@
+id,source_dataset,source_split,category,answer_format,is_knowledge,image_path,question,gold_answer,prediction,exact_match,loose_match,token_f1,side_granularity,gold_side,pred_side,side_given,side_correct
+VQA-RAD_train_1032,VQA-RAD,train,general,open,False,images/vqarad_fd881173bbce.jpg,where is the cardiac border more obscured?,right,Right area,False,True,0.667,side_only,right,right,True,True
+VQA-RAD_train_1034,VQA-RAD,train,laterality,open,False,images/vqarad_c4e21ad9079c.jpg,which side of the cardiac border is more prominent?,left,Left,True,True,1.0,side_only,left,left,True,True
+SLAKE_10204,SLAKE,validation,general,open,False,images/xmlab324__source.jpg,Where is the abnormality in this image?,Left Lung,Upper lung,False,False,0.5,region,left,,False,False
+VQA-RAD_train_177,VQA-RAD,train,general,open,False,images/vqarad_6bea14a1ab60.jpg,which lung are the nodules located in?,bilateral,Right lung,False,False,0.0,side_only,both,right,True,False
+SLAKE_2278,SLAKE,train,general,open,False,images/xmlab337__source.jpg,Where is the mass in the lung?,Left Lung,Upper lung,False,False,0.5,region,left,,False,False
+SLAKE_12447,SLAKE,test,laterality,open,False,images/xmlab367__source.jpg,"Which side of lung is abnormal in this image,left or right?",Left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_12492,SLAKE,test,laterality,open,False,images/xmlab378__source.jpg,Which side of lung is abnormal in this image?,Left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_12328,SLAKE,test,general,open,False,images/xmlab314__source.jpg,Where is the pneumonia in the lung?,Right Lung,Lower lung area,False,False,0.4,region,right,,False,False
+SLAKE_2367,SLAKE,train,laterality,open,False,images/xmlab345__source.jpg,Which side of lung is abnormal in this image?,Both,Right,False,False,0.0,side_only,both,right,True,False
+SLAKE_1971,SLAKE,train,general,open,False,images/xmlab310__source.jpg,Where is/are the abnormality located in this picture?,Right Lung,"Left Lung, Right",False,False,0.8,region,right,both,True,False
+SLAKE_2263,SLAKE,train,general,open,False,images/xmlab336__source.jpg,What part of the lung is the infiltration located in?,Lower Left Lung,Lower lung,False,False,0.8,region,left,,False,False
+SLAKE_12462,SLAKE,test,general,open,False,images/xmlab374__source.jpg,Where is the abnormality in this image?,Upper Right Lung,Upper lung,False,False,0.8,region,right,,False,False
+SLAKE_2032,SLAKE,train,general,open,False,images/xmlab317__source.jpg,Where is the pulmonary nodule in this image?,Right Lung,Right lower lung area,False,False,0.667,region,right,right,True,True
+SLAKE_2382,SLAKE,train,general,open,False,images/xmlab346__source.jpg,Which lobe is normal in this image?,Right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_10346,SLAKE,validation,laterality,open,False,images/xmlab366__source.jpg,Which side of lung is abnormal in this image?,Left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_2470,SLAKE,train,general,open,False,images/xmlab358__source.jpg,Where is the pneumonia in this image?,Lower Right Lung,Lower lung area,False,False,0.667,region,right,,False,False
+SLAKE_2031,SLAKE,train,laterality,open,False,images/xmlab317__source.jpg,"Which side of lung is abnormal in this image,left or right?",Right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_10362,SLAKE,validation,general,open,False,images/xmlab379__source.jpg,Where is/are the atelectasis located?,Lower Left Lung,Bibasilar area,False,False,0.0,region,left,,False,False
+SLAKE_2641,SLAKE,train,general,open,False,images/xmlab373__source.jpg,What part of the lung is the pneumonia located in?,Lower Right Lung,Lower lung,False,False,0.8,region,right,,False,False
+SLAKE_10205,SLAKE,validation,general,open,False,images/xmlab324__source.jpg,Where is/are the mass located in this image?,Left Lung,Upper left lung,False,True,0.8,region,left,left,True,True
+SLAKE_12417,SLAKE,test,general,open,False,images/xmlab357__source.jpg,Where is the abnormality in this image?,Lower Left Lung,Upper lung,False,False,0.4,region,left,,False,False
+VQA-RAD_train_1368,VQA-RAD,train,laterality,open,False,images/vqarad_5316a4758aef.jpg,which side is the pneumothorax on?,right side,Right,False,True,0.667,region,right,right,True,True
+SLAKE_1886,SLAKE,train,general,open,False,images/xmlab301__source.jpg,Where is the atelectasis in the lung?,Lower right Lung,Bibasilar area,False,False,0.0,region,right,,False,False
+SLAKE_1840,SLAKE,train,general,open,False,images/xmlab298__source.jpg,Where is the abnormality in this image?,Both Lung,Upper lung,False,False,0.5,region,both,,False,False
+SLAKE_2323,SLAKE,train,general,open,False,images/xmlab341__source.jpg,Where is the atelectasis in the lung?,Lower Left Lung,Bibasilar area,False,False,0.0,region,left,,False,False
+SLAKE_12357,SLAKE,test,general,open,False,images/xmlab329__source.jpg,Which lobe is abnormal in this image?,Left,Right,False,False,0.0,side_only,left,right,True,False
+VQA-RAD_train_198,VQA-RAD,train,laterality,open,False,images/vqarad_13221d58859d.jpg,which side is the diaphragm more depressed?,left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_2061,SLAKE,train,general,open,False,images/xmlab319__source.jpg,Where is the abnormality in this image?,Upper Right Lung,Upper lung,False,False,0.8,region,right,,False,False
+SLAKE_2469,SLAKE,train,laterality,open,False,images/xmlab358__source.jpg,"Which side of lung is abnormal in this image,left or right?",Right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_2625,SLAKE,train,laterality,open,False,images/xmlab372__source.jpg,Which side of lung is abnormal in this image?,Right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_512,SLAKE,train,general,open,False,images/xmlab180__source.jpg,Where is/are the abnormality located?,"Right Lung, Left","Left Lung, Right",False,False,1.0,region,both,both,True,True
+VQA-RAD_train_1477,VQA-RAD,train,general,open,False,images/vqarad_7621a263c801.jpg,which lung has a defect?,left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_12508,SLAKE,test,general,open,False,images/xmlab385__source.jpg,Where is/are the effusion located?,Lower Left Lung,Left area,False,False,0.4,region,left,left,True,True
+VQA-RAD_train_765,VQA-RAD,train,general,open,False,images/vqarad_439a24bd148d.jpg,what lung are the pulmonary nodules in?,bilateral lungs,Right lung,False,False,0.0,region,both,right,True,False
+SLAKE_2527,SLAKE,train,general,open,False,images/xmlab364__source.jpg,Where is the pneumonia in the lung?,Left Lung,Lower lung area,False,False,0.4,region,left,,False,False
+VQA-RAD_train_643,VQA-RAD,train,laterality,open,False,images/vqarad_3424709406d9.jpg,on which side is air under the diaphragm?,right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_267,SLAKE,train,general,open,False,images/xmlab143__source.jpg,Where is/are the abnormality located?,"Right Lung, Left","Left Lung, Right",False,False,1.0,region,both,both,True,True
+VQA-RAD_train_644,VQA-RAD,train,laterality,open,False,images/vqarad_3424709406d9.jpg,is free air present under the patient's left or right hemidiaphragm?,right,No,False,False,0.0,side_only,right,,False,False
+SLAKE_12312,SLAKE,test,general,open,False,images/xmlab312__source.jpg,Where is the abnormality in this image?,Lower Left Lung,Upper lung,False,False,0.4,region,left,,False,False
+SLAKE_2656,SLAKE,train,general,open,False,images/xmlab376__source.jpg,What part of the lung is the pneumonia located in?,Lower Left Lung,Lower lung,False,False,0.8,region,left,,False,False
+SLAKE_1901,SLAKE,train,general,open,False,images/xmlab302__source.jpg,Where is/are the infiltration located?,Lower Left Lung,Left lung base,False,False,0.667,region,left,left,True,True
+SLAKE_2016,SLAKE,train,laterality,open,False,images/xmlab316__source.jpg,"Which side of lung is abnormal in this image,left or right?",Left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_2202,SLAKE,train,general,open,False,images/xmlab332__source.jpg,Which lobe is abnormal in this image?,Right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_2697,SLAKE,train,general,open,False,images/xmlab381__source.jpg,Which lobe is normal in this image?,Right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_12327,SLAKE,test,laterality,open,False,images/xmlab314__source.jpg,"Which side of lung is abnormal in this image,left or right?",Right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_1916,SLAKE,train,general,open,False,images/xmlab305__source.jpg,Where is/are the pneumonia located?,Lower Left Lung,Lower lung,False,False,0.8,region,left,,False,False
+VQA-RAD_test_3,VQA-RAD,test,laterality,open,False,images/vqarad_2f6ea74e3d9f.jpg,which side of the heart border is obscured?,right,Left,False,False,0.0,side_only,right,left,True,False
+VQA-RAD_train_1518,VQA-RAD,train,laterality,open,False,images/vqarad_27f3a8da4318.jpg,what is the bump seen above the heart on the patient's right side?,right sided aortic arch,Enlarged PA,False,False,0.0,region,right,,False,False
+SLAKE_2218,SLAKE,train,general,open,False,images/xmlab333__source.jpg,What part of the lung is the mass located in in this image?,Right Lung,Upper Left Lung,False,False,0.4,region,right,left,True,False
+SLAKE_2308,SLAKE,train,general,open,False,images/xmlab340__source.jpg,Where is the pneumothorax in the lung?,Right Lung,Right apical area,False,False,0.4,region,right,right,True,True
+SLAKE_12313,SLAKE,test,general,open,False,images/xmlab312__source.jpg,Where is the atelectasis in this image?,Lower Left Lung,Bibasilar area,False,False,0.0,region,left,,False,False
+VQA-RAD_test_106,VQA-RAD,test,general,open,False,images/vqarad_c5c0f2a0a7fc.jpg,where is the pleural effusion located?,right side,Left area,False,False,0.0,region,right,left,True,False
+SLAKE_10145,SLAKE,validation,general,open,False,images/xmlab303__source.jpg,Where is the pleural effusion?,Lower Left Lung,Left area,False,False,0.4,region,left,left,True,True
+SLAKE_12297,SLAKE,test,laterality,open,False,images/xmlab311__source.jpg,"Which side of lung is abnormal in this image,left or right?",Left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_2002,SLAKE,train,general,open,False,images/xmlab315__source.jpg,Where is the atelectasis in this image?,Lower Left Lung,Bibasilar area,False,False,0.0,region,left,,False,False
+SLAKE_2758,SLAKE,train,general,open,False,images/xmlab388__source.jpg,Where is/are the effusion located?,Lower Right Lung,Left area,False,False,0.0,region,right,left,True,False
+SLAKE_2353,SLAKE,train,general,open,False,images/xmlab343__source.jpg,Where is the atelectasis in this image?,Upper Left Lung,Bibasilar area,False,False,0.0,region,left,,False,False
+SLAKE_12267,SLAKE,test,laterality,open,False,images/xmlab299__source.jpg,"Which side of lung is abnormal in this image,left or right?",Right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_12478,SLAKE,test,general,open,False,images/xmlab375__source.jpg,Where is the pneumonia in the lung?,Lower Right Lung,Lower lung area,False,False,0.667,region,right,,False,False
+SLAKE_2203,SLAKE,train,general,open,False,images/xmlab332__source.jpg,Where is/are the pulmonary nodule located in this image?,Right Lung,Right lung base,False,True,0.8,region,right,right,True,True
+SLAKE_10144,SLAKE,validation,general,open,False,images/xmlab303__source.jpg,Where is/are the abnormality located in this picture?,Both Lung,"Left Lung, Right",False,False,0.4,region,both,both,True,True
+VQA-RAD_train_1609,VQA-RAD,train,general,open,False,images/vqarad_4a63406c69d8.jpg,which diaphragm is elevated?,right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_347,SLAKE,train,general,open,False,images/xmlab155__source.jpg,"Which organ is abnormal, heart or lung?",Both,Lung,False,False,0.0,side_only,both,,False,False
+SLAKE_2440,SLAKE,train,general,open,False,images/xmlab355__source.jpg,What part of the lung is the atelectasis located in?,Lower Right Lung,Left lower lung area,False,False,0.571,region,right,left,True,False
+SLAKE_650,SLAKE,train,general,open,False,images/xmlab197__source.jpg,Where is/are the abnormality located?,"Left Lung, Upper Right","Left Lung, Right",False,False,0.857,region,both,both,True,True
+SLAKE_2825,SLAKE,train,general,open,False,images/xmlab393__source.jpg,What part of the chest is the effusion located in?,Lower Left Lung,Left area,False,False,0.4,region,left,left,True,True
+SLAKE_10317,SLAKE,validation,general,open,False,images/xmlab359__source.jpg,Where is/are the mass located?,Both Lung,Right Lung,False,False,0.5,region,both,right,True,False
+SLAKE_2148,SLAKE,train,general,open,False,images/xmlab327__source.jpg,Where is the pleural effusion in this image?,Right Chest,Left area,False,False,0.0,region,right,left,True,False
+SLAKE_10256,SLAKE,validation,laterality,open,False,images/xmlab348__source.jpg,"Which side of lung is abnormal in this image,left or right?",Left,Right,False,False,0.0,side_only,left,right,True,False
+VQA-RAD_test_412,VQA-RAD,test,general,open,False,images/vqarad_342837dd8722.jpg,which lung is abnormal?,right lung,Right,False,True,0.667,region,right,right,True,True
+SLAKE_2117,SLAKE,train,laterality,open,False,images/xmlab325__source.jpg,"Which side of lung is abnormal in this image,left or right?",Left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_668,SLAKE,train,general,open,False,images/xmlab199__source.jpg,Where is/are the abnormality located?,Left Lung,"Left Lung, Right",False,True,0.8,region,left,both,True,False
+SLAKE_2322,SLAKE,train,laterality,open,False,images/xmlab341__source.jpg,"Which side of lung is abnormal in this image,left or right?",Left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_10190,SLAKE,validation,general,open,False,images/xmlab322__source.jpg,Where is/are the pleural effusion located?,Lower Right Chest,Left area,False,False,0.0,region,right,left,True,False
+SLAKE_12006,SLAKE,test,general,open,False,images/xmlab147__source.jpg,Where is/are the abnormality located?,Right Lung,"Left Lung, Right",False,False,0.8,region,right,both,True,False
+VQA-RAD_test_105,VQA-RAD,test,general,open,False,images/vqarad_c5c0f2a0a7fc.jpg,where is there evidence of a pleural effusion?,right side,Left area,False,False,0.0,region,right,left,True,False
+SLAKE_10257,SLAKE,validation,general,open,False,images/xmlab348__source.jpg,What part of the lung is the pneumonia located in?,Lower Left Lung,Lower lung,False,False,0.8,region,left,,False,False
+SLAKE_12044,SLAKE,test,general,open,False,images/xmlab169__source.jpg,Where is/are the abnormality located?,"Right Lung, Lower Left","Left Lung, Right",False,False,0.857,region,both,both,True,True
+SLAKE_1795,SLAKE,train,general,open,False,images/xmlab295__source.jpg,Which lobe is abnormal in this image?,Right,Right,True,True,1.0,side_only,right,right,True,True
+VQA-RAD_train_829,VQA-RAD,train,general,open,False,images/vqarad_13221d58859d.jpg,is the lung hyperinflated on one or both sides?,both sides,Yes,False,False,0.0,region,both,,False,False
+VQA-RAD_train_1418,VQA-RAD,train,laterality,open,False,images/vqarad_ed1257c932c5.jpg,which side of the image is the thoracic mass located on?,left side,Right,False,False,0.0,region,left,right,True,False
+VQA-RAD_train_1031,VQA-RAD,train,laterality,open,False,images/vqarad_fd881173bbce.jpg,on which side is the cardiac border more obscured?,right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_12418,SLAKE,test,general,open,False,images/xmlab357__source.jpg,Where is the pneumothorax in this image?,Lower Left Lung,Right apical area,False,False,0.0,region,left,right,True,False
+VQA-RAD_train_978,VQA-RAD,train,general,open,False,images/vqarad_c4e21ad9079c.jpg,which lobe of the lung is the lesion located in?,right upper lobe,Right,False,True,0.5,region,right,right,True,True
+VQA-RAD_train_249,VQA-RAD,train,general,open,False,images/vqarad_946b29b81168.jpg,which lung has diffuse opacification?,right,Left,False,False,0.0,side_only,right,left,True,False
+SLAKE_2047,SLAKE,train,general,open,False,images/xmlab318__source.jpg,Which part of the chest is the effusion located in?,Left,Left area,False,True,0.667,side_only,left,left,True,True
+SLAKE_2794,SLAKE,train,general,open,False,images/xmlab390__source.jpg,Where is the abnormality in this image?,Lower Right Lung,Upper lung,False,False,0.4,region,right,,False,False
+SLAKE_2424,SLAKE,train,laterality,open,False,images/xmlab354__source.jpg,Which side of lung is abnormal in this image?,Left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_2595,SLAKE,train,general,open,False,images/xmlab370__source.jpg,Where is the abnormality in this image?,Right Lung,Upper lung,False,False,0.5,region,right,,False,False
+SLAKE_2542,SLAKE,train,general,open,False,images/xmlab365__source.jpg,What part of the lung is the pneumonia located in?,Both Lung,Lower lung,False,False,0.5,region,both,,False,False
+SLAKE_10220,SLAKE,validation,general,open,False,images/xmlab330__source.jpg,What part of the lung is the mass located in?,Right Lung,Left Lung,False,False,0.5,region,right,left,True,False
+SLAKE_2062,SLAKE,train,general,open,False,images/xmlab319__source.jpg,What part of the lung is the mass located in?,Upper Right Lung,Left Lung,False,False,0.4,region,right,left,True,False
+SLAKE_12372,SLAKE,test,general,open,False,images/xmlab338__source.jpg,Where is the abnormality in this image?,Lower Left Lung,Upper lung,False,False,0.4,region,left,,False,False
+SLAKE_2425,SLAKE,train,general,open,False,images/xmlab354__source.jpg,What part of the lung is the infiltration located in?,Lower Left Lung,Lower lung,False,False,0.8,region,left,,False,False
+SLAKE_12298,SLAKE,test,general,open,False,images/xmlab311__source.jpg,Where is the mass in this image?,Lower Left Lung,Upper left lung,False,False,0.667,region,left,left,True,True
+SLAKE_12433,SLAKE,test,general,open,False,images/xmlab361__source.jpg,Where is/are the nodule located in this image?,Left Lung,Right Lung,False,False,0.5,region,left,right,True,False
+SLAKE_12282,SLAKE,test,general,open,False,images/xmlab304__source.jpg,Where is the abnormality in this image?,Lower Right Lung,Upper lung,False,False,0.4,region,right,,False,False
+SLAKE_170,SLAKE,train,general,open,False,images/xmlab123__source.jpg,Where is/are the abnormality located?,"Center, Left Lung","Left Lung, Right",False,False,0.667,region,left,both,True,False
+SLAKE_2162,SLAKE,train,laterality,open,False,images/xmlab328__source.jpg,"Which side of lung is abnormal in this image,left or right?",Left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_10189,SLAKE,validation,general,open,False,images/xmlab322__source.jpg,Where is the abnormality in this image?,Lower Right Chest,Upper lung,False,False,0.0,region,right,,False,False
+SLAKE_2292,SLAKE,train,general,open,False,images/xmlab339__source.jpg,Where is/are the abnormality located in this picture?,Left Lung,"Left Lung, Right",False,True,0.8,region,left,both,True,False
+VQA-RAD_test_411,VQA-RAD,test,general,open,False,images/vqarad_342837dd8722.jpg,where is the diffuse pleural thickening?,right lung,Right area,False,False,0.5,region,right,right,True,True
+SLAKE_2133,SLAKE,train,general,open,False,images/xmlab326__source.jpg,Where is the mass in this image?,Upper Right Lung,Upper left lung,False,False,0.667,region,right,left,True,False
+SLAKE_2809,SLAKE,train,general,open,False,images/xmlab392__source.jpg,Where is/are the abnormality located in this picture?,Lower Left Lung,"Left Lung, Right",False,False,0.667,region,left,both,True,False
+SLAKE_10272,SLAKE,validation,general,open,False,images/xmlab349__source.jpg,Where is the pneumonia in this image?,Lower Right Lung,Lower lung area,False,False,0.667,region,right,,False,False
+SLAKE_2698,SLAKE,train,general,open,False,images/xmlab381__source.jpg,What part of the lung is the atelectasis located in?,Lower Left Lung,Left lower lung area,False,False,0.857,region,left,left,True,True
+SLAKE_12448,SLAKE,test,general,open,False,images/xmlab367__source.jpg,What part of the lung is the pneumonia located in?,Lower Left Lung,Lower lung,False,False,0.8,region,left,,False,False
+VQA-RAD_test_430,VQA-RAD,test,general,open,False,images/vqarad_961169ee85f6.jpg,which lung is clearer?,left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_10316,SLAKE,validation,general,open,False,images/xmlab359__source.jpg,Which lobe is abnormal in this image?,Both,Right,False,False,0.0,side_only,both,right,True,False
+VQA-RAD_train_1608,VQA-RAD,train,laterality,open,False,images/vqarad_4a63406c69d8.jpg,in which side is the hemidiaphragm elevated?,right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_1900,SLAKE,train,laterality,open,False,images/xmlab302__source.jpg,"Which side of lung is abnormal in this image,left or right?",Left,Right,False,False,0.0,side_only,left,right,True,False
+SLAKE_2610,SLAKE,train,general,open,False,images/xmlab371__source.jpg,Where is/are the abnormality located in this picture?,Lower Left Lung,"Left Lung, Right",False,False,0.667,region,left,both,True,False
+SLAKE_2232,SLAKE,train,general,open,False,images/xmlab334__source.jpg,Where is/are the abnormality located in this picture?,Both Lung,"Left Lung, Right",False,False,0.4,region,both,both,True,True
+SLAKE_2512,SLAKE,train,general,open,False,images/xmlab363__source.jpg,Where is/are the pneumonia located?,Right Lung,Lower lung,False,False,0.5,region,right,,False,False
+SLAKE_10377,SLAKE,validation,general,open,False,images/xmlab380__source.jpg,Where is the atelectasis?,Lower Right Lung,Bibasilar area,False,False,0.0,region,right,,False,False
+SLAKE_336,SLAKE,train,general,open,False,images/xmlab154__source.jpg,Where is/are the abnormality located?,"Left Lung, Lower Right","Left Lung, Right",False,False,0.857,region,both,both,True,True
+SLAKE_2132,SLAKE,train,laterality,open,False,images/xmlab326__source.jpg,"Which side of lung is abnormal in this image,left or right?",Right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_259,SLAKE,train,general,open,False,images/xmlab141__source.jpg,Where is/are the abnormality located?,"Right Lung, Left","Left Lung, Right",False,False,1.0,region,both,both,True,True
+SLAKE_10376,SLAKE,validation,laterality,open,False,images/xmlab380__source.jpg,Which side of lung is abnormal in this image?,Right,Right,True,True,1.0,side_only,right,right,True,True
+VQA-RAD_test_159,VQA-RAD,test,general,open,False,images/vqarad_ad3fe7166b25.jpg,where is the abnormal mass located with respect to the lungs?,right upper lobe,Right Lung,False,False,0.4,region,right,right,True,True
+SLAKE_12373,SLAKE,test,general,open,False,images/xmlab338__source.jpg,Where is the pulmonary nodule located in this image?,Lower Left Lung,Right lung base area,False,False,0.286,region,left,right,True,False
+SLAKE_2233,SLAKE,train,general,open,False,images/xmlab334__source.jpg,Where is the pleural effusion in this image?,Lower Left Chest,Left area,False,False,0.4,region,left,left,True,True
+VQA-RAD_test_339,VQA-RAD,test,laterality,open,False,images/vqarad_b0643c07f1da.jpg,are the pleural opacities bilateral or unilateral?,bilateral,Bilateral,True,True,1.0,side_only,both,both,True,True
+SLAKE_1810,SLAKE,train,general,open,False,images/xmlab296__source.jpg,Where is the abnormality in this image?,Lower Left Lung,Upper lung,False,False,0.4,region,left,,False,False
+VQA-RAD_train_1035,VQA-RAD,train,general,open,False,images/vqarad_c4e21ad9079c.jpg,which cardiac border is more prominently visualized?,left,Left,True,True,1.0,side_only,left,left,True,True
+SLAKE_10174,SLAKE,validation,laterality,open,False,images/xmlab309__source.jpg,"Which side of lung is abnormal in this image,left or right?",Right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_12051,SLAKE,test,general,open,False,images/xmlab173__source.jpg,Where is/are the abnormality located?,"Left Lung, Right","Left Lung, Right",True,True,1.0,region,both,both,True,True
+SLAKE_12387,SLAKE,test,general,open,False,images/xmlab344__source.jpg,Where is/are the abnormality located in this picture?,Upper Right Lung,"Left Lung, Right",False,False,0.667,region,right,both,True,False
+SLAKE_2102,SLAKE,train,general,open,False,images/xmlab323__source.jpg,Where is the abnormality in this image?,Lower Left Lung,Upper lung,False,False,0.4,region,left,,False,False
+VQA-RAD_test_273,VQA-RAD,test,general,open,False,images/vqarad_a3294e4ad653.jpg,which lung lobe has the least opacities?,upper left,Left,False,True,0.667,region,left,left,True,True
+SLAKE_2118,SLAKE,train,general,open,False,images/xmlab325__source.jpg,Where is the mass in this image?,Left Lung,Upper left lung,False,True,0.8,region,left,left,True,True
+VQA-RAD_train_1040,VQA-RAD,train,general,open,False,images/vqarad_07b796cda139.jpg,which lung has more extensive infiltration?,left,Left,True,True,1.0,side_only,left,left,True,True
+SLAKE_2046,SLAKE,train,general,open,False,images/xmlab318__source.jpg,Which lobe is normal in this image?,Right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_2187,SLAKE,train,general,open,False,images/xmlab331__source.jpg,Where is the abnormality in this image?,Lower Left Lung,Upper lung,False,False,0.4,region,left,,False,False
+SLAKE_10271,SLAKE,validation,laterality,open,False,images/xmlab349__source.jpg,"Which side of lung is abnormal in this image,left or right?",Right,Right,True,True,1.0,side_only,right,right,True,True
+SLAKE_10159,SLAKE,validation,general,open,False,images/xmlab307__source.jpg,Where is/are the abnormality located in this picture?,Lower Right Lung,"Left Lung, Right",False,False,0.667,region,right,both,True,False
+VQA-RAD_train_651,VQA-RAD,train,general,open,False,images/vqarad_a4e50430b347.jpg,where are the most lung markings?,right lung,Left lung base,False,False,0.4,region,right,left,True,False
+SLAKE_529,SLAKE,train,general,open,False,images/xmlab182__source.jpg,Where is/are the abnormality located?,"Right Lung, Left","Left Lung, Right",False,False,1.0,region,both,both,True,True
+SLAKE_2293,SLAKE,train,general,open,False,images/xmlab339__source.jpg,Where is the nodule in this image?,Left Lung,Upper lung,False,False,0.5,region,left,,False,False
+SLAKE_12402,SLAKE,test,general,open,False,images/xmlab350__source.jpg,Where is the abnormality in this image?,Upper Left Lung,Upper lung,False,False,0.8,region,left,,False,False

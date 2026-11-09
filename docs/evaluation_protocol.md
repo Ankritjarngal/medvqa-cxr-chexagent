@@ -69,7 +69,7 @@ clinician. If a claim goes beyond "the answers read as better", a clinician shou
 
 ## Decision rule for Phase 2
 
-Retrieval is reported as helping on knowledge questions only if **all** of these hold on the held-out part:
+Retrieval is reported as helping on knowledge questions only if **all** of these hold on the held-out part, excluding the `function` subtype (Amendment 1):
 
 1. Item recall improves, with a 95% interval that excludes zero.
 2. The blind manual rating favours retrieval (sign test p < 0.05).
@@ -114,3 +114,37 @@ python -m baseline.compare knowledge_baseline.csv knowledge_rag.csv --metric ite
 python -m baseline.compare run2.csv rag_on_baseline_set.csv --metric exact_match --by category \
     --exclude-ids results/run_2/excluded_ids.txt
 ```
+
+## Amendments
+
+Amendments are made only with a dated reason, and only before any retrieval result exists. The original text
+above is kept; where it conflicts, the amendment applies.
+
+### Amendment 1 (10 Nov 2026): exclude `function` from the primary knowledge metric
+
+Reason (run 3, `docs/run_3_findings.md`): all 25 `function` questions have the same gold answer ("Breathe") and
+the baseline answered it every time. They add 25 free points to any overall knowledge score and cannot show
+improvement. They are reported separately as a no-harm check: retrieval must not change that answer.
+Effect on set sizes: primary knowledge set 105 questions (dev 32, held-out 73; the held-out part has 72 images, 34
+question wordings, 25 distinct gold answers, 23 test/validation rows). The detectability table above applies to the
+smaller numbers: a significant paired result needs a clear improvement.
+
+### Amendment 2 (10 Nov 2026): report the constant-answer floor and answer variety
+
+Reason: on the baseline, a system that ignores the image and always writes the most common gold answer for the
+question type scores 0.38 against the model's 0.37 (non-function). Every knowledge result must therefore also report,
+per subtype, (a) that floor, scored the same way, and (b) the number of distinct answers produced. An improvement
+that only moves the system toward the most common gold answer is a template-matching gain, not evidence of better
+knowledge, and is reported as such.
+
+### Amendment 3 (10 Nov 2026): scorer version 2 is frozen
+
+Reason: version 1 scored "keeping healthy" as 0 against "Keep healthy". Version 2 (light suffix stripping in
+`baseline/knowledge.py`, `SCORER_VERSION = 2`) is used for every comparison; baseline and candidate are always scored
+with the same version. Any further scorer change must be logged before the candidate results are seen.
+
+### Amendment 4 (10 Nov 2026): perception checks come first
+
+Reason: run 3 found the clearest failures on the perception side (constant "Right" on explicit side questions, 0 of 8
+enlargement "yes" answers). Before building a retrieval corpus, run the cheap diagnostics listed in
+`docs/run_3_findings.md` and decide, from their results, whether Phase 2 should be retrieval, a perception fix, or both.

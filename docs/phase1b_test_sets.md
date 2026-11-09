@@ -5,8 +5,10 @@ found while building them. Code: `baseline/extra_sets.py`, `baseline/sides.py`,
 `baseline/knowledge.py`. Notebook to run on Colab: `notebooks/02_knowledge_and_side_baselines.ipynb`
 (`python -m baseline.run_baseline --set knowledge|side` does the same from a terminal).
 
-**Status:** the sets are built and the code is tested, but the model has **not yet been run on them**.
-The numbers in "Reference numbers from run 2" come from the 224-question run, re-scored with the new code.
+**Status:** the sets are built and the model has been run on both (run 3, 10 Nov 2026). Results and analysis:
+`docs/run_3_findings.md`. The section "Reference numbers from run 2" below is the earlier 224-question run, re-scored
+with the new code, kept for comparison. The reading table at the end was written before run 3; run 3 matched its
+first row for explicit side questions only (see the findings note).
 
 ## Why a second round of baseline testing
 

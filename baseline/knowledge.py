@@ -52,6 +52,8 @@ _VARIANT_TO_CANON: list[tuple[re.Pattern, str]] = sorted(
 
 _SPLIT_RE = re.compile(r"[,;/]|\band\b|\bor\b", re.IGNORECASE)
 
+SCORER_VERSION = 2  # 1: no stemming (used for the first knowledge-set report); 2: light stemming
+
 RATING_RUBRIC = (
     "2 = correct (same meaning as the gold answer, wording may differ)\n"
     "1 = partly correct (some of the gold content, or correct but incomplete / with wrong extras)\n"
@@ -66,8 +68,20 @@ def canonicalize(text: str) -> str:
     return t
 
 
+def _stem(word: str) -> str:
+    """Very light suffix stripping so that 'keeping' matches 'keep' and 'lungs'
+    matches 'lung'. Added in scorer version 2 after 'keeping healthy' scored 0
+    against the gold 'Keep healthy'. Deliberately crude; applied identically to
+    gold and predicted text."""
+    if len(word) > 5 and word.endswith("ing"):
+        return word[:-3]
+    if len(word) > 3 and word.endswith("s") and not word.endswith("ss"):
+        return word[:-1]
+    return word
+
+
 def content_tokens(text: str) -> frozenset[str]:
-    return frozenset(w for w in canonicalize(text).split() if w not in _STOPWORDS)
+    return frozenset(_stem(w) for w in canonicalize(text).split() if w not in _STOPWORDS)
 
 
 def split_items(answer: str) -> list[str]:

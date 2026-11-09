@@ -185,7 +185,7 @@ def save(name, rows, extra):
             w.writerow({k: r.get(k) for k in fields})
     with open(f"{name}_test_set.jsonl", "w") as f:
         for r in rows:
-            f.write(json.dumps({k: v for k, v in r.items() if k != "image_key"}) + "\n")
+            f.write(json.dumps(r) + "\n")
 
 save("knowledge", k_rows, ["knowledge_subtype", "item_recall", "item_precision", "item_f1"])
 save("side", s_rows, ["side_granularity", "gold_side", "pred_side", "side_given", "side_correct"])

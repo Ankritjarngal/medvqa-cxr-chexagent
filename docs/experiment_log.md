@@ -167,3 +167,45 @@ responses. Not verified: a run from a Colab address (that is the next real test)
 
 **Lesson recorded.** Network behaviour on Colab differs from this sandbox. Any new data download should be
 checked for request count and rate-limit handling before it goes into a notebook.
+
+---
+
+## 10. Run 3: knowledge and side sets run on Colab (10 Nov 2026)
+
+Files uploaded by the user: `knowledge_results.csv` (130), `side_results.csv` (140) and the two test-set jsonl files.
+Saved as `results/run_3/`. Checked first: row counts match, ids equal the sets built locally, no empty predictions,
+the notebook's own `side_correct` column equals a recompute with the repo code. Full analysis: `docs/run_3_findings.md`.
+
+**Results in one paragraph.** Side: on explicit "which side" questions the model said "Right" on 26 of 29 (90%), unrelated
+to the correct side (13 of 14 gold-left and 13 of 15 gold-right answered "right"); elsewhere there is no right default;
+overall, when it names left or right it is right 41 of 73 times (56%, chance-level); 30% of answers name no side;
+one answer ("Left Lung, Right") is a template for one question wording. Knowledge: outside the trivial `function`
+subtype (25 questions, one answer "Breathe") item recall is 0.37, equal to the constant-answer floor (0.38); only
+symptoms clearly beat the floor; answers barely vary with the image.
+
+**Analysis steps that mattered**
+- Split side questions by wording. The overall asymmetry test (p = 0.037) understated the finding; the explicit
+  questions alone show it clearly, and the other wordings show none. Lesson: the aggregate hid a sharp subset.
+- First reading of "Left Lung, Right": it looked informative (10 of 19 bilateral, Fisher p < 0.001). Checking showed
+  it is given on every question with that wording, so it reflects how the dataset assigns wording, not the image.
+  Not reported as a finding about the model.
+- Built a constant-answer floor for the knowledge set. This changed the reading from "model scores 0.45" to "model is
+  at the floor, except on symptoms".
+- Compared the 25 questions shared with run 2 to isolate the prompt change: no detectable accuracy effect.
+
+**Changes made after seeing results (declared)**
+1. Scorer v1 to v2: light suffix stripping, because "keeping healthy" scored 0 against "Keep healthy". Overall item recall
+   0.45 to 0.49, prevention 0.00 to 0.22, nothing else changed. Test added. Both versions reported in the findings.
+2. Protocol amendments 1-4 in `docs/evaluation_protocol.md` (exclude `function` from the primary metric; report the floor
+   and answer variety; freeze scorer v2; perception diagnostics first). Made before any retrieval result exists.
+3. Notebook 02 now keeps `image_key` in the saved test-set files. The uploaded files lack it, so the dev / held-out
+   split could not be recomputed from them. The locally built set has identical ids and is used for the split.
+
+**Not done / limits**
+- The flip test, prompt variants and the heart-size "describe first" test are not built yet.
+- No manual (blind) rating of the knowledge answers yet; item scoring is a loose judge of full sentences.
+- Findings 1 is on 29 questions from 2 datasets; the interval is wide (74-96%), though the direction is not in doubt.
+- The explanation that cause / symptom answers depend on the disease, which the model cannot name, is a hypothesis.
+
+**Next (proposed, pending decision):** a diagnostics notebook: (a) flipped-image side test; (b) prompt variants on the
+explicit side questions; (c) heart-size questions with "describe the heart size first". All zero training, free GPU.

@@ -87,3 +87,10 @@ def test_blind_review_skips_unrated_rows():
     sheet[0]["rating_1"], sheet[0]["rating_2"] = 1, 1
     out = summarize_blind_review(sheet, key)
     assert out["n_rated"] == 1 and out["ties"] == 1
+
+
+def test_light_stemming_matches_inflections_but_not_different_words():
+    assert item_scores("keeping healthy", "Keep healthy").f1 == 1.0
+    assert item_scores("lungs", "lung").f1 == 1.0
+    assert item_scores("Pneumonia", "Pneumothorax").f1 == 0.0
+    assert item_scores("class", "clas").f1 == 0.0

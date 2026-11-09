@@ -27,6 +27,7 @@ docs/
   experiment_log.md              # Chronological record: what was done, found, fixed and corrected
   evaluation_protocol.md         # How Phase 2 will be judged (fixed before any retrieval result)
   phase1b_test_sets.md           # Knowledge and side test sets: design, caveats, reference numbers
+  run_3_findings.md              # Results of the model on the knowledge and side sets
   baseline_run_2_findings.md     # 224-question baseline analysis (pilot: pilot_run_1_findings.md)
   literature_review.md          # Deep-dive review of 6 papers, dataset catalogue, gap analysis
   papers/README.md               # Links to the 6 source papers (PDFs are not redistributed)
@@ -42,7 +43,7 @@ baseline/
   knowledge.py                   # Item-level scoring for knowledge answers, blind review sheets (GPU-free)
   compare.py, stats.py           # Paired baseline-vs-candidate comparison, exact tests (GPU-free)
 results/
-  pilot_run_1/, run_2/           # Raw per-question results of each model run
+  pilot_run_1/, run_2/, run_3/   # Raw per-question results of each model run
 tests/                           # Unit tests for the GPU-free parts of baseline/
 notebooks/
   01_baseline_chexagent.ipynb     # Self-contained Phase 1 notebook -- upload straight to Colab
@@ -147,6 +148,10 @@ the model default to "right"?). Run `notebooks/02_knowledge_and_side_baselines.i
 caveats: [`docs/phase1b_test_sets.md`](docs/phase1b_test_sets.md). How Phase 2 will be judged:
 [`docs/evaluation_protocol.md`](docs/evaluation_protocol.md). Full history:
 [`docs/experiment_log.md`](docs/experiment_log.md).
+
+**Run 3 result:** on explicit "which side" questions the model answers "Right" about 90% of the time whatever the
+image; on knowledge questions (outside one trivial subtype) it scores no better than always writing the most common
+answer. Details: [`docs/run_3_findings.md`](docs/run_3_findings.md).
 
 ### Regenerating the notebook or the test harness
 
