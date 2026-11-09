@@ -149,3 +149,26 @@ Reason: run 3 found the clearest failures on the perception side (constant "Righ
 enlargement "yes" answers). Before building a retrieval corpus, run the cheap diagnostics listed in
 `docs/run_3_findings.md` and decide, from their results, whether Phase 2 should be retrieval, a perception fix, or both. The diagnostics and how each
 outcome will be read are fixed in `docs/phase1c_diagnostics.md` (written before the model was run on them).
+
+### Amendment 5 (11 Nov 2026): Phase 2 design, oracle arms and a stricter claim
+
+Reason: the knowledge answers in SLAKE are fixed by the disease on the image (`docs/phase2_rag_plan.md`, section 1), so a
+retrieval gain cannot be separated from a gain from knowing the disease unless both are measured. Made before any Phase 2
+model run.
+
+1. The arms, prompts, query rule, routing, the disease-naming test and the choice of its method are fixed in
+   `docs/phase2_rag_plan.md`. Retrieval settings may be tuned only in Stage 2, without the model, on dev images.
+2. **Oracle arms** (true disease from SLAKE's own disease question) are allowed for A2 to A4 only. They measure an upper
+   bound, are always labelled oracle, and are never counted toward the decision rule. Rule 3 (no test-time access to
+   gold) applies in full to A5 and A6.
+3. **Primary comparison** is A6 (model-guessed disease plus retrieval) against A1 (style-matched, no retrieval) on the
+   held-out non-function knowledge questions. The four conditions of the decision rule apply to it unchanged, and a
+   fifth is added: **retrieval must also beat A5** (the same model-guessed disease without retrieval) on item recall, with
+   a 95% interval that excludes zero, and on the blind rating (sign test p < 0.05). Without this, any gain could be the
+   disease name alone, and is reported as that.
+4. Rule 4 (no harm on the 219-question baseline set) is applied through routing: only questions matched by
+   `is_knowledge_question` go to retrieval, everything else is unchanged by construction. The set is checked for
+   questions the router would send to retrieval (Stage 4); those are run, and the rest are not re-run. The 25 `function`
+   questions must still answer "Breathe".
+5. Disease naming is reported on its own (Stage 1) and is not part of the decision rule; it gates how the end-to-end
+   result is read.
