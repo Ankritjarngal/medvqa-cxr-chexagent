@@ -147,4 +147,5 @@ with the same version. Any further scorer change must be logged before the candi
 
 Reason: run 3 found the clearest failures on the perception side (constant "Right" on explicit side questions, 0 of 8
 enlargement "yes" answers). Before building a retrieval corpus, run the cheap diagnostics listed in
-`docs/run_3_findings.md` and decide, from their results, whether Phase 2 should be retrieval, a perception fix, or both.
+`docs/run_3_findings.md` and decide, from their results, whether Phase 2 should be retrieval, a perception fix, or both. The diagnostics and how each
+outcome will be read are fixed in `docs/phase1c_diagnostics.md` (written before the model was run on them).

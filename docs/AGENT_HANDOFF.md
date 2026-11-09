@@ -20,7 +20,8 @@ not for clinical use.
 - Phase 1 has been run on Colab twice (pilot of 60 questions, then 224). Results are in `results/`,
   analysis in `docs/`. Read `docs/experiment_log.md` for the history and `docs/evaluation_protocol.md`
   for how Phase 2 must be evaluated. Phase 1b (knowledge and side test sets, notebook 02) is built and
-  tested but the model has not been run on it yet.
+  run on Colab (run 3, `docs/run_3_findings.md`). Phase 1c (perception diagnostics, notebook 03,
+  `docs/phase1c_diagnostics.md`) is built and tested with stand-in models; the model has NOT been run on it yet.
 - The data pipeline and scoring were tested against real SLAKE and VQA-RAD data. The model
   itself has NOT been run: the cloud sandbox has no GPU. The first real model run happens on
   Google Colab (free T4), so expect to fix small issues in `baseline/model.py` or the notebook.

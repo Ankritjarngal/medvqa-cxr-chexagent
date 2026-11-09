@@ -28,6 +28,7 @@ docs/
   evaluation_protocol.md         # How Phase 2 will be judged (fixed before any retrieval result)
   phase1b_test_sets.md           # Knowledge and side test sets: design, caveats, reference numbers
   run_3_findings.md              # Results of the model on the knowledge and side sets
+  phase1c_diagnostics.md         # Perception diagnostics (flip test, prompt variants, heart size): plan and readings
   baseline_run_2_findings.md     # 224-question baseline analysis (pilot: pilot_run_1_findings.md)
   literature_review.md          # Deep-dive review of 6 papers, dataset catalogue, gap analysis
   papers/README.md               # Links to the 6 source papers (PDFs are not redistributed)
@@ -48,10 +49,12 @@ tests/                           # Unit tests for the GPU-free parts of baseline
 notebooks/
   01_baseline_chexagent.ipynb     # Self-contained Phase 1 notebook -- upload straight to Colab
   02_knowledge_and_side_baselines.ipynb  # Phase 1b: knowledge + side sets (same model, same settings)
+  03_perception_diagnostics.ipynb        # Phase 1c: flip test, side prompt variants, heart-size prompts
 scripts/
   build_slides.py                 # Regenerates the slide deck (python-pptx)
   build_baseline_notebook.py      # Regenerates notebooks/01_baseline_chexagent.ipynb
   build_extra_notebook.py         # Regenerates notebooks/02_knowledge_and_side_baselines.ipynb
+  build_diagnostics_notebook.py   # Regenerates notebooks/03_perception_diagnostics.ipynb
 slides/
   Medical_VQA_CXR_Literature_Review.pptx   # 5-slide presentation deck for the supervisor meeting
 ```
@@ -153,12 +156,20 @@ caveats: [`docs/phase1b_test_sets.md`](docs/phase1b_test_sets.md). How Phase 2 w
 image; on knowledge questions (outside one trivial subtype) it scores no better than always writing the most common
 answer. Details: [`docs/run_3_findings.md`](docs/run_3_findings.md).
 
+### Phase 1c: perception diagnostics
+
+Three zero-training tests of why the model fails on left/right and heart size: a mirror-image test (does the
+answer change when the image is flipped?), six wordings of the side question, and four wordings of the
+heart-enlargement question. Run `notebooks/03_perception_diagnostics.ipynb` on a Colab T4. What each outcome will mean
+was written before running: [`docs/phase1c_diagnostics.md`](docs/phase1c_diagnostics.md). No model result yet.
+
 ### Regenerating the notebook or the test harness
 
 ```bash
 pip install nbformat
 python3 scripts/build_baseline_notebook.py   # regenerates notebooks/01_baseline_chexagent.ipynb
 python3 scripts/build_extra_notebook.py      # regenerates notebooks/02_knowledge_and_side_baselines.ipynb (run after 01)
+python3 scripts/build_diagnostics_notebook.py # regenerates notebooks/03_perception_diagnostics.ipynb (run after 01)
 python3 -m pytest tests/                      # runs unit tests for the GPU-free logic
 ```
 

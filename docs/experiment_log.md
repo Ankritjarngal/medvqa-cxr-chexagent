@@ -202,10 +202,40 @@ symptoms clearly beat the floor; answers barely vary with the image.
    split could not be recomputed from them. The locally built set has identical ids and is used for the split.
 
 **Not done / limits**
-- The flip test, prompt variants and the heart-size "describe first" test are not built yet.
+- The flip test, prompt variants and the heart-size "describe first" test were not built at this point (see entry 11).
 - No manual (blind) rating of the knowledge answers yet; item scoring is a loose judge of full sentences.
 - Findings 1 is on 29 questions from 2 datasets; the interval is wide (74-96%), though the direction is not in doubt.
 - The explanation that cause / symptom answers depend on the disease, which the model cannot name, is a hypothesis.
 
 **Next (proposed, pending decision):** a diagnostics notebook: (a) flipped-image side test; (b) prompt variants on the
 explicit side questions; (c) heart-size questions with "describe the heart size first". All zero training, free GPU.
+
+## 11. Phase 1c: perception diagnostics notebook (11 Nov 2026)
+
+**Why:** run 3 showed perception faults (constant "Right", no "yes" on enlargement). Amendment 4 puts cheap diagnostics
+before any retrieval work.
+
+**Built (no model result yet)**
+- `baseline/diagnostics.py`: flip test, six side-prompt variants, heart-size selection and four prompt variants,
+  parsing of yes/no and "normal/enlarged" answers, reports (swap rate with Wilson interval, Fisher test of dependence on
+  the true side, sensitivity / specificity / Youden's J).
+- `notebooks/03_perception_diagnostics.ipynb` (built by `scripts/build_diagnostics_notebook.py`): about 750 short
+  generations on a T4, checkpointed every 20 answers, `QUICK` smoke-test flag, results in long-format CSV.
+- Test sets: 120 left/right side items (29 explicit "which side" questions) for the flip test; 60 of them for prompt
+  variants; 47 heart-enlargement questions (22 "yes", 25 "no"; 40 VQA-RAD, 7 SLAKE).
+- `docs/phase1c_diagnostics.md`: what each outcome will mean, written before the run.
+- 83 unit tests pass.
+
+**Checks done without the model:** ran every notebook code cell with two stand-in models. A model that always says
+"Right"/"No" gives swap rate 0%, 98% "right", Fisher p = 1.0, sensitivity 0/22. A model that follows the image gives
+swap rate 100%. This confirms the reports separate the two cases. It also showed that a perfect swap does not imply
+correctness (the second stand-in swapped perfectly and was right 48% of the time), which is why accuracy is reported
+next to swap rate. The stand-ins say nothing about CheXagent.
+
+**Change made while building:** Youden's J added to the heart table, so a prompt that only makes the model say "yes"
+more often cannot look like improvement.
+
+**Not done / limits:** the model has not been run on these tests. The VM has no GPU, so the notebook must be run on
+Colab by the user (the assistant cannot drive Colab). Samples are small (29 explicit side questions, 22 enlarged hearts).
+
+**Next:** run the notebook on Colab, upload `diagnostics_results.csv`, analyse against the pre-stated readings.
