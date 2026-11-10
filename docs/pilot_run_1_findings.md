@@ -1,5 +1,11 @@
 # Pilot run 1: CheXagent-2-3b zero-shot on 60 chest X-ray questions
 
+> **CORRECTION (10 Nov 2026): the image did not reach the model in this run.** With transformers 4.46.3 the model
+> code skipped the image encoder, so every answer here came from the question text alone (`docs/experiment_log.md`,
+> entry 17; Amendment 6 in `docs/evaluation_protocol.md`). The numbers below are a valid **text-only control** (what the model
+> answers without seeing the image). Statements about what the model can or cannot read from the X-ray do not follow from them
+> and are withdrawn until the rerun with the fixed notebooks.
+
 Raw results: `results/pilot_run_1/baseline_results.csv` (Colab free T4, float16, `transformers==4.46.3`).
 This was a small pilot. Numbers below are descriptive; most between-bucket differences are **not**
 statistically established (see confidence intervals).

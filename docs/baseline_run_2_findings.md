@@ -1,5 +1,11 @@
 # Baseline run 2: CheXagent-2-3b zero-shot on 224 chest X-ray questions
 
+> **CORRECTION (10 Nov 2026): the image did not reach the model in this run.** With transformers 4.46.3 the model
+> code skipped the image encoder, so every answer here came from the question text alone (`docs/experiment_log.md`,
+> entry 17; Amendment 6 in `docs/evaluation_protocol.md`). The numbers below are a valid **text-only control** (what the model
+> answers without seeing the image). Statements about what the model can or cannot read from the X-ray do not follow from them
+> and are withdrawn until the rerun with the fixed notebooks.
+
 Raw results: `results/run_2/baseline_results.csv` (Colab free T4, float16, `transformers==4.46.3`,
 test set built by the improved pipeline: 100 laterality, 100 general, 24 severity; 119 SLAKE, 105 VQA-RAD).
 CheXagent's training data (CheXinstruct) already includes SLAKE and VQA-RAD, so this is close to

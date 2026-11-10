@@ -157,8 +157,27 @@ def patch_version_asserts(model_dir):
             patched += n
     return patched
 
+_IMAGE_BRANCH_ORIGINAL = "if past_key_values is None and torch.any(input_ids == self.tokenizer.img_start_id):"
+_IMAGE_BRANCH_PATCHED = (
+    "if (past_key_values is None or (hasattr(past_key_values, 'get_seq_length') "
+    "and past_key_values.get_seq_length() == 0)) and torch.any(input_ids == self.tokenizer.img_start_id):"
+)
+
+def patch_image_cache_check(model_dir):
+    """transformers >= 4.45 passes an empty DynamicCache (not None) on the first generation step, and the model
+    code only encodes the image when past_key_values is None. Without this patch the image is silently skipped."""
+    path = f"{model_dir}/modeling_chexagent.py"
+    text = open(path).read()
+    if _IMAGE_BRANCH_PATCHED in text:
+        return 1
+    if _IMAGE_BRANCH_ORIGINAL not in text:
+        raise RuntimeError("modeling_chexagent.py does not contain the expected image-branch condition")
+    open(path, "w").write(text.replace(_IMAGE_BRANCH_ORIGINAL, _IMAGE_BRANCH_PATCHED))
+    return 1
+
 model_dir = snapshot_download(MODEL_NAME, local_dir="CheXagent-2-3b")
 print("Patched version checks:", patch_version_asserts(model_dir))
+print("Image-branch patch in place:", patch_image_cache_check(model_dir))
 
 tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(
@@ -192,6 +211,40 @@ def ask_chexagent(image_path, question, max_new_tokens=128):
             max_new_tokens=max_new_tokens,
         )[0]
     return tokenizer.decode(output[input_ids.size(1):-1]).strip()
+''')
+
+code(r'''# IMAGE CHECK: proves the picture reaches the model. The same file path is used with three different pixel patterns,
+# so the text the model reads is identical every time; only the pixels differ. If the first-token scores do not change,
+# the image is being ignored and nothing below this cell can be trusted.
+import numpy as np
+from PIL import Image
+
+def _first_token_logprobs(path):
+    query = tokenizer.from_list_format([{"image": path}, {"text": "Describe the image."}])
+    conv = [
+        {"from": "system", "value": "You are a helpful radiology assistant. Answer the question as concisely as possible based only on the image."},
+        {"from": "human", "value": query},
+    ]
+    input_ids = tokenizer.apply_chat_template(conv, add_generation_prompt=True, return_tensors="pt")
+    with torch.no_grad():
+        out = model.generate(input_ids.to(DEVICE), do_sample=False, num_beams=1, use_cache=True,
+                             max_new_tokens=1, output_scores=True, return_dict_in_generate=True)
+    return torch.log_softmax(out.scores[0][0].float(), dim=-1).cpu(), int(input_ids.size(1))
+
+_rng = np.random.default_rng(0)
+_variants = {"black": np.zeros((512, 512, 3), np.uint8), "white": np.full((512, 512, 3), 255, np.uint8),
+             "noise": _rng.integers(0, 256, (512, 512, 3), dtype=np.uint8)}
+_lp = {}
+for _name, _pix in _variants.items():
+    Image.fromarray(_pix).save("image_check.png")
+    _lp[_name], _n_tokens = _first_token_logprobs("image_check.png")
+_diffs = {f"{a} vs {b}": float((_lp[a] - _lp[b]).abs().max()) for a, b in (("black", "white"), ("black", "noise"), ("white", "noise"))}
+print("prompt length with image slots:", _n_tokens, "tokens (context limit 2048)")
+print("largest change in next-token log-probability when only the pixels change:", {k: round(v, 3) for k, v in _diffs.items()})
+if max(_diffs.values()) < 0.01:
+    raise RuntimeError("IMAGE CHECK FAILED: changing the pixels does not change the model's output, so the image is not "
+                       "reaching the model. Stop and report this.")
+print("IMAGE CHECK PASSED: the model's output depends on the pixels.")
 ''')
 
 md("## 4. Run inference over the test set")

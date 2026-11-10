@@ -382,3 +382,47 @@ questions that must still answer "Breathe". No extra run is needed.
 **Limits stated again:** the second passage in the frozen setting is often off-topic (a sample A6 prompt for pneumonia symptoms
 carried a Harrison passage on interstitial lung disease history after the correct MedlinePlus section), so the prompt is noisier
 than the coverage numbers suggest. This is the frozen setting; a change would have to be logged before the model sees it.
+
+
+## 17. The image was not reaching the model (found 10 Nov 2026)
+
+**How it surfaced.** The first run of notebook 04 (`results/run_5_text_only/`) gave identical answers for all 130 different
+chest X-rays: `open` said "Pneumonia" 130 times, `forced` said "No Finding" 130 times, `perclass` ranked "Infiltration" first 130
+times. The per-class scores differed between images only at the second or third decimal (standard deviation 0.002 to 0.009).
+That is not a model that reads weakly; it is a model whose output hardly depends on the image.
+
+**Cause (found by reading the code, then reproduced on a toy model).**
+- `modeling_chexagent.py` (line 836) encodes the image only `if past_key_values is None and torch.any(input_ids == img_start_id)`.
+- The notebooks install transformers 4.46.3. From 4.45 on, `generate` creates an empty `DynamicCache` and passes it on the first
+  step for models that declare `_supports_cache_class` (CheXagent does). `past_key_values` is therefore not `None`, the condition
+  is false, and the image encoder is skipped. The image file path stays in the prompt as plain text, which is why scores vary
+  slightly between images.
+- Toy check (`/tmp` script, not kept): a small model with the same condition, run with transformers 4.46.3, takes the image
+  branch with `use_cache=False` and skips it with `use_cache=True`. The real model has not yet been tested for this; the new
+  IMAGE CHECK cell does that on the first Colab run.
+- The 4.40.0 version the model was written for passes `None`, which is why the model card example works.
+
+**What this affects.** Every model run so far used `use_cache=True` with transformers 4.46.3: pilot run 1, run 2, run 3
+(knowledge and side sets), run 4 (flip test, side prompt variants, heart size) and the first notebook-04 run. They were all
+produced by a model that could not see the image.
+- Withdrawn: the claims that the model cannot read left/right, that the flip test showed it does not follow orientation, that it
+  never says "enlarged" when it should, the 77 to 79% versus 90% category gaps as evidence about vision, and the Phase 1c
+  readings. They describe what the model answers from the question text alone.
+- Still valid as stated: the data pipeline, the scorer, the test sets, the constant-answer floor, and the observation that
+  knowledge questions score at the floor *for a model answering from text alone*. The earlier runs are now a **text-only
+  control**, which is useful: it is what a system that cannot see the image scores.
+- Phase 2 retrieval check (entries 14 and 15) used no model and is unaffected.
+
+**Fix.**
+- `patch_image_cache_check` (`baseline/model.py`, and the same code in the notebook model cell) makes the condition also true for an
+  empty cache. Idempotent; raises if the model code is not as expected. Tests: `tests/test_model_patch.py`.
+- Every notebook now has an IMAGE CHECK cell right after the model cells. It writes black, white and noise images to the same file
+  path (so the prompt text is identical) and raises an error if the first-token probabilities do not change by at least 0.01.
+- Notebook 05's token-budget check now counts the image slots (it used text only before).
+- Amendment 6 relabels earlier results and fixes the rerun order. No pre-registered rule or threshold changed.
+
+**Lesson recorded.** The earlier "model gives a constant answer whatever the image" findings should have prompted this check. A
+sanity test that the image changes the output belongs before any perception experiment, not after.
+
+**Not yet confirmed:** that the patched model uses the image well; the IMAGE CHECK only proves it uses it at all. Whether disease
+naming, laterality and the rest improve is for the reruns to show.

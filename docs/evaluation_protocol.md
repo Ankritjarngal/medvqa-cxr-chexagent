@@ -172,3 +172,20 @@ model run.
    questions must still answer "Breathe".
 5. Disease naming is reported on its own (Stage 1) and is not part of the decision rule; it gates how the end-to-end
    result is read.
+
+### Amendment 6 (10 Nov 2026): image did not reach the model in earlier runs
+
+Reason: the first run of the disease-naming notebook gave one answer for all 130 images in each of its three methods
+(`results/run_5_text_only/`). Reading the model's code and reproducing transformers' behaviour on a toy model showed that under
+transformers 4.46.3 the image is never encoded (`docs/experiment_log.md`, entry 17).
+
+1. All model outputs recorded before this amendment (pilot run 1, run 2, run 3, run 4, the first notebook-04 run) are
+   **text-only controls**. They stay in the repository, labelled. They are not evidence about the model's reading of images, and
+   every statement of that kind in the earlier findings is withdrawn.
+2. Notebooks 01 to 05 are rebuilt with the fix and with an IMAGE CHECK cell that stops the run if the pixels do not change the
+   output. A result counts as a model-with-image result only if that check passed in the same session.
+3. Pre-registered rules, thresholds, scorer version, retrieval settings and arms are **unchanged**. Where they refer to "run 2",
+   "run 3" or "run 4" as baselines, the rerun with the image replaces them; the text-only runs are kept as an additional control
+   (a system that cannot see the image).
+4. The rerun order is 04 (disease naming), 05 (RAG arms), then 01, 02 and 03 to re-establish the baselines. The constant-answer floor
+   and the text-only control become reference points: a model that sees the image should beat both.

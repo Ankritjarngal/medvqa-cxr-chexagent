@@ -1,5 +1,11 @@
 # Run 3: CheXagent-2-3b on the knowledge (130) and side (140) test sets
 
+> **CORRECTION (10 Nov 2026): the image did not reach the model in this run.** With transformers 4.46.3 the model
+> code skipped the image encoder, so every answer here came from the question text alone (`docs/experiment_log.md`,
+> entry 17; Amendment 6 in `docs/evaluation_protocol.md`). The numbers below are a valid **text-only control** (what the model
+> answers without seeing the image). Statements about what the model can or cannot read from the X-ray do not follow from them
+> and are withdrawn until the rerun with the fixed notebooks.
+
 Raw results: `results/run_3/knowledge_results.csv`, `results/run_3/side_results.csv`
 (Colab free T4, float16, `transformers==4.46.3`, zero-shot, notebook 02).
 Sets and their caveats: `docs/phase1b_test_sets.md`. Both sets include SLAKE train rows that the model very

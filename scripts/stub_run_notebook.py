@@ -15,7 +15,7 @@ import sys
 nb_path, mode = sys.argv[1], sys.argv[2]
 nb = json.load(open(nb_path))
 cells = ["".join(c["source"]) for c in nb["cells"] if c["cell_type"] == "code"]
-SKIP = ("pip install", "snapshot_download(MODEL_NAME", "def ask_chexagent", "def _single_token_ids")
+SKIP = ("pip install", "snapshot_download(MODEL_NAME", "def ask_chexagent", "def _single_token_ids", "# IMAGE CHECK")
 
 FAKE = '''
 import hashlib as _h

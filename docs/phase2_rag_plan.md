@@ -159,8 +159,9 @@ numbers, reported after this commit, are the honest ones.
 
 ## 11. Status and how to run it
 
-Stage 2 (retrieval check) is done and Stage 4 (router check) is done; see `docs/experiment_log.md`, entries 13 to 16. Nothing
-has been run on the model yet.
+Stage 2 (retrieval check) is done and Stage 4 (router check) is done; see `docs/experiment_log.md`, entries 13 to 16. **The first
+run of notebook 04 was text-only because the image never reached the model** (entry 17, Amendment 6); the notebooks were fixed and
+rebuilt, and must be rerun. Nothing in this plan changes: arms, thresholds, retrieval setting and decision rule are as frozen.
 
 1. Open `notebooks/04_disease_naming.ipynb` in Colab (T4). Run with `QUICK = True` first, then `False`. Note the
    `CHOSEN_METHOD` it prints, and download `disease_results.csv` and `disease_checkpoint.json`.

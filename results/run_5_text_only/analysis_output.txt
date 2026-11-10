@@ -1,0 +1,34 @@
+=== Disease naming (top choice counts as correct if it matches any gold label) ===
+          method    n    acc      95% CI any named  strict  majority  shuffled  p vs maj unparsed
+            open  130    13%    8%-20%         13%     13%       22%       13%     0.011        0
+          forced  130     0%    0%-3%           0%      0%       22%        0%     0.000        0
+        perclass  130     7%    4%-13%          7%      6%       22%        7%     0.000        0
+majority = always answering the most common label; shuffled = same answers against shuffled gold labels.
+
+[open] per class (n, recall, times predicted):
+   Atelectasis 21, 0%, 0; Cardiomegaly 29, 0%, 0; Effusion 13, 0%, 0; Infiltration 9, 0%, 0; Mass 19, 0%, 0; Nodule 18, 0%, 0; Pneumonia 17, 100%, 130; Pneumothorax 10, 0%, 0
+   by split: test 4/20; train 11/90; validation 2/20
+
+[forced] per class (n, recall, times predicted):
+   Atelectasis 21, 0%, 0; Cardiomegaly 29, 0%, 0; Effusion 13, 0%, 0; Infiltration 9, 0%, 0; Mass 19, 0%, 0; Nodule 18, 0%, 0; Pneumonia 17, 0%, 0; Pneumothorax 10, 0%, 0
+   by split: test 0/20; train 0/90; validation 0/20
+
+[perclass] per class (n, recall, times predicted):
+   Atelectasis 21, 0%, 0; Cardiomegaly 29, 0%, 0; Effusion 13, 0%, 0; Infiltration 9, 100%, 130; Mass 19, 0%, 0; Nodule 18, 0%, 0; Pneumonia 17, 0%, 0; Pneumothorax 10, 0%, 0
+   by split: test 2/20; train 7/90; validation 0/20
+
+perclass one-vs-rest AUC:
+     Atelectasis n=21 AUC=0.45
+    Cardiomegaly n=29 AUC=0.49
+        Effusion n=13 AUC=0.56
+    Infiltration n= 9 AUC=0.43
+            Mass n=19 AUC=0.50
+          Nodule n=18 AUC=0.52
+       Pneumonia n=17 AUC=0.32
+    Pneumothorax n=10 AUC=0.58
+
+validation accuracy: {'open': '10%', 'forced': '0%', 'perclass': '0%'}
+CHOSEN_METHOD = 'open'
+[open] top-choice accuracy 13% (95% CI 8%-20%) against majority 22% (p = 0.011) and shuffled 95th percentile 13%: NOT shown to be above chance. Perception is the bottleneck for naming the disease.
+[forced] top-choice accuracy 0% (95% CI 0%-3%) against majority 22% (p = 0.000) and shuffled 95th percentile 0%: NOT shown to be above chance. Perception is the bottleneck for naming the disease.
+[perclass] top-choice accuracy 7% (95% CI 4%-13%) against majority 22% (p = 0.000) and shuffled 95th percentile 7%: NOT shown to be above chance. Perception is the bottleneck for naming the disease.

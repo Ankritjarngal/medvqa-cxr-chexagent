@@ -35,6 +35,32 @@ def patch_version_asserts(model_dir: str) -> int:
             patched += n
     return patched
 
+# The model code only encodes the image when `past_key_values is None`. transformers >= 4.45 passes an empty
+# DynamicCache on the first step instead of None, so with transformers 4.46.3 the image was silently skipped and the
+# model answered from the text alone. This makes the condition also true for an empty cache.
+_IMAGE_BRANCH_ORIGINAL = "if past_key_values is None and torch.any(input_ids == self.tokenizer.img_start_id):"
+_IMAGE_BRANCH_PATCHED = (
+    "if (past_key_values is None or (hasattr(past_key_values, 'get_seq_length') "
+    "and past_key_values.get_seq_length() == 0)) and torch.any(input_ids == self.tokenizer.img_start_id):"
+)
+
+
+def patch_image_cache_check(model_dir: str) -> int:
+    """Make the model encode the image on the first step whatever cache object transformers passes.
+    Idempotent. Returns 1 when the patched condition is in place; raises if the model code is not as expected."""
+    path = f"{model_dir}/modeling_chexagent.py"
+    with open(path) as f:
+        text = f.read()
+    if _IMAGE_BRANCH_PATCHED in text:
+        return 1
+    if _IMAGE_BRANCH_ORIGINAL not in text:
+        raise RuntimeError("modeling_chexagent.py does not contain the expected image-branch condition; "
+                           "the image may not reach the model. Inspect the file before running anything.")
+    with open(path, "w") as f:
+        f.write(text.replace(_IMAGE_BRANCH_ORIGINAL, _IMAGE_BRANCH_PATCHED))
+    return 1
+
+
 GENERAL_PROMPT = "{question}"
 LATERALITY_SEVERITY_PROMPT = (
     "{question} Answer concisely based only on what is visible in the image."
@@ -60,6 +86,7 @@ class CheXagentRunner:
 
         model_dir = snapshot_download(model_name, local_dir=model_name.split("/")[-1])
         patch_version_asserts(model_dir)
+        patch_image_cache_check(model_dir)
 
         self.tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
         self.model = AutoModelForCausalLM.from_pretrained(

@@ -15,6 +15,13 @@ not for clinical use.
 
 ## Current state
 
+- **READ FIRST (10 Nov 2026): the image never reached the model in runs 1 to 4 or in the first notebook-04 run.** transformers
+  4.46.3 passes an empty `DynamicCache` on the first generation step; CheXagent's code only encodes the image when
+  `past_key_values is None`. Fixed by `patch_image_cache_check` (`baseline/model.py` and the notebook model cell); every notebook now
+  has an "IMAGE CHECK" cell that raises if changing the pixels does not change the output. All earlier model results are text-only
+  controls (banners on the findings docs, `results/run_5_text_only/`). Phase 1 and Phase 1c conclusions about perception are
+  withdrawn until rerun (notebooks 01, 02, 03, then 04, 05). `docs/experiment_log.md` entry 17, Amendment 6.
+
 - Phase 1 code is complete and committed: `baseline/`, `notebooks/01_baseline_chexagent.ipynb`,
   `tests/` (54 passing unit tests), CI workflow in `.github/workflows/tests.yml`.
 - Phase 1 has been run on Colab twice (pilot of 60 questions, then 224). Results are in `results/`,

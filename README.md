@@ -103,6 +103,13 @@ for a presentation.
   claims — not just automated text-overlap metrics, which Med-Flamingo shows can diverge sharply
   from real clinical usefulness.
 
+> **Correction, 10 Nov 2026: every model result in this repository so far (runs 1 to 4 and the first notebook-04 run) was
+> produced without the model seeing the image.** With transformers 4.46.3 the model's own code skipped its image encoder.
+> The results are a valid *text-only control*; conclusions about what CheXagent can or cannot read from an X-ray are
+> withdrawn until everything is rerun with the fixed notebooks (which now stop with an error if the image does not reach the
+> model). Details: [`docs/experiment_log.md`](docs/experiment_log.md) entry 17 and Amendment 6 in
+> [`docs/evaluation_protocol.md`](docs/evaluation_protocol.md).
+
 ## Pilot run 1 (60 questions) and findings
 
 A first 60-question pilot on Colab gave 62% overall (general 70%, laterality 45%, severity 70%), with

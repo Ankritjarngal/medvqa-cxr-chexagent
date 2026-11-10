@@ -1,5 +1,11 @@
 # Phase 1c findings: perception diagnostics (run 4)
 
+> **CORRECTION (10 Nov 2026): the image did not reach the model in this run.** With transformers 4.46.3 the model
+> code skipped the image encoder, so every answer here came from the question text alone (`docs/experiment_log.md`,
+> entry 17; Amendment 6 in `docs/evaluation_protocol.md`). The numbers below are a valid **text-only control** (what the model
+> answers without seeing the image). Statements about what the model can or cannot read from the X-ray do not follow from them
+> and are withdrawn until the rerun with the fixed notebooks.
+
 Run on Colab T4 with `notebooks/03_perception_diagnostics.ipynb` on 10 Nov 2026 (788 generations, full run, not
 `QUICK`). Raw data: `results/run_4/diagnostics_results.csv` and `diagnostics_checkpoint.json`. Reproduce every number
 below with `python3 scripts/analyze_diagnostics.py results/run_4/diagnostics_results.csv`. The readings applied are the

@@ -99,6 +99,7 @@ print("Heart items:", len(heart_items), "| answer yes:", sum(r["gold_yes"] for r
 md("## 3. Load CheXagent-2-3b\n\nIdentical to the other notebooks (downloads about 12.6 GB the first time).")
 code(cell_from_01("snapshot_download(MODEL_NAME"))
 code(cell_from_01("def ask_chexagent"))
+code(cell_from_01("IMAGE CHECK"))
 
 md("## 4. Run the tests\n\nEvery answer is stored under a key (`test|variant|question id`) and written to disk every 20 answers.")
 code(r'''from tqdm.auto import tqdm

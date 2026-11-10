@@ -68,6 +68,7 @@ print("Labels:", dict(Counter(l for i in items for l in i["labels"])))
 md("## 3. Load CheXagent-2-3b\n\nIdentical to the other notebooks (downloads about 12.6 GB the first time).")
 code(cell_from_01("snapshot_download(MODEL_NAME"))
 code(cell_from_01("def ask_chexagent"))
+code(cell_from_01("IMAGE CHECK"))
 code(YES_NO_CELL)
 code(GUESS_CELL)
 

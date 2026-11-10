@@ -90,6 +90,7 @@ for name, s in (("knowledge", knowledge_set), ("side", side_set)):
 md("## 3. Load CheXagent-2-3b\n\nIdentical to notebook 01 (downloads about 12.6 GB the first time).")
 code(cell_from_01("snapshot_download(MODEL_NAME"))
 code(cell_from_01("def ask_chexagent"))
+code(cell_from_01("IMAGE CHECK"))
 
 md("## 4. Run inference\n\nPredictions are saved to disk every 20 questions so a dropped Colab session does not lose the whole run.")
 code(r'''import os

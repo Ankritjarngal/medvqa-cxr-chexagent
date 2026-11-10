@@ -89,22 +89,25 @@ print("Passages indexed:", {k: v.n for k, v in retrievers.items()})
 md("## 3. Load CheXagent-2-3b\n\nIdentical to the other notebooks (downloads about 12.6 GB the first time).")
 code(cell_from_01("snapshot_download(MODEL_NAME"))
 code(cell_from_01("def ask_chexagent"))
+code(cell_from_01("IMAGE CHECK"))
 code(YES_NO_CELL)
 code(GUESS_CELL)
 
 md("""## 4. Token budget
 
-The model reads at most 2048 tokens, and the image takes part of that. The check measures the longest prompt (all arms that
-add retrieved text). If it exceeds the text budget the passages are shortened for **every** arm and the change is printed and
+The model reads at most 2048 tokens, and the image slots are part of that. The check measures the longest prompt including the image
+slots (all arms that add retrieved text). If it exceeds the text budget the passages are shortened for **every** arm and the change is printed and
 saved in `rag_settings.json`. Note it in the experiment log.
 """)
-code(r'''TEXT_TOKEN_BUDGET = 1500   # prompt text only; leaves room for the image tokens inside 2048
+code(r'''TEXT_TOKEN_BUDGET = 1900   # whole prompt including the image slots; 2048 limit minus 64 new tokens and a margin
 
-def prompt_tokens(prompt):
+def prompt_tokens(prompt, image_path):
     tok = globals().get("tokenizer")
     if tok is None:
         return len(prompt.split()) * 2          # rough stand-in when no tokenizer is loaded
-    conv = [{"from": "system", "value": "You are a helpful radiology assistant."}, {"from": "human", "value": prompt}]
+    query = tok.from_list_format([{"image": image_path}, {"text": prompt}])
+    conv = [{"from": "system", "value": "You are a helpful radiology assistant. Answer the question as concisely as possible based only on the image."},
+            {"from": "human", "value": query}]
     return int(tok.apply_chat_template(conv, add_generation_prompt=True, return_tensors="pt").size(1))
 
 def longest_prompt(max_chars):
@@ -114,7 +117,7 @@ def longest_prompt(max_chars):
             continue
         ps = retrieve_context(retrievers, SOURCE, r["question"], r["knowledge_subtype"], r["oracle_disease"],
                               K, max_chars, WEIGHT)
-        worst = max(worst, prompt_tokens(build_prompt(r["question"], r["oracle_disease"], ps)))
+        worst = max(worst, prompt_tokens(build_prompt(r["question"], r["oracle_disease"], ps), r["image_path"]))
     return worst
 
 while True:
