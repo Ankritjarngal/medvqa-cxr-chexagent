@@ -55,7 +55,9 @@ notebooks/
   04_disease_naming.ipynb                # Phase 1d / Phase 2 Stage 1: can the model name the disease?
   05_rag_knowledge_arms.ipynb            # Phase 2 Stage 3: no-retrieval, oracle and RAG arms on the knowledge questions
 scripts/
-  build_slides.py                 # Regenerates the slide deck (python-pptx)
+  make_figures.py                 # Regenerates every figure for the report and the deck (matplotlib)
+  build_deck.py                   # Builds the 12-slide project presentation (python-pptx)
+  build_slides.py                 # Old 5-slide literature-review deck (superseded)
   build_baseline_notebook.py      # Regenerates notebooks/01_baseline_chexagent.ipynb
   build_extra_notebook.py         # Regenerates notebooks/02_knowledge_and_side_baselines.ipynb
   build_diagnostics_notebook.py   # Regenerates notebooks/03_perception_diagnostics.ipynb
@@ -66,7 +68,12 @@ scripts/
   analyze_rag.py, analyze_disease.py, analyze_diagnostics.py   # Re-run reports from uploaded result files
   stub_run_notebook.py            # Run a notebook's cells here with a stand-in model
 slides/
-  Medical_VQA_CXR_Literature_Review.pptx   # 5-slide presentation deck for the supervisor meeting
+  Medical_VQA_CXR_Project_Presentation.pptx   # Clean 12-slide project presentation (research to date)
+  Medical_VQA_CXR_Project_Presentation.pdf    # PDF copy of the same deck
+  Medical_VQA_CXR_Literature_Review.pptx      # Old 5-slide deck (superseded)
+report/
+  main.tex, main.pdf              # LaTeX project report (compile: cd report && latexmk -pdf main.tex)
+  figures/                        # Figures (pdf for LaTeX, png for the deck), made by scripts/make_figures.py
 ```
 
 ## Literature review
@@ -206,14 +213,16 @@ python3 scripts/build_rag_notebook.py         # regenerates notebooks/05_rag_kno
 python3 -m pytest tests/                      # runs unit tests for the GPU-free logic
 ```
 
-## Regenerating the slide deck
+## Regenerating the presentation and the report
 
 ```bash
-pip install python-pptx
-python3 scripts/build_slides.py
+pip install python-pptx matplotlib pandas pillow
+python3 scripts/make_figures.py      # report/figures/*.pdf and *.png
+python3 scripts/build_deck.py        # slides/Medical_VQA_CXR_Project_Presentation.pptx
+cd report && latexmk -pdf main.tex   # report/main.pdf (needs a TeX Live install)
 ```
 
-Output is written to `slides/Medical_VQA_CXR_Literature_Review.pptx`.
+The title slide and title page hold placeholders for supervisor, team and institution until the official format is supplied.
 
 ## License and attribution
 

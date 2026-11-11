@@ -13,3 +13,13 @@ docs/papers/*.pdf
 # Retrieval corpora (textbooks are copyrighted; never commit) and dataset caches
 rag_cache/
 raw_cache/
+
+# LaTeX build files (main.pdf and main.tex are kept)
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+report/*.lof
+report/*.fls
+report/*.fdb_latexmk
+report/*.synctex.gz
