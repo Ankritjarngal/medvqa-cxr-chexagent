@@ -86,7 +86,7 @@ text(s, M, 3.85, 9.5, 1.0, "A knowledge-grounded approach with CheXagent-2-3b: l
      size=20, color=GREY)
 rule(s, M, 5.0, 1.0)
 text(s, M, 5.25, 11, 1.8, [[("Supervisor   ", True, DARK, 18), ("Dr. Snober Mushtaq", False, DARK, 18)],
-                           [("Students   ", True, DARK, 18), ("Ankrit (Enrollment 2023BCSE028)     Hirdyansh (Enrollment 036)", False, DARK, 18)],
+                           [("Students   ", True, DARK, 18), ("Ankrit (Enrollment 2023BCSE028)     Hirdyansh (Enrollment 2023BCSE036)", False, DARK, 18)],
                            [("Department of Computer Science and Engineering", False, GREY, 16)]], space=8)
 s.notes_slide.notes_text_frame.text = "Title slide. The institution name and date can be added once the official format is supplied."
 
