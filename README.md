@@ -73,7 +73,7 @@ slides/
 deliverables/
   presentation/                   # Minimalist 12-slide project presentation (.pptx and .pdf)
   diagrams/                       # Mermaid sources (.mmd) of the block diagrams, plus config
-  report/                         # LaTeX project report: main.tex, main.pdf, figures/ (made by scripts/make_figures.py)
+  report/                         # LaTeX project report (black and white): main.tex, main.pdf; figures/ = colour (slides), figures_bw/ = grey (report)
 ```
 
 ## Literature review
@@ -218,8 +218,9 @@ python3 -m pytest tests/                      # runs unit tests for the GPU-free
 ```bash
 pip install python-pptx matplotlib pandas pillow
 npm install @mermaid-js/mermaid-cli  # needs Chrome; set MMDC=node_modules/.bin/mmdc
-MMDC=node_modules/.bin/mmdc python3 scripts/render_diagrams.py   # block diagrams
-python3 scripts/make_figures.py      # deliverables/report/figures/*.pdf and *.png
+MMDC=node_modules/.bin/mmdc python3 scripts/render_diagrams.py   # block diagrams (colour, for slides)
+python3 scripts/make_figures.py      # charts and photo (colour, for slides)
+FIG_BW=1 MMDC=node_modules/.bin/mmdc python3 scripts/render_diagrams.py && FIG_BW=1 python3 scripts/make_figures.py   # grey set for the report
 python3 scripts/build_deck.py        # deliverables/presentation/...pptx
 cd deliverables/report && latexmk -pdf main.tex   # makes main.pdf (needs a TeX Live install)
 ```

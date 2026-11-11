@@ -3,8 +3,7 @@
   python3 scripts/make_figures.py && MMDC=... python3 scripts/render_diagrams.py && python3 scripts/build_deck.py
 
 Design: white background, near-black text, one teal accent, left-aligned, generous margins, one idea per slide.
-Block diagrams are Mermaid (deliverables/diagrams/*.mmd); the chest X-ray is a CC0 photograph. Title-slide names are
-placeholders until the team supplies the official format.
+Block diagrams are Mermaid (deliverables/diagrams/*.mmd); the chest X-ray is a CC0 photograph. 
 """
 from pathlib import Path
 
@@ -86,10 +85,10 @@ text(s, M, 1.6, 10.5, 2.4, "Medical Visual Question Answering for Chest X-rays",
 text(s, M, 3.85, 9.5, 1.0, "A knowledge-grounded approach with CheXagent-2-3b: literature review, baseline tests and retrieval-augmented design",
      size=20, color=GREY)
 rule(s, M, 5.0, 1.0)
-text(s, M, 5.3, 8, 1.6, [[("Supervisor   ", True, DARK, 18), ("[Supervisor name, designation]", False, DARK, 18)],
-                         [("Team   ", True, DARK, 18), ("[Name 1, roll no.]   [Name 2, roll no.]   [Name 3, roll no.]", False, DARK, 18)],
-                         [("[Institution]   [Department / programme]   [Month Year]", False, GREY, 15)]], space=8)
-s.notes_slide.notes_text_frame.text = "Title slide. Names, institution and date are placeholders until the official format is supplied."
+text(s, M, 5.25, 11, 1.8, [[("Supervisor   ", True, DARK, 18), ("Dr. Snober Mushtaq", False, DARK, 18)],
+                           [("Students   ", True, DARK, 18), ("Ankrit (Enrollment 2023BCSE028)     Hirdyansh (Enrollment 036)", False, DARK, 18)],
+                           [("Department of Computer Science and Engineering", False, GREY, 16)]], space=8)
+s.notes_slide.notes_text_frame.text = "Title slide. The institution name and date can be added once the official format is supplied."
 
 # 2 ---------------------------------------------------------------------------------------------- CXR
 s = base(2, "A chest X-ray is a shadow picture: dark means air, white means dense tissue",

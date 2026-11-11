@@ -25,11 +25,19 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from baseline.evaluate import wilson_interval  # noqa: E402
 from baseline.knowledge import constant_floor, item_scores  # noqa: E402
 
-OUT = Path("deliverables/report/figures")
+import os
+
+BW = os.environ.get("FIG_BW") == "1"          # FIG_BW=1 writes the black-and-white set used by the LaTeX report
+SRC = Path("deliverables/report/figures/src")
+OUT = Path("deliverables/report/figures_bw" if BW else "deliverables/report/figures")
 OUT.mkdir(parents=True, exist_ok=True)
 
-DARK, GREY, LINE, LIGHT = "#1F2933", "#6B7785", "#D5DBE1", "#F2F5F7"
-TEAL, ORANGE, AMBER = "#0F8B8D", "#E4572E", "#E9A23B"
+if BW:
+    DARK, GREY, LINE, LIGHT = "#000000", "#555555", "#CFCFCF", "#F0F0F0"
+    TEAL, ORANGE, AMBER = "#333333", "#7A7A7A", "#A8A8A8"
+else:
+    DARK, GREY, LINE, LIGHT = "#1F2933", "#6B7785", "#D5DBE1", "#F2F5F7"
+    TEAL, ORANGE, AMBER = "#0F8B8D", "#E4572E", "#E9A23B"
 
 for _f in font_manager.findSystemFonts():
     if "arlito" in _f:
@@ -58,7 +66,7 @@ def clean(ax, left=True):
 
 # ------------------------------------------------------------------------------------------ real X-ray
 def fig_cxr_real():
-    img = Image.open(OUT / "src" / "cxr_normal_pa.jpg").convert("L")
+    img = Image.open(SRC / "cxr_normal_pa.jpg").convert("L")
     w, h = img.size
     fig, ax = plt.subplots(figsize=(7.6, 5.7))
     fig.subplots_adjust(0, 0, 1, 1)

@@ -18,64 +18,33 @@
 \usepackage{framed}
 \usepackage[hidelinks]{hyperref}
 
-\definecolor{navy}{HTML}{12263A}
-\definecolor{teal}{HTML}{0F8B8D}
-\definecolor{orange}{HTML}{E4572E}
-\definecolor{lightgrey}{HTML}{EEF3F6}
-\definecolor{midgrey}{HTML}{6B7785}
+\definecolor{midgrey}{gray}{0.35}
 
-\hypersetup{colorlinks=true,linkcolor=navy,citecolor=teal,urlcolor=teal}
 \setstretch{1.12}
 \setlength{\parskip}{0.55em}
 \setlength{\parindent}{0pt}
 \setlist{itemsep=0.2em,topsep=0.3em}
-\captionsetup{font=small,labelfont={bf,color=navy},labelsep=period,justification=raggedright,singlelinecheck=false}
-\graphicspath{{figures/}}
+\captionsetup{font=small,labelfont=bf,labelsep=period,justification=raggedright,singlelinecheck=false}
+\graphicspath{{figures_bw/}}
 
-\titleformat{\section}{\Large\bfseries\color{navy}}{\thesection}{0.7em}{}
-\titleformat{\subsection}{\large\bfseries\color{navy}}{\thesubsection}{0.6em}{}
-\titleformat{\subsubsection}{\normalsize\bfseries\color{teal}}{\thesubsubsection}{0.5em}{}
+\titleformat{\section}{\Large\bfseries}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{0.5em}{}
+\newcommand{\sectionbreak}{\clearpage}
 \titlespacing*{\section}{0pt}{1.6em}{0.5em}
 \titlespacing*{\subsection}{0pt}{1.1em}{0.3em}
 
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\headrulewidth}{0.3pt}
-\fancyhead[L]{\small\color{midgrey}Medical VQA for Chest X-rays}
-\fancyhead[R]{\small\color{midgrey}Project Report}
+\fancyhead[L]{\small Medical VQA for Chest X-rays}
+\fancyhead[R]{\small Project Report}
 \fancyfoot[C]{\small\thepage}
 
-\newcommand{\placeholder}[1]{\textcolor{orange}{[#1]}}
-\colorlet{shadecolor}{lightgrey}
+\colorlet{shadecolor}{black!7}
 \newenvironment{keybox}{\begin{shaded}\small}{\end{shaded}}
 
 \begin{document}
-
-% ------------------------------------------------------------------ title page
-\begin{titlepage}
-\thispagestyle{empty}
-\vspace*{1.2cm}
-{\color{teal}\rule{3.2cm}{3pt}}\par\vspace{0.8cm}
-{\sffamily\bfseries\fontsize{26}{32}\selectfont\color{navy} Medical Visual Question Answering for Chest X-rays\par}
-\vspace{0.5cm}
-{\sffamily\large\color{midgrey} A knowledge-grounded approach with CheXagent-2-3b:\\ literature review, baseline tests and retrieval-augmented design\par}
-\vspace{1.0cm}
-{\sffamily\bfseries\large\color{navy} PROJECT REPORT\par}
-\vspace{2.2cm}
-
-\begin{tabular}{@{}p{4.2cm}p{9cm}@{}}
-\textbf{Supervisor} & \placeholder{Supervisor name, designation} \\[1.1em]
-\textbf{Submitted by} & \placeholder{Team member 1, roll number} \\
- & \placeholder{Team member 2, roll number} \\
- & \placeholder{Team member 3, roll number} \\[1.1em]
-\textbf{Department} & \placeholder{Department / programme} \\[1.1em]
-\textbf{Institution} & \placeholder{Institution name} \\[1.1em]
-\textbf{Date} & \placeholder{Month Year} \\
-\end{tabular}
-
-\vfill
-{\small\color{midgrey} Names, institution and date are placeholders and will be replaced with the official title-page format.\par}
-\end{titlepage}
 
 % ------------------------------------------------------------------ abstract
 \pagenumbering{roman}
@@ -95,7 +64,7 @@ textbooks) and measured, without any model, how often the corpus holds the gold 
 questions with the true disease, 17\% with a wrong disease and 3\% from the question alone.
 No result with the image visible exists yet; those runs are the next step. The work makes no clinical-validity claim.
 
-\tableofcontents
+{\setstretch{1.0}\setlength{\parskip}{0pt}\tableofcontents}
 \clearpage
 \listoffigures
 \clearpage
@@ -270,7 +239,7 @@ admitted non-chest images (Section~\ref{sec:baseline}).}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\linewidth]{fig_roadmap.pdf}
-\caption{Project phases and their status. Amber phases are runs in which the image did not reach the model; green is the fix; teal is built and waiting for a model run.}
+\caption{Project phases and their status. Light-grey phases are runs in which the image did not reach the model; the mid-grey ``Fix'' is the repair; the dark ``Phase 2'' box is built and waiting for a model run; the palest box is optional.}
 \label{fig:roadmap}
 \end{figure}
 
@@ -427,7 +396,7 @@ Three readings follow. First, the corpus holds more of the answer when the disea
 question is used, which supports the two-step design. Second, coverage is an upper limit on what retrieval can add: even the
 best case covers about a third of the gold items. Third, it differs by question type (symptoms 67\%, cause 44\%,
 treatment 23\%, prevention 8\%), because generic gold phrases such as ``keep healthy'' almost never match a source sentence.
-A router that sends only knowledge questions to retrieval (25 of 219 baseline questions routed, all in the knowledge set)
+\looseness=-1 A router that sends only knowledge questions to retrieval (25 of 219 baseline questions routed, all in the knowledge set)
 was also checked, to ensure retrieval cannot affect perception questions.
 
 % ------------------------------------------------------------------ 7 status
