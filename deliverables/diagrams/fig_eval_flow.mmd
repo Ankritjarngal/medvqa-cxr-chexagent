@@ -1,0 +1,21 @@
+flowchart TB
+  subgraph r1[" "]
+    direction LR
+    A("1  Write the rules<br/>before any run"):::dark --> B("2  Freeze test sets,<br/>scorer, settings") --> C("3  Run the model<br/>on Colab T4")
+  end
+  subgraph r2[" "]
+    direction LR
+    D("4  Score: item recall<br/>vs constant floor") --> E("5  Paired tests<br/>+ blind rating") --> F("6  Report all results,<br/>including negative"):::dark
+  end
+  r1 ~~~ r2
+  style r1 fill:none,stroke:none
+  style r2 fill:none,stroke:none
+  linkStyle 0,1,2,3 stroke:#6B7785,stroke-width:2px
+  linkStyle 4 stroke:none,fill:none
+classDef accent fill:#0F8B8D,stroke:#0F8B8D,color:#FFFFFF;
+classDef dark fill:#1F2933,stroke:#1F2933,color:#FFFFFF;
+classDef soft fill:#F2F5F7,stroke:#F2F5F7,color:#1F2933;
+classDef warn fill:#E4572E,stroke:#E4572E,color:#FFFFFF;
+classDef ok fill:#2E8B57,stroke:#2E8B57,color:#FFFFFF;
+classDef amber fill:#E9A23B,stroke:#E9A23B,color:#1F2933;
+classDef grey fill:#E5E9ED,stroke:#E5E9ED,color:#6B7785;

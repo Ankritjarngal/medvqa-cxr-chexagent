@@ -55,7 +55,8 @@ notebooks/
   04_disease_naming.ipynb                # Phase 1d / Phase 2 Stage 1: can the model name the disease?
   05_rag_knowledge_arms.ipynb            # Phase 2 Stage 3: no-retrieval, oracle and RAG arms on the knowledge questions
 scripts/
-  make_figures.py                 # Regenerates every figure for the report and the deck (matplotlib)
+  make_figures.py                 # Chart, table and annotated-X-ray figures (matplotlib)
+  render_diagrams.py              # Renders the Mermaid block diagrams (deliverables/diagrams/*.mmd)
   build_deck.py                   # Builds the 12-slide project presentation (python-pptx)
   build_slides.py                 # Old 5-slide literature-review deck (superseded)
   build_baseline_notebook.py      # Regenerates notebooks/01_baseline_chexagent.ipynb
@@ -70,7 +71,8 @@ scripts/
 slides/
   Medical_VQA_CXR_Literature_Review.pptx      # Old 5-slide deck (superseded)
 deliverables/
-  presentation/                   # Clean 12-slide project presentation (.pptx and .pdf)
+  presentation/                   # Minimalist 12-slide project presentation (.pptx and .pdf)
+  diagrams/                       # Mermaid sources (.mmd) of the block diagrams, plus config
   report/                         # LaTeX project report: main.tex, main.pdf, figures/ (made by scripts/make_figures.py)
 ```
 
@@ -215,6 +217,8 @@ python3 -m pytest tests/                      # runs unit tests for the GPU-free
 
 ```bash
 pip install python-pptx matplotlib pandas pillow
+npm install @mermaid-js/mermaid-cli  # needs Chrome; set MMDC=node_modules/.bin/mmdc
+MMDC=node_modules/.bin/mmdc python3 scripts/render_diagrams.py   # block diagrams
 python3 scripts/make_figures.py      # deliverables/report/figures/*.pdf and *.png
 python3 scripts/build_deck.py        # deliverables/presentation/...pptx
 cd deliverables/report && latexmk -pdf main.tex   # makes main.pdf (needs a TeX Live install)

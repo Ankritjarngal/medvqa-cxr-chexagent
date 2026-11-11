@@ -133,9 +133,9 @@ By convention the patient's right appears on the left of the image, which matter
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{fig_cxr_anatomy.pdf}
-\caption{Schematic of a frontal chest X-ray (drawn for this report, not a real image) and four findings that occur often in
-the question sets used here.}
+\includegraphics[width=0.92\linewidth]{fig_cxr_real.pdf}
+\caption{A normal frontal (PA) chest X-ray with the main structures labelled. ``Dx'' and ``Sin'' are Italian for right and
+left. Photograph: M.~H\"aggstr\"om, Wikimedia Commons, CC0 \cite{cxrphoto}.}
 \label{fig:anatomy}
 \end{figure}
 
@@ -155,7 +155,8 @@ cause or treatment).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{fig_vqa_task.pdf}
+\includegraphics[width=\linewidth]{fig_vqa_flow.pdf}\par\vspace{1em}
+\includegraphics[width=0.8\linewidth]{fig_question_types.pdf}
 \caption{The task. Yes/no, side and severity questions test perception; knowledge questions test what the model knows about
 a disease.}
 \label{fig:vqa}
@@ -225,7 +226,8 @@ edits. Figure~\ref{fig:protocol} shows the flow.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{fig_eval_protocol.pdf}
+\includegraphics[width=0.72\linewidth]{fig_eval_flow.pdf}\par\vspace{1em}
+\includegraphics[width=\linewidth]{fig_test_sets.pdf}
 \caption{Evaluation flow and the test sets used so far.}
 \label{fig:protocol}
 \end{figure}
@@ -267,8 +269,8 @@ admitted non-chest images (Section~\ref{sec:baseline}).}
 \section{Experiments and results to date}
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{fig_roadmap.pdf}
-\caption{Project phases and their status. The asterisk marks runs in which the image did not reach the model.}
+\includegraphics[width=0.9\linewidth]{fig_roadmap.pdf}
+\caption{Project phases and their status. Amber phases are runs in which the image did not reach the model; green is the fix; teal is built and waiting for a model run.}
 \label{fig:roadmap}
 \end{figure}
 
@@ -351,7 +353,10 @@ PMC-VQA warns about. Conclusions about left/right and heart-size perception are 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{fig_bug_flow.pdf}
+\textbf{What went wrong}\par\vspace{0.3em}
+\includegraphics[width=\linewidth]{fig_bug_cause.pdf}\par\vspace{1em}
+\textbf{How we found it and fixed it}\par\vspace{0.3em}
+\includegraphics[width=0.86\linewidth]{fig_bug_fix.pdf}
 \caption{The image-skipping fault, how it was noticed, and the fix.}
 \label{fig:bug}
 \end{figure}
@@ -372,8 +377,9 @@ only and frozen before held-out numbers were computed.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{fig_rag_pipeline.pdf}
-\caption{The two-step pipeline and the reason for it.}
+\includegraphics[width=\linewidth]{fig_rag_pipeline.pdf}\par\vspace{1em}
+\includegraphics[width=0.75\linewidth]{fig_lookup_example.pdf}
+\caption{The two-step pipeline, and why it is needed: the gold answer depends only on the disease on the image.}
 \label{fig:pipeline}
 \end{figure}
 
@@ -474,6 +480,7 @@ The next stage is a clean set of runs with the image visible, starting with dise
 \bibitem{vqarad} J.~J.~Lau, S.~Gayen, A.~Ben~Abacha, D.~Demner-Fushman. \emph{A dataset of clinically generated visual questions and answers about radiology images}. Scientific Data 5:180251, 2018.
 \bibitem{medrag} G.~Xiong, Q.~Jin, Z.~Lu, A.~Zhang. \emph{Benchmarking Retrieval-Augmented Generation for Medicine}. Findings of ACL, 2024.
 \bibitem{bm25} S.~Robertson, H.~Zaragoza. \emph{The Probabilistic Relevance Framework: BM25 and Beyond}. Foundations and Trends in Information Retrieval 3(4), 2009.
+\bibitem{cxrphoto} M.~H\"aggstr\"om. \emph{Normal posteroanterior (PA) chest radiograph (X-ray)}. Wikimedia Commons, CC0.
 \end{thebibliography}
 
 % ------------------------------------------------------------------ appendix
@@ -493,7 +500,8 @@ Path & Content \\
 \texttt{baseline/} & Model runner, scorers, labels, retrieval code \\
 \texttt{notebooks/01--05} & Colab notebooks (baseline, knowledge and side, diagnostics, disease naming, retrieval) \\
 \texttt{results/} & Raw outputs of every run, including the archived text-only disease-naming run \\
-\texttt{scripts/make\_figures.py} & Regenerates every figure in this report \\
+\texttt{deliverables/diagrams/} & Mermaid sources of the block diagrams (\texttt{scripts/render\_diagrams.py}) \\
+\texttt{scripts/make\_figures.py} & Regenerates the chart and photo figures \\
 \bottomrule
 \end{tabularx}
 \caption{Where to find things.}
