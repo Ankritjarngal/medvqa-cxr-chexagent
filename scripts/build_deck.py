@@ -1,4 +1,4 @@
-"""Builds slides/Medical_VQA_CXR_Project_Presentation.pptx (12 slides, 16:9) from report/figures/*.png.
+"""Builds deliverables/presentation/Medical_VQA_CXR_Project_Presentation.pptx (12 slides, 16:9) from deliverables/report/figures/*.png.
 
   python3 scripts/make_figures.py && python3 scripts/build_deck.py
 
@@ -14,8 +14,8 @@ from pptx.enum.shapes import MSO_SHAPE
 from pptx.enum.text import MSO_ANCHOR, PP_ALIGN
 from pptx.util import Emu, Inches, Pt
 
-FIG = Path("report/figures")
-OUT = Path("slides/Medical_VQA_CXR_Project_Presentation.pptx")
+FIG = Path("deliverables/report/figures")
+OUT = Path("deliverables/presentation/Medical_VQA_CXR_Project_Presentation.pptx")
 FONT = "Calibri"
 NAVY, TEAL, ORANGE, GREY, LIGHT, WHITE = (RGBColor.from_string(c) for c in ("12263A", "0F8B8D", "E4572E", "6B7785", "EEF3F6", "FFFFFF"))
 

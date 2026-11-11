@@ -1,8 +1,8 @@
-"""Figures for the project report and slides (docs/report, slides/).
+"""Figures for the project report and slides (deliverables/).
 
   python3 scripts/make_figures.py
 
-Writes report/figures/*.pdf (vector, for LaTeX) and *.png (for the slides). Every number is read from the
+Writes deliverables/report/figures/*.pdf (vector, for LaTeX) and *.png (for the slides). Every number is read from the
 repository's own result files (results/, docs numbers are not retyped) except where a comment says otherwise.
 """
 import json
@@ -23,7 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from baseline.evaluate import wilson_interval  # noqa: E402
 from baseline.knowledge import constant_floor, item_scores  # noqa: E402
 
-OUT = Path("report/figures")
+OUT = Path("deliverables/report/figures")
 OUT.mkdir(parents=True, exist_ok=True)
 
 NAVY, TEAL, ORANGE, GREY, LIGHT = "#12263A", "#0F8B8D", "#E4572E", "#6B7785", "#EEF3F6"

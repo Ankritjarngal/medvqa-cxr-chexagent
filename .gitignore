@@ -15,11 +15,11 @@ rag_cache/
 raw_cache/
 
 # LaTeX build files (main.pdf and main.tex are kept)
-report/*.aux
-report/*.log
-report/*.out
-report/*.toc
-report/*.lof
-report/*.fls
-report/*.fdb_latexmk
-report/*.synctex.gz
+deliverables/report/*.aux
+deliverables/report/*.log
+deliverables/report/*.out
+deliverables/report/*.toc
+deliverables/report/*.lof
+deliverables/report/*.fls
+deliverables/report/*.fdb_latexmk
+deliverables/report/*.synctex.gz

@@ -68,12 +68,10 @@ scripts/
   analyze_rag.py, analyze_disease.py, analyze_diagnostics.py   # Re-run reports from uploaded result files
   stub_run_notebook.py            # Run a notebook's cells here with a stand-in model
 slides/
-  Medical_VQA_CXR_Project_Presentation.pptx   # Clean 12-slide project presentation (research to date)
-  Medical_VQA_CXR_Project_Presentation.pdf    # PDF copy of the same deck
   Medical_VQA_CXR_Literature_Review.pptx      # Old 5-slide deck (superseded)
-report/
-  main.tex, main.pdf              # LaTeX project report (compile: cd report && latexmk -pdf main.tex)
-  figures/                        # Figures (pdf for LaTeX, png for the deck), made by scripts/make_figures.py
+deliverables/
+  presentation/                   # Clean 12-slide project presentation (.pptx and .pdf)
+  report/                         # LaTeX project report: main.tex, main.pdf, figures/ (made by scripts/make_figures.py)
 ```
 
 ## Literature review
@@ -217,9 +215,9 @@ python3 -m pytest tests/                      # runs unit tests for the GPU-free
 
 ```bash
 pip install python-pptx matplotlib pandas pillow
-python3 scripts/make_figures.py      # report/figures/*.pdf and *.png
-python3 scripts/build_deck.py        # slides/Medical_VQA_CXR_Project_Presentation.pptx
-cd report && latexmk -pdf main.tex   # report/main.pdf (needs a TeX Live install)
+python3 scripts/make_figures.py      # deliverables/report/figures/*.pdf and *.png
+python3 scripts/build_deck.py        # deliverables/presentation/...pptx
+cd deliverables/report && latexmk -pdf main.tex   # makes main.pdf (needs a TeX Live install)
 ```
 
 The title slide and title page hold placeholders for supervisor, team and institution until the official format is supplied.
