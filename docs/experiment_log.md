@@ -459,3 +459,11 @@ specificity (9/22 and 22/25), accuracy 89% against 53% for always-no. By the rea
 both properties; the earlier claims that it cannot read them are dropped (Amendment 6). The 78% swap rate is just under the 80% line of
 the registered table and is reported as such. The deck (slide 7) and the report (section 5.5) now show these results; the bug slide was
 removed from the deck and the bug stays documented in the report (section 5.4) and in entries 17 and 18. Not run with the image yet: 01, 02, 04, 05.
+
+## 20. Disease naming with the image visible (13 Nov 2026)
+
+Notebook 04 completed on Colab T4 (`results/run_7_disease_with_image/`; analysis in `docs/phase1d_findings_with_image.md`).
+Top-choice accuracy over 130 images: open 56%, forced 36%, per-disease yes/no 52%, against 22% for the most common label; all above
+chance by both pre-registered criteria. Method chosen by the pre-stated rule (best validation accuracy): `perclass` (55% on 20
+validation images). Per-disease AUC 0.76 to 0.99. No rule, threshold or scorer changed. The deck (new slide 9) and the report
+(section 5.3) show the result. Next: notebook 05 with `DISEASE_METHOD = "perclass"`.

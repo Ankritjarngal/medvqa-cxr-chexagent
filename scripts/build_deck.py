@@ -164,22 +164,33 @@ picture(s, "fig_rag_pipeline", M, 1.6, CW, 2.6)
 text(s, M, 4.45, 8, 0.35, "Why two steps: the answer depends only on the disease", size=18, bold=True, color=TEAL)
 picture(s, "fig_lookup_example", M, 4.9, 8.0, 1.6, align="left")
 
-# 9 ------------------------------------------------------------------------------------------ arms
-s = base(9, "Six arms separate what retrieval adds from what knowing the disease adds",
+# 9 ---------------------------------------------------------------------------------------------- disease naming
+s = base(9, "Step one works: the model names the disease from the X-ray well above chance",
+         "Colab T4, 13 Nov 2026, notebook 04. 130 SLAKE chest X-rays with a disease label (8 diseases). Data: results/run_7_disease_with_image/.",
+         "Three ways of asking: an open question, picking one name from a list of 15, and a yes/no question for each of the 15 names (the name with the highest yes-minus-no score wins). "
+         "The method used downstream was fixed in advance as the one with the best accuracy on the 20 validation images: yes/no for each disease (55%, against 45% and 30%). "
+         "Open questions score highest overall (56%) but only 30% on the validation images. Weak spots: the yes/no method never predicted pneumonia, and open questions found atelectasis in only 1 of 21 images. "
+         "SLAKE training images are probably in CheXagent's training data, and 20 validation images make the choice noisy.")
+picture(s, "fig_disease_results", M, 1.65, CW, 4.1)
+takeaway(s, "Always guessing the most common disease gets 22%. ",
+         "The model gets 52-56%; the yes/no method ranks the true disease high for all eight (AUC 0.76-0.99).")
+
+# 10 ------------------------------------------------------------------------------------------ arms
+s = base(10, "Six arms separate what retrieval adds from what knowing the disease adds",
          "docs/phase2_rag_plan.md and Amendment 5 of the evaluation protocol.",
          "Oracle arms use SLAKE's own disease label, which a real system would not have, so they are never reported as the result.")
 picture(s, "fig_arms", M, 1.65, CW, 4.1)
 takeaway(s, "Success needs more than a score gain: ", "the system (A6) must beat both the fair baseline (A1) and the guess alone (A5).")
 
-# 10 ------------------------------------------------------------------------------------------ retrieval
-s = base(10, "Retrieval check, run without any model: the corpus holds the answer mainly when the disease is right",
+# 11 ------------------------------------------------------------------------------------------ retrieval
+s = base(11, "Retrieval check, run without any model: the corpus holds the answer mainly when the disease is right",
          "Strict coverage: gold item words inside one sentence of the retrieved text. 50 oracle-evaluable questions; setting frozen on 16 dev questions.",
          "This is an upper limit on what retrieval can give. Prevention answers such as 'keep healthy' are generic and almost never match a source.")
 picture(s, "fig_retrieval_results", M, 1.65, CW, 4.1)
 takeaway(s, "Held-out: ", "29% of gold items found with the true disease, 17% with a wrong disease, 3% from the question alone.")
 
-# 11 ------------------------------------------------------------------------------------------ references
-s = base(11, "References", None, "Full reference list; the same entries are in the project report.")
+# 12 ------------------------------------------------------------------------------------------ references
+s = base(12, "References", None, "Full reference list; the same entries are in the project report.")
 refs = [
     "Chen Z., Varma M., Delbrouck J.-B., et al. CheXagent: Towards a Foundation Model for Chest X-Ray Interpretation. arXiv:2401.12208, 2024.",
     "Xia P., Zhu K., Li H., et al. RULE: Reliable Multimodal RAG for Factuality in Medical Vision Language Models. EMNLP, 2024.",

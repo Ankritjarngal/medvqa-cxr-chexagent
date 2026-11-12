@@ -126,8 +126,9 @@ questions it found 17 of 22 enlarged hearts and called all 25 normal hearts norm
 In parallel we designed a knowledge-grounded retrieval pipeline (name the disease, then retrieve from MedlinePlus and medical
 textbooks) and measured, without any model, how often the corpus holds the gold answer: 29\% of gold items on held-out
 questions with the true disease, 17\% with a wrong disease and 3\% from the question alone.
-Disease naming, the retrieval arms and the baseline and knowledge sets are built and are the next runs. The work makes no
-clinical-validity claim.
+We then tested the first step of the retrieval design: naming the disease from the X-ray. On 130 chest X-rays with a disease label,
+the model named the disease correctly 52--56\% of the time with two methods, against 22\% for always guessing the most common one.
+The retrieval arms and the baseline and knowledge sets are built and are the next runs. The work makes no clinical-validity claim.
 
 {\setstretch{1.0}\setlength{\parskip}{0pt}\tableofcontents}
 \clearpage
@@ -303,7 +304,7 @@ chest images.}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\linewidth]{fig_roadmap.pdf}
-\caption{Project phases and their status. Phase 1c is done; Phases 1d, 1, 1b and 2 are built and waiting for a model run; Phase 3 is optional.}
+\caption{Project phases and their status. Phases 1c and 1d are done; Phases 1, 1b and 2 are built and waiting for a model run; Phase 3 is optional.}
 \label{fig:roadmap}
 \end{figure}
 
@@ -339,6 +340,31 @@ ability.
 the image would score 0\%). Middle: left/right accuracy, plain wording, 60 questions (guessing: 50\%). Right: heart-size accuracy,
 plain wording, 47 questions (always answering ``no'': 53\%).}
 \label{fig:withimage}
+\end{figure}
+
+\subsection{Disease naming}\label{sec:disease}
+SLAKE's knowledge answers are fixed by the disease on the image, so a retrieval system first needs the model to say which disease
+it sees. Notebook 04 was run on a Colab T4 on 13 November 2026 on the 130 SLAKE chest X-rays that have a disease label (train 90,
+validation 20, test 20; eight diseases). Three ways of asking were fixed in advance: an \textbf{open} question, \textbf{forced}
+choice of one name from 15 (the 14 ChestX-ray14 names and ``No Finding''), and a \textbf{yes/no question for each name}, where the
+name with the highest yes-minus-no score is the prediction. The method used downstream is the one with the best accuracy on the
+20 validation images.
+
+Top-choice accuracy was 56\% (95\% interval 48--64\%) for the open question, 36\% (28--45\%) for forced choice and 52\%
+(44--61\%) for yes/no per disease, against 22\% for always answering the most common label (cardiomegaly) and 11--13\% for shuffled labels.
+All three are above chance by both pre-registered criteria ($p<0.001$). On the validation images the yes/no method was best
+(55\%, against 45\% for forced choice and 30\% for open), so it is the method used in the retrieval arms. Its score separates the
+true disease from other images for every disease (area under the curve 0.99 pneumothorax, 0.95 cardiomegaly, 0.89 effusion,
+0.86 nodule and mass, 0.82 pneumonia, 0.77 atelectasis, 0.76 infiltration).
+The weak spots are specific: the yes/no method never predicted pneumonia, and the open question found atelectasis in 1 of 21 images.
+With 20 validation images the choice of method is noisy, and SLAKE training images are probably in CheXagent's training data.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig_disease_results.pdf}
+\caption{Disease naming on 130 chest X-rays. Left: share named correctly by each method, against always answering the most common
+label. Right: area under the curve for each disease, for the yes/no method (0.5 means no skill).}
+\label{fig:disease}
 \end{figure}
 
 % ------------------------------------------------------------------ 6 phase 2
@@ -415,14 +441,12 @@ was also checked, to ensure retrieval cannot affect perception questions.
 \subsection{Where the work stands}
 Built and tested: the baseline pipeline, all test sets, the scorers and analysis scripts, the retrieval pipeline and corpora
 loaders, the five Colab notebooks, and 123 automated tests (using stand-in models to check the plumbing).
-Run so far: the perception tests (notebook 03) and the retrieval check (no model). Still to run: disease naming, the retrieval
-arms, and the baseline and knowledge sets.
+Run so far: the perception tests (notebook 03), disease naming (notebook 04) and the retrieval check (no model). Still to run: the
+retrieval arms (notebook 05), and the baseline and knowledge sets (notebooks 01 and 02).
 
 \subsection{Next steps}
 \begin{enumerate}
-\item Run the disease-naming notebook (04) to see whether the model can name the disease from the image. This sets the ceiling
-for the whole retrieval system.
-\item Run the retrieval notebook (05) with the disease method chosen in step~1.
+\item Run the retrieval notebook (05) with the yes/no-per-disease method chosen in the disease-naming test.
 \item Run notebooks 01 and 02 for the baseline and knowledge sets.
 \item Collect blind 0/1/2 ratings of a sample of answers.
 \item Consider targeted fine-tuning (Phase~3) only if Phase~2 shows a gap worth closing.
@@ -443,7 +467,8 @@ The literature review gave a clear, narrow question: can retrieved textbook know
 to knowledge questions, without making perception questions worse? We built an evaluation that fixes the rules in advance and
 a retrieval pipeline that measurably contains the answer more often when the disease is known.
 The perception tests show that the model's left/right answers follow a mirrored image and that it finds most enlarged hearts.
-The next stage is disease naming, then the retrieval arms.
+The model also names the disease from the X-ray well above chance, so the first step of the retrieval design is feasible.
+The next stage is the retrieval arms.
 
 % ------------------------------------------------------------------ references
 \begin{thebibliography}{99}\small

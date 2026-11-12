@@ -121,7 +121,8 @@ for a presentation.
 >
 > **Update, 13 Nov 2026:** the perception diagnostics (notebook 03) have been rerun with the image visible. Mirroring the X-ray
 > changes the left/right answer in 78% of pairs (3% before) and the model finds 17 of 22 enlarged hearts; see
-> [`docs/phase1c_findings_with_image.md`](docs/phase1c_findings_with_image.md). The other notebooks are still to be rerun.
+> [`docs/phase1c_findings_with_image.md`](docs/phase1c_findings_with_image.md). Disease naming (notebook 04) was run with the image on the same day: 52-56% correct against 22% for the most common label
+> ([`docs/phase1d_findings_with_image.md`](docs/phase1d_findings_with_image.md)). Notebooks 01, 02 and 05 are still to be run with the image.
 
 ## Pilot run 1 (60 questions) and findings
 

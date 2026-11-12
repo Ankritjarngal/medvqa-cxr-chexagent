@@ -176,6 +176,55 @@ def fig_perception_slide():
     save(fig, "fig_perception_slide")
 
 
+def fig_disease_results():
+    import csv
+    from collections import defaultdict
+    from baseline.disease_labels import class_table, disease_report, parse_diseases
+    rows = list(csv.DictReader(open("results/run_7_disease_with_image/disease_results.csv", newline="")))
+    by, scores = defaultdict(list), {}
+    for r in rows:
+        labels = [x.strip() for x in r["gold"].split(",")]
+        if r["method"] == "perclass":
+            s = json.loads(r["raw"])
+            scores[r["id"]] = (s, labels)
+            pred = sorted(s, key=lambda c: -s[c])[:1]
+        else:
+            pred = parse_diseases(r["raw"])
+        by[r["method"]].append({"id": r["id"], "labels": labels, "pred": pred, "split": r["split"]})
+    rep = {m: disease_report(by[m], n_shuffles=200) for m in ("open", "forced", "perclass")}
+    majority = rep["open"]["majority_acc"]
+    table = class_table({i: s for i, (s, _) in scores.items()}, {i: l for i, (_, l) in scores.items()})
+
+    fig, axs = plt.subplots(1, 2, figsize=(12.4, 4.4), gridspec_kw={"width_ratios": [1.15, 1]})
+    fig.subplots_adjust(left=0.02, right=0.99, bottom=0.14, top=0.82, wspace=0.3)
+    ax = axs[0]
+    labels = ["Open\nquestion", "Pick from\nthe list", "Yes/no for\neach disease", "Always the most\ncommon label"]
+    vals = [rep["open"]["acc_top"], rep["forced"]["acc_top"], rep["perclass"]["acc_top"], majority]
+    ax.bar(labels, vals, color=[TEAL, TEAL, TEAL, LINE], width=0.6)
+    for i, v in enumerate(vals):
+        ax.text(i, v + 0.02, f"{v:.0%}", ha="center", fontsize=20 if i < 3 else 17, fontweight="bold" if i < 3 else "normal",
+                color=DARK if i < 3 else GREY)
+    ax.set_ylim(0, 0.72)
+    ax.set_yticks([])
+    ax.tick_params(axis="x", labelsize=12.5)
+    ax.set_title("Disease named correctly (130 images)", fontsize=15, loc="left", pad=10)
+    clean(ax, left=False)
+
+    ax = axs[1]
+    present = {x for _, (_, l) in scores.items() for x in l}
+    items = sorted(((k, v) for k, v in table.items() if k in present), key=lambda kv: kv[1])
+    ax.barh([k for k, _ in items], [v for _, v in items], color=TEAL, height=0.6)
+    for yv, (k, v) in enumerate(items):
+        ax.text(v - 0.012, yv, f"{v:.2f}", va="center", ha="right", fontsize=13, fontweight="bold", color="white")
+    ax.set_xlim(0.5, 1.0)
+    ax.axvline(0.5, color=GREY, lw=1)
+    ax.set_xticks([0.5, 1.0], ["0.5 = no skill", "1.0 = perfect"], fontsize=11, color=GREY)
+    ax.tick_params(axis="y", labelsize=13)
+    ax.set_title("Does the yes/no score rank the true disease higher?\n(AUC per disease)", fontsize=14, loc="left", pad=10)
+    clean(ax)
+    save(fig, "fig_disease_results")
+
+
 # ------------------------------------------------------------------------------------------ arms table
 def fig_arms():
     rows = [("A1", "none", "none", "fair baseline, same answer style", GREY),
@@ -265,6 +314,6 @@ def fig_retrieval_results():
 
 
 if __name__ == "__main__":
-    for f in (fig_cxr_real, fig_papers_matrix, fig_test_sets, fig_perception_slide, fig_arms, fig_lookup_example,
+    for f in (fig_cxr_real, fig_papers_matrix, fig_test_sets, fig_perception_slide, fig_disease_results, fig_arms, fig_lookup_example,
               fig_retrieval_results):
         f()

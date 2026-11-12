@@ -159,6 +159,8 @@ numbers, reported after this commit, are the honest ones.
 
 ## 11. Status and how to run it
 
+**Update 13 Nov 2026:** Stage 1 (disease naming) is done with the image visible: `perclass` is the method used downstream (`docs/phase1d_findings_with_image.md`). Stage 3 (notebook 05) is next.
+
 Stage 2 (retrieval check) is done and Stage 4 (router check) is done; see `docs/experiment_log.md`, entries 13 to 16. **The first
 run of notebook 04 was text-only because the image never reached the model** (entry 17, Amendment 6); the notebooks were fixed and
 rebuilt, and must be rerun. Nothing in this plan changes: arms, thresholds, retrieval setting and decision rule are as frozen.

@@ -20,7 +20,7 @@ not for clinical use.
   `past_key_values is None`. Fixed by `patch_image_cache_check` (`baseline/model.py` and the notebook model cell); every notebook now
   has an "IMAGE CHECK" cell that raises if changing the pixels does not change the output. All earlier model results are text-only
   controls (banners on the findings docs, `results/run_5_text_only/`). Phase 1 and Phase 1c conclusions about perception are
-  withdrawn until rerun in the order 04, 05, then 01, 02, 03 (Amendment 6, point 4). **Update 13 Nov 2026: notebook 03 was rerun with the image (after a second fix, entry 18) and the perception conclusions reversed: see `docs/phase1c_findings_with_image.md`, entry 19, `results/run_6_with_image/`. Notebooks 01, 02, 04, 05 are still to be rerun.** `docs/experiment_log.md` entry 17, Amendment 6.
+  withdrawn until rerun in the order 04, 05, then 01, 02, 03 (Amendment 6, point 4). **Update 13 Nov 2026: notebook 03 was rerun with the image (after a second fix, entry 18) and the perception conclusions reversed: see `docs/phase1c_findings_with_image.md`, entry 19, `results/run_6_with_image/`. Notebook 04 (disease naming) was also run with the image on 13 Nov 2026: see `docs/phase1d_findings_with_image.md`, entry 20, `results/run_7_disease_with_image/`; `CHOSEN_METHOD = perclass`. Notebooks 01, 02, 05 are still to be run with the image.** `docs/experiment_log.md` entry 17, Amendment 6.
   The ordered plan, decision table and the list of parts not yet designed are in `docs/next_steps.md`.
 
 - Phase 1 code is complete and committed: `baseline/`, `notebooks/01_baseline_chexagent.ipynb`,

@@ -1,0 +1,391 @@
+id,split,gold,method,raw,top,correct
+DIS_xmlab120,train,Effusion,open,Pleural Effusion,Effusion,True
+DIS_xmlab120,train,Effusion,forced,Effusion,Effusion,True
+DIS_xmlab120,train,Effusion,perclass,"{""Atelectasis"": -1.258, ""Cardiomegaly"": -5.063, ""Consolidation"": -2.969, ""Edema"": -1.656, ""Effusion"": 3.453, ""Emphysema"": -1.375, ""Fibrosis"": -1.422, ""Hernia"": -5.125, ""Infiltration"": -0.664, ""Mass"": -1.617, ""Nodule"": -0.477, ""Pleural Thickening"": 0.602, ""Pneumonia"": -2.586, ""Pneumothorax"": -3.648, ""No Finding"": -3.758}",Effusion,True
+DIS_xmlab121,validation,Atelectasis,open,Pulmonary fibrosis,Fibrosis,False
+DIS_xmlab121,validation,Atelectasis,forced,Atelectasis,Atelectasis,True
+DIS_xmlab121,validation,Atelectasis,perclass,"{""Atelectasis"": 3.32, ""Cardiomegaly"": 0.969, ""Consolidation"": -4.125, ""Edema"": -5.719, ""Effusion"": -1.438, ""Emphysema"": -2.555, ""Fibrosis"": 3.187, ""Hernia"": -5.461, ""Infiltration"": -0.859, ""Mass"": -2.93, ""Nodule"": -2.375, ""Pleural Thickening"": -0.664, ""Pneumonia"": -3.836, ""Pneumothorax"": -3.766, ""No Finding"": -1.844}",Atelectasis,True
+DIS_xmlab122,train,Nodule,open,Pneumonia,Pneumonia,False
+DIS_xmlab122,train,Nodule,forced,"Atelectasis, Cardiomegaly, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumonia, Pneumoth",Atelectasis,False
+DIS_xmlab122,train,Nodule,perclass,"{""Atelectasis"": 0.562, ""Cardiomegaly"": -2.375, ""Consolidation"": -0.031, ""Edema"": -3.844, ""Effusion"": 0.851, ""Emphysema"": 1.914, ""Fibrosis"": 3.164, ""Hernia"": -1.359, ""Infiltration"": 0.234, ""Mass"": 0.641, ""Nodule"": -0.109, ""Pleural Thickening"": 1.617, ""Pneumonia"": -0.828, ""Pneumothorax"": -1.852, ""No Finding"": -4.273}",Fibrosis,False
+DIS_xmlab123,train,"Cardiomegaly, Pneumothorax",open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab123,train,"Cardiomegaly, Pneumothorax",forced,"Atelectasis, Cardiomegaly, Effusion, Emphysema, Pneumothorax",Atelectasis,False
+DIS_xmlab123,train,"Cardiomegaly, Pneumothorax",perclass,"{""Atelectasis"": 0.586, ""Cardiomegaly"": 1.648, ""Consolidation"": -0.477, ""Edema"": -0.672, ""Effusion"": 1.101, ""Emphysema"": 1.727, ""Fibrosis"": -2.055, ""Hernia"": -2.438, ""Infiltration"": 0.07, ""Mass"": -0.336, ""Nodule"": -0.781, ""Pleural Thickening"": -0.008, ""Pneumonia"": -1.156, ""Pneumothorax"": 1.57, ""No Finding"": -3.992}",Emphysema,False
+DIS_xmlab124,test,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab124,test,Cardiomegaly,forced,Atelectasis,Atelectasis,False
+DIS_xmlab124,test,Cardiomegaly,perclass,"{""Atelectasis"": 1.461, ""Cardiomegaly"": 1.562, ""Consolidation"": -1.406, ""Edema"": -2.125, ""Effusion"": -0.938, ""Emphysema"": -2.156, ""Fibrosis"": -0.188, ""Hernia"": -2.227, ""Infiltration"": -0.5, ""Mass"": -1.477, ""Nodule"": -1.406, ""Pleural Thickening"": -0.852, ""Pneumonia"": -2.031, ""Pneumothorax"": -1.922, ""No Finding"": -2.078}",Cardiomegaly,True
+DIS_xmlab125,train,Nodule,open,Pulmonary Nodule,Nodule,True
+DIS_xmlab125,train,Nodule,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothor",Atelectasis,False
+DIS_xmlab125,train,Nodule,perclass,"{""Atelectasis"": 1.937, ""Cardiomegaly"": -5.586, ""Consolidation"": -1.125, ""Edema"": -5.633, ""Effusion"": -2.969, ""Emphysema"": 0.047, ""Fibrosis"": 2.937, ""Hernia"": -4.43, ""Infiltration"": -1.055, ""Mass"": 0.336, ""Nodule"": 2.234, ""Pleural Thickening"": -1.125, ""Pneumonia"": -2.188, ""Pneumothorax"": -3.016, ""No Finding"": -1.922}",Fibrosis,False
+DIS_xmlab126,train,Atelectasis,open,Pulmonary Mass,Mass,False
+DIS_xmlab126,train,Atelectasis,forced,No Finding,No Finding,False
+DIS_xmlab126,train,Atelectasis,perclass,"{""Atelectasis"": -0.43, ""Cardiomegaly"": -5.453, ""Consolidation"": -1.422, ""Edema"": -6.063, ""Effusion"": -1.75, ""Emphysema"": 0.219, ""Fibrosis"": 0.523, ""Hernia"": -3.516, ""Infiltration"": 0.148, ""Mass"": 0.18, ""Nodule"": -0.031, ""Pleural Thickening"": -0.289, ""Pneumonia"": -2.141, ""Pneumothorax"": -2.953, ""No Finding"": -2.961}",Fibrosis,False
+DIS_xmlab127,validation,Atelectasis,open,Pulmonary Nodule,Nodule,False
+DIS_xmlab127,validation,Atelectasis,forced,No Finding,No Finding,False
+DIS_xmlab127,validation,Atelectasis,perclass,"{""Atelectasis"": 0.977, ""Cardiomegaly"": -1.992, ""Consolidation"": -4.383, ""Edema"": -6.828, ""Effusion"": 0.031, ""Emphysema"": -1.672, ""Fibrosis"": -0.445, ""Hernia"": -4.711, ""Infiltration"": -1.797, ""Mass"": -2.0, ""Nodule"": -1.68, ""Pleural Thickening"": -0.617, ""Pneumonia"": -4.648, ""Pneumothorax"": 0.086, ""No Finding"": 0.953}",Atelectasis,True
+DIS_xmlab128,validation,Atelectasis,open,Pulmonary Mass,Mass,False
+DIS_xmlab128,validation,Atelectasis,forced,No Finding,No Finding,False
+DIS_xmlab128,validation,Atelectasis,perclass,"{""Atelectasis"": 1.266, ""Cardiomegaly"": -1.992, ""Consolidation"": -1.914, ""Edema"": -3.164, ""Effusion"": -2.211, ""Emphysema"": -1.953, ""Fibrosis"": 1.422, ""Hernia"": -1.734, ""Infiltration"": -0.898, ""Mass"": 0.211, ""Nodule"": -0.266, ""Pleural Thickening"": -1.164, ""Pneumonia"": -2.453, ""Pneumothorax"": -2.383, ""No Finding"": -3.391}",Fibrosis,False
+DIS_xmlab129,validation,Atelectasis,open,Pneumonia,Pneumonia,False
+DIS_xmlab129,validation,Atelectasis,forced,"Atelectasis, Effusion, Infiltration, Mass, Nodule",Atelectasis,True
+DIS_xmlab129,validation,Atelectasis,perclass,"{""Atelectasis"": 1.391, ""Cardiomegaly"": -3.992, ""Consolidation"": -0.094, ""Edema"": -0.344, ""Effusion"": 1.984, ""Emphysema"": -1.875, ""Fibrosis"": 0.359, ""Hernia"": -2.305, ""Infiltration"": 1.219, ""Mass"": -0.109, ""Nodule"": -0.641, ""Pleural Thickening"": -0.094, ""Pneumonia"": -0.164, ""Pneumothorax"": -2.313, ""No Finding"": -6.891}",Effusion,False
+DIS_xmlab130,test,Pneumonia,open,Pneumonia,Pneumonia,True
+DIS_xmlab130,test,Pneumonia,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumonia,",Atelectasis,False
+DIS_xmlab130,test,Pneumonia,perclass,"{""Atelectasis"": 1.016, ""Cardiomegaly"": -1.352, ""Consolidation"": 0.687, ""Edema"": -0.0, ""Effusion"": 0.672, ""Emphysema"": -1.648, ""Fibrosis"": -0.352, ""Hernia"": 0.062, ""Infiltration"": 1.266, ""Mass"": -1.063, ""Nodule"": -0.703, ""Pleural Thickening"": -1.125, ""Pneumonia"": -0.227, ""Pneumothorax"": -3.555, ""No Finding"": -6.414}",Infiltration,False
+DIS_xmlab131,train,Atelectasis,open,Cardiomegaly,Cardiomegaly,False
+DIS_xmlab131,train,Atelectasis,forced,"Atelectasis, Cardiomegaly, Effusion",Atelectasis,True
+DIS_xmlab131,train,Atelectasis,perclass,"{""Atelectasis"": -0.313, ""Cardiomegaly"": 5.484, ""Consolidation"": -1.516, ""Edema"": -1.523, ""Effusion"": 2.172, ""Emphysema"": -1.617, ""Fibrosis"": -2.336, ""Hernia"": -2.531, ""Infiltration"": -0.57, ""Mass"": -0.758, ""Nodule"": -1.75, ""Pleural Thickening"": 0.453, ""Pneumonia"": -2.563, ""Pneumothorax"": -4.047, ""No Finding"": -8.867}",Cardiomegaly,False
+DIS_xmlab132,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab132,train,Cardiomegaly,forced,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab132,train,Cardiomegaly,perclass,"{""Atelectasis"": -0.242, ""Cardiomegaly"": 4.562, ""Consolidation"": -2.539, ""Edema"": -0.961, ""Effusion"": -1.047, ""Emphysema"": -0.648, ""Fibrosis"": -0.977, ""Hernia"": -2.719, ""Infiltration"": -0.563, ""Mass"": -2.008, ""Nodule"": -1.836, ""Pleural Thickening"": -0.75, ""Pneumonia"": -2.5, ""Pneumothorax"": -2.055, ""No Finding"": -3.813}",Cardiomegaly,True
+DIS_xmlab133,train,Pneumonia,open,Pneumonia,Pneumonia,True
+DIS_xmlab133,train,Pneumonia,forced,"Atelectasis, Effusion, Infiltration, Mass, Nodule",Atelectasis,False
+DIS_xmlab133,train,Pneumonia,perclass,"{""Atelectasis"": 2.102, ""Cardiomegaly"": -2.57, ""Consolidation"": 0.297, ""Edema"": 0.336, ""Effusion"": 2.609, ""Emphysema"": -2.18, ""Fibrosis"": -0.508, ""Hernia"": -2.266, ""Infiltration"": 0.656, ""Mass"": 0.445, ""Nodule"": -0.945, ""Pleural Thickening"": -0.024, ""Pneumonia"": -0.25, ""Pneumothorax"": -2.766, ""No Finding"": -5.57}",Effusion,False
+DIS_xmlab134,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab134,train,Cardiomegaly,forced,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab134,train,Cardiomegaly,perclass,"{""Atelectasis"": -1.203, ""Cardiomegaly"": 5.844, ""Consolidation"": -2.305, ""Edema"": -1.617, ""Effusion"": -1.82, ""Emphysema"": -1.93, ""Fibrosis"": -1.406, ""Hernia"": -3.672, ""Infiltration"": -0.602, ""Mass"": -1.523, ""Nodule"": -1.656, ""Pleural Thickening"": -0.875, ""Pneumonia"": -2.875, ""Pneumothorax"": -4.273, ""No Finding"": -5.609}",Cardiomegaly,True
+DIS_xmlab135,test,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab135,test,Cardiomegaly,forced,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab135,test,Cardiomegaly,perclass,"{""Atelectasis"": 0.453, ""Cardiomegaly"": 4.844, ""Consolidation"": -1.289, ""Edema"": -2.563, ""Effusion"": 0.359, ""Emphysema"": -1.492, ""Fibrosis"": -0.156, ""Hernia"": -0.234, ""Infiltration"": -0.508, ""Mass"": -0.633, ""Nodule"": -1.633, ""Pleural Thickening"": -0.641, ""Pneumonia"": -2.469, ""Pneumothorax"": -1.328, ""No Finding"": -5.211}",Cardiomegaly,True
+DIS_xmlab136,train,Atelectasis,open,Pleural Effusion,Effusion,False
+DIS_xmlab136,train,Atelectasis,forced,Effusion,Effusion,False
+DIS_xmlab136,train,Atelectasis,perclass,"{""Atelectasis"": 0.773, ""Cardiomegaly"": -0.656, ""Consolidation"": 0.906, ""Edema"": -2.391, ""Effusion"": 3.68, ""Emphysema"": -2.664, ""Fibrosis"": -1.664, ""Hernia"": -3.367, ""Infiltration"": 0.625, ""Mass"": -1.664, ""Nodule"": -2.586, ""Pleural Thickening"": -0.25, ""Pneumonia"": -0.32, ""Pneumothorax"": -2.672, ""No Finding"": -6.758}",Effusion,False
+DIS_xmlab137,train,"Atelectasis, Mass",open,Pulmonary Infiltration,Infiltration,False
+DIS_xmlab137,train,"Atelectasis, Mass",forced,Atelectasis,Atelectasis,True
+DIS_xmlab137,train,"Atelectasis, Mass",perclass,"{""Atelectasis"": 2.883, ""Cardiomegaly"": 0.312, ""Consolidation"": -1.953, ""Edema"": -4.242, ""Effusion"": -2.094, ""Emphysema"": -3.117, ""Fibrosis"": 2.258, ""Hernia"": -4.984, ""Infiltration"": 0.234, ""Mass"": -1.219, ""Nodule"": -1.024, ""Pleural Thickening"": -1.547, ""Pneumonia"": -1.711, ""Pneumothorax"": -2.313, ""No Finding"": -3.883}",Atelectasis,True
+DIS_xmlab138,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab138,train,Cardiomegaly,forced,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab138,train,Cardiomegaly,perclass,"{""Atelectasis"": -1.172, ""Cardiomegaly"": 5.148, ""Consolidation"": -3.813, ""Edema"": -2.891, ""Effusion"": -1.453, ""Emphysema"": -1.688, ""Fibrosis"": -2.68, ""Hernia"": -5.211, ""Infiltration"": -1.313, ""Mass"": -2.461, ""Nodule"": -1.93, ""Pleural Thickening"": -1.32, ""Pneumonia"": -4.117, ""Pneumothorax"": -4.516, ""No Finding"": -2.148}",Cardiomegaly,True
+DIS_xmlab139,validation,Mass,open,Pneumonia,Pneumonia,False
+DIS_xmlab139,validation,Mass,forced,Atelectasis,Atelectasis,False
+DIS_xmlab139,validation,Mass,perclass,"{""Atelectasis"": 2.148, ""Cardiomegaly"": -0.024, ""Consolidation"": -0.383, ""Edema"": -2.031, ""Effusion"": -0.195, ""Emphysema"": -1.969, ""Fibrosis"": -1.141, ""Hernia"": -1.938, ""Infiltration"": 0.367, ""Mass"": -0.969, ""Nodule"": -1.414, ""Pleural Thickening"": -1.32, ""Pneumonia"": -1.422, ""Pneumothorax"": -2.883, ""No Finding"": -4.008}",Atelectasis,False
+DIS_xmlab140,train,Infiltration,open,Cardiomegaly,Cardiomegaly,False
+DIS_xmlab140,train,Infiltration,forced,Emphysema,Emphysema,False
+DIS_xmlab140,train,Infiltration,perclass,"{""Atelectasis"": -0.664, ""Cardiomegaly"": 0.148, ""Consolidation"": -2.281, ""Edema"": -1.359, ""Effusion"": -2.266, ""Emphysema"": 4.664, ""Fibrosis"": -3.531, ""Hernia"": -1.758, ""Infiltration"": -1.07, ""Mass"": -0.773, ""Nodule"": -1.219, ""Pleural Thickening"": -1.133, ""Pneumonia"": -2.859, ""Pneumothorax"": -0.031, ""No Finding"": -3.031}",Emphysema,False
+DIS_xmlab141,train,Mass,open,Pulmonary Arterial Hypertension,,False
+DIS_xmlab141,train,Mass,forced,Atelectasis,Atelectasis,False
+DIS_xmlab141,train,Mass,perclass,"{""Atelectasis"": 1.195, ""Cardiomegaly"": 0.594, ""Consolidation"": -0.453, ""Edema"": -0.633, ""Effusion"": 0.219, ""Emphysema"": -2.336, ""Fibrosis"": -0.781, ""Hernia"": -3.289, ""Infiltration"": 0.68, ""Mass"": 0.242, ""Nodule"": -0.391, ""Pleural Thickening"": -0.469, ""Pneumonia"": -0.641, ""Pneumothorax"": -3.852, ""No Finding"": -5.719}",Atelectasis,False
+DIS_xmlab142,test,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab142,test,Cardiomegaly,forced,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab142,test,Cardiomegaly,perclass,"{""Atelectasis"": -1.492, ""Cardiomegaly"": 4.461, ""Consolidation"": -3.438, ""Edema"": -4.07, ""Effusion"": -3.086, ""Emphysema"": -3.82, ""Fibrosis"": -2.898, ""Hernia"": -3.531, ""Infiltration"": -1.531, ""Mass"": -1.984, ""Nodule"": -1.883, ""Pleural Thickening"": -2.063, ""Pneumonia"": -3.82, ""Pneumothorax"": -4.273, ""No Finding"": -2.281}",Cardiomegaly,True
+DIS_xmlab143,train,Effusion,open,Pneumonia,Pneumonia,False
+DIS_xmlab143,train,Effusion,forced,Effusion,Effusion,True
+DIS_xmlab143,train,Effusion,perclass,"{""Atelectasis"": 0.656, ""Cardiomegaly"": -2.305, ""Consolidation"": -0.125, ""Edema"": -2.344, ""Effusion"": 2.195, ""Emphysema"": -0.344, ""Fibrosis"": -1.664, ""Hernia"": -1.688, ""Infiltration"": -0.649, ""Mass"": 0.062, ""Nodule"": -0.297, ""Pleural Thickening"": -0.219, ""Pneumonia"": -1.43, ""Pneumothorax"": 0.961, ""No Finding"": -5.172}",Effusion,True
+DIS_xmlab144,train,Nodule,open,Emphysema,Emphysema,False
+DIS_xmlab144,train,Nodule,forced,No Finding,No Finding,False
+DIS_xmlab144,train,Nodule,perclass,"{""Atelectasis"": -2.063, ""Cardiomegaly"": -6.109, ""Consolidation"": -4.656, ""Edema"": -4.211, ""Effusion"": -1.258, ""Emphysema"": 1.781, ""Fibrosis"": -0.875, ""Hernia"": -4.484, ""Infiltration"": -1.656, ""Mass"": -1.352, ""Nodule"": 1.031, ""Pleural Thickening"": 0.742, ""Pneumonia"": -4.859, ""Pneumothorax"": -1.93, ""No Finding"": -2.93}",Emphysema,False
+DIS_xmlab145,train,Nodule,open,Pulmonary Nodule,Nodule,True
+DIS_xmlab145,train,Nodule,forced,No Finding,No Finding,False
+DIS_xmlab145,train,Nodule,perclass,"{""Atelectasis"": -0.547, ""Cardiomegaly"": -0.031, ""Consolidation"": -0.68, ""Edema"": -2.82, ""Effusion"": -3.156, ""Emphysema"": -0.688, ""Fibrosis"": -0.25, ""Hernia"": -3.945, ""Infiltration"": 0.914, ""Mass"": 0.875, ""Nodule"": 0.203, ""Pleural Thickening"": 0.508, ""Pneumonia"": -0.336, ""Pneumothorax"": -3.32, ""No Finding"": -4.273}",Infiltration,False
+DIS_xmlab146,train,Pneumonia,open,Pulmonary Mass,Mass,False
+DIS_xmlab146,train,Pneumonia,forced,No Finding,No Finding,False
+DIS_xmlab146,train,Pneumonia,perclass,"{""Atelectasis"": 0.953, ""Cardiomegaly"": -3.336, ""Consolidation"": 0.125, ""Edema"": -1.859, ""Effusion"": 0.297, ""Emphysema"": -1.188, ""Fibrosis"": 1.359, ""Hernia"": -1.156, ""Infiltration"": 0.812, ""Mass"": 2.172, ""Nodule"": 1.273, ""Pleural Thickening"": 0.203, ""Pneumonia"": -0.398, ""Pneumothorax"": -1.625, ""No Finding"": -6.328}",Mass,False
+DIS_xmlab147,test,"Atelectasis, Mass",open,Infiltration,Infiltration,False
+DIS_xmlab147,test,"Atelectasis, Mass",forced,No Finding,No Finding,False
+DIS_xmlab147,test,"Atelectasis, Mass",perclass,"{""Atelectasis"": 0.703, ""Cardiomegaly"": -0.875, ""Consolidation"": -0.453, ""Edema"": 0.008, ""Effusion"": -0.07, ""Emphysema"": 0.375, ""Fibrosis"": 1.273, ""Hernia"": -3.492, ""Infiltration"": 1.594, ""Mass"": 1.937, ""Nodule"": 1.164, ""Pleural Thickening"": -0.602, ""Pneumonia"": 0.422, ""Pneumothorax"": -0.859, ""No Finding"": -8.0}",Mass,True
+DIS_xmlab148,test,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab148,test,Cardiomegaly,forced,Atelectasis,Atelectasis,False
+DIS_xmlab148,test,Cardiomegaly,perclass,"{""Atelectasis"": -0.094, ""Cardiomegaly"": 3.117, ""Consolidation"": -3.078, ""Edema"": -3.406, ""Effusion"": -1.539, ""Emphysema"": -2.906, ""Fibrosis"": -2.172, ""Hernia"": -3.414, ""Infiltration"": -1.203, ""Mass"": -1.875, ""Nodule"": -1.453, ""Pleural Thickening"": -1.789, ""Pneumonia"": -3.375, ""Pneumothorax"": -3.742, ""No Finding"": -2.781}",Cardiomegaly,True
+DIS_xmlab149,train,Pneumonia,open,Pneumonia,Pneumonia,True
+DIS_xmlab149,train,Pneumonia,forced,No Finding,No Finding,False
+DIS_xmlab149,train,Pneumonia,perclass,"{""Atelectasis"": 1.359, ""Cardiomegaly"": -3.461, ""Consolidation"": -1.602, ""Edema"": -5.188, ""Effusion"": -0.367, ""Emphysema"": 0.094, ""Fibrosis"": -0.523, ""Hernia"": -2.453, ""Infiltration"": -1.055, ""Mass"": -0.125, ""Nodule"": -0.094, ""Pleural Thickening"": -0.148, ""Pneumonia"": -3.008, ""Pneumothorax"": -1.43, ""No Finding"": -3.477}",Atelectasis,False
+DIS_xmlab150,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab150,train,Cardiomegaly,forced,No Finding,No Finding,False
+DIS_xmlab150,train,Cardiomegaly,perclass,"{""Atelectasis"": -1.25, ""Cardiomegaly"": 1.477, ""Consolidation"": -2.445, ""Edema"": -2.086, ""Effusion"": -2.414, ""Emphysema"": -2.656, ""Fibrosis"": -2.164, ""Hernia"": -3.875, ""Infiltration"": -0.5, ""Mass"": -1.594, ""Nodule"": -1.125, ""Pleural Thickening"": -1.68, ""Pneumonia"": -2.773, ""Pneumothorax"": -2.594, ""No Finding"": -2.0}",Cardiomegaly,True
+DIS_xmlab151,train,Cardiomegaly,open,Pneumonia,Pneumonia,False
+DIS_xmlab151,train,Cardiomegaly,forced,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab151,train,Cardiomegaly,perclass,"{""Atelectasis"": -0.633, ""Cardiomegaly"": 5.359, ""Consolidation"": -1.094, ""Edema"": 1.141, ""Effusion"": -0.18, ""Emphysema"": 1.437, ""Fibrosis"": 1.586, ""Hernia"": -4.703, ""Infiltration"": 0.656, ""Mass"": -0.836, ""Nodule"": -0.891, ""Pleural Thickening"": -0.313, ""Pneumonia"": -1.102, ""Pneumothorax"": -3.195, ""No Finding"": -7.656}",Cardiomegaly,True
+DIS_xmlab152,test,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab152,test,Cardiomegaly,forced,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab152,test,Cardiomegaly,perclass,"{""Atelectasis"": -0.508, ""Cardiomegaly"": 3.984, ""Consolidation"": -1.766, ""Edema"": -1.609, ""Effusion"": -1.195, ""Emphysema"": -2.688, ""Fibrosis"": -0.883, ""Hernia"": -3.695, ""Infiltration"": -0.149, ""Mass"": -0.961, ""Nodule"": -0.539, ""Pleural Thickening"": -0.133, ""Pneumonia"": -2.102, ""Pneumothorax"": -2.813, ""No Finding"": -3.43}",Cardiomegaly,True
+DIS_xmlab153,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab153,train,Cardiomegaly,forced,"Atelectasis, Cardiomegaly",Atelectasis,False
+DIS_xmlab153,train,Cardiomegaly,perclass,"{""Atelectasis"": 2.078, ""Cardiomegaly"": 2.586, ""Consolidation"": -2.117, ""Edema"": -1.891, ""Effusion"": -2.258, ""Emphysema"": -2.43, ""Fibrosis"": 2.102, ""Hernia"": -4.063, ""Infiltration"": -0.719, ""Mass"": -0.75, ""Nodule"": -0.461, ""Pleural Thickening"": -0.469, ""Pneumonia"": -2.516, ""Pneumothorax"": -3.039, ""No Finding"": -2.391}",Cardiomegaly,True
+DIS_xmlab154,train,Atelectasis,open,Pulmonary fibrosis,Fibrosis,False
+DIS_xmlab154,train,Atelectasis,forced,Atelectasis,Atelectasis,True
+DIS_xmlab154,train,Atelectasis,perclass,"{""Atelectasis"": 1.719, ""Cardiomegaly"": 0.469, ""Consolidation"": -2.617, ""Edema"": -4.453, ""Effusion"": -0.039, ""Emphysema"": 1.234, ""Fibrosis"": 0.102, ""Hernia"": -3.992, ""Infiltration"": -1.078, ""Mass"": -1.805, ""Nodule"": -0.0, ""Pleural Thickening"": -0.328, ""Pneumonia"": -2.984, ""Pneumothorax"": -3.531, ""No Finding"": -2.289}",Atelectasis,True
+DIS_xmlab155,train,"Cardiomegaly, Effusion, Infiltration",open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab155,train,"Cardiomegaly, Effusion, Infiltration",forced,"Atelectasis, Cardiomegaly, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothorax",Atelectasis,False
+DIS_xmlab155,train,"Cardiomegaly, Effusion, Infiltration",perclass,"{""Atelectasis"": 0.625, ""Cardiomegaly"": 4.562, ""Consolidation"": 0.594, ""Edema"": 0.648, ""Effusion"": 0.445, ""Emphysema"": -1.336, ""Fibrosis"": -1.539, ""Hernia"": 1.102, ""Infiltration"": 1.148, ""Mass"": 0.32, ""Nodule"": 0.109, ""Pleural Thickening"": -0.899, ""Pneumonia"": 0.008, ""Pneumothorax"": -1.914, ""No Finding"": -7.922}",Cardiomegaly,True
+DIS_xmlab156,train,"Atelectasis, Effusion",open,Pulmonary Infiltration,Infiltration,False
+DIS_xmlab156,train,"Atelectasis, Effusion",forced,"Atelectasis, Cardiomegaly, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothorax",Atelectasis,True
+DIS_xmlab156,train,"Atelectasis, Effusion",perclass,"{""Atelectasis"": 0.719, ""Cardiomegaly"": -0.781, ""Consolidation"": -0.383, ""Edema"": -3.07, ""Effusion"": 1.945, ""Emphysema"": -1.273, ""Fibrosis"": -0.008, ""Hernia"": -3.586, ""Infiltration"": 0.172, ""Mass"": -0.328, ""Nodule"": -0.172, ""Pleural Thickening"": 1.641, ""Pneumonia"": -1.219, ""Pneumothorax"": 0.266, ""No Finding"": -4.414}",Effusion,True
+DIS_xmlab157,train,Pneumonia,open,Pneumonia,Pneumonia,True
+DIS_xmlab157,train,Pneumonia,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumonia,",Atelectasis,False
+DIS_xmlab157,train,Pneumonia,perclass,"{""Atelectasis"": -0.367, ""Cardiomegaly"": -5.438, ""Consolidation"": 2.0, ""Edema"": -1.672, ""Effusion"": 1.0, ""Emphysema"": -1.328, ""Fibrosis"": -1.211, ""Hernia"": -4.438, ""Infiltration"": 1.875, ""Mass"": 2.148, ""Nodule"": 1.898, ""Pleural Thickening"": 1.109, ""Pneumonia"": 1.469, ""Pneumothorax"": -2.172, ""No Finding"": -7.477}",Mass,False
+DIS_xmlab158,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab158,train,Cardiomegaly,forced,No Finding,No Finding,False
+DIS_xmlab158,train,Cardiomegaly,perclass,"{""Atelectasis"": -1.594, ""Cardiomegaly"": 1.961, ""Consolidation"": -3.008, ""Edema"": -1.422, ""Effusion"": -3.398, ""Emphysema"": -0.727, ""Fibrosis"": -1.375, ""Hernia"": -3.75, ""Infiltration"": -0.375, ""Mass"": -1.516, ""Nodule"": -1.156, ""Pleural Thickening"": -1.578, ""Pneumonia"": -2.758, ""Pneumothorax"": -4.664, ""No Finding"": -1.016}",Cardiomegaly,True
+DIS_xmlab159,test,Nodule,open,Nodule,Nodule,True
+DIS_xmlab159,test,Nodule,forced,No Finding,No Finding,False
+DIS_xmlab159,test,Nodule,perclass,"{""Atelectasis"": 0.125, ""Cardiomegaly"": -4.625, ""Consolidation"": -2.75, ""Edema"": -3.086, ""Effusion"": -2.727, ""Emphysema"": -3.086, ""Fibrosis"": -1.672, ""Hernia"": -4.336, ""Infiltration"": -1.078, ""Mass"": 2.578, ""Nodule"": 3.312, ""Pleural Thickening"": -0.523, ""Pneumonia"": -2.68, ""Pneumothorax"": -3.398, ""No Finding"": -0.805}",Nodule,True
+DIS_xmlab160,test,Nodule,open,Cardiomegaly,Cardiomegaly,False
+DIS_xmlab160,test,Nodule,forced,No Finding,No Finding,False
+DIS_xmlab160,test,Nodule,perclass,"{""Atelectasis"": -1.258, ""Cardiomegaly"": 3.336, ""Consolidation"": -2.117, ""Edema"": -1.625, ""Effusion"": -2.367, ""Emphysema"": -1.086, ""Fibrosis"": -1.305, ""Hernia"": -3.242, ""Infiltration"": -0.328, ""Mass"": 0.664, ""Nodule"": 1.094, ""Pleural Thickening"": -0.586, ""Pneumonia"": -2.047, ""Pneumothorax"": -3.289, ""No Finding"": -3.641}",Cardiomegaly,False
+DIS_xmlab161,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab161,train,Cardiomegaly,forced,No Finding,No Finding,False
+DIS_xmlab161,train,Cardiomegaly,perclass,"{""Atelectasis"": -3.82, ""Cardiomegaly"": -0.391, ""Consolidation"": -4.477, ""Edema"": -5.797, ""Effusion"": -4.711, ""Emphysema"": -3.25, ""Fibrosis"": -5.164, ""Hernia"": -4.688, ""Infiltration"": -1.875, ""Mass"": -2.406, ""Nodule"": -1.875, ""Pleural Thickening"": -2.703, ""Pneumonia"": -4.25, ""Pneumothorax"": -3.5, ""No Finding"": 2.75}",No Finding,False
+DIS_xmlab162,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab162,train,Cardiomegaly,forced,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab162,train,Cardiomegaly,perclass,"{""Atelectasis"": -1.25, ""Cardiomegaly"": 5.453, ""Consolidation"": -2.75, ""Edema"": -2.867, ""Effusion"": -2.688, ""Emphysema"": -0.773, ""Fibrosis"": -1.383, ""Hernia"": -4.25, ""Infiltration"": -0.906, ""Mass"": -0.43, ""Nodule"": 2.594, ""Pleural Thickening"": -0.328, ""Pneumonia"": -3.109, ""Pneumothorax"": -3.078, ""No Finding"": -5.094}",Cardiomegaly,True
+DIS_xmlab163,train,Pneumothorax,open,Pneumothorax,Pneumothorax,True
+DIS_xmlab163,train,Pneumothorax,forced,Pneumothorax,Pneumothorax,True
+DIS_xmlab163,train,Pneumothorax,perclass,"{""Atelectasis"": 1.891, ""Cardiomegaly"": -0.141, ""Consolidation"": 1.172, ""Edema"": -4.148, ""Effusion"": -0.102, ""Emphysema"": -0.688, ""Fibrosis"": 0.32, ""Hernia"": -3.531, ""Infiltration"": 1.0, ""Mass"": 0.687, ""Nodule"": -0.742, ""Pleural Thickening"": -0.774, ""Pneumonia"": 0.508, ""Pneumothorax"": 3.617, ""No Finding"": -4.594}",Pneumothorax,True
+DIS_xmlab164,validation,Cardiomegaly,open,Infiltration,Infiltration,False
+DIS_xmlab164,validation,Cardiomegaly,forced,No Finding,No Finding,False
+DIS_xmlab164,validation,Cardiomegaly,perclass,"{""Atelectasis"": -0.891, ""Cardiomegaly"": 1.351, ""Consolidation"": -0.445, ""Edema"": -0.125, ""Effusion"": -1.32, ""Emphysema"": -3.008, ""Fibrosis"": -2.477, ""Hernia"": -4.07, ""Infiltration"": 1.039, ""Mass"": -1.016, ""Nodule"": -0.649, ""Pleural Thickening"": -1.68, ""Pneumonia"": -0.641, ""Pneumothorax"": -3.133, ""No Finding"": -4.852}",Cardiomegaly,True
+DIS_xmlab165,train,Mass,open,Mass,Mass,True
+DIS_xmlab165,train,Mass,forced,Mass,Mass,True
+DIS_xmlab165,train,Mass,perclass,"{""Atelectasis"": -0.781, ""Cardiomegaly"": -5.742, ""Consolidation"": -2.063, ""Edema"": -7.938, ""Effusion"": -1.273, ""Emphysema"": -0.047, ""Fibrosis"": -2.453, ""Hernia"": -4.406, ""Infiltration"": -1.609, ""Mass"": 3.875, ""Nodule"": 2.547, ""Pleural Thickening"": -1.0, ""Pneumonia"": -4.25, ""Pneumothorax"": 3.227, ""No Finding"": -6.422}",Mass,True
+DIS_xmlab166,train,Nodule,open,Pulmonary Calcification,,False
+DIS_xmlab166,train,Nodule,forced,No Finding,No Finding,False
+DIS_xmlab166,train,Nodule,perclass,"{""Atelectasis"": 0.031, ""Cardiomegaly"": -8.109, ""Consolidation"": -2.711, ""Edema"": -5.867, ""Effusion"": -3.523, ""Emphysema"": -1.547, ""Fibrosis"": 2.43, ""Hernia"": -6.813, ""Infiltration"": -0.594, ""Mass"": 0.891, ""Nodule"": 1.141, ""Pleural Thickening"": 0.273, ""Pneumonia"": -2.68, ""Pneumothorax"": -3.453, ""No Finding"": -2.766}",Fibrosis,False
+DIS_xmlab167,train,Atelectasis,open,Pleural Effusion,Effusion,False
+DIS_xmlab167,train,Atelectasis,forced,Effusion,Effusion,False
+DIS_xmlab167,train,Atelectasis,perclass,"{""Atelectasis"": 1.195, ""Cardiomegaly"": -0.953, ""Consolidation"": -0.156, ""Edema"": -4.742, ""Effusion"": 3.781, ""Emphysema"": -0.906, ""Fibrosis"": 0.726, ""Hernia"": -2.93, ""Infiltration"": 0.055, ""Mass"": 0.172, ""Nodule"": -0.781, ""Pleural Thickening"": 1.523, ""Pneumonia"": -1.148, ""Pneumothorax"": -2.008, ""No Finding"": -3.648}",Effusion,False
+DIS_xmlab168,train,Nodule,open,Pulmonary fibrosis,Fibrosis,False
+DIS_xmlab168,train,Nodule,forced,"Atelectasis, Cardiomegaly, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothorax",Atelectasis,False
+DIS_xmlab168,train,Nodule,perclass,"{""Atelectasis"": 0.789, ""Cardiomegaly"": 0.57, ""Consolidation"": -0.797, ""Edema"": -1.336, ""Effusion"": 2.781, ""Emphysema"": 1.477, ""Fibrosis"": 2.633, ""Hernia"": -1.953, ""Infiltration"": 0.359, ""Mass"": -0.305, ""Nodule"": -0.5, ""Pleural Thickening"": 2.953, ""Pneumonia"": -1.328, ""Pneumothorax"": -2.234, ""No Finding"": -5.68}",Pleural Thickening,False
+DIS_xmlab169,test,Atelectasis,open,Pneumonia,Pneumonia,False
+DIS_xmlab169,test,Atelectasis,forced,"Atelectasis, Cardiomegaly, Effusion, Infiltration",Atelectasis,True
+DIS_xmlab169,test,Atelectasis,perclass,"{""Atelectasis"": 2.062, ""Cardiomegaly"": 1.812, ""Consolidation"": -0.297, ""Edema"": -0.578, ""Effusion"": -0.055, ""Emphysema"": -2.578, ""Fibrosis"": -1.656, ""Hernia"": -3.688, ""Infiltration"": 0.211, ""Mass"": -0.273, ""Nodule"": -0.961, ""Pleural Thickening"": -0.82, ""Pneumonia"": -1.008, ""Pneumothorax"": -2.852, ""No Finding"": -5.305}",Atelectasis,True
+DIS_xmlab170,validation,Nodule,open,Infiltration,Infiltration,False
+DIS_xmlab170,validation,Nodule,forced,Effusion,Effusion,False
+DIS_xmlab170,validation,Nodule,perclass,"{""Atelectasis"": -0.656, ""Cardiomegaly"": -2.328, ""Consolidation"": -0.125, ""Edema"": -1.758, ""Effusion"": 2.414, ""Emphysema"": -2.25, ""Fibrosis"": -1.203, ""Hernia"": -4.094, ""Infiltration"": 1.664, ""Mass"": 0.586, ""Nodule"": 1.547, ""Pleural Thickening"": 0.367, ""Pneumonia"": 0.047, ""Pneumothorax"": -1.867, ""No Finding"": -8.75}",Effusion,False
+DIS_xmlab171,train,Nodule,open,Nodule,Nodule,True
+DIS_xmlab171,train,Nodule,forced,No Finding,No Finding,False
+DIS_xmlab171,train,Nodule,perclass,"{""Atelectasis"": -1.859, ""Cardiomegaly"": -1.883, ""Consolidation"": -2.82, ""Edema"": -4.961, ""Effusion"": -3.125, ""Emphysema"": -1.484, ""Fibrosis"": -2.203, ""Hernia"": -2.25, ""Infiltration"": -1.352, ""Mass"": 1.102, ""Nodule"": 1.219, ""Pleural Thickening"": -0.922, ""Pneumonia"": -3.516, ""Pneumothorax"": -2.789, ""No Finding"": -2.742}",Nodule,True
+DIS_xmlab172,train,Infiltration,open,Consolidation,Consolidation,False
+DIS_xmlab172,train,Infiltration,forced,No Finding,No Finding,False
+DIS_xmlab172,train,Infiltration,perclass,"{""Atelectasis"": -0.117, ""Cardiomegaly"": -1.141, ""Consolidation"": 2.75, ""Edema"": 1.477, ""Effusion"": 1.211, ""Emphysema"": -0.422, ""Fibrosis"": -1.602, ""Hernia"": -3.422, ""Infiltration"": 3.961, ""Mass"": -0.984, ""Nodule"": -1.445, ""Pleural Thickening"": -0.469, ""Pneumonia"": 3.289, ""Pneumothorax"": -2.055, ""No Finding"": -8.625}",Infiltration,True
+DIS_xmlab173,test,Pneumonia,open,Pneumonia,Pneumonia,True
+DIS_xmlab173,test,Pneumonia,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Infiltration, Mass, Nodule, Pleural Thickening, Pneumonia",Atelectasis,False
+DIS_xmlab173,test,Pneumonia,perclass,"{""Atelectasis"": 0.648, ""Cardiomegaly"": -3.883, ""Consolidation"": 2.687, ""Edema"": -0.734, ""Effusion"": 1.539, ""Emphysema"": -2.18, ""Fibrosis"": -1.773, ""Hernia"": -3.43, ""Infiltration"": 2.812, ""Mass"": 0.133, ""Nodule"": -1.352, ""Pleural Thickening"": -1.234, ""Pneumonia"": 2.687, ""Pneumothorax"": -2.469, ""No Finding"": -7.781}",Infiltration,False
+DIS_xmlab174,train,Mass,open,Cardiomegaly,Cardiomegaly,False
+DIS_xmlab174,train,Mass,forced,No Finding,No Finding,False
+DIS_xmlab174,train,Mass,perclass,"{""Atelectasis"": 1.078, ""Cardiomegaly"": 0.391, ""Consolidation"": -0.649, ""Edema"": -3.43, ""Effusion"": -0.836, ""Emphysema"": -2.789, ""Fibrosis"": -1.719, ""Hernia"": -0.688, ""Infiltration"": -0.727, ""Mass"": -0.961, ""Nodule"": -1.172, ""Pleural Thickening"": -1.703, ""Pneumonia"": -2.07, ""Pneumothorax"": -2.625, ""No Finding"": -1.984}",Atelectasis,False
+DIS_xmlab175,train,Nodule,open,Pulmonary Mass,Mass,False
+DIS_xmlab175,train,Nodule,forced,Mass,Mass,False
+DIS_xmlab175,train,Nodule,perclass,"{""Atelectasis"": -1.656, ""Cardiomegaly"": -7.695, ""Consolidation"": -1.742, ""Edema"": -7.297, ""Effusion"": -4.453, ""Emphysema"": -1.898, ""Fibrosis"": -2.625, ""Hernia"": -5.563, ""Infiltration"": -0.586, ""Mass"": 3.977, ""Nodule"": 2.344, ""Pleural Thickening"": -0.898, ""Pneumonia"": -3.195, ""Pneumothorax"": -2.492, ""No Finding"": -4.367}",Mass,False
+DIS_xmlab176,train,Cardiomegaly,open,Pleural Effusion,Effusion,False
+DIS_xmlab176,train,Cardiomegaly,forced,Effusion,Effusion,False
+DIS_xmlab176,train,Cardiomegaly,perclass,"{""Atelectasis"": 1.289, ""Cardiomegaly"": -0.844, ""Consolidation"": -1.313, ""Edema"": -5.141, ""Effusion"": 3.227, ""Emphysema"": -2.93, ""Fibrosis"": -2.617, ""Hernia"": -1.539, ""Infiltration"": -0.984, ""Mass"": -1.328, ""Nodule"": -2.375, ""Pleural Thickening"": -0.774, ""Pneumonia"": -3.406, ""Pneumothorax"": -1.281, ""No Finding"": -3.398}",Effusion,False
+DIS_xmlab177,train,Mass,open,Mass,Mass,True
+DIS_xmlab177,train,Mass,forced,Mass,Mass,True
+DIS_xmlab177,train,Mass,perclass,"{""Atelectasis"": -0.891, ""Cardiomegaly"": -5.625, ""Consolidation"": -3.172, ""Edema"": -6.781, ""Effusion"": -3.383, ""Emphysema"": -1.242, ""Fibrosis"": -3.031, ""Hernia"": -3.109, ""Infiltration"": -2.602, ""Mass"": 5.148, ""Nodule"": 3.336, ""Pleural Thickening"": -1.203, ""Pneumonia"": -4.406, ""Pneumothorax"": -4.156, ""No Finding"": -5.547}",Mass,True
+DIS_xmlab178,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab178,train,Cardiomegaly,forced,"Atelectasis, Cardiomegaly, Effusion, Infiltration",Atelectasis,False
+DIS_xmlab178,train,Cardiomegaly,perclass,"{""Atelectasis"": 1.351, ""Cardiomegaly"": 2.977, ""Consolidation"": 0.539, ""Edema"": 0.437, ""Effusion"": 3.094, ""Emphysema"": -3.477, ""Fibrosis"": -2.188, ""Hernia"": -0.969, ""Infiltration"": 0.781, ""Mass"": -0.727, ""Nodule"": -2.313, ""Pleural Thickening"": -1.133, ""Pneumonia"": -0.359, ""Pneumothorax"": -3.445, ""No Finding"": -9.367}",Effusion,False
+DIS_xmlab179,train,Pneumothorax,open,Pneumothorax,Pneumothorax,True
+DIS_xmlab179,train,Pneumothorax,forced,Pneumothorax,Pneumothorax,True
+DIS_xmlab179,train,Pneumothorax,perclass,"{""Atelectasis"": 0.594, ""Cardiomegaly"": -5.594, ""Consolidation"": -0.563, ""Edema"": -3.969, ""Effusion"": -0.149, ""Emphysema"": 0.609, ""Fibrosis"": 0.383, ""Hernia"": -3.266, ""Infiltration"": -0.555, ""Mass"": -0.523, ""Nodule"": -1.492, ""Pleural Thickening"": -0.758, ""Pneumonia"": -1.484, ""Pneumothorax"": 5.234, ""No Finding"": -5.484}",Pneumothorax,True
+DIS_xmlab180,train,Nodule,open,Pulmonary Nodule,Nodule,True
+DIS_xmlab180,train,Nodule,forced,Nodule,Nodule,True
+DIS_xmlab180,train,Nodule,perclass,"{""Atelectasis"": 1.086, ""Cardiomegaly"": -7.367, ""Consolidation"": -3.703, ""Edema"": -6.453, ""Effusion"": -2.531, ""Emphysema"": -2.344, ""Fibrosis"": -0.203, ""Hernia"": -6.188, ""Infiltration"": -1.648, ""Mass"": 2.672, ""Nodule"": 2.945, ""Pleural Thickening"": -0.805, ""Pneumonia"": -4.32, ""Pneumothorax"": -2.828, ""No Finding"": -4.008}",Nodule,True
+DIS_xmlab181,train,Nodule,open,Nodule,Nodule,True
+DIS_xmlab181,train,Nodule,forced,Nodule,Nodule,True
+DIS_xmlab181,train,Nodule,perclass,"{""Atelectasis"": -1.633, ""Cardiomegaly"": 1.336, ""Consolidation"": -3.516, ""Edema"": -5.234, ""Effusion"": -0.648, ""Emphysema"": -2.891, ""Fibrosis"": -1.875, ""Hernia"": -4.602, ""Infiltration"": -1.406, ""Mass"": -0.016, ""Nodule"": 2.961, ""Pleural Thickening"": 0.102, ""Pneumonia"": -4.094, ""Pneumothorax"": -3.508, ""No Finding"": -0.656}",Nodule,True
+DIS_xmlab182,train,Mass,open,Nodule,Nodule,False
+DIS_xmlab182,train,Mass,forced,Mass,Mass,True
+DIS_xmlab182,train,Mass,perclass,"{""Atelectasis"": -0.242, ""Cardiomegaly"": 1.25, ""Consolidation"": -0.383, ""Edema"": -6.141, ""Effusion"": -3.023, ""Emphysema"": -3.57, ""Fibrosis"": -2.781, ""Hernia"": -5.438, ""Infiltration"": -0.727, ""Mass"": 4.695, ""Nodule"": 4.352, ""Pleural Thickening"": -0.094, ""Pneumonia"": -2.523, ""Pneumothorax"": -0.508, ""No Finding"": -4.242}",Mass,True
+DIS_xmlab183,train,Pneumothorax,open,Pneumothorax,Pneumothorax,True
+DIS_xmlab183,train,Pneumothorax,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothor",Atelectasis,False
+DIS_xmlab183,train,Pneumothorax,perclass,"{""Atelectasis"": 1.805, ""Cardiomegaly"": -0.336, ""Consolidation"": -0.258, ""Edema"": -0.375, ""Effusion"": 0.609, ""Emphysema"": -0.422, ""Fibrosis"": 1.414, ""Hernia"": -3.07, ""Infiltration"": 0.351, ""Mass"": 0.242, ""Nodule"": -1.023, ""Pleural Thickening"": 2.625, ""Pneumonia"": -0.82, ""Pneumothorax"": 2.039, ""No Finding"": -5.922}",Pleural Thickening,False
+DIS_xmlab184,train,Pneumothorax,open,Pneumothorax,Pneumothorax,True
+DIS_xmlab184,train,Pneumothorax,forced,Pneumothorax,Pneumothorax,True
+DIS_xmlab184,train,Pneumothorax,perclass,"{""Atelectasis"": -0.414, ""Cardiomegaly"": -6.344, ""Consolidation"": -2.164, ""Edema"": -5.508, ""Effusion"": 0.984, ""Emphysema"": 3.187, ""Fibrosis"": -1.898, ""Hernia"": -0.828, ""Infiltration"": -1.438, ""Mass"": -0.422, ""Nodule"": -1.516, ""Pleural Thickening"": -0.578, ""Pneumonia"": -2.938, ""Pneumothorax"": 4.141, ""No Finding"": -4.891}",Pneumothorax,True
+DIS_xmlab185,test,Pneumothorax,open,Pneumothorax,Pneumothorax,True
+DIS_xmlab185,test,Pneumothorax,forced,"Effusion, Pneumothorax",Effusion,False
+DIS_xmlab185,test,Pneumothorax,perclass,"{""Atelectasis"": 0.375, ""Cardiomegaly"": -2.094, ""Consolidation"": -0.094, ""Edema"": -5.805, ""Effusion"": 1.398, ""Emphysema"": -1.141, ""Fibrosis"": -3.102, ""Hernia"": -2.57, ""Infiltration"": -0.414, ""Mass"": -0.805, ""Nodule"": -0.969, ""Pleural Thickening"": -0.891, ""Pneumonia"": -1.18, ""Pneumothorax"": 4.602, ""No Finding"": -5.008}",Pneumothorax,True
+DIS_xmlab186,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab186,train,Cardiomegaly,forced,"Atelectasis, Cardiomegaly, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothorax",Atelectasis,False
+DIS_xmlab186,train,Cardiomegaly,perclass,"{""Atelectasis"": 1.93, ""Cardiomegaly"": 0.141, ""Consolidation"": 0.391, ""Edema"": -1.789, ""Effusion"": 2.0, ""Emphysema"": -1.047, ""Fibrosis"": 0.781, ""Hernia"": -2.484, ""Infiltration"": 0.375, ""Mass"": 3.164, ""Nodule"": -0.203, ""Pleural Thickening"": -0.367, ""Pneumonia"": -0.164, ""Pneumothorax"": 0.562, ""No Finding"": -6.195}",Mass,False
+DIS_xmlab187,train,Mass,open,Pulmonary Mass,Mass,True
+DIS_xmlab187,train,Mass,forced,No Finding,No Finding,False
+DIS_xmlab187,train,Mass,perclass,"{""Atelectasis"": -0.875, ""Cardiomegaly"": -0.391, ""Consolidation"": -2.453, ""Edema"": -3.398, ""Effusion"": -1.586, ""Emphysema"": -2.727, ""Fibrosis"": -2.352, ""Hernia"": -4.063, ""Infiltration"": -2.406, ""Mass"": 4.031, ""Nodule"": 3.383, ""Pleural Thickening"": -1.531, ""Pneumonia"": -3.492, ""Pneumothorax"": -3.039, ""No Finding"": -6.523}",Mass,True
+DIS_xmlab188,train,Infiltration,open,Pulmonary Nodule,Nodule,False
+DIS_xmlab188,train,Infiltration,forced,No Finding,No Finding,False
+DIS_xmlab188,train,Infiltration,perclass,"{""Atelectasis"": 0.344, ""Cardiomegaly"": -5.406, ""Consolidation"": -0.063, ""Edema"": -7.75, ""Effusion"": -2.164, ""Emphysema"": -0.141, ""Fibrosis"": 2.25, ""Hernia"": -2.781, ""Infiltration"": 0.93, ""Mass"": 1.25, ""Nodule"": -0.555, ""Pleural Thickening"": 0.367, ""Pneumonia"": -0.82, ""Pneumothorax"": -2.531, ""No Finding"": -4.328}",Fibrosis,False
+DIS_xmlab189,train,Nodule,open,Infiltration,Infiltration,False
+DIS_xmlab189,train,Nodule,forced,"Atelectasis, Cardiomegaly, Consolidation, Edema, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, P",Atelectasis,False
+DIS_xmlab189,train,Nodule,perclass,"{""Atelectasis"": 0.508, ""Cardiomegaly"": 0.25, ""Consolidation"": 0.961, ""Edema"": 1.867, ""Effusion"": 3.195, ""Emphysema"": -1.953, ""Fibrosis"": -1.078, ""Hernia"": -3.594, ""Infiltration"": 2.258, ""Mass"": 0.625, ""Nodule"": 1.898, ""Pleural Thickening"": -0.727, ""Pneumonia"": 1.43, ""Pneumothorax"": -2.938, ""No Finding"": -9.352}",Effusion,False
+DIS_xmlab190,train,Pneumothorax,open,Pneumothorax,Pneumothorax,True
+DIS_xmlab190,train,Pneumothorax,forced,"Pleural thickening, Pneumothorax",Pleural Thickening,False
+DIS_xmlab190,train,Pneumothorax,perclass,"{""Atelectasis"": 0.43, ""Cardiomegaly"": 0.219, ""Consolidation"": -2.086, ""Edema"": -5.438, ""Effusion"": 1.586, ""Emphysema"": -2.203, ""Fibrosis"": -3.773, ""Hernia"": -5.109, ""Infiltration"": -1.008, ""Mass"": -2.945, ""Nodule"": -2.164, ""Pleural Thickening"": -0.188, ""Pneumonia"": -4.313, ""Pneumothorax"": 4.375, ""No Finding"": -2.867}",Pneumothorax,True
+DIS_xmlab191,validation,Cardiomegaly,open,Pneumonia,Pneumonia,False
+DIS_xmlab191,validation,Cardiomegaly,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumonia,",Atelectasis,False
+DIS_xmlab191,validation,Cardiomegaly,perclass,"{""Atelectasis"": 1.734, ""Cardiomegaly"": 1.781, ""Consolidation"": 0.734, ""Edema"": 0.32, ""Effusion"": 3.656, ""Emphysema"": -3.344, ""Fibrosis"": -2.773, ""Hernia"": -2.586, ""Infiltration"": 1.273, ""Mass"": -1.211, ""Nodule"": -1.539, ""Pleural Thickening"": -1.125, ""Pneumonia"": 0.125, ""Pneumothorax"": -3.461, ""No Finding"": -7.273}",Effusion,False
+DIS_xmlab192,train,Atelectasis,open,Cardiomegaly,Cardiomegaly,False
+DIS_xmlab192,train,Atelectasis,forced,Effusion,Effusion,False
+DIS_xmlab192,train,Atelectasis,perclass,"{""Atelectasis"": 1.195, ""Cardiomegaly"": 0.953, ""Consolidation"": -0.406, ""Edema"": -1.57, ""Effusion"": 4.023, ""Emphysema"": -2.445, ""Fibrosis"": -1.563, ""Hernia"": -3.523, ""Infiltration"": 0.312, ""Mass"": -2.086, ""Nodule"": -2.367, ""Pleural Thickening"": -0.914, ""Pneumonia"": -1.453, ""Pneumothorax"": -3.844, ""No Finding"": -5.008}",Effusion,False
+DIS_xmlab193,train,Pneumothorax,open,Pneumothorax,Pneumothorax,True
+DIS_xmlab193,train,Pneumothorax,forced,No Finding,No Finding,False
+DIS_xmlab193,train,Pneumothorax,perclass,"{""Atelectasis"": 0.305, ""Cardiomegaly"": -2.703, ""Consolidation"": 0.156, ""Edema"": -4.383, ""Effusion"": 1.078, ""Emphysema"": 0.094, ""Fibrosis"": 0.75, ""Hernia"": -3.984, ""Infiltration"": 0.195, ""Mass"": 0.727, ""Nodule"": -0.406, ""Pleural Thickening"": 0.086, ""Pneumonia"": -0.922, ""Pneumothorax"": -0.195, ""No Finding"": -6.203}",Effusion,False
+DIS_xmlab194,train,Pneumothorax,open,Pneumothorax,Pneumothorax,True
+DIS_xmlab194,train,Pneumothorax,forced,"Emphysema, Pneumothorax",Emphysema,False
+DIS_xmlab194,train,Pneumothorax,perclass,"{""Atelectasis"": -3.469, ""Cardiomegaly"": -7.906, ""Consolidation"": -5.281, ""Edema"": -7.453, ""Effusion"": -4.523, ""Emphysema"": 6.039, ""Fibrosis"": -5.781, ""Hernia"": -6.406, ""Infiltration"": -2.242, ""Mass"": -2.539, ""Nodule"": -3.133, ""Pleural Thickening"": -1.484, ""Pneumonia"": -5.883, ""Pneumothorax"": 2.82, ""No Finding"": -1.898}",Emphysema,False
+DIS_xmlab195,train,Infiltration,open,Infiltration,Infiltration,True
+DIS_xmlab195,train,Infiltration,forced,No Finding,No Finding,False
+DIS_xmlab195,train,Infiltration,perclass,"{""Atelectasis"": -0.688, ""Cardiomegaly"": -3.008, ""Consolidation"": -0.055, ""Edema"": 1.148, ""Effusion"": 1.453, ""Emphysema"": -1.094, ""Fibrosis"": -1.172, ""Hernia"": -3.844, ""Infiltration"": 2.109, ""Mass"": 0.437, ""Nodule"": -0.109, ""Pleural Thickening"": -0.797, ""Pneumonia"": 0.937, ""Pneumothorax"": -0.852, ""No Finding"": -5.945}",Infiltration,True
+DIS_xmlab196,validation,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab196,validation,Cardiomegaly,forced,No Finding,No Finding,False
+DIS_xmlab196,validation,Cardiomegaly,perclass,"{""Atelectasis"": -3.297, ""Cardiomegaly"": 2.859, ""Consolidation"": -3.539, ""Edema"": -4.25, ""Effusion"": -4.586, ""Emphysema"": -2.961, ""Fibrosis"": -4.18, ""Hernia"": -4.469, ""Infiltration"": -1.531, ""Mass"": -0.859, ""Nodule"": -1.891, ""Pleural Thickening"": -3.32, ""Pneumonia"": -4.141, ""Pneumothorax"": -3.117, ""No Finding"": -2.891}",Cardiomegaly,True
+DIS_xmlab197,train,Pneumothorax,open,Pneumothorax,Pneumothorax,True
+DIS_xmlab197,train,Pneumothorax,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothor",Atelectasis,False
+DIS_xmlab197,train,Pneumothorax,perclass,"{""Atelectasis"": 0.664, ""Cardiomegaly"": -2.164, ""Consolidation"": -0.211, ""Edema"": -4.32, ""Effusion"": 0.101, ""Emphysema"": 4.586, ""Fibrosis"": 1.211, ""Hernia"": -1.984, ""Infiltration"": 0.117, ""Mass"": -0.563, ""Nodule"": -1.414, ""Pleural Thickening"": 0.805, ""Pneumonia"": -1.75, ""Pneumothorax"": 1.625, ""No Finding"": -3.461}",Emphysema,False
+DIS_xmlab198,train,Atelectasis,open,Pleural Effusion,Effusion,False
+DIS_xmlab198,train,Atelectasis,forced,Effusion,Effusion,False
+DIS_xmlab198,train,Atelectasis,perclass,"{""Atelectasis"": 0.375, ""Cardiomegaly"": -1.344, ""Consolidation"": -0.047, ""Edema"": -4.414, ""Effusion"": 2.75, ""Emphysema"": -2.242, ""Fibrosis"": -1.727, ""Hernia"": -2.203, ""Infiltration"": 0.383, ""Mass"": -0.195, ""Nodule"": -0.859, ""Pleural Thickening"": -0.375, ""Pneumonia"": -1.531, ""Pneumothorax"": -2.055, ""No Finding"": -4.914}",Effusion,False
+DIS_xmlab199,train,Effusion,open,Pneumonia,Pneumonia,False
+DIS_xmlab199,train,Effusion,forced,Effusion,Effusion,True
+DIS_xmlab199,train,Effusion,perclass,"{""Atelectasis"": 1.25, ""Cardiomegaly"": -0.789, ""Consolidation"": 0.234, ""Edema"": -3.586, ""Effusion"": 3.047, ""Emphysema"": -1.961, ""Fibrosis"": -2.977, ""Hernia"": -1.273, ""Infiltration"": 0.398, ""Mass"": -0.75, ""Nodule"": -0.727, ""Pleural Thickening"": -0.164, ""Pneumonia"": -1.578, ""Pneumothorax"": -3.227, ""No Finding"": -3.602}",Effusion,True
+DIS_xmlab296,train,Mass,open,Pneumonia,Pneumonia,False
+DIS_xmlab296,train,Mass,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumonia,",Atelectasis,False
+DIS_xmlab296,train,Mass,perclass,"{""Atelectasis"": -0.375, ""Cardiomegaly"": -2.734, ""Consolidation"": 3.016, ""Edema"": -0.617, ""Effusion"": -0.445, ""Emphysema"": -2.117, ""Fibrosis"": -2.25, ""Hernia"": -1.25, ""Infiltration"": 2.602, ""Mass"": 2.695, ""Nodule"": 0.469, ""Pleural Thickening"": -0.766, ""Pneumonia"": 2.531, ""Pneumothorax"": -2.672, ""No Finding"": -6.906}",Consolidation,False
+DIS_xmlab301,train,Atelectasis,open,Pulmonary Infiltration,Infiltration,False
+DIS_xmlab301,train,Atelectasis,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothor",Atelectasis,True
+DIS_xmlab301,train,Atelectasis,perclass,"{""Atelectasis"": 1.047, ""Cardiomegaly"": -3.969, ""Consolidation"": 0.961, ""Edema"": -2.148, ""Effusion"": 0.812, ""Emphysema"": 5.273, ""Fibrosis"": -1.063, ""Hernia"": -3.352, ""Infiltration"": 1.148, ""Mass"": -0.297, ""Nodule"": -2.438, ""Pleural Thickening"": -0.578, ""Pneumonia"": 0.445, ""Pneumothorax"": 0.273, ""No Finding"": -5.164}",Emphysema,False
+DIS_xmlab302,train,Infiltration,open,Pneumothorax,Pneumothorax,False
+DIS_xmlab302,train,Infiltration,forced,"Pleural thickening, Pneumothorax",Pleural Thickening,False
+DIS_xmlab302,train,Infiltration,perclass,"{""Atelectasis"": -0.25, ""Cardiomegaly"": -4.68, ""Consolidation"": -1.133, ""Edema"": -6.844, ""Effusion"": 1.133, ""Emphysema"": -1.117, ""Fibrosis"": -3.125, ""Hernia"": -6.328, ""Infiltration"": -0.391, ""Mass"": -1.813, ""Nodule"": -1.258, ""Pleural Thickening"": -0.43, ""Pneumonia"": -1.953, ""Pneumothorax"": 1.492, ""No Finding"": -2.898}",Pneumothorax,False
+DIS_xmlab303,validation,Effusion,open,Pneumonia,Pneumonia,False
+DIS_xmlab303,validation,Effusion,forced,"Atelectasis, Cardiomegaly, Effusion, Infiltration",Atelectasis,False
+DIS_xmlab303,validation,Effusion,perclass,"{""Atelectasis"": 1.695, ""Cardiomegaly"": 0.008, ""Consolidation"": 0.289, ""Edema"": 1.07, ""Effusion"": 2.969, ""Emphysema"": -3.063, ""Fibrosis"": -0.938, ""Hernia"": -2.664, ""Infiltration"": 1.297, ""Mass"": -1.961, ""Nodule"": -2.125, ""Pleural Thickening"": -1.594, ""Pneumonia"": -0.344, ""Pneumothorax"": -4.398, ""No Finding"": -8.203}",Effusion,True
+DIS_xmlab304,test,Atelectasis,open,Atelectasis,Atelectasis,True
+DIS_xmlab304,test,Atelectasis,forced,Atelectasis,Atelectasis,True
+DIS_xmlab304,test,Atelectasis,perclass,"{""Atelectasis"": 1.195, ""Cardiomegaly"": 1.461, ""Consolidation"": -0.274, ""Edema"": -2.594, ""Effusion"": 1.758, ""Emphysema"": -0.867, ""Fibrosis"": -0.805, ""Hernia"": 1.547, ""Infiltration"": -0.234, ""Mass"": 1.445, ""Nodule"": -0.024, ""Pleural Thickening"": 1.016, ""Pneumonia"": -2.109, ""Pneumothorax"": -2.133, ""No Finding"": -5.391}",Effusion,False
+DIS_xmlab305,train,Pneumonia,open,Pneumonia,Pneumonia,True
+DIS_xmlab305,train,Pneumonia,forced,"Atelectasis, Cardiomegaly, Consolidation, Edema, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, P",Atelectasis,False
+DIS_xmlab305,train,Pneumonia,perclass,"{""Atelectasis"": 0.383, ""Cardiomegaly"": -0.227, ""Consolidation"": 1.32, ""Edema"": 0.625, ""Effusion"": -0.297, ""Emphysema"": -1.344, ""Fibrosis"": -1.508, ""Hernia"": -2.398, ""Infiltration"": 2.328, ""Mass"": 0.383, ""Nodule"": -0.047, ""Pleural Thickening"": -1.164, ""Pneumonia"": 1.539, ""Pneumothorax"": -3.094, ""No Finding"": -8.523}",Infiltration,False
+DIS_xmlab306,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab306,train,Cardiomegaly,forced,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab306,train,Cardiomegaly,perclass,"{""Atelectasis"": -0.078, ""Cardiomegaly"": 3.867, ""Consolidation"": -2.57, ""Edema"": -3.641, ""Effusion"": -0.867, ""Emphysema"": -0.742, ""Fibrosis"": -1.359, ""Hernia"": -0.602, ""Infiltration"": -0.555, ""Mass"": -1.125, ""Nodule"": -1.117, ""Pleural Thickening"": -0.656, ""Pneumonia"": -3.063, ""Pneumothorax"": -4.438, ""No Finding"": -1.961}",Cardiomegaly,True
+DIS_xmlab308,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab308,train,Cardiomegaly,forced,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab308,train,Cardiomegaly,perclass,"{""Atelectasis"": -2.563, ""Cardiomegaly"": 4.68, ""Consolidation"": -2.531, ""Edema"": -1.234, ""Effusion"": -3.445, ""Emphysema"": -3.25, ""Fibrosis"": -1.703, ""Hernia"": -5.984, ""Infiltration"": -0.242, ""Mass"": -1.859, ""Nodule"": -1.586, ""Pleural Thickening"": -1.227, ""Pneumonia"": -2.977, ""Pneumothorax"": -3.555, ""No Finding"": -3.344}",Cardiomegaly,True
+DIS_xmlab311,test,Mass,open,Nodule,Nodule,False
+DIS_xmlab311,test,Mass,forced,Mass,Mass,True
+DIS_xmlab311,test,Mass,perclass,"{""Atelectasis"": -1.609, ""Cardiomegaly"": -3.43, ""Consolidation"": -3.328, ""Edema"": -5.336, ""Effusion"": -2.258, ""Emphysema"": -2.266, ""Fibrosis"": -3.781, ""Hernia"": -3.805, ""Infiltration"": -2.531, ""Mass"": 5.687, ""Nodule"": 3.812, ""Pleural Thickening"": -1.258, ""Pneumonia"": -4.172, ""Pneumothorax"": -3.25, ""No Finding"": -3.945}",Mass,True
+DIS_xmlab314,test,Pneumonia,open,Pneumonia,Pneumonia,True
+DIS_xmlab314,test,Pneumonia,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothor",Atelectasis,False
+DIS_xmlab314,test,Pneumonia,perclass,"{""Atelectasis"": 1.18, ""Cardiomegaly"": 0.125, ""Consolidation"": 1.031, ""Edema"": -0.555, ""Effusion"": -1.844, ""Emphysema"": 3.68, ""Fibrosis"": -1.414, ""Hernia"": -3.086, ""Infiltration"": 1.727, ""Mass"": 2.789, ""Nodule"": 1.219, ""Pleural Thickening"": -0.867, ""Pneumonia"": 0.961, ""Pneumothorax"": 0.055, ""No Finding"": -3.672}",Emphysema,False
+DIS_xmlab315,train,Atelectasis,open,Pneumonia,Pneumonia,False
+DIS_xmlab315,train,Atelectasis,forced,"Atelectasis, Effusion",Atelectasis,True
+DIS_xmlab315,train,Atelectasis,perclass,"{""Atelectasis"": 2.164, ""Cardiomegaly"": 0.516, ""Consolidation"": 0.359, ""Edema"": -0.508, ""Effusion"": 2.328, ""Emphysema"": -1.594, ""Fibrosis"": -1.516, ""Hernia"": -0.719, ""Infiltration"": 0.226, ""Mass"": -0.898, ""Nodule"": -1.469, ""Pleural Thickening"": -0.43, ""Pneumonia"": -0.891, ""Pneumothorax"": -2.93, ""No Finding"": -5.531}",Effusion,False
+DIS_xmlab316,train,Nodule,open,Pulmonary Nodule,Nodule,True
+DIS_xmlab316,train,Nodule,forced,Mass,Mass,False
+DIS_xmlab316,train,Nodule,perclass,"{""Atelectasis"": 0.414, ""Cardiomegaly"": -6.57, ""Consolidation"": -2.938, ""Edema"": -7.469, ""Effusion"": -0.609, ""Emphysema"": -2.484, ""Fibrosis"": -2.516, ""Hernia"": -4.492, ""Infiltration"": -1.422, ""Mass"": 3.5, ""Nodule"": 2.242, ""Pleural Thickening"": -1.063, ""Pneumonia"": -4.953, ""Pneumothorax"": 0.586, ""No Finding"": -2.461}",Mass,False
+DIS_xmlab318,train,Effusion,open,Pleural Effusion,Effusion,True
+DIS_xmlab318,train,Effusion,forced,Effusion,Effusion,True
+DIS_xmlab318,train,Effusion,perclass,"{""Atelectasis"": 1.422, ""Cardiomegaly"": -5.0, ""Consolidation"": 0.047, ""Edema"": -5.117, ""Effusion"": 6.125, ""Emphysema"": -3.375, ""Fibrosis"": -1.477, ""Hernia"": -4.656, ""Infiltration"": -0.227, ""Mass"": 0.328, ""Nodule"": -1.984, ""Pleural Thickening"": -0.828, ""Pneumonia"": -1.055, ""Pneumothorax"": -2.609, ""No Finding"": -5.727}",Effusion,True
+DIS_xmlab319,train,Mass,open,Pulmonary Mass,Mass,True
+DIS_xmlab319,train,Mass,forced,Mass,Mass,True
+DIS_xmlab319,train,Mass,perclass,"{""Atelectasis"": 0.336, ""Cardiomegaly"": -7.188, ""Consolidation"": -2.141, ""Edema"": -8.031, ""Effusion"": -0.711, ""Emphysema"": -0.391, ""Fibrosis"": 0.992, ""Hernia"": -5.016, ""Infiltration"": -1.938, ""Mass"": 4.922, ""Nodule"": 1.461, ""Pleural Thickening"": 0.437, ""Pneumonia"": -5.328, ""Pneumothorax"": -1.797, ""No Finding"": -5.367}",Mass,True
+DIS_xmlab320,test,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab320,test,Cardiomegaly,forced,No Finding,No Finding,False
+DIS_xmlab320,test,Cardiomegaly,perclass,"{""Atelectasis"": -1.07, ""Cardiomegaly"": 3.539, ""Consolidation"": -2.406, ""Edema"": -1.758, ""Effusion"": -3.328, ""Emphysema"": -3.555, ""Fibrosis"": -1.898, ""Hernia"": -5.234, ""Infiltration"": -0.453, ""Mass"": -2.125, ""Nodule"": -1.234, ""Pleural Thickening"": -2.453, ""Pneumonia"": -2.633, ""Pneumothorax"": -3.656, ""No Finding"": -2.57}",Cardiomegaly,True
+DIS_xmlab321,train,Nodule,open,Atelectasis,Atelectasis,False
+DIS_xmlab321,train,Nodule,forced,No Finding,No Finding,False
+DIS_xmlab321,train,Nodule,perclass,"{""Atelectasis"": -0.43, ""Cardiomegaly"": -2.805, ""Consolidation"": -0.828, ""Edema"": -2.141, ""Effusion"": -3.0, ""Emphysema"": -1.266, ""Fibrosis"": -1.555, ""Hernia"": -3.359, ""Infiltration"": 0.414, ""Mass"": 0.312, ""Nodule"": 1.0, ""Pleural Thickening"": -0.398, ""Pneumonia"": -1.438, ""Pneumothorax"": -2.352, ""No Finding"": -2.383}",Nodule,True
+DIS_xmlab322,validation,Effusion,open,Pleural Effusion,Effusion,True
+DIS_xmlab322,validation,Effusion,forced,Effusion,Effusion,True
+DIS_xmlab322,validation,Effusion,perclass,"{""Atelectasis"": -0.063, ""Cardiomegaly"": -6.891, ""Consolidation"": -3.758, ""Edema"": -5.906, ""Effusion"": 2.766, ""Emphysema"": -1.688, ""Fibrosis"": -1.109, ""Hernia"": -3.617, ""Infiltration"": -1.891, ""Mass"": -2.531, ""Nodule"": -3.07, ""Pleural Thickening"": 0.711, ""Pneumonia"": -5.359, ""Pneumothorax"": -1.789, ""No Finding"": -2.289}",Effusion,True
+DIS_xmlab324,validation,Mass,open,Pneumothorax,Pneumothorax,False
+DIS_xmlab324,validation,Mass,forced,"Effusion, Mass, Pneumothorax",Effusion,False
+DIS_xmlab324,validation,Mass,perclass,"{""Atelectasis"": 1.476, ""Cardiomegaly"": -3.234, ""Consolidation"": -0.531, ""Edema"": -6.547, ""Effusion"": 3.281, ""Emphysema"": 0.25, ""Fibrosis"": -3.633, ""Hernia"": -0.766, ""Infiltration"": -1.156, ""Mass"": 3.07, ""Nodule"": 1.328, ""Pleural Thickening"": -1.117, ""Pneumonia"": -3.367, ""Pneumothorax"": 0.898, ""No Finding"": -3.742}",Effusion,False
+DIS_xmlab325,train,Mass,open,Pulmonary Mass,Mass,True
+DIS_xmlab325,train,Mass,forced,"Mass, Nodule",Mass,True
+DIS_xmlab325,train,Mass,perclass,"{""Atelectasis"": -1.766, ""Cardiomegaly"": -7.43, ""Consolidation"": -2.063, ""Edema"": -7.016, ""Effusion"": -1.43, ""Emphysema"": -2.219, ""Fibrosis"": -2.172, ""Hernia"": -6.734, ""Infiltration"": -1.391, ""Mass"": 3.891, ""Nodule"": 3.023, ""Pleural Thickening"": -0.93, ""Pneumonia"": -4.656, ""Pneumothorax"": -0.859, ""No Finding"": -4.367}",Mass,True
+DIS_xmlab327,train,Effusion,open,Pleural Effusion,Effusion,True
+DIS_xmlab327,train,Effusion,forced,"Atelectasis, Effusion, Infiltration, Mass, Nodule",Atelectasis,False
+DIS_xmlab327,train,Effusion,perclass,"{""Atelectasis"": 1.898, ""Cardiomegaly"": -3.484, ""Consolidation"": 1.586, ""Edema"": -2.305, ""Effusion"": 3.391, ""Emphysema"": -0.344, ""Fibrosis"": -0.813, ""Hernia"": -3.156, ""Infiltration"": 0.969, ""Mass"": 1.187, ""Nodule"": -0.43, ""Pleural Thickening"": 0.578, ""Pneumonia"": 0.648, ""Pneumothorax"": -2.242, ""No Finding"": -7.375}",Effusion,True
+DIS_xmlab329,test,Infiltration,open,Infiltration,Infiltration,True
+DIS_xmlab329,test,Infiltration,forced,No Finding,No Finding,False
+DIS_xmlab329,test,Infiltration,perclass,"{""Atelectasis"": -0.664, ""Cardiomegaly"": -3.664, ""Consolidation"": -0.563, ""Edema"": -1.281, ""Effusion"": -0.953, ""Emphysema"": -0.203, ""Fibrosis"": -1.695, ""Hernia"": -4.344, ""Infiltration"": 0.773, ""Mass"": -0.938, ""Nodule"": 0.359, ""Pleural Thickening"": -1.203, ""Pneumonia"": -0.672, ""Pneumothorax"": -3.359, ""No Finding"": -3.492}",Infiltration,True
+DIS_xmlab330,validation,Mass,open,Pulmonary Mass,Mass,True
+DIS_xmlab330,validation,Mass,forced,Mass,Mass,True
+DIS_xmlab330,validation,Mass,perclass,"{""Atelectasis"": -0.016, ""Cardiomegaly"": -4.492, ""Consolidation"": -1.523, ""Edema"": -5.859, ""Effusion"": 1.141, ""Emphysema"": -0.719, ""Fibrosis"": -0.156, ""Hernia"": -2.875, ""Infiltration"": -2.313, ""Mass"": 4.172, ""Nodule"": 2.312, ""Pleural Thickening"": 0.578, ""Pneumonia"": -4.641, ""Pneumothorax"": -2.977, ""No Finding"": -8.281}",Mass,True
+DIS_xmlab334,train,Effusion,open,Pneumothorax,Pneumothorax,False
+DIS_xmlab334,train,Effusion,forced,Effusion,Effusion,True
+DIS_xmlab334,train,Effusion,perclass,"{""Atelectasis"": 0.508, ""Cardiomegaly"": -3.07, ""Consolidation"": -0.297, ""Edema"": -3.234, ""Effusion"": 3.148, ""Emphysema"": 2.125, ""Fibrosis"": -0.695, ""Hernia"": -0.945, ""Infiltration"": -0.258, ""Mass"": 0.453, ""Nodule"": 0.336, ""Pleural Thickening"": 2.375, ""Pneumonia"": -1.336, ""Pneumothorax"": -0.336, ""No Finding"": -6.102}",Effusion,True
+DIS_xmlab335,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab335,train,Cardiomegaly,forced,"Atelectasis, Cardiomegaly, Effusion",Atelectasis,False
+DIS_xmlab335,train,Cardiomegaly,perclass,"{""Atelectasis"": 2.414, ""Cardiomegaly"": 3.141, ""Consolidation"": -0.078, ""Edema"": -3.969, ""Effusion"": 0.914, ""Emphysema"": -2.797, ""Fibrosis"": 0.023, ""Hernia"": -1.25, ""Infiltration"": -0.086, ""Mass"": -1.149, ""Nodule"": -2.039, ""Pleural Thickening"": -1.063, ""Pneumonia"": -1.414, ""Pneumothorax"": -0.719, ""No Finding"": -5.539}",Cardiomegaly,True
+DIS_xmlab336,train,Infiltration,open,Infiltration,Infiltration,True
+DIS_xmlab336,train,Infiltration,forced,Atelectasis,Atelectasis,False
+DIS_xmlab336,train,Infiltration,perclass,"{""Atelectasis"": 0.664, ""Cardiomegaly"": -3.438, ""Consolidation"": 0.18, ""Edema"": -4.25, ""Effusion"": -0.555, ""Emphysema"": -2.867, ""Fibrosis"": -1.133, ""Hernia"": -4.688, ""Infiltration"": 1.891, ""Mass"": 0.219, ""Nodule"": -0.274, ""Pleural Thickening"": -0.664, ""Pneumonia"": 0.32, ""Pneumothorax"": -3.203, ""No Finding"": -4.977}",Infiltration,True
+DIS_xmlab339,train,Nodule,open,Pulmonary Nodule,Nodule,True
+DIS_xmlab339,train,Nodule,forced,No Finding,No Finding,False
+DIS_xmlab339,train,Nodule,perclass,"{""Atelectasis"": 0.609, ""Cardiomegaly"": -7.266, ""Consolidation"": -3.156, ""Edema"": -7.828, ""Effusion"": -0.891, ""Emphysema"": -0.172, ""Fibrosis"": 3.0, ""Hernia"": -3.703, ""Infiltration"": -1.344, ""Mass"": 1.656, ""Nodule"": 2.633, ""Pleural Thickening"": -0.297, ""Pneumonia"": -3.453, ""Pneumothorax"": -1.039, ""No Finding"": -3.531}",Fibrosis,False
+DIS_xmlab341,train,Atelectasis,open,Pulmonary Mass,Mass,False
+DIS_xmlab341,train,Atelectasis,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening",Atelectasis,True
+DIS_xmlab341,train,Atelectasis,perclass,"{""Atelectasis"": 1.812, ""Cardiomegaly"": -5.555, ""Consolidation"": -2.664, ""Edema"": -7.195, ""Effusion"": -2.297, ""Emphysema"": -1.672, ""Fibrosis"": 0.609, ""Hernia"": -2.039, ""Infiltration"": -1.164, ""Mass"": 0.859, ""Nodule"": 0.672, ""Pleural Thickening"": -0.172, ""Pneumonia"": -3.734, ""Pneumothorax"": -3.938, ""No Finding"": -3.711}",Atelectasis,True
+DIS_xmlab342,train,Nodule,open,Pulmonary Nodule,Nodule,True
+DIS_xmlab342,train,Nodule,forced,No Finding,No Finding,False
+DIS_xmlab342,train,Nodule,perclass,"{""Atelectasis"": -2.43, ""Cardiomegaly"": -5.125, ""Consolidation"": -4.391, ""Edema"": -7.227, ""Effusion"": -3.328, ""Emphysema"": 0.375, ""Fibrosis"": -0.734, ""Hernia"": -5.766, ""Infiltration"": -1.422, ""Mass"": -0.023, ""Nodule"": 1.172, ""Pleural Thickening"": -0.961, ""Pneumonia"": -4.797, ""Pneumothorax"": -2.039, ""No Finding"": 0.82}",Nodule,True
+DIS_xmlab345,train,Pneumonia,open,Pneumonia,Pneumonia,True
+DIS_xmlab345,train,Pneumonia,forced,Atelectasis,Atelectasis,False
+DIS_xmlab345,train,Pneumonia,perclass,"{""Atelectasis"": -0.063, ""Cardiomegaly"": -5.102, ""Consolidation"": 2.859, ""Edema"": 1.562, ""Effusion"": 1.422, ""Emphysema"": -1.555, ""Fibrosis"": -2.688, ""Hernia"": -4.469, ""Infiltration"": 4.336, ""Mass"": 0.875, ""Nodule"": -0.203, ""Pleural Thickening"": -1.023, ""Pneumonia"": 3.961, ""Pneumothorax"": -2.109, ""No Finding"": -7.063}",Infiltration,False
+DIS_xmlab346,train,Mass,open,Pulmonary Mass,Mass,True
+DIS_xmlab346,train,Mass,forced,Mass,Mass,True
+DIS_xmlab346,train,Mass,perclass,"{""Atelectasis"": 0.227, ""Cardiomegaly"": -2.953, ""Consolidation"": -2.023, ""Edema"": -3.797, ""Effusion"": -1.899, ""Emphysema"": -2.664, ""Fibrosis"": -1.141, ""Hernia"": -5.609, ""Infiltration"": -1.859, ""Mass"": 5.977, ""Nodule"": 2.758, ""Pleural Thickening"": -0.648, ""Pneumonia"": -3.883, ""Pneumothorax"": -2.695, ""No Finding"": -5.148}",Mass,True
+DIS_xmlab347,validation,Cardiomegaly,open,Edema,Edema,False
+DIS_xmlab347,validation,Cardiomegaly,forced,"Cardiomegaly, Edema",Cardiomegaly,True
+DIS_xmlab347,validation,Cardiomegaly,perclass,"{""Atelectasis"": 0.008, ""Cardiomegaly"": 3.609, ""Consolidation"": -0.469, ""Edema"": 2.797, ""Effusion"": 0.016, ""Emphysema"": -2.484, ""Fibrosis"": -0.578, ""Hernia"": -4.734, ""Infiltration"": 1.656, ""Mass"": -2.008, ""Nodule"": -0.625, ""Pleural Thickening"": -0.352, ""Pneumonia"": -0.18, ""Pneumothorax"": -3.336, ""No Finding"": -5.727}",Cardiomegaly,True
+DIS_xmlab351,validation,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab351,validation,Cardiomegaly,forced,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab351,validation,Cardiomegaly,perclass,"{""Atelectasis"": -2.32, ""Cardiomegaly"": 3.508, ""Consolidation"": -3.875, ""Edema"": -4.125, ""Effusion"": -3.781, ""Emphysema"": -3.516, ""Fibrosis"": -3.352, ""Hernia"": -4.477, ""Infiltration"": -1.305, ""Mass"": -1.898, ""Nodule"": -1.891, ""Pleural Thickening"": -2.078, ""Pneumonia"": -4.047, ""Pneumothorax"": -4.305, ""No Finding"": -1.094}",Cardiomegaly,True
+DIS_xmlab353,validation,Pneumonia,open,Pneumonia,Pneumonia,True
+DIS_xmlab353,validation,Pneumonia,forced,No Finding,No Finding,False
+DIS_xmlab353,validation,Pneumonia,perclass,"{""Atelectasis"": -0.344, ""Cardiomegaly"": -5.797, ""Consolidation"": 2.68, ""Edema"": -0.547, ""Effusion"": 0.859, ""Emphysema"": -2.109, ""Fibrosis"": -1.719, ""Hernia"": -4.859, ""Infiltration"": 2.891, ""Mass"": 2.617, ""Nodule"": -0.024, ""Pleural Thickening"": -0.773, ""Pneumonia"": 2.734, ""Pneumothorax"": -2.133, ""No Finding"": -7.32}",Infiltration,False
+DIS_xmlab358,train,Pneumonia,open,Infiltration,Infiltration,False
+DIS_xmlab358,train,Pneumonia,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothor",Atelectasis,False
+DIS_xmlab358,train,Pneumonia,perclass,"{""Atelectasis"": 0.898, ""Cardiomegaly"": -0.258, ""Consolidation"": 2.094, ""Edema"": -1.063, ""Effusion"": 2.594, ""Emphysema"": -2.625, ""Fibrosis"": -0.781, ""Hernia"": -3.383, ""Infiltration"": 1.719, ""Mass"": 0.547, ""Nodule"": -1.0, ""Pleural Thickening"": -0.438, ""Pneumonia"": 1.414, ""Pneumothorax"": -0.969, ""No Finding"": -8.516}",Effusion,False
+DIS_xmlab359,validation,Mass,open,Pulmonary Mass,Mass,True
+DIS_xmlab359,validation,Mass,forced,"Mass, Nodule",Mass,True
+DIS_xmlab359,validation,Mass,perclass,"{""Atelectasis"": -1.109, ""Cardiomegaly"": -4.492, ""Consolidation"": -0.008, ""Edema"": -3.648, ""Effusion"": -1.203, ""Emphysema"": -1.82, ""Fibrosis"": -1.781, ""Hernia"": -4.422, ""Infiltration"": 0.187, ""Mass"": 4.312, ""Nodule"": 3.078, ""Pleural Thickening"": -0.695, ""Pneumonia"": -1.477, ""Pneumothorax"": -1.836, ""No Finding"": -7.633}",Mass,True
+DIS_xmlab364,train,Pneumonia,open,Pneumonia,Pneumonia,True
+DIS_xmlab364,train,Pneumonia,forced,Atelectasis,Atelectasis,False
+DIS_xmlab364,train,Pneumonia,perclass,"{""Atelectasis"": 3.055, ""Cardiomegaly"": -4.758, ""Consolidation"": 1.07, ""Edema"": -4.719, ""Effusion"": 0.242, ""Emphysema"": -1.539, ""Fibrosis"": -0.57, ""Hernia"": -2.391, ""Infiltration"": 0.734, ""Mass"": 0.797, ""Nodule"": -1.68, ""Pleural Thickening"": 0.352, ""Pneumonia"": -0.375, ""Pneumothorax"": -0.0, ""No Finding"": -2.438}",Atelectasis,False
+DIS_xmlab366,validation,Pneumonia,open,Pulmonary fibrosis,Fibrosis,False
+DIS_xmlab366,validation,Pneumonia,forced,Atelectasis,Atelectasis,False
+DIS_xmlab366,validation,Pneumonia,perclass,"{""Atelectasis"": 2.328, ""Cardiomegaly"": 2.078, ""Consolidation"": -1.641, ""Edema"": -1.953, ""Effusion"": -1.852, ""Emphysema"": -1.781, ""Fibrosis"": 1.031, ""Hernia"": -5.492, ""Infiltration"": 0.328, ""Mass"": -2.266, ""Nodule"": -1.43, ""Pleural Thickening"": -1.172, ""Pneumonia"": -1.711, ""Pneumothorax"": -3.297, ""No Finding"": -2.695}",Atelectasis,False
+DIS_xmlab368,train,Cardiomegaly,open,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab368,train,Cardiomegaly,forced,Cardiomegaly,Cardiomegaly,True
+DIS_xmlab368,train,Cardiomegaly,perclass,"{""Atelectasis"": -1.656, ""Cardiomegaly"": 4.109, ""Consolidation"": -2.805, ""Edema"": -1.984, ""Effusion"": 0.711, ""Emphysema"": -2.563, ""Fibrosis"": -2.516, ""Hernia"": -4.555, ""Infiltration"": -0.649, ""Mass"": -1.5, ""Nodule"": -0.969, ""Pleural Thickening"": -0.391, ""Pneumonia"": -2.992, ""Pneumothorax"": -4.297, ""No Finding"": -3.609}",Cardiomegaly,True
+DIS_xmlab369,train,Effusion,open,Pneumothorax,Pneumothorax,False
+DIS_xmlab369,train,Effusion,forced,"Atelectasis, Effusion, Emphysema, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothorax",Atelectasis,False
+DIS_xmlab369,train,Effusion,perclass,"{""Atelectasis"": 2.703, ""Cardiomegaly"": -7.359, ""Consolidation"": -1.875, ""Edema"": -6.266, ""Effusion"": 0.961, ""Emphysema"": 0.734, ""Fibrosis"": 1.594, ""Hernia"": -2.828, ""Infiltration"": -0.789, ""Mass"": 0.437, ""Nodule"": -0.031, ""Pleural Thickening"": -0.383, ""Pneumonia"": -2.656, ""Pneumothorax"": -0.5, ""No Finding"": -2.352}",Atelectasis,False
+DIS_xmlab371,train,Mass,open,Emphysema,Emphysema,False
+DIS_xmlab371,train,Mass,forced,"Atelectasis, Cardiomegaly, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening",Atelectasis,False
+DIS_xmlab371,train,Mass,perclass,"{""Atelectasis"": -0.188, ""Cardiomegaly"": -1.93, ""Consolidation"": -1.938, ""Edema"": -4.945, ""Effusion"": 1.633, ""Emphysema"": 3.789, ""Fibrosis"": -0.633, ""Hernia"": -2.867, ""Infiltration"": -1.016, ""Mass"": 2.016, ""Nodule"": 1.266, ""Pleural Thickening"": 0.43, ""Pneumonia"": -3.141, ""Pneumothorax"": -1.961, ""No Finding"": -4.172}",Emphysema,False
+DIS_xmlab372,train,Mass,open,Pulmonary Mass,Mass,True
+DIS_xmlab372,train,Mass,forced,Mass,Mass,True
+DIS_xmlab372,train,Mass,perclass,"{""Atelectasis"": 0.555, ""Cardiomegaly"": -7.383, ""Consolidation"": 4.492, ""Edema"": -6.422, ""Effusion"": -2.0, ""Emphysema"": -1.883, ""Fibrosis"": -1.484, ""Hernia"": -5.766, ""Infiltration"": 0.789, ""Mass"": 6.406, ""Nodule"": 1.164, ""Pleural Thickening"": -0.172, ""Pneumonia"": 2.102, ""Pneumothorax"": -1.898, ""No Finding"": -5.367}",Mass,True
+DIS_xmlab373,train,Pneumonia,open,Pneumonia,Pneumonia,True
+DIS_xmlab373,train,Pneumonia,forced,Atelectasis,Atelectasis,False
+DIS_xmlab373,train,Pneumonia,perclass,"{""Atelectasis"": 1.102, ""Cardiomegaly"": -3.695, ""Consolidation"": 1.531, ""Edema"": -7.984, ""Effusion"": -2.258, ""Emphysema"": -3.781, ""Fibrosis"": -2.734, ""Hernia"": -6.828, ""Infiltration"": 2.617, ""Mass"": -1.68, ""Nodule"": -1.117, ""Pleural Thickening"": -1.656, ""Pneumonia"": 0.492, ""Pneumothorax"": -4.805, ""No Finding"": -1.039}",Infiltration,False
+DIS_xmlab375,test,Pneumonia,open,Pleural Effusion,Effusion,False
+DIS_xmlab375,test,Pneumonia,forced,Effusion,Effusion,False
+DIS_xmlab375,test,Pneumonia,perclass,"{""Atelectasis"": 1.664, ""Cardiomegaly"": -2.055, ""Consolidation"": 0.945, ""Edema"": -1.883, ""Effusion"": 3.797, ""Emphysema"": -2.305, ""Fibrosis"": -1.664, ""Hernia"": -3.805, ""Infiltration"": 0.562, ""Mass"": -0.859, ""Nodule"": -1.445, ""Pleural Thickening"": -0.414, ""Pneumonia"": -0.477, ""Pneumothorax"": -2.844, ""No Finding"": -5.391}",Effusion,False
+DIS_xmlab376,train,Pneumonia,open,Pneumonia,Pneumonia,True
+DIS_xmlab376,train,Pneumonia,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumonia,",Atelectasis,False
+DIS_xmlab376,train,Pneumonia,perclass,"{""Atelectasis"": -0.18, ""Cardiomegaly"": 0.336, ""Consolidation"": 0.867, ""Edema"": -2.461, ""Effusion"": -0.352, ""Emphysema"": -1.43, ""Fibrosis"": -1.648, ""Hernia"": -3.742, ""Infiltration"": 1.703, ""Mass"": -0.352, ""Nodule"": -0.328, ""Pleural Thickening"": -0.852, ""Pneumonia"": 0.719, ""Pneumothorax"": -3.047, ""No Finding"": -4.125}",Infiltration,False
+DIS_xmlab378,test,Infiltration,open,Pneumothorax,Pneumothorax,False
+DIS_xmlab378,test,Infiltration,forced,"Atelectasis, Cardiomegaly, Effusion, Emphysema, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothorax",Atelectasis,False
+DIS_xmlab378,test,Infiltration,perclass,"{""Atelectasis"": 0.742, ""Cardiomegaly"": 1.781, ""Consolidation"": -0.461, ""Edema"": -3.109, ""Effusion"": -0.617, ""Emphysema"": 3.453, ""Fibrosis"": -0.352, ""Hernia"": -0.094, ""Infiltration"": 0.601, ""Mass"": 0.852, ""Nodule"": -0.297, ""Pleural Thickening"": 1.102, ""Pneumonia"": -1.367, ""Pneumothorax"": 0.648, ""No Finding"": -4.438}",Emphysema,False
+DIS_xmlab379,validation,Atelectasis,open,Pneumonia,Pneumonia,False
+DIS_xmlab379,validation,Atelectasis,forced,Atelectasis,Atelectasis,True
+DIS_xmlab379,validation,Atelectasis,perclass,"{""Atelectasis"": 3.437, ""Cardiomegaly"": -2.656, ""Consolidation"": -2.07, ""Edema"": -2.375, ""Effusion"": -0.633, ""Emphysema"": -2.281, ""Fibrosis"": 2.133, ""Hernia"": -5.172, ""Infiltration"": -0.438, ""Mass"": -1.359, ""Nodule"": -0.875, ""Pleural Thickening"": -1.461, ""Pneumonia"": -2.039, ""Pneumothorax"": -3.141, ""No Finding"": -2.383}",Atelectasis,True
+DIS_xmlab380,validation,Atelectasis,open,Pulmonary Mass,Mass,False
+DIS_xmlab380,validation,Atelectasis,forced,"Atelectasis, Cardiomegaly, Consolidation, Effusion, Emphysema, Fibrosis, Hernia, Infiltration, Mass, Nodule, Pleural Thickening, Pneumothor",Atelectasis,True
+DIS_xmlab380,validation,Atelectasis,perclass,"{""Atelectasis"": 1.672, ""Cardiomegaly"": -0.055, ""Consolidation"": 0.578, ""Edema"": -2.828, ""Effusion"": 2.43, ""Emphysema"": 0.047, ""Fibrosis"": 2.398, ""Hernia"": -2.531, ""Infiltration"": 0.734, ""Mass"": 1.875, ""Nodule"": 0.641, ""Pleural Thickening"": 0.226, ""Pneumonia"": -0.172, ""Pneumothorax"": -1.57, ""No Finding"": -6.828}",Effusion,False
+DIS_xmlab382,train,Pneumonia,open,Atelectasis,Atelectasis,False
+DIS_xmlab382,train,Pneumonia,forced,No Finding,No Finding,False
+DIS_xmlab382,train,Pneumonia,perclass,"{""Atelectasis"": 1.398, ""Cardiomegaly"": -4.484, ""Consolidation"": -2.734, ""Edema"": -5.875, ""Effusion"": -2.117, ""Emphysema"": 0.453, ""Fibrosis"": 0.516, ""Hernia"": -3.336, ""Infiltration"": -1.227, ""Mass"": -1.195, ""Nodule"": -0.664, ""Pleural Thickening"": -0.32, ""Pneumonia"": -3.172, ""Pneumothorax"": -2.82, ""No Finding"": -1.055}",Atelectasis,False
+DIS_xmlab386,test,Effusion,open,Pleural Effusion,Effusion,True
+DIS_xmlab386,test,Effusion,forced,"Atelectasis, Effusion",Atelectasis,False
+DIS_xmlab386,test,Effusion,perclass,"{""Atelectasis"": 1.726, ""Cardiomegaly"": 0.711, ""Consolidation"": 0.758, ""Edema"": -1.836, ""Effusion"": 2.781, ""Emphysema"": -2.734, ""Fibrosis"": -1.43, ""Hernia"": -1.055, ""Infiltration"": 0.187, ""Mass"": -0.469, ""Nodule"": -2.078, ""Pleural Thickening"": -0.547, ""Pneumonia"": -0.617, ""Pneumothorax"": -3.313, ""No Finding"": -6.141}",Effusion,True
+DIS_xmlab390,train,Effusion,open,Pleural Effusion,Effusion,True
+DIS_xmlab390,train,Effusion,forced,"Atelectasis, Effusion",Atelectasis,False
+DIS_xmlab390,train,Effusion,perclass,"{""Atelectasis"": 2.023, ""Cardiomegaly"": -0.305, ""Consolidation"": -1.195, ""Edema"": -3.68, ""Effusion"": 3.492, ""Emphysema"": -2.531, ""Fibrosis"": 0.727, ""Hernia"": -3.734, ""Infiltration"": -0.555, ""Mass"": -1.195, ""Nodule"": -0.461, ""Pleural Thickening"": -0.664, ""Pneumonia"": -1.984, ""Pneumothorax"": -3.25, ""No Finding"": -4.047}",Effusion,True

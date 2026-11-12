@@ -12,7 +12,7 @@ scorer, retrieval setting and decision rule are as fixed in `docs/phase2_rag_pla
 | 0 | Literature review, six papers, gap analysis | Done (`docs/literature_review.md`) |
 | 1, 1b | Zero-shot baseline, knowledge and side sets | Run, **text-only control** (image did not reach the model); rerun pending |
 | 1c | Perception diagnostics (notebook 03) | **Rerun with the image on 13 Nov 2026**: left/right and heart size follow the image (`docs/phase1c_findings_with_image.md`) |
-| 1d | Disease naming on 130 images | First run exposed the bug (`docs/experiment_log.md`, entry 17) |
+| 1d | Disease naming on 130 images (notebook 04) | **Run with the image on 13 Nov 2026**: 52-56% against 22%, method `perclass` chosen (`docs/phase1d_findings_with_image.md`) |
 | Fix | `patch_image_cache_check` plus IMAGE CHECK cell in every notebook | Done and confirmed on Colab (13 Nov 2026) after a second fix for a dtype mismatch in the visual tower (entry 18) |
 | 2 | Knowledge-grounded RAG: corpus, BM25, six arms, analysis scripts | Built; retrieval check and router check done (no model); **model runs pending** |
 | 3 | Targeted fine-tuning / second model | Not designed (see "Not yet designed") |
@@ -23,7 +23,7 @@ Run order is fixed by Amendment 6, point 4 of `docs/evaluation_protocol.md`: 04,
 
 | # | Step | Who / where | Inputs and outputs | Pass / decision | Specified in |
 |---|---|---|---|---|---|
-| 1 | Run notebook 04 (disease naming), `QUICK = True` then `False`. The IMAGE CHECK must pass first. | You, Colab T4 | out: `disease_results.csv`, `disease_checkpoint.json`, printed `CHOSEN_METHOD` | Disease naming above the majority baseline (22%) and the shuffled-label control; otherwise perception is the bottleneck and A5/A6 are expected to show little | `docs/phase2_rag_plan.md` sections 3, 7, 11 |
+| 1 | **Done (13 Nov 2026).** Run notebook 04 (disease naming), `QUICK = True` then `False`. The IMAGE CHECK must pass first. | You, Colab T4 | out: `disease_results.csv`, `disease_checkpoint.json`, printed `CHOSEN_METHOD` | Disease naming above the majority baseline (22%) and the shuffled-label control; otherwise perception is the bottleneck and A5/A6 are expected to show little | `docs/phase2_rag_plan.md` sections 3, 7, 11 |
 | 2 | Analyse step 1: `python3 scripts/analyze_disease.py disease_results.csv` | Here | in: the CSV; out: top-choice accuracy per method, per-class AUC | Method with the best validation accuracy is used downstream | same, section 3 |
 | 3 | Run notebook 05 (arms A1 to A6) with `DISEASE_METHOD` set to the chosen method | You, Colab T4 | out: `rag_results.csv`, `rag_settings.json`, `rag_checkpoint.json` | none yet | section 4, 11 |
 | 4 | `python3 scripts/analyze_rag.py rag_results.csv --make-sheets ratings/` | Here | out: three shuffled rating sheets | none | section 6, 11 |
