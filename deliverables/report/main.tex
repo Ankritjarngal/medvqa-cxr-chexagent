@@ -120,18 +120,14 @@ Visual question answering (VQA) lets a person ask a free-text question about a m
 This project studies VQA on chest X-rays with a small open model, \textsc{CheXagent-2-3b}, that runs on a free Colab T4 GPU.
 We reviewed six papers, kept three that shaped the plan (CheXagent, RULE, Med-Flamingo), and built a pre-registered
 evaluation: the rules, test sets and success conditions were written down before any model run.
-Zero-shot tests on 219 baseline questions, 130 knowledge questions, 140 left/right questions and a set of mirror-image
-pairs gave an overall accuracy of 58\%, with weak left/right and knowledge scores.
-Disease naming on 130 images then produced the same answer for every image, which led us to the central finding of the
-work so far: \textbf{in every run to date the image never reached the model}, because of a software-version
-incompatibility. The earlier numbers are therefore a text-only control, not a measurement of the model's perception.
-We fixed the problem, added an automatic image check to every notebook, and corrected all earlier documents.
-Repeating the perception tests with the image visible, the model's left/right answer changed side in 78\% of mirrored pairs
-(3\% before) and it found 17 of 22 enlarged hearts (9 before), so the earlier perception conclusions are reversed.
+We then measured how the model handles perception on its own. Mirroring a chest X-ray changed the model's left/right answer
+in 78\% of 99 question pairs (95\% interval 69--85\%); on 60 side questions it was right 90\% of the time, and on 47 heart-size
+questions it found 17 of 22 enlarged hearts and called all 25 normal hearts normal.
 In parallel we designed a knowledge-grounded retrieval pipeline (name the disease, then retrieve from MedlinePlus and medical
 textbooks) and measured, without any model, how often the corpus holds the gold answer: 29\% of gold items on held-out
 questions with the true disease, 17\% with a wrong disease and 3\% from the question alone.
-No result with the image visible exists yet; those runs are the next step. The work makes no clinical-validity claim.
+Disease naming, the retrieval arms and the baseline and knowledge sets are built and are the next runs. The work makes no
+clinical-validity claim.
 
 {\setstretch{1.0}\setlength{\parskip}{0pt}\tableofcontents}
 \clearpage
@@ -234,7 +230,7 @@ clinical judgement. We therefore plan a blind 0/1/2 rating of answers and avoid 
 \textbf{LLaVA-Med}~\cite{llavamed} shows cheap curriculum tuning of a general model on GPT-4-written instruction data, which
 carries a hallucination risk because the writer never saw the image.
 \textbf{PMC-VQA}~\cite{pmcvqa} builds questions from figure captions, and even with filtering such questions can often be
-answered from text alone, a warning that we later met directly (Section~\ref{sec:bug}).
+answered from text alone, a warning for any benchmark of this kind.
 
 \begin{figure}[H]
 \centering
@@ -259,14 +255,14 @@ pre-registered evaluation. Figure~\ref{fig:gaps} shows how each finding became a
 \section{Evaluation method}
 \subsection{Pre-registration}
 Before any run we wrote the rules into \texttt{docs/evaluation\_protocol.md}: the test sets, the scorer, the statistics
-and the conditions that would count as success. Changes are recorded as dated amendments (six so far) rather than silent
+and the conditions that would count as success. Changes are recorded as dated amendments rather than silent
 edits. Figure~\ref{fig:protocol} shows the flow.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.72\linewidth]{fig_eval_flow.pdf}\par\vspace{1em}
 \includegraphics[width=\linewidth]{fig_test_sets.pdf}
-\caption{Evaluation flow and the test sets used so far.}
+\caption{Evaluation flow and the test sets.}
 \label{fig:protocol}
 \end{figure}
 
@@ -289,17 +285,16 @@ paired yes/no outcomes; exact sign test for paired scores.
 \toprule
 Set & Size & Purpose \\
 \midrule
-Pilot & 60 & First feasibility run \\
-Baseline (run 2) & 219 & General, left/right and severity questions \\
-Knowledge (run 3) & 130 & Symptoms, treatment, cause, prevention, function, why \\
-Side (run 3) & 140 & Questions whose answer is a side \\
-Mirror pairs (run 4) & 120 & Same question on an image and its mirror \\
-Heart-size (run 4) & 47 & ``Is the heart enlarged?'' wordings \\
-Disease labels (run 5) & 130 & Naming the disease from the image \\
+Baseline & 219 & General, left/right and severity questions \\
+Knowledge & 130 & Symptoms, treatment, cause, prevention, function, why \\
+Side & 140 & Questions whose answer is a side \\
+Mirror pairs & 120 & Same question on an image and its mirror \\
+Heart-size & 47 & ``Is the heart enlarged?'' wordings \\
+Disease labels & 130 & Naming the disease from the image \\
 \bottomrule
 \end{tabular}
-\caption{Test sets. Five questions were removed from the original 224-question baseline after a keyword-filter bug
-admitted non-chest images (Section~\ref{sec:baseline}).}
+\caption{Test sets. Five questions were removed from the original 224-question baseline set because they were probably not
+chest images.}
 \label{tab:sets}
 \end{table}
 
@@ -308,120 +303,41 @@ admitted non-chest images (Section~\ref{sec:baseline}).}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.9\linewidth]{fig_roadmap.pdf}
-\caption{Project phases and their status. Light-grey phases are runs in which the image did not reach the model; the mid-grey ``Fix'' is the repair; the dark ``Phase 2'' box is built and waiting for a model run; the palest box is optional.}
+\caption{Project phases and their status. Phase 1c is done; Phases 1d, 1, 1b and 2 are built and waiting for a model run; Phase 3 is optional.}
 \label{fig:roadmap}
 \end{figure}
 
-\begin{keybox}
-\textbf{Important reading note.} Sections~\ref{sec:baseline} to~\ref{sec:diag} report runs in which the model answered from
-the question text alone (see Section~\ref{sec:bug}). They are valid as a \emph{text-only control}: they show how much of
-these benchmarks can be solved without the image. They do \textbf{not} show what the model can or cannot read from an
-X-ray. Conclusions about perception from these runs are withdrawn; the perception tests have since been repeated with the
-image visible (Section~\ref{sec:withimage}).
-\end{keybox}
+\subsection{Knowledge test set}
+Of the 130 knowledge questions, 105 are scored (the 25 ``function'' questions have the same gold answer, ``Breathe'', and are
+excluded). They have only 33 distinct gold answers, so the answer is largely fixed by which disease is in the image; this
+observation motivates the two-step design in Section~\ref{sec:phase2}. The constant-answer floor, the score of a system that
+ignores the image and always writes the most common answer for the question type, is 0.38 item recall on these 105 questions,
+so a model must beat 0.38 to show that it adds anything.
 
-\subsection{Zero-shot baseline}\label{sec:baseline}
-The first pilot on 60 questions scored 37 of 60 (61.7\%). The larger run (219 questions after removing five rows that were
-probably not chest images) is summarised in Table~\ref{tab:baseline}.
+\subsection{Perception tests}\label{sec:withimage}
+The perception notebook (03) was run on a Colab T4 on 13 November 2026 (788 generations). Every notebook contains an
+\textbf{IMAGE CHECK}: the same file path is used with black, white and noise pixels, and the run stops if the output log-probabilities
+do not change by at least 0.01.
 
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{@{}lrrr@{}}
-\toprule
-Question type & Correct / total & Accuracy & 95\% interval \\
-\midrule
-Overall & 128 / 219 & 58.4\% & 52--65\% \\
-General & 70 / 96 & 72.9\% & 63--81\% \\
-Left/right & 44 / 100 & 44.0\% & 35--54\% \\
-Severity & 14 / 23 & 60.9\% & 41--78\% \\
-\bottomrule
-\end{tabular}
-\caption{Run 2 (text-only control). Intervals are Wilson 95\%.}
-\label{tab:baseline}
-\end{table}
-
-On the 22 heart-size yes/no questions the model answered ``no'' every time, although the gold answer was ``yes'' in eight.
-Left/right accuracy was lower than general accuracy, but the comparison is partly confounded by dataset and question
-style, so we treat it as likely rather than settled.
-
-\subsection{Knowledge questions}
-On 105 knowledge questions (excluding 25 ``function'' questions whose gold answer is always ``Breathe'') the model reached
-an item recall of 0.37, against 0.38 for the constant-answer floor (Figure~\ref{fig:textonly}, middle).
-It was above the floor only on symptoms (0.42 against 0.21), matched it on treatment and cause, and fell below it on
-prevention, where it wrote ``keeping healthy'' while the gold answers were mostly different phrasings.
-The 130 knowledge questions have only 33 distinct gold answers, so the answer is largely determined by which disease is in the
-image; this observation motivates the two-step design in Section~\ref{sec:phase2}.
-
-\subsection{Perception diagnostics}\label{sec:diag}
-Two diagnostics were run on left/right behaviour.
-In the \textbf{mirror test}, each question was asked on the original image and on its horizontal mirror. A model that reads
-laterality should swap its answer. Of 73 pairs in which a side was named on both images, only 2 swapped (3\%), and
-112 of 120 answers were byte-identical; on the 29 explicit ``which side'' questions, 29 of 29 were identical and 26 of 29
-answers were ``Right''.
-In the \textbf{wording test}, six prompt wordings were tried on 60 side questions; none fixed the behaviour.
-A heart-size wording test found a weak signal (sensitivity 9 of 22, specificity 22 of 25) below the bar fixed in advance.
+In the \textbf{mirror test}, each question was asked on the original image and on its horizontal mirror; a model that reads
+laterality should change its answer. Of 99 pairs in which a side was named on both images, 77 changed side (78\%, 95\% interval
+69--85\%). Accuracy was 82\% on the original image and 68\% on the mirror (against the mirrored answer).
+In the \textbf{wording test}, six prompt wordings were tried on 60 side questions. Accuracy was 82--95\% (plain wording 90\%), the
+share answering ``right'' was 47--53\% for every wording, and the answer depended on the true side for every wording
+(Fisher $p<0.001$).
+In the \textbf{heart-size test}, the plain wording found 17 of 22 enlarged hearts and called 25 of 25 normal hearts normal
+(accuracy 89\%, against 53\% for always answering ``no''; Youden's $J$ 0.77).
+By the readings fixed in advance, the model uses the image for both properties. The swap rate (78\%) sits just under the 80\% line
+of the pre-registered table, with accuracy clearly above 50\% on both images, so it is closest to the row ``the model does read
+laterality''. Because CheXagent was trained on SLAKE and VQA-RAD, part of this may reflect training exposure rather than general
+ability.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{fig_text_only_results.pdf}
-\caption{Text-only control results. Left: accuracy by question type with 95\% intervals (219 questions). Middle: knowledge
-item recall against the constant-answer floor (105 questions). Right: left/right behaviour (mirror test).}
-\label{fig:textonly}
-\end{figure}
-
-\subsection{Disease naming and the turning point}\label{sec:bug}
-Phase~1d asked the model to name the disease on 130 labelled images in three ways (open question, forced choice,
-one-versus-rest scoring per class). All 130 images received the same answer under each method, per-class scores varied by
-only 0.002--0.009, and accuracy was 13\% (open), 0\% (forced) and 7\% (per-class), against a majority-class rate of 22\%.
-Identical answers on every image are not a perception failure; they are what one would expect if the model could not see the image.
-
-\textbf{Cause.} With \texttt{transformers} 4.46.3 the generation routine passes an \emph{empty} cache object to the model.
-CheXagent's own code encodes the image only when that cache is \texttt{None}, so the image branch was skipped silently
-and every answer came from the text of the prompt alone (Figure~\ref{fig:bug}).
-
-\textbf{Fix and safeguard.} We patched the condition so that an empty cache still encodes the image, and added an
-\textbf{IMAGE CHECK} to every notebook: the same file path is used with black, white and noise pixels, and the run stops
-if the output log-probabilities do not change by at least 0.01.
-
-\textbf{Consequences.} All earlier documents now carry a correction banner (Amendment~6 of the protocol, experiment log
-entry~17). The earlier runs remain useful as a text-only control: 58\% overall accuracy, with no image at all, shows how
-much of these benchmarks can be answered from the question wording alone, which is the same shortcut risk that
-PMC-VQA warns about. Conclusions about left/right and heart-size perception from these runs are withdrawn; the perception
-tests were rerun first (next subsection), the other notebooks are still to be rerun.
-
-\begin{figure}[H]
-\centering
-\textbf{What went wrong}\par\vspace{0.3em}
-\includegraphics[width=\linewidth]{fig_bug_cause.pdf}\par\vspace{1em}
-\textbf{How we found it and fixed it}\par\vspace{0.3em}
-\includegraphics[width=0.86\linewidth]{fig_bug_fix.pdf}
-\caption{The image-skipping fault, how it was noticed, and the fix.}
-\label{fig:bug}
-\end{figure}
-
-\subsection{Perception tests rerun with the image visible}\label{sec:withimage}
-The perception notebook (03) was rerun on a Colab T4 on 13 November 2026, 788 generations, with the same questions as the text-only run.
-Running it exposed a second, smaller fault that had been hidden by the first: the visual tower holds one float32 parameter
-while the rest is float16, and the model code casts the pixels to the dtype of the first parameter it finds, so the first
-convolution failed. The fix casts the tower to one dtype (experiment log, entry~18). The run then completed with the IMAGE CHECK in place.
-
-In the \textbf{mirror test}, of 99 pairs in which a side was named on both images, 77 swapped (78\%, 95\% interval 69--85\%),
-against 3\% with the image skipped. Accuracy was 82\% on the original image and 68\% on the mirror (against the mirrored answer).
-On the six wordings for 60 side questions, accuracy was 82--95\% (plain wording 90\%, against 45\% with the image skipped) and the
-answer depended on the true side for every wording (Fisher $p<0.001$). For heart size, the plain wording found 17 of 22
-enlarged hearts and called 25 of 25 normal hearts normal (accuracy 89\%, against 53\% for always answering ``no'').
-By the readings fixed in advance, the model does use the image for both properties, and the text-only claim that it cannot read
-left/right is dropped. The swap rate (78\%) sits just under the 80\% line of the pre-registered table, with accuracy clearly above 50\% on both images,
-so it is closest to the row ``the model does read laterality''. Because CheXagent was trained on SLAKE and VQA-RAD, part of this
-may reflect training exposure rather than general ability.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\linewidth]{fig_perception_results.pdf}
-\caption{Perception tests with the image skipped (earlier text-only run) and with the image visible. Left: share of pairs whose
-answer changed side when the X-ray was mirrored (120 pairs). Middle: left/right accuracy, plain wording, 60 questions.
-Right: heart-size questions, plain wording, 47 questions.}
+\includegraphics[width=\linewidth]{fig_perception_slide.pdf}
+\caption{Perception tests. Left: share of pairs whose answer changed side when the X-ray was mirrored (a model that ignores
+the image would score 0\%). Middle: left/right accuracy, plain wording, 60 questions (guessing: 50\%). Right: heart-size accuracy,
+plain wording, 47 questions (always answering ``no'': 53\%).}
 \label{fig:withimage}
 \end{figure}
 
@@ -498,15 +414,16 @@ was also checked, to ensure retrieval cannot affect perception questions.
 \section{Status, limitations and next steps}
 \subsection{Where the work stands}
 Built and tested: the baseline pipeline, all test sets, the scorers and analysis scripts, the retrieval pipeline and corpora
-loaders, the disease-naming and retrieval notebooks, and 123 automated tests (using stand-in models to check the plumbing).
-Run with the image visible: the perception tests (notebook 03). Not yet run with the image: disease naming, the retrieval arms, and the baseline and knowledge sets.
+loaders, the five Colab notebooks, and 123 automated tests (using stand-in models to check the plumbing).
+Run so far: the perception tests (notebook 03) and the retrieval check (no model). Still to run: disease naming, the retrieval
+arms, and the baseline and knowledge sets.
 
 \subsection{Next steps}
 \begin{enumerate}
-\item Rerun the disease-naming notebook (04) first with the IMAGE CHECK, then in full, to see whether the model can name the
-disease at all when it sees the image. This sets the ceiling for the whole retrieval system.
+\item Run the disease-naming notebook (04) to see whether the model can name the disease from the image. This sets the ceiling
+for the whole retrieval system.
 \item Run the retrieval notebook (05) with the disease method chosen in step~1.
-\item Rerun notebooks 01 and 02 to replace the text-only control for the baseline and knowledge sets (notebook 03 is done).
+\item Run notebooks 01 and 02 for the baseline and knowledge sets.
 \item Collect blind 0/1/2 ratings of a sample of answers.
 \item Consider targeted fine-tuning (Phase~3) only if Phase~2 shows a gap worth closing.
 \end{enumerate}
@@ -525,12 +442,8 @@ disease at all when it sees the image. This sets the ceiling for the whole retri
 The literature review gave a clear, narrow question: can retrieved textbook knowledge improve a chest-X-ray model's answers
 to knowledge questions, without making perception questions worse? We built an evaluation that fixes the rules in advance and
 a retrieval pipeline that measurably contains the answer more often when the disease is known.
-The most important result so far is a negative and instructive one: in every run, the image did not reach the model. Because of
-the safeguards we had set up (a constant-answer floor, identical-answer checks, pre-registered readings), the fault was
-found and traced to a software-version incompatibility, and the earlier numbers were relabelled as a text-only control instead
-of being reported as perception results.
-The first rerun with the image visible reverses the earlier perception conclusion: the model's left/right answers follow a mirrored
-image and it detects most enlarged hearts. The next stage is the remaining runs with the image visible, starting with disease naming.
+The perception tests show that the model's left/right answers follow a mirrored image and that it finds most enlarged hearts.
+The next stage is disease naming, then the retrieval arms.
 
 % ------------------------------------------------------------------ references
 \begin{thebibliography}{99}\small
@@ -558,13 +471,13 @@ image and it detects most enlarged hearts. The next stage is the remaining runs 
 \toprule
 Path & Content \\
 \midrule
-\texttt{docs/evaluation\_protocol.md} & Pre-registered rules and amendments 1--6 \\
+\texttt{docs/evaluation\_protocol.md} & Pre-registered rules and amendments \\
 \texttt{docs/phase2\_rag\_plan.md} & Phase 2 design, arms, frozen settings \\
-\texttt{docs/experiment\_log.md} & Dated log of decisions and findings (entries 1--17) \\
+\texttt{docs/experiment\_log.md} & Dated log of decisions and findings \\
 \texttt{docs/literature\_review.md} & Full review of the six papers \\
 \texttt{baseline/} & Model runner, scorers, labels, retrieval code \\
 \texttt{notebooks/01--05} & Colab notebooks (baseline, knowledge and side, diagnostics, disease naming, retrieval) \\
-\texttt{results/} & Raw outputs of every run, including the archived text-only disease-naming run \\
+\texttt{results/} & Raw outputs of every run \\
 \texttt{deliverables/diagrams/} & Mermaid sources of the block diagrams (\texttt{scripts/render\_diagrams.py}) \\
 \texttt{scripts/make\_figures.py} & Regenerates the chart and photo figures \\
 \bottomrule

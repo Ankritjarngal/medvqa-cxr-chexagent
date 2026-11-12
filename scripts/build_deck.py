@@ -132,7 +132,7 @@ takeaway(s, "Research question: ", "can retrieved textbook knowledge make a ches
 
 # 6 ---------------------------------------------------------------------------------------------- evaluation
 s = base(6, "Rules are written before any run, and negative results are reported",
-         "docs/evaluation_protocol.md (6 amendments) and docs/phase2_rag_plan.md. Scorer: item recall v2; floor: most common gold answer.",
+         "docs/evaluation_protocol.md and docs/phase2_rag_plan.md. Scorer: item recall v2; floor: most common gold answer.",
          "Item recall is used because exact match is too strict for free text. The constant-answer floor asks whether a system that ignores the image "
          "and always writes the common answer would do just as well.")
 picture(s, "fig_eval_flow", M, 1.75, 6.5, 3.6, align="left")

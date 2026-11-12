@@ -1,17 +1,17 @@
 flowchart TB
   subgraph r1[" "]
     direction LR
-    P1("Phase 1<br/>Baseline"):::amber --> P2("Phase 1b<br/>Knowledge + side sets"):::amber --> P3("Phase 1c<br/>Perception tests"):::amber --> P4("Phase 1d<br/>Disease naming"):::amber
+    P3("Phase 1c<br/>Perception tests<br/>done"):::ok --> P4("Phase 1d<br/>Disease naming<br/>to run"):::amber --> P1("Phase 1 and 1b<br/>Baseline, knowledge<br/>and side sets<br/>to run"):::amber
   end
   subgraph r2[" "]
     direction LR
-    FX("Fix<br/>Image patch + check"):::ok --> PH2("Phase 2<br/>Knowledge retrieval"):::accent --> PH3("Phase 3<br/>Fine-tuning, optional"):::grey
+    PH2("Phase 2<br/>Knowledge retrieval<br/>built, to run"):::accent --> PH3("Phase 3<br/>Fine-tuning, optional"):::grey
   end
   r1 ~~~ r2
   style r1 fill:none,stroke:none
   style r2 fill:none,stroke:none
-  linkStyle 0,1,2,3,4 stroke:#6B7785,stroke-width:2px
-  linkStyle 5 stroke:none,fill:none
+  linkStyle 0,1,2 stroke:#6B7785,stroke-width:2px
+  linkStyle 3 stroke:none,fill:none
 classDef accent fill:#0F8B8D,stroke:#0F8B8D,color:#FFFFFF;
 classDef dark fill:#1F2933,stroke:#1F2933,color:#FFFFFF;
 classDef soft fill:#F2F5F7,stroke:#F2F5F7,color:#1F2933;

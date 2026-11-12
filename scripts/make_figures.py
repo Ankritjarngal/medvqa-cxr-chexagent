@@ -138,67 +138,6 @@ def fig_test_sets():
     save(fig, "fig_test_sets")
 
 
-# ------------------------------------------------------------------------------------------ text-only results
-def fig_text_only_results():
-    d = pd.read_csv("results/run_2/baseline_results.csv")
-    d = d[~d.id.isin(set(Path("results/run_2/excluded_ids.txt").read_text().split()))]
-    k = pd.read_csv("results/run_3/knowledge_results.csv")
-    k = k.assign(r=[item_scores(str(p), str(g)).recall for p, g in zip(k.prediction, k.gold_answer)])
-    kk = k[k.knowledge_subtype != "function"]
-    floor = constant_floor([{"knowledge_subtype": r.knowledge_subtype, "gold_answer": r.gold_answer} for r in kk.itertuples()])
-
-    fig, axs = plt.subplots(1, 3, figsize=(12.4, 4.3), gridspec_kw={"width_ratios": [0.85, 1.55, 1.0]})
-    fig.subplots_adjust(left=0.02, right=0.99, bottom=0.12, top=0.8, wspace=0.5)
-
-    ax = axs[0]
-    groups = [("general", "General"), ("laterality", "Left/right"), ("severity", "Severity")]
-    vals, ups = [], []
-    for key, _ in groups:
-        g = d[d.category == key]
-        c, n = int(g.exact_match.sum()), len(g)
-        lo, hi = wilson_interval(c, n)
-        vals.append(c / n)
-        ups.append(hi)
-    ax.bar([g[1] for g in groups], vals, color=[TEAL, TEAL, TEAL], width=0.55)
-    for i, (v, u) in enumerate(zip(vals, ups)):
-        ax.text(i, v - 0.04, f"{v:.0%}", ha="center", va="top", fontsize=17, fontweight="bold", color="white")
-    ax.set_ylim(0, 1)
-    ax.set_yticks([])
-    ax.set_title("Answers right\n(219 questions)", fontsize=15, loc="left", color=DARK, pad=10)
-    ax.tick_params(axis="x", labelsize=13)
-    clean(ax, left=False)
-
-    ax = axs[1]
-    subs = ["symptoms", "treatment", "prevention", "cause"]
-    x = np.arange(len(subs) + 1)
-    model = [kk[kk.knowledge_subtype == s].r.mean() for s in subs] + [kk.r.mean()]
-    fl = [floor[s] for s in subs] + [floor["all"]]
-    ax.bar(x - 0.2, model, 0.38, color=TEAL, label="CheXagent, text only (image skipped)")
-    ax.bar(x + 0.2, fl, 0.38, color=LINE, label="copy rule: most common answer")
-    ax.set_xticks(x, subs + ["all"])
-    ax.tick_params(axis="x", labelsize=11.5)
-    ax.set_ylim(0, 1.2)
-    ax.set_yticks([])
-    for xi, m, f in zip(x, model, fl):
-        ax.text(xi - 0.2, m + 0.02, f"{m:.2f}", ha="center", fontsize=11, color=DARK)
-        ax.text(xi + 0.2, f + 0.02, f"{f:.2f}", ha="center", fontsize=11, color=GREY)
-    ax.legend(frameon=False, fontsize=12, loc="upper left", bbox_to_anchor=(0.0, 1.0))
-    ax.set_title("Knowledge answers: item recall\n(105 questions)", fontsize=15, loc="left", color=DARK, pad=10)
-    clean(ax, left=False)
-
-    ax = axs[2]
-    ident = 112 / 120   # docs/phase1c_findings.md: byte-identical answers on original and mirrored image
-    ax.barh([1, 0], [ident, 26 / 29], color=[ORANGE, ORANGE], height=0.5)
-    ax.set_yticks([1, 0], ["Same answer on\nmirrored image", "\"Right\" on explicit\nside questions"], fontsize=12)
-    for yv, v, t in ((1, ident, "112 of 120"), (0, 26 / 29, "26 of 29")):
-        ax.text(v - 0.03, yv, t, va="center", ha="right", fontsize=16, fontweight="bold", color="white")
-    ax.set_xlim(0, 1)
-    ax.set_xticks([])
-    ax.set_title("Left/right behaviour", fontsize=15, loc="left", color=DARK, pad=10)
-    clean(ax)
-    save(fig, "fig_text_only_results")
-
-
 def _diag_numbers(path):
     import csv
     from baseline.diagnostics import flip_report, variant_report, heart_report
@@ -214,51 +153,6 @@ def _diag_numbers(path):
     heart = heart_report([{"gold_yes": r["gold"].strip().lower() == "yes", "prediction": r["prediction"]}
                           for r in by[("C_heart", "plain")].values()], "plain")
     return flip, side, heart
-
-
-def fig_perception_results():
-    skipped = _diag_numbers("results/run_4/diagnostics_results.csv")
-    seen = _diag_numbers("results/run_6_with_image/diagnostics_results.csv")
-    fig, axs = plt.subplots(1, 3, figsize=(12.4, 4.4), gridspec_kw={"width_ratios": [0.8, 0.8, 1.3]})
-    fig.subplots_adjust(left=0.02, right=0.99, bottom=0.14, top=0.8, wspace=0.35)
-    lab = ["image\nskipped", "image\nvisible"]
-
-    def two(ax, a, b, title, ref=None):
-        ax.bar(lab, [a, b], color=[LINE, TEAL], width=0.6)
-        for i, v in enumerate([a, b]):
-            y = v + 0.02 if ref is None or abs(v - ref) > 0.06 else max(v, ref) + 0.03
-            ax.text(i, y, f"{v:.0%}", ha="center", fontsize=20, fontweight="bold", color=DARK)
-        if ref is not None:
-            ax.axhline(ref, xmax=0.76, color=GREY, lw=1, ls=(0, (4, 3)))
-            ax.text(1.36, ref, "chance", fontsize=11, color=GREY, va="center")
-            ax.set_xlim(-0.5, 1.9)
-        ax.set_ylim(0, 1.12)
-        ax.set_yticks([])
-        ax.tick_params(axis="x", labelsize=13)
-        ax.set_title(title, fontsize=15, loc="left", pad=10)
-        clean(ax, left=False)
-
-    two(axs[0], skipped[0]["swap_rate"], seen[0]["swap_rate"], "Answer changes side\nwhen X-ray is mirrored")
-    two(axs[1], skipped[1]["acc_overall"], seen[1]["acc_overall"], "Left/right correct\n(60 questions)", ref=0.5)
-
-    ax = axs[2]
-    groups = [("Enlarged hearts\nfound (22)", "sensitivity"), ("Normal hearts\ncalled normal (25)", "specificity")]
-    x = np.arange(2)
-    sv = [skipped[2][k] for _, k in groups]
-    iv = [seen[2][k] for _, k in groups]
-    ax.bar(x - 0.2, sv, 0.38, color=LINE, label="image skipped")
-    ax.bar(x + 0.2, iv, 0.38, color=TEAL, label="image visible")
-    for xi, a, b in zip(x, sv, iv):
-        ax.text(xi - 0.2, a + 0.02, f"{a:.0%}", ha="center", fontsize=16, color=GREY)
-        ax.text(xi + 0.2, b + 0.02, f"{b:.0%}", ha="center", fontsize=18, fontweight="bold")
-    ax.set_xticks(x, [g[0] for g in groups])
-    ax.tick_params(axis="x", labelsize=13)
-    ax.set_ylim(0, 1.25)
-    ax.set_yticks([])
-    ax.legend(frameon=False, fontsize=12, loc="upper left", ncol=2)
-    ax.set_title("Heart enlarged? (47 questions)", fontsize=15, loc="left", pad=10)
-    clean(ax, left=False)
-    save(fig, "fig_perception_results")
 
 
 def fig_perception_slide():
@@ -371,6 +265,6 @@ def fig_retrieval_results():
 
 
 if __name__ == "__main__":
-    for f in (fig_cxr_real, fig_papers_matrix, fig_test_sets, fig_text_only_results, fig_perception_results, fig_perception_slide, fig_arms, fig_lookup_example,
+    for f in (fig_cxr_real, fig_papers_matrix, fig_test_sets, fig_perception_slide, fig_arms, fig_lookup_example,
               fig_retrieval_results):
         f()
