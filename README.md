@@ -11,14 +11,16 @@ This is **not** a diagnostic tool and is intended for educational/research purpo
 
 ## Project roadmap
 
-1. **Phase 1 — Baseline testing (current stage, see below):** run pretrained CheXagent-2-3b
+1. **Phase 1 — Baseline testing (run; results are a text-only control, see the correction below):** run pretrained CheXagent-2-3b
    zero-shot on a chest-X-ray question set, broken down by question difficulty, to measure
    where it's actually weak.
-2. **Phase 2 — RAG layer:** add knowledge-grounded retrieval (authoritative finding
+2. **Phase 2 — RAG layer (built, retrieval check done, model runs pending):** add knowledge-grounded retrieval (authoritative finding
    definitions/criteria, not just similar patients' reports) targeted at whatever Phase 1
    shows is weak, designed around RULE's documented RAG failure modes.
 3. **Phase 3 — Fine-tuning (only if needed):** a targeted LoRA fine-tune, only if Phase 2's
    RAG layer doesn't close the gap on its own.
+
+The ordered next steps, the decision table and the parts not yet designed are in [`docs/next_steps.md`](docs/next_steps.md).
 
 ## Repository contents
 

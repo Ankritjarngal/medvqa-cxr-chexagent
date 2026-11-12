@@ -20,10 +20,11 @@ not for clinical use.
   `past_key_values is None`. Fixed by `patch_image_cache_check` (`baseline/model.py` and the notebook model cell); every notebook now
   has an "IMAGE CHECK" cell that raises if changing the pixels does not change the output. All earlier model results are text-only
   controls (banners on the findings docs, `results/run_5_text_only/`). Phase 1 and Phase 1c conclusions about perception are
-  withdrawn until rerun (notebooks 01, 02, 03, then 04, 05). `docs/experiment_log.md` entry 17, Amendment 6.
+  withdrawn until rerun in the order 04, 05, then 01, 02, 03 (Amendment 6, point 4). `docs/experiment_log.md` entry 17, Amendment 6.
+  The ordered plan, decision table and the list of parts not yet designed are in `docs/next_steps.md`.
 
 - Phase 1 code is complete and committed: `baseline/`, `notebooks/01_baseline_chexagent.ipynb`,
-  `tests/` (54 passing unit tests), CI workflow in `.github/workflows/tests.yml`.
+  `tests/` (121 passing unit tests), CI workflow in `.github/workflows/tests.yml`.
 - Phase 1 has been run on Colab twice (pilot of 60 questions, then 224). Results are in `results/`,
   analysis in `docs/`. Read `docs/experiment_log.md` for the history and `docs/evaluation_protocol.md`
   for how Phase 2 must be evaluated. Phase 1b (knowledge and side test sets, notebook 02) is built and
@@ -35,13 +36,13 @@ not for clinical use.
   notebooks 04 and 05, analysis scripts. Retrieval check and router check are done (`docs/experiment_log.md`, entries 13-16).
   Do not change the frozen settings or the scorer after seeing model results without logging the reason first. The user runs
   the notebooks on Colab and uploads the CSVs; the corpora are downloaded at run time into `rag_cache/` (git-ignored).
-- The data pipeline and scoring were tested against real SLAKE and VQA-RAD data. The model
-  itself has NOT been run: the cloud sandbox has no GPU. The first real model run happens on
-  Google Colab (free T4), so expect to fix small issues in `baseline/model.py` or the notebook.
+- The data pipeline and scoring were tested against real SLAKE and VQA-RAD data. The cloud sandbox has no GPU; the model is run on
+  Google Colab (free T4) by the user, who uploads the result files. Runs 1 to 4 and the first notebook-04 run were text-only
+  controls (see above); no run with the image reaching the model exists yet.
 - Repo prepared for GitHub: MIT license, attribution, paper PDFs untracked (links in
   `docs/papers/README.md`), Colab badge in the README.
 
-## Task 1: push this repo to GitHub
+## Task 1: push this repo to GitHub (done; kept as reference for the push procedure)
 
 Target: https://github.com/Ankritjarngal/medvqa-cxr-chexagent (exists, currently empty).
 
