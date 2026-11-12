@@ -146,13 +146,14 @@ for i, (n, t) in enumerate(tiles):
 takeaway(s, "Pre-registration: ", "test sets, scorer and success conditions were frozen first, then amended in writing when needed.")
 
 # 7 ---------------------------------------------------------------------------------------------- perception
-s = base(7, "With the image visible, the model reads left/right and heart size: answers follow the X-ray",
-         "Colab T4, 13 Nov 2026, notebook 03, 788 generations, IMAGE CHECK passed. results/run_6_with_image/. Same questions as the earlier text-only run.",
-         "'Image skipped' is the earlier run in which a software incompatibility stopped the image reaching the model (experiment_log.md, entry 17). It is kept only as a control: "
-         "it shows how much of the score comes from the image. CheXagent's training data includes SLAKE and VQA-RAD, so these are not clean held-out tests.")
-picture(s, "fig_perception_results", M, 1.65, CW, 4.1)
+s = base(7, "Reading the X-ray: the model's left/right and heart-size answers follow the image",
+         "Colab T4, 13 Nov 2026, notebook 03, 788 generations. Data: results/run_6_with_image/. Plain wording; 120 mirror pairs, 60 side questions, 47 heart questions.",
+         "Mirror test: each question asked on the original X-ray and on its mirror image; a model that reads laterality should change its answer. "
+         "Heart size: 17 of 22 enlarged hearts found and 25 of 25 normal hearts called normal. CheXagent's training data includes SLAKE and VQA-RAD, "
+         "so these are not clean held-out tests; the heart sensitivity rests on 22 positive questions.")
+picture(s, "fig_perception_slide", M, 1.65, CW, 4.1)
 takeaway(s, "Mirroring the X-ray flips the answer in 78% of pairs (95% CI 69-85%). ",
-         "Left/right 90% vs 45% with the image skipped; heart enlargement found in 17 of 22, 100% of normal hearts called normal.")
+         "Left/right 90% correct; enlarged hearts found in 17 of 22, normal hearts called normal 25 of 25.")
 
 # 8 ------------------------------------------------------------------------------------------ pipeline
 s = base(8, "Phase 2 design: first name the disease from the image, then retrieve what is known about it",

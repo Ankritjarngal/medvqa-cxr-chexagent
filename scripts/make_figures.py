@@ -261,6 +261,27 @@ def fig_perception_results():
     save(fig, "fig_perception_results")
 
 
+def fig_perception_slide():
+    seen = _diag_numbers("results/run_6_with_image/diagnostics_results.csv")
+    fig, axs = plt.subplots(1, 3, figsize=(12.4, 4.4))
+    fig.subplots_adjust(left=0.02, right=0.99, bottom=0.14, top=0.8, wspace=0.3)
+    panels = [
+        (seen[0]["swap_rate"], ("Model", "Ignores\nthe image"), 0.0, "Answer changes side\nwhen X-ray is mirrored"),
+        (seen[1]["acc_overall"], ("Model", "Guessing"), 0.5, "Left/right correct\n(60 questions)"),
+        (seen[2]["accuracy"], ("Model", "Always\nanswers no"), seen[2]["always_no_accuracy"], "Heart enlarged? Correct\n(47 questions)"),
+    ]
+    for ax, (v, labels, ref, title) in zip(axs, panels):
+        ax.bar(labels, [v, ref], color=[TEAL, LINE], width=0.55)
+        ax.text(0, v + 0.02, f"{v:.0%}", ha="center", fontsize=22, fontweight="bold")
+        ax.text(1, ref + 0.02, f"{ref:.0%}", ha="center", fontsize=18, color=GREY)
+        ax.set_ylim(0, 1.1)
+        ax.set_yticks([])
+        ax.tick_params(axis="x", labelsize=14)
+        ax.set_title(title, fontsize=15, loc="left", pad=10)
+        clean(ax, left=False)
+    save(fig, "fig_perception_slide")
+
+
 # ------------------------------------------------------------------------------------------ arms table
 def fig_arms():
     rows = [("A1", "none", "none", "fair baseline, same answer style", GREY),
@@ -350,6 +371,6 @@ def fig_retrieval_results():
 
 
 if __name__ == "__main__":
-    for f in (fig_cxr_real, fig_papers_matrix, fig_test_sets, fig_text_only_results, fig_perception_results, fig_arms, fig_lookup_example,
+    for f in (fig_cxr_real, fig_papers_matrix, fig_test_sets, fig_text_only_results, fig_perception_results, fig_perception_slide, fig_arms, fig_lookup_example,
               fig_retrieval_results):
         f()
