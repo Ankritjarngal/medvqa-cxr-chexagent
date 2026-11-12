@@ -44,7 +44,75 @@
 \colorlet{shadecolor}{black!7}
 \newenvironment{keybox}{\begin{shaded}\small}{\end{shaded}}
 
+\newcommand{\cfont}{\fontfamily{ptm}\selectfont}
+
 \begin{document}
+
+% ------------------------------------------------------------------ cover page
+\newgeometry{top=1.4cm,bottom=1.2cm,left=2.5cm,right=2.5cm}
+\thispagestyle{empty}
+\begingroup
+\cfont\centering\hyphenpenalty=10000\setstretch{1}\setlength{\parskip}{0pt}
+\includegraphics[height=2.5cm]{assets/nit_logo.png}\par\vspace{4pt}
+{\fontsize{16}{20}\selectfont\bfseries NATIONAL INSTITUTE OF TECHNOLOGY SRINAGAR\par}
+{\fontsize{12}{15}\selectfont\bfseries Jammu \& Kashmir, India\par}
+{\fontsize{13}{16}\selectfont\bfseries Department of Computer Science and Engineering\par}
+{\fontsize{12}{15}\selectfont\bfseries 2026 -- 2027\par}
+\vspace{22pt}
+{\fontsize{14}{18}\selectfont\bfseries PROJECT REPORT\par}
+\vspace{4pt}
+{\fontsize{12}{15}\selectfont\bfseries ON\par}
+\vspace{6pt}
+{\fontsize{26}{31}\selectfont\bfseries MEDICAL VISUAL\par QUESTION ANSWERING\par FOR CHEST X-RAYS\par}
+\vspace{6pt}
+{\fontsize{13}{17}\selectfont\itshape A knowledge-grounded approach with CheXagent-2-3b:\par literature review, baseline tests and retrieval-augmented design\par}
+\vspace{22pt}
+{\fontsize{12}{15}\selectfont\bfseries Submitted in partial fulfillment of the requirements\par for the award of the degree of\par}
+\vspace{6pt}
+{\fontsize{14}{18}\selectfont\bfseries BACHELOR OF TECHNOLOGY\par}
+{\fontsize{12}{15}\selectfont\bfseries in\par}
+{\fontsize{14}{18}\selectfont\bfseries COMPUTER SCIENCE AND ENGINEERING\par}
+\vspace{20pt}
+{\fontsize{12}{15}\selectfont\bfseries Submitted by\par}
+\vspace{4pt}
+{\fontsize{15}{19}\selectfont\bfseries ANKRIT JARNGAL\par}
+{\fontsize{12}{15}\selectfont Enrollment No. 2023BCSE028\par}
+\vspace{6pt}
+{\fontsize{15}{19}\selectfont\bfseries HIRDYANSH\par}
+{\fontsize{12}{15}\selectfont Enrollment No. 2023BCSE036\par}
+\vspace{16pt}
+{\fontsize{12}{15}\selectfont\bfseries Under the supervision of\par}
+{\fontsize{15}{19}\selectfont\bfseries Dr. Snober Mushtaq\par}
+\vspace{20pt}
+{\fontsize{12}{15}\selectfont\bfseries Department of Computer Science and Engineering\par
+National Institute of Technology Srinagar, J\&K\par
+Hazratbal, Srinagar -- 190006, J\&K, India\par}
+\endgroup
+\restoregeometry
+
+% ------------------------------------------------------------------ certificate
+\thispagestyle{empty}
+{\cfont\centering\setstretch{1}\setlength{\parskip}{0pt}
+\vspace*{-0.5cm}
+\includegraphics[height=2.9cm]{assets/nit_logo.png}\par\vspace{14pt}
+{\fontsize{16}{20}\selectfont\bfseries CERTIFICATE\par}
+\vspace{24pt}}
+{\cfont\setstretch{1.5}\setlength{\parskip}{0pt}\fontsize{12}{15}\selectfont\hyphenpenalty=10000\noindent
+This is to certify that the project titled \textbf{MEDICAL VISUAL QUESTION ANSWERING FOR CHEST X-RAYS} has been carried out by
+\textbf{ANKRIT JARNGAL} (Enrollment No.\ 2023BCSE028) and \textbf{HIRDYANSH} (Enrollment No.\ 2023BCSE036) under the supervision of
+\textbf{Dr.~Snober~Mushtaq}, in partial fulfillment of the requirements for the award of the degree of Bachelor of Technology in
+Computer Science and Engineering at the National Institute of Technology Srinagar, Jammu \& Kashmir.\par}
+\vspace{2.2cm}
+{\cfont\centering\setstretch{1}\setlength{\parskip}{0pt}\fontsize{12}{15}\selectfont
+\rule{5.5cm}{0.4pt}\par\vspace{2pt}
+\textbf{Project Supervisor}\par
+Dr.\ Snober Mushtaq\par
+{\fontsize{11}{14}\selectfont Department of Computer Science and Engineering\par NIT Srinagar, J\&K\par}
+\vspace{1.8cm}
+\rule{5.5cm}{0.4pt}\par\vspace{2pt}
+\textbf{Head of Department}\par
+{\fontsize{11}{14}\selectfont Department of Computer Science and Engineering\par NIT Srinagar, J\&K\par}}
+\clearpage
 
 % ------------------------------------------------------------------ abstract
 \pagenumbering{roman}
