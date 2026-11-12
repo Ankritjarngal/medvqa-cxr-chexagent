@@ -20,11 +20,11 @@ not for clinical use.
   `past_key_values is None`. Fixed by `patch_image_cache_check` (`baseline/model.py` and the notebook model cell); every notebook now
   has an "IMAGE CHECK" cell that raises if changing the pixels does not change the output. All earlier model results are text-only
   controls (banners on the findings docs, `results/run_5_text_only/`). Phase 1 and Phase 1c conclusions about perception are
-  withdrawn until rerun in the order 04, 05, then 01, 02, 03 (Amendment 6, point 4). `docs/experiment_log.md` entry 17, Amendment 6.
+  withdrawn until rerun in the order 04, 05, then 01, 02, 03 (Amendment 6, point 4). **Update 13 Nov 2026: notebook 03 was rerun with the image (after a second fix, entry 18) and the perception conclusions reversed: see `docs/phase1c_findings_with_image.md`, entry 19, `results/run_6_with_image/`. Notebooks 01, 02, 04, 05 are still to be rerun.** `docs/experiment_log.md` entry 17, Amendment 6.
   The ordered plan, decision table and the list of parts not yet designed are in `docs/next_steps.md`.
 
 - Phase 1 code is complete and committed: `baseline/`, `notebooks/01_baseline_chexagent.ipynb`,
-  `tests/` (121 passing unit tests), CI workflow in `.github/workflows/tests.yml`.
+  `tests/` (123 passing unit tests), CI workflow in `.github/workflows/tests.yml`.
 - Phase 1 has been run on Colab twice (pilot of 60 questions, then 224). Results are in `results/`,
   analysis in `docs/`. Read `docs/experiment_log.md` for the history and `docs/evaluation_protocol.md`
   for how Phase 2 must be evaluated. Phase 1b (knowledge and side test sets, notebook 02) is built and
@@ -38,7 +38,7 @@ not for clinical use.
   the notebooks on Colab and uploads the CSVs; the corpora are downloaded at run time into `rag_cache/` (git-ignored).
 - The data pipeline and scoring were tested against real SLAKE and VQA-RAD data. The cloud sandbox has no GPU; the model is run on
   Google Colab (free T4) by the user, who uploads the result files. Runs 1 to 4 and the first notebook-04 run were text-only
-  controls (see above); no run with the image reaching the model exists yet.
+  controls (see above); the only run with the image reaching the model so far is notebook 03 (run 6, 13 Nov 2026).
 - Repo prepared for GitHub: MIT license, attribution, paper PDFs untracked (links in
   `docs/papers/README.md`), Colab badge in the README.
 

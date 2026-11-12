@@ -187,5 +187,7 @@ transformers 4.46.3 the image is never encoded (`docs/experiment_log.md`, entry 
 3. Pre-registered rules, thresholds, scorer version, retrieval settings and arms are **unchanged**. Where they refer to "run 2",
    "run 3" or "run 4" as baselines, the rerun with the image replaces them; the text-only runs are kept as an additional control
    (a system that cannot see the image).
-4. The rerun order is 04 (disease naming), 05 (RAG arms), then 01, 02 and 03 to re-establish the baselines. The constant-answer floor
+4. The rerun order is 04 (disease naming), 05 (RAG arms), then 01, 02 and 03 to re-establish the baselines. (13 Nov 2026: notebook 03 was
+   run first, so that the perception result was available for the presentation; no rule, threshold or scorer changed. Its result is in
+   `docs/phase1c_findings_with_image.md`.) The constant-answer floor
    and the text-only control become reference points: a model that sees the image should beat both.

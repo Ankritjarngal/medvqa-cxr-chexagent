@@ -10,9 +10,10 @@ scorer, retrieval setting and decision rule are as fixed in `docs/phase2_rag_pla
 | Phase | What | State |
 |---|---|---|
 | 0 | Literature review, six papers, gap analysis | Done (`docs/literature_review.md`) |
-| 1, 1b, 1c | Zero-shot baseline, knowledge and side sets, perception diagnostics | Run, **text-only control** (image did not reach the model) |
+| 1, 1b | Zero-shot baseline, knowledge and side sets | Run, **text-only control** (image did not reach the model); rerun pending |
+| 1c | Perception diagnostics (notebook 03) | **Rerun with the image on 13 Nov 2026**: left/right and heart size follow the image (`docs/phase1c_findings_with_image.md`) |
 | 1d | Disease naming on 130 images | First run exposed the bug (`docs/experiment_log.md`, entry 17) |
-| Fix | `patch_image_cache_check` plus IMAGE CHECK cell in every notebook | Done, unit tested; **not yet confirmed on the real model on Colab** |
+| Fix | `patch_image_cache_check` plus IMAGE CHECK cell in every notebook | Done and confirmed on Colab (13 Nov 2026) after a second fix for a dtype mismatch in the visual tower (entry 18) |
 | 2 | Knowledge-grounded RAG: corpus, BM25, six arms, analysis scripts | Built; retrieval check and router check done (no model); **model runs pending** |
 | 3 | Targeted fine-tuning / second model | Not designed (see "Not yet designed") |
 
@@ -28,7 +29,7 @@ Run order is fixed by Amendment 6, point 4 of `docs/evaluation_protocol.md`: 04,
 | 4 | `python3 scripts/analyze_rag.py rag_results.csv --make-sheets ratings/` | Here | out: three shuffled rating sheets | none | section 6, 11 |
 | 5 | Blind rating: fill `rating_1` / `rating_2` with 0, 1 or 2 | You (a student, not a clinician) | out: filled sheets | none | `baseline/knowledge.py` (`RATING_RUBRIC`) |
 | 6 | `python3 scripts/analyze_rag.py rag_results.csv --ratings ratings/` | Here | out: PASS / FAIL / PENDING for the five conditions of Amendment 5 | A6 must beat A1 **and** A5 with the stated intervals and sign test; "no demonstrated improvement" is a valid outcome | `docs/evaluation_protocol.md`, Amendment 5 |
-| 7 | Rerun notebooks 01, 02, 03 (baseline, knowledge and side sets, perception diagnostics) | You, Colab T4 | out: new `results/` folders; analysis scripts exist (`analyze_diagnostics.py`, and the baseline analysis in the notebooks) | The text-only control and the constant-answer floor become reference points: a model that sees the image should beat both | Amendment 6; `docs/phase1c_diagnostics.md` |
+| 7 | Rerun notebooks 01 and 02 (baseline, knowledge and side sets). **03 is done** (13 Nov 2026) | You, Colab T4 | out: new `results/` folders; analysis scripts exist (`analyze_diagnostics.py`, and the baseline analysis in the notebooks) | The text-only control and the constant-answer floor become reference points: a model that sees the image should beat both | Amendment 6; `docs/phase1c_diagnostics.md` |
 | 8 | Write the results up, replacing the text-only numbers where the image run exists, keeping the text-only runs as a labelled control | Here | report, slides, `docs/experiment_log.md` | none | `docs/experiment_log.md` conventions |
 
 ## What the outcome of steps 1 to 7 decides
@@ -42,7 +43,7 @@ Run order is fixed by Amendment 6, point 4 of `docs/evaluation_protocol.md`: 04,
 | A6 above A1 but not above A5 | The gain comes from naming the disease, not retrieval; not reported as a retrieval gain | same |
 | A6 not above A1 | No demonstrated improvement (valid result) | same |
 | Rerun of 03 shows no image dependence for left/right and heart size, and no wording fixes it | Phase 3 (targeted fine-tuning on laterality and enlargement) moves up, or a different model is evaluated | `docs/phase1c_diagnostics.md`, "What would follow" |
-| Rerun of 03 shows the model does use the image | The earlier left/right and heart-size claims are dropped; the diagnostics are reported as the new baseline | Amendment 6 |
+| Rerun of 03 shows the model does use the image | **Happened (13 Nov 2026).** The earlier left/right and heart-size claims are dropped; Phase 3 fine-tuning on these properties loses its motivation | Amendment 6; `docs/phase1c_findings_with_image.md` |
 
 ## Not yet designed (must be written and frozen before any run)
 

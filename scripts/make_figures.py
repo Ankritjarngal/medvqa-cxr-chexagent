@@ -199,6 +199,68 @@ def fig_text_only_results():
     save(fig, "fig_text_only_results")
 
 
+def _diag_numbers(path):
+    import csv
+    from baseline.diagnostics import flip_report, variant_report, heart_report
+    by = {}
+    for r in csv.DictReader(open(path, newline="")):
+        by.setdefault((r["test"], r["variant"]), {})[r["id"]] = r
+    orig, flipped = by[("A_flip", "original")], by[("A_flip", "flipped")]
+    flip = flip_report([{"gold_side": o["gold_side"], "explicit": o["explicit"] == "True",
+                         "pred_original": o["prediction"], "pred_flipped": flipped[i]["prediction"]}
+                        for i, o in orig.items()])["all"]
+    side = variant_report([{"gold_side": r["gold_side"], "prediction": r["prediction"]}
+                           for r in by[("B_side_prompt", "plain")].values()])
+    heart = heart_report([{"gold_yes": r["gold"].strip().lower() == "yes", "prediction": r["prediction"]}
+                          for r in by[("C_heart", "plain")].values()], "plain")
+    return flip, side, heart
+
+
+def fig_perception_results():
+    skipped = _diag_numbers("results/run_4/diagnostics_results.csv")
+    seen = _diag_numbers("results/run_6_with_image/diagnostics_results.csv")
+    fig, axs = plt.subplots(1, 3, figsize=(12.4, 4.4), gridspec_kw={"width_ratios": [0.8, 0.8, 1.3]})
+    fig.subplots_adjust(left=0.02, right=0.99, bottom=0.14, top=0.8, wspace=0.35)
+    lab = ["image\nskipped", "image\nvisible"]
+
+    def two(ax, a, b, title, ref=None):
+        ax.bar(lab, [a, b], color=[LINE, TEAL], width=0.6)
+        for i, v in enumerate([a, b]):
+            y = v + 0.02 if ref is None or abs(v - ref) > 0.06 else max(v, ref) + 0.03
+            ax.text(i, y, f"{v:.0%}", ha="center", fontsize=20, fontweight="bold", color=DARK)
+        if ref is not None:
+            ax.axhline(ref, xmax=0.76, color=GREY, lw=1, ls=(0, (4, 3)))
+            ax.text(1.36, ref, "chance", fontsize=11, color=GREY, va="center")
+            ax.set_xlim(-0.5, 1.9)
+        ax.set_ylim(0, 1.12)
+        ax.set_yticks([])
+        ax.tick_params(axis="x", labelsize=13)
+        ax.set_title(title, fontsize=15, loc="left", pad=10)
+        clean(ax, left=False)
+
+    two(axs[0], skipped[0]["swap_rate"], seen[0]["swap_rate"], "Answer changes side\nwhen X-ray is mirrored")
+    two(axs[1], skipped[1]["acc_overall"], seen[1]["acc_overall"], "Left/right correct\n(60 questions)", ref=0.5)
+
+    ax = axs[2]
+    groups = [("Enlarged hearts\nfound (22)", "sensitivity"), ("Normal hearts\ncalled normal (25)", "specificity")]
+    x = np.arange(2)
+    sv = [skipped[2][k] for _, k in groups]
+    iv = [seen[2][k] for _, k in groups]
+    ax.bar(x - 0.2, sv, 0.38, color=LINE, label="image skipped")
+    ax.bar(x + 0.2, iv, 0.38, color=TEAL, label="image visible")
+    for xi, a, b in zip(x, sv, iv):
+        ax.text(xi - 0.2, a + 0.02, f"{a:.0%}", ha="center", fontsize=16, color=GREY)
+        ax.text(xi + 0.2, b + 0.02, f"{b:.0%}", ha="center", fontsize=18, fontweight="bold")
+    ax.set_xticks(x, [g[0] for g in groups])
+    ax.tick_params(axis="x", labelsize=13)
+    ax.set_ylim(0, 1.25)
+    ax.set_yticks([])
+    ax.legend(frameon=False, fontsize=12, loc="upper left", ncol=2)
+    ax.set_title("Heart enlarged? (47 questions)", fontsize=15, loc="left", pad=10)
+    clean(ax, left=False)
+    save(fig, "fig_perception_results")
+
+
 # ------------------------------------------------------------------------------------------ arms table
 def fig_arms():
     rows = [("A1", "none", "none", "fair baseline, same answer style", GREY),
@@ -288,6 +350,6 @@ def fig_retrieval_results():
 
 
 if __name__ == "__main__":
-    for f in (fig_cxr_real, fig_papers_matrix, fig_test_sets, fig_text_only_results, fig_arms, fig_lookup_example,
+    for f in (fig_cxr_real, fig_papers_matrix, fig_test_sets, fig_text_only_results, fig_perception_results, fig_arms, fig_lookup_example,
               fig_retrieval_results):
         f()

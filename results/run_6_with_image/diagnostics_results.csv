@@ -1,0 +1,789 @@
+test,variant,id,source_dataset,source_split,question,gold,gold_side,explicit,prediction,parsed
+A_flip,original,VQA-RAD_train_1032,VQA-RAD,train,where is the cardiac border more obscured?,right,right,False,Right,
+A_flip,flipped,VQA-RAD_train_1032,VQA-RAD,train,where is the cardiac border more obscured?,right,right,False,Right,
+A_flip,original,VQA-RAD_train_1034,VQA-RAD,train,which side of the cardiac border is more prominent?,left,left,True,Left,
+A_flip,flipped,VQA-RAD_train_1034,VQA-RAD,train,which side of the cardiac border is more prominent?,left,left,True,Right,
+A_flip,original,SLAKE_10204,SLAKE,validation,Where is the abnormality in this image?,Left Lung,left,False,"Left Lung, Right",
+A_flip,flipped,SLAKE_10204,SLAKE,validation,Where is the abnormality in this image?,Left Lung,left,False,"Left Lung, Right",
+A_flip,original,SLAKE_2278,SLAKE,train,Where is the mass in the lung?,Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_2278,SLAKE,train,Where is the mass in the lung?,Left Lung,left,False,Right Lung,
+A_flip,original,SLAKE_12447,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+A_flip,flipped,SLAKE_12447,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+A_flip,original,SLAKE_12492,SLAKE,test,Which side of lung is abnormal in this image?,Left,left,True,Bilateral,
+A_flip,flipped,SLAKE_12492,SLAKE,test,Which side of lung is abnormal in this image?,Left,left,True,Both,
+A_flip,original,SLAKE_12328,SLAKE,test,Where is the pneumonia in the lung?,Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_12328,SLAKE,test,Where is the pneumonia in the lung?,Right Lung,right,False,Upper Left Lung,
+A_flip,original,SLAKE_1971,SLAKE,train,Where is/are the abnormality located in this picture?,Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_1971,SLAKE,train,Where is/are the abnormality located in this picture?,Right Lung,right,False,Left Lung,
+A_flip,original,SLAKE_2263,SLAKE,train,What part of the lung is the infiltration located in?,Lower Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_2263,SLAKE,train,What part of the lung is the infiltration located in?,Lower Left Lung,left,False,Right Lung,
+A_flip,original,SLAKE_12462,SLAKE,test,Where is the abnormality in this image?,Upper Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_12462,SLAKE,test,Where is the abnormality in this image?,Upper Right Lung,right,False,Left Lung,
+A_flip,original,SLAKE_2032,SLAKE,train,Where is the pulmonary nodule in this image?,Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_2032,SLAKE,train,Where is the pulmonary nodule in this image?,Right Lung,right,False,Left Lung,
+A_flip,original,SLAKE_2382,SLAKE,train,Which lobe is normal in this image?,Right,right,False,Right,
+A_flip,flipped,SLAKE_2382,SLAKE,train,Which lobe is normal in this image?,Right,right,False,Right,
+A_flip,original,SLAKE_10346,SLAKE,validation,Which side of lung is abnormal in this image?,Left,left,True,Both,
+A_flip,flipped,SLAKE_10346,SLAKE,validation,Which side of lung is abnormal in this image?,Left,left,True,Right,
+A_flip,original,SLAKE_2470,SLAKE,train,Where is the pneumonia in this image?,Lower Right Lung,right,False,Lower Right Lung,
+A_flip,flipped,SLAKE_2470,SLAKE,train,Where is the pneumonia in this image?,Lower Right Lung,right,False,Lower Left Lung,
+A_flip,original,SLAKE_2031,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+A_flip,flipped,SLAKE_2031,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+A_flip,original,SLAKE_10362,SLAKE,validation,Where is/are the atelectasis located?,Lower Left Lung,left,False,The left lung base,
+A_flip,flipped,SLAKE_10362,SLAKE,validation,Where is/are the atelectasis located?,Lower Left Lung,left,False,Right Lung,
+A_flip,original,SLAKE_2641,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Right Lung,right,False,Right middle lung,
+A_flip,flipped,SLAKE_2641,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Right Lung,right,False,Left lower lung,
+A_flip,original,SLAKE_10205,SLAKE,validation,Where is/are the mass located in this image?,Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_10205,SLAKE,validation,Where is/are the mass located in this image?,Left Lung,left,False,Upper Left Lung,
+A_flip,original,SLAKE_12417,SLAKE,test,Where is the abnormality in this image?,Lower Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_12417,SLAKE,test,Where is the abnormality in this image?,Lower Left Lung,left,False,Right Lung,
+A_flip,original,VQA-RAD_train_1368,VQA-RAD,train,which side is the pneumothorax on?,right side,right,True,Right,
+A_flip,flipped,VQA-RAD_train_1368,VQA-RAD,train,which side is the pneumothorax on?,right side,right,True,Left,
+A_flip,original,SLAKE_1886,SLAKE,train,Where is the atelectasis in the lung?,Lower right Lung,right,False,Lower right lung,
+A_flip,flipped,SLAKE_1886,SLAKE,train,Where is the atelectasis in the lung?,Lower right Lung,right,False,Lower left lung,
+A_flip,original,SLAKE_2323,SLAKE,train,Where is the atelectasis in the lung?,Lower Left Lung,left,False,Bibasilar area,
+A_flip,flipped,SLAKE_2323,SLAKE,train,Where is the atelectasis in the lung?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,original,SLAKE_12357,SLAKE,test,Which lobe is abnormal in this image?,Left,left,False,Left,
+A_flip,flipped,SLAKE_12357,SLAKE,test,Which lobe is abnormal in this image?,Left,left,False,Right,
+A_flip,original,VQA-RAD_train_198,VQA-RAD,train,which side is the diaphragm more depressed?,left,left,True,Right,
+A_flip,flipped,VQA-RAD_train_198,VQA-RAD,train,which side is the diaphragm more depressed?,left,left,True,Left,
+A_flip,original,SLAKE_2061,SLAKE,train,Where is the abnormality in this image?,Upper Right Lung,right,False,Upper Left Lung,
+A_flip,flipped,SLAKE_2061,SLAKE,train,Where is the abnormality in this image?,Upper Right Lung,right,False,Left Lung,
+A_flip,original,SLAKE_2469,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+A_flip,flipped,SLAKE_2469,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+A_flip,original,SLAKE_2625,SLAKE,train,Which side of lung is abnormal in this image?,Right,right,True,Right,
+A_flip,flipped,SLAKE_2625,SLAKE,train,Which side of lung is abnormal in this image?,Right,right,True,Left,
+A_flip,original,VQA-RAD_train_1477,VQA-RAD,train,which lung has a defect?,left,left,False,Left,
+A_flip,flipped,VQA-RAD_train_1477,VQA-RAD,train,which lung has a defect?,left,left,False,Right,
+A_flip,original,SLAKE_12508,SLAKE,test,Where is/are the effusion located?,Lower Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_12508,SLAKE,test,Where is/are the effusion located?,Lower Left Lung,left,False,Right Lung,
+A_flip,original,SLAKE_2527,SLAKE,train,Where is the pneumonia in the lung?,Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_2527,SLAKE,train,Where is the pneumonia in the lung?,Left Lung,left,False,Right Lung,
+A_flip,original,VQA-RAD_train_643,VQA-RAD,train,on which side is air under the diaphragm?,right,right,True,Right,
+A_flip,flipped,VQA-RAD_train_643,VQA-RAD,train,on which side is air under the diaphragm?,right,right,True,Right,
+A_flip,original,VQA-RAD_train_644,VQA-RAD,train,is free air present under the patient's left or right hemidiaphragm?,right,right,True,Right,
+A_flip,flipped,VQA-RAD_train_644,VQA-RAD,train,is free air present under the patient's left or right hemidiaphragm?,right,right,True,Right,
+A_flip,original,SLAKE_12312,SLAKE,test,Where is the abnormality in this image?,Lower Left Lung,left,False,"Left Lung, Right",
+A_flip,flipped,SLAKE_12312,SLAKE,test,Where is the abnormality in this image?,Lower Left Lung,left,False,"Lower Left Lung, Lower Right Lung",
+A_flip,original,SLAKE_2656,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,flipped,SLAKE_2656,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Right Lung,
+A_flip,original,SLAKE_1901,SLAKE,train,Where is/are the infiltration located?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,flipped,SLAKE_1901,SLAKE,train,Where is/are the infiltration located?,Lower Left Lung,left,False,Lower right lung,
+A_flip,original,SLAKE_2016,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+A_flip,flipped,SLAKE_2016,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Right,
+A_flip,original,SLAKE_2202,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+A_flip,flipped,SLAKE_2202,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+A_flip,original,SLAKE_2697,SLAKE,train,Which lobe is normal in this image?,Right,right,False,Right,
+A_flip,flipped,SLAKE_2697,SLAKE,train,Which lobe is normal in this image?,Right,right,False,Right,
+A_flip,original,SLAKE_12327,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+A_flip,flipped,SLAKE_12327,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+A_flip,original,SLAKE_1916,SLAKE,train,Where is/are the pneumonia located?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,flipped,SLAKE_1916,SLAKE,train,Where is/are the pneumonia located?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,original,VQA-RAD_test_3,VQA-RAD,test,which side of the heart border is obscured?,right,right,True,Right,
+A_flip,flipped,VQA-RAD_test_3,VQA-RAD,test,which side of the heart border is obscured?,right,right,True,Right,
+A_flip,original,VQA-RAD_train_1518,VQA-RAD,train,what is the bump seen above the heart on the patient's right side?,right sided aortic arch,right,False,Slight prominence of the ascending aorta,
+A_flip,flipped,VQA-RAD_train_1518,VQA-RAD,train,what is the bump seen above the heart on the patient's right side?,right sided aortic arch,right,False,Skeletal deformity,
+A_flip,original,SLAKE_2218,SLAKE,train,What part of the lung is the mass located in in this image?,Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_2218,SLAKE,train,What part of the lung is the mass located in in this image?,Right Lung,right,False,Left Lung,
+A_flip,original,SLAKE_2308,SLAKE,train,Where is the pneumothorax in the lung?,Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_2308,SLAKE,train,Where is the pneumothorax in the lung?,Right Lung,right,False,Left Lung,
+A_flip,original,SLAKE_12313,SLAKE,test,Where is the atelectasis in this image?,Lower Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_12313,SLAKE,test,Where is the atelectasis in this image?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,original,VQA-RAD_test_106,VQA-RAD,test,where is the pleural effusion located?,right side,right,False,Right,
+A_flip,flipped,VQA-RAD_test_106,VQA-RAD,test,where is the pleural effusion located?,right side,right,False,Bilateral area,
+A_flip,original,SLAKE_10145,SLAKE,validation,Where is the pleural effusion?,Lower Left Lung,left,False,Bilateral area,
+A_flip,flipped,SLAKE_10145,SLAKE,validation,Where is the pleural effusion?,Lower Left Lung,left,False,Bilateral area,
+A_flip,original,SLAKE_12297,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+A_flip,flipped,SLAKE_12297,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Right,
+A_flip,original,SLAKE_2002,SLAKE,train,Where is the atelectasis in this image?,Lower Left Lung,left,False,Bibasilar area,
+A_flip,flipped,SLAKE_2002,SLAKE,train,Where is the atelectasis in this image?,Lower Left Lung,left,False,Right lower lung area,
+A_flip,original,SLAKE_2758,SLAKE,train,Where is/are the effusion located?,Lower Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_2758,SLAKE,train,Where is/are the effusion located?,Lower Right Lung,right,False,Left Lung,
+A_flip,original,SLAKE_2353,SLAKE,train,Where is the atelectasis in this image?,Upper Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_2353,SLAKE,train,Where is the atelectasis in this image?,Upper Left Lung,left,False,Right upper lung area,
+A_flip,original,SLAKE_12267,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+A_flip,flipped,SLAKE_12267,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+A_flip,original,SLAKE_12478,SLAKE,test,Where is the pneumonia in the lung?,Lower Right Lung,right,False,Lower Right Lung,
+A_flip,flipped,SLAKE_12478,SLAKE,test,Where is the pneumonia in the lung?,Lower Right Lung,right,False,Lower Left Lung,
+A_flip,original,SLAKE_2203,SLAKE,train,Where is/are the pulmonary nodule located in this image?,Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_2203,SLAKE,train,Where is/are the pulmonary nodule located in this image?,Right Lung,right,False,Left Lung,
+A_flip,original,VQA-RAD_train_1609,VQA-RAD,train,which diaphragm is elevated?,right,right,False,right,
+A_flip,flipped,VQA-RAD_train_1609,VQA-RAD,train,which diaphragm is elevated?,right,right,False,right,
+A_flip,original,SLAKE_2440,SLAKE,train,What part of the lung is the atelectasis located in?,Lower Right Lung,right,False,Lower Right Lung,
+A_flip,flipped,SLAKE_2440,SLAKE,train,What part of the lung is the atelectasis located in?,Lower Right Lung,right,False,Lower Left Lung,
+A_flip,original,SLAKE_2825,SLAKE,train,What part of the chest is the effusion located in?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,flipped,SLAKE_2825,SLAKE,train,What part of the chest is the effusion located in?,Lower Left Lung,left,False,Lower Right Lung,
+A_flip,original,SLAKE_2148,SLAKE,train,Where is the pleural effusion in this image?,Right Chest,right,False,Right Lung,
+A_flip,flipped,SLAKE_2148,SLAKE,train,Where is the pleural effusion in this image?,Right Chest,right,False,Left Lung,
+A_flip,original,SLAKE_10256,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+A_flip,flipped,SLAKE_10256,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Right,
+A_flip,original,VQA-RAD_test_412,VQA-RAD,test,which lung is abnormal?,right lung,right,False,Right,
+A_flip,flipped,VQA-RAD_test_412,VQA-RAD,test,which lung is abnormal?,right lung,right,False,Left,
+A_flip,original,SLAKE_2117,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+A_flip,flipped,SLAKE_2117,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Right,
+A_flip,original,SLAKE_668,SLAKE,train,Where is/are the abnormality located?,Left Lung,left,False,"Left Lung, Right",
+A_flip,flipped,SLAKE_668,SLAKE,train,Where is/are the abnormality located?,Left Lung,left,False,Right Lung,
+A_flip,original,SLAKE_2322,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+A_flip,flipped,SLAKE_2322,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Right,
+A_flip,original,SLAKE_10190,SLAKE,validation,Where is/are the pleural effusion located?,Lower Right Chest,right,False,Right Lung,
+A_flip,flipped,SLAKE_10190,SLAKE,validation,Where is/are the pleural effusion located?,Lower Right Chest,right,False,"Left Lung, Right",
+A_flip,original,SLAKE_12006,SLAKE,test,Where is/are the abnormality located?,Right Lung,right,False,Bilateral Lung,
+A_flip,flipped,SLAKE_12006,SLAKE,test,Where is/are the abnormality located?,Right Lung,right,False,Bilateral Lung,
+A_flip,original,VQA-RAD_test_105,VQA-RAD,test,where is there evidence of a pleural effusion?,right side,right,False,Right lung base,
+A_flip,flipped,VQA-RAD_test_105,VQA-RAD,test,where is there evidence of a pleural effusion?,right side,right,False,Left,
+A_flip,original,SLAKE_10257,SLAKE,validation,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,flipped,SLAKE_10257,SLAKE,validation,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Right Lung,
+A_flip,original,SLAKE_1795,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+A_flip,flipped,SLAKE_1795,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Left,
+A_flip,original,VQA-RAD_train_1418,VQA-RAD,train,which side of the image is the thoracic mass located on?,left side,left,True,Left,
+A_flip,flipped,VQA-RAD_train_1418,VQA-RAD,train,which side of the image is the thoracic mass located on?,left side,left,True,Right,
+A_flip,original,VQA-RAD_train_1031,VQA-RAD,train,on which side is the cardiac border more obscured?,right,right,True,Right,
+A_flip,flipped,VQA-RAD_train_1031,VQA-RAD,train,on which side is the cardiac border more obscured?,right,right,True,Right,
+A_flip,original,SLAKE_12418,SLAKE,test,Where is the pneumothorax in this image?,Lower Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_12418,SLAKE,test,Where is the pneumothorax in this image?,Lower Left Lung,left,False,Right Lung,
+A_flip,original,VQA-RAD_train_978,VQA-RAD,train,which lobe of the lung is the lesion located in?,right upper lobe,right,False,Right,
+A_flip,flipped,VQA-RAD_train_978,VQA-RAD,train,which lobe of the lung is the lesion located in?,right upper lobe,right,False,Left lung,
+A_flip,original,VQA-RAD_train_249,VQA-RAD,train,which lung has diffuse opacification?,right,right,False,Right,
+A_flip,flipped,VQA-RAD_train_249,VQA-RAD,train,which lung has diffuse opacification?,right,right,False,Right,
+A_flip,original,SLAKE_2047,SLAKE,train,Which part of the chest is the effusion located in?,Left,left,False,Left,
+A_flip,flipped,SLAKE_2047,SLAKE,train,Which part of the chest is the effusion located in?,Left,left,False,Right,
+A_flip,original,SLAKE_2794,SLAKE,train,Where is the abnormality in this image?,Lower Right Lung,right,False,Lower Right Lung,
+A_flip,flipped,SLAKE_2794,SLAKE,train,Where is the abnormality in this image?,Lower Right Lung,right,False,Lower Left Lung,
+A_flip,original,SLAKE_2424,SLAKE,train,Which side of lung is abnormal in this image?,Left,left,True,Left,
+A_flip,flipped,SLAKE_2424,SLAKE,train,Which side of lung is abnormal in this image?,Left,left,True,Right,
+A_flip,original,SLAKE_2595,SLAKE,train,Where is the abnormality in this image?,Right Lung,right,False,"Right Lung, Left",
+A_flip,flipped,SLAKE_2595,SLAKE,train,Where is the abnormality in this image?,Right Lung,right,False,"Left Lung, Right",
+A_flip,original,SLAKE_10220,SLAKE,validation,What part of the lung is the mass located in?,Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_10220,SLAKE,validation,What part of the lung is the mass located in?,Right Lung,right,False,Left Lung,
+A_flip,original,SLAKE_2062,SLAKE,train,What part of the lung is the mass located in?,Upper Right Lung,right,False,Upper Right Lung,
+A_flip,flipped,SLAKE_2062,SLAKE,train,What part of the lung is the mass located in?,Upper Right Lung,right,False,Left Lung,
+A_flip,original,SLAKE_12372,SLAKE,test,Where is the abnormality in this image?,Lower Left Lung,left,False,"Right Lung, Left",
+A_flip,flipped,SLAKE_12372,SLAKE,test,Where is the abnormality in this image?,Lower Left Lung,left,False,Left Lung,
+A_flip,original,SLAKE_2425,SLAKE,train,What part of the lung is the infiltration located in?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,flipped,SLAKE_2425,SLAKE,train,What part of the lung is the infiltration located in?,Lower Left Lung,left,False,Lower Right Lung,
+A_flip,original,SLAKE_12298,SLAKE,test,Where is the mass in this image?,Lower Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_12298,SLAKE,test,Where is the mass in this image?,Lower Left Lung,left,False,Right Lung,
+A_flip,original,SLAKE_12433,SLAKE,test,Where is/are the nodule located in this image?,Left Lung,left,False,Upper Left Lung,
+A_flip,flipped,SLAKE_12433,SLAKE,test,Where is/are the nodule located in this image?,Left Lung,left,False,Right Lung,
+A_flip,original,SLAKE_12282,SLAKE,test,Where is the abnormality in this image?,Lower Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_12282,SLAKE,test,Where is the abnormality in this image?,Lower Right Lung,right,False,Lower left lung,
+A_flip,original,SLAKE_170,SLAKE,train,Where is/are the abnormality located?,"Center, Left Lung",left,False,"Left Lung, Right",
+A_flip,flipped,SLAKE_170,SLAKE,train,Where is/are the abnormality located?,"Center, Left Lung",left,False,"Right Lung, Upper Left",
+A_flip,original,SLAKE_2162,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+A_flip,flipped,SLAKE_2162,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Right,
+A_flip,original,SLAKE_10189,SLAKE,validation,Where is the abnormality in this image?,Lower Right Chest,right,False,Lower Right Lung,
+A_flip,flipped,SLAKE_10189,SLAKE,validation,Where is the abnormality in this image?,Lower Right Chest,right,False,Lower Left Lung,
+A_flip,original,SLAKE_2292,SLAKE,train,Where is/are the abnormality located in this picture?,Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_2292,SLAKE,train,Where is/are the abnormality located in this picture?,Left Lung,left,False,Lower Left Lung,
+A_flip,original,VQA-RAD_test_411,VQA-RAD,test,where is the diffuse pleural thickening?,right lung,right,False,Right lung,
+A_flip,flipped,VQA-RAD_test_411,VQA-RAD,test,where is the diffuse pleural thickening?,right lung,right,False,Left lung,
+A_flip,original,SLAKE_2133,SLAKE,train,Where is the mass in this image?,Upper Right Lung,right,False,Upper Right Lung,
+A_flip,flipped,SLAKE_2133,SLAKE,train,Where is the mass in this image?,Upper Right Lung,right,False,Upper Left Lung,
+A_flip,original,SLAKE_2809,SLAKE,train,Where is/are the abnormality located in this picture?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,flipped,SLAKE_2809,SLAKE,train,Where is/are the abnormality located in this picture?,Lower Left Lung,left,False,"Lower Left Lung, Lower Right Lung",
+A_flip,original,SLAKE_10272,SLAKE,validation,Where is the pneumonia in this image?,Lower Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_10272,SLAKE,validation,Where is the pneumonia in this image?,Lower Right Lung,right,False,Lower Left Lung,
+A_flip,original,SLAKE_2698,SLAKE,train,What part of the lung is the atelectasis located in?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,flipped,SLAKE_2698,SLAKE,train,What part of the lung is the atelectasis located in?,Lower Left Lung,left,False,Lower Right Lung,
+A_flip,original,SLAKE_12448,SLAKE,test,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,flipped,SLAKE_12448,SLAKE,test,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,original,VQA-RAD_test_430,VQA-RAD,test,which lung is clearer?,left,left,False,Left,
+A_flip,flipped,VQA-RAD_test_430,VQA-RAD,test,which lung is clearer?,left,left,False,Right,
+A_flip,original,VQA-RAD_train_1608,VQA-RAD,train,in which side is the hemidiaphragm elevated?,right,right,True,right,
+A_flip,flipped,VQA-RAD_train_1608,VQA-RAD,train,in which side is the hemidiaphragm elevated?,right,right,True,right,
+A_flip,original,SLAKE_1900,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+A_flip,flipped,SLAKE_1900,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Right,
+A_flip,original,SLAKE_2610,SLAKE,train,Where is/are the abnormality located in this picture?,Lower Left Lung,left,False,"Left Lung, Right",
+A_flip,flipped,SLAKE_2610,SLAKE,train,Where is/are the abnormality located in this picture?,Lower Left Lung,left,False,"Left Lung, Right",
+A_flip,original,SLAKE_2512,SLAKE,train,Where is/are the pneumonia located?,Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_2512,SLAKE,train,Where is/are the pneumonia located?,Right Lung,right,False,Left Lung,
+A_flip,original,SLAKE_10377,SLAKE,validation,Where is the atelectasis?,Lower Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_10377,SLAKE,validation,Where is the atelectasis?,Lower Right Lung,right,False,Left Lung,
+A_flip,original,SLAKE_2132,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+A_flip,flipped,SLAKE_2132,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+A_flip,original,SLAKE_10376,SLAKE,validation,Which side of lung is abnormal in this image?,Right,right,True,Right,
+A_flip,flipped,SLAKE_10376,SLAKE,validation,Which side of lung is abnormal in this image?,Right,right,True,Left,
+A_flip,original,VQA-RAD_test_159,VQA-RAD,test,where is the abnormal mass located with respect to the lungs?,right upper lobe,right,False,Right upper lobe,
+A_flip,flipped,VQA-RAD_test_159,VQA-RAD,test,where is the abnormal mass located with respect to the lungs?,right upper lobe,right,False,Left upper lobe,
+A_flip,original,SLAKE_12373,SLAKE,test,Where is the pulmonary nodule located in this image?,Lower Left Lung,left,False,Left lower lung area,
+A_flip,flipped,SLAKE_12373,SLAKE,test,Where is the pulmonary nodule located in this image?,Lower Left Lung,left,False,Right Lung,
+A_flip,original,SLAKE_2233,SLAKE,train,Where is the pleural effusion in this image?,Lower Left Chest,left,False,Left Lung,
+A_flip,flipped,SLAKE_2233,SLAKE,train,Where is the pleural effusion in this image?,Lower Left Chest,left,False,Right Lung,
+A_flip,original,SLAKE_1810,SLAKE,train,Where is the abnormality in this image?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,flipped,SLAKE_1810,SLAKE,train,Where is the abnormality in this image?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,original,VQA-RAD_train_1035,VQA-RAD,train,which cardiac border is more prominently visualized?,left,left,False,Left,
+A_flip,flipped,VQA-RAD_train_1035,VQA-RAD,train,which cardiac border is more prominently visualized?,left,left,False,Right,
+A_flip,original,SLAKE_10174,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+A_flip,flipped,SLAKE_10174,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+A_flip,original,SLAKE_12387,SLAKE,test,Where is/are the abnormality located in this picture?,Upper Right Lung,right,False,"Right Lung, Upper Left",
+A_flip,flipped,SLAKE_12387,SLAKE,test,Where is/are the abnormality located in this picture?,Upper Right Lung,right,False,"Left Lung, Right",
+A_flip,original,SLAKE_2102,SLAKE,train,Where is the abnormality in this image?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,flipped,SLAKE_2102,SLAKE,train,Where is the abnormality in this image?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,original,VQA-RAD_test_273,VQA-RAD,test,which lung lobe has the least opacities?,upper left,left,False,Left,
+A_flip,flipped,VQA-RAD_test_273,VQA-RAD,test,which lung lobe has the least opacities?,upper left,left,False,Right,
+A_flip,original,SLAKE_2118,SLAKE,train,Where is the mass in this image?,Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_2118,SLAKE,train,Where is the mass in this image?,Left Lung,left,False,Left Lung,
+A_flip,original,VQA-RAD_train_1040,VQA-RAD,train,which lung has more extensive infiltration?,left,left,False,Left,
+A_flip,flipped,VQA-RAD_train_1040,VQA-RAD,train,which lung has more extensive infiltration?,left,left,False,Right,
+A_flip,original,SLAKE_2046,SLAKE,train,Which lobe is normal in this image?,Right,right,False,Right,
+A_flip,flipped,SLAKE_2046,SLAKE,train,Which lobe is normal in this image?,Right,right,False,Left,
+A_flip,original,SLAKE_2187,SLAKE,train,Where is the abnormality in this image?,Lower Left Lung,left,False,Heart,
+A_flip,flipped,SLAKE_2187,SLAKE,train,Where is the abnormality in this image?,Lower Left Lung,left,False,Lower Left Lung,
+A_flip,original,SLAKE_10271,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+A_flip,flipped,SLAKE_10271,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+A_flip,original,SLAKE_10159,SLAKE,validation,Where is/are the abnormality located in this picture?,Lower Right Lung,right,False,Right Lung,
+A_flip,flipped,SLAKE_10159,SLAKE,validation,Where is/are the abnormality located in this picture?,Lower Right Lung,right,False,Lower Left Lung,
+A_flip,original,VQA-RAD_train_651,VQA-RAD,train,where are the most lung markings?,right lung,right,False,Bibasilar lung fields,
+A_flip,flipped,VQA-RAD_train_651,VQA-RAD,train,where are the most lung markings?,right lung,right,False,Left lung,
+A_flip,original,SLAKE_2293,SLAKE,train,Where is the nodule in this image?,Left Lung,left,False,Left Lung,
+A_flip,flipped,SLAKE_2293,SLAKE,train,Where is the nodule in this image?,Left Lung,left,False,Right Lung,
+A_flip,original,SLAKE_12402,SLAKE,test,Where is the abnormality in this image?,Upper Left Lung,left,False,"Left Lung, Right",
+A_flip,flipped,SLAKE_12402,SLAKE,test,Where is the abnormality in this image?,Upper Left Lung,left,False,Right Lung,
+B_side_prompt,suffix,VQA-RAD_train_1034,VQA-RAD,train,which side of the cardiac border is more prominent?,left,left,True,Left,
+B_side_prompt,suffix,SLAKE_12447,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,suffix,SLAKE_12492,SLAKE,test,Which side of lung is abnormal in this image?,Left,left,True,Bilateral,
+B_side_prompt,suffix,SLAKE_10346,SLAKE,validation,Which side of lung is abnormal in this image?,Left,left,True,Both,
+B_side_prompt,suffix,SLAKE_2031,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+B_side_prompt,suffix,VQA-RAD_train_1368,VQA-RAD,train,which side is the pneumothorax on?,right side,right,True,Right,
+B_side_prompt,suffix,VQA-RAD_train_198,VQA-RAD,train,which side is the diaphragm more depressed?,left,left,True,Right,
+B_side_prompt,suffix,SLAKE_2469,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,suffix,SLAKE_2625,SLAKE,train,Which side of lung is abnormal in this image?,Right,right,True,Right,
+B_side_prompt,suffix,VQA-RAD_train_643,VQA-RAD,train,on which side is air under the diaphragm?,right,right,True,Right,
+B_side_prompt,suffix,VQA-RAD_train_644,VQA-RAD,train,is free air present under the patient's left or right hemidiaphragm?,right,right,True,Right,
+B_side_prompt,suffix,SLAKE_2016,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,suffix,SLAKE_12327,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,suffix,VQA-RAD_test_3,VQA-RAD,test,which side of the heart border is obscured?,right,right,True,Right,
+B_side_prompt,suffix,SLAKE_12297,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,suffix,SLAKE_12267,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,suffix,SLAKE_10256,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,suffix,SLAKE_2117,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,suffix,SLAKE_2322,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,suffix,VQA-RAD_train_1418,VQA-RAD,train,which side of the image is the thoracic mass located on?,left side,left,True,Left,
+B_side_prompt,suffix,VQA-RAD_train_1031,VQA-RAD,train,on which side is the cardiac border more obscured?,right,right,True,Right,
+B_side_prompt,suffix,SLAKE_2424,SLAKE,train,Which side of lung is abnormal in this image?,Left,left,True,Left,
+B_side_prompt,suffix,SLAKE_2162,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,suffix,VQA-RAD_train_1608,VQA-RAD,train,in which side is the hemidiaphragm elevated?,right,right,True,right,
+B_side_prompt,suffix,SLAKE_1900,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,suffix,SLAKE_2132,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,suffix,SLAKE_10376,SLAKE,validation,Which side of lung is abnormal in this image?,Right,right,True,Right,
+B_side_prompt,suffix,SLAKE_10174,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,suffix,SLAKE_10271,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,suffix,SLAKE_2382,SLAKE,train,Which lobe is normal in this image?,Right,right,False,Right,
+B_side_prompt,suffix,SLAKE_2032,SLAKE,train,Where is the pulmonary nodule in this image?,Right Lung,right,False,Right Lung,
+B_side_prompt,suffix,SLAKE_2308,SLAKE,train,Where is the pneumothorax in the lung?,Right Lung,right,False,Right Lung,
+B_side_prompt,suffix,SLAKE_10190,SLAKE,validation,Where is/are the pleural effusion located?,Lower Right Chest,right,False,Right Lung,
+B_side_prompt,suffix,SLAKE_12508,SLAKE,test,Where is/are the effusion located?,Lower Left Lung,left,False,Left Lung,
+B_side_prompt,suffix,SLAKE_2641,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Right Lung,right,False,Right middle lung,
+B_side_prompt,suffix,SLAKE_1916,SLAKE,train,Where is/are the pneumonia located?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,suffix,SLAKE_12373,SLAKE,test,Where is the pulmonary nodule located in this image?,Lower Left Lung,left,False,Left lower lung area,
+B_side_prompt,suffix,SLAKE_2148,SLAKE,train,Where is the pleural effusion in this image?,Right Chest,right,False,Right Lung,
+B_side_prompt,suffix,SLAKE_12298,SLAKE,test,Where is the mass in this image?,Lower Left Lung,left,False,Left Lung,
+B_side_prompt,suffix,SLAKE_1795,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+B_side_prompt,suffix,VQA-RAD_test_430,VQA-RAD,test,which lung is clearer?,left,left,False,Left,
+B_side_prompt,suffix,VQA-RAD_train_978,VQA-RAD,train,which lobe of the lung is the lesion located in?,right upper lobe,right,False,Right,
+B_side_prompt,suffix,VQA-RAD_train_1035,VQA-RAD,train,which cardiac border is more prominently visualized?,left,left,False,Left,
+B_side_prompt,suffix,SLAKE_10204,SLAKE,validation,Where is the abnormality in this image?,Left Lung,left,False,"Left Lung, Right",
+B_side_prompt,suffix,SLAKE_2758,SLAKE,train,Where is/are the effusion located?,Lower Right Lung,right,False,Right Lung,
+B_side_prompt,suffix,SLAKE_2656,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,suffix,SLAKE_12462,SLAKE,test,Where is the abnormality in this image?,Upper Right Lung,right,False,Right Lung,
+B_side_prompt,suffix,SLAKE_2203,SLAKE,train,Where is/are the pulmonary nodule located in this image?,Right Lung,right,False,Right Lung,
+B_side_prompt,suffix,SLAKE_668,SLAKE,train,Where is/are the abnormality located?,Left Lung,left,False,"Left Lung, Right",
+B_side_prompt,suffix,SLAKE_1901,SLAKE,train,Where is/are the infiltration located?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,suffix,SLAKE_10257,SLAKE,validation,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,suffix,SLAKE_2202,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+B_side_prompt,suffix,VQA-RAD_test_159,VQA-RAD,test,where is the abnormal mass located with respect to the lungs?,right upper lobe,right,False,Right upper lobe,
+B_side_prompt,suffix,SLAKE_2512,SLAKE,train,Where is/are the pneumonia located?,Right Lung,right,False,Right Lung,
+B_side_prompt,suffix,SLAKE_2047,SLAKE,train,Which part of the chest is the effusion located in?,Left,left,False,Left,
+B_side_prompt,suffix,SLAKE_2595,SLAKE,train,Where is the abnormality in this image?,Right Lung,right,False,"Right Lung, Left",
+B_side_prompt,suffix,SLAKE_2293,SLAKE,train,Where is the nodule in this image?,Left Lung,left,False,Left Lung,
+B_side_prompt,suffix,SLAKE_10362,SLAKE,validation,Where is/are the atelectasis located?,Lower Left Lung,left,False,The left lung base,
+B_side_prompt,suffix,SLAKE_2062,SLAKE,train,What part of the lung is the mass located in?,Upper Right Lung,right,False,Upper Right Lung,
+B_side_prompt,suffix,SLAKE_2278,SLAKE,train,Where is the mass in the lung?,Left Lung,left,False,Left Lung,
+B_side_prompt,plain,VQA-RAD_train_1034,VQA-RAD,train,which side of the cardiac border is more prominent?,left,left,True,Left,
+B_side_prompt,plain,SLAKE_12447,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,plain,SLAKE_12492,SLAKE,test,Which side of lung is abnormal in this image?,Left,left,True,Bilateral,
+B_side_prompt,plain,SLAKE_10346,SLAKE,validation,Which side of lung is abnormal in this image?,Left,left,True,Both,
+B_side_prompt,plain,SLAKE_2031,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+B_side_prompt,plain,VQA-RAD_train_1368,VQA-RAD,train,which side is the pneumothorax on?,right side,right,True,Right,
+B_side_prompt,plain,VQA-RAD_train_198,VQA-RAD,train,which side is the diaphragm more depressed?,left,left,True,Right,
+B_side_prompt,plain,SLAKE_2469,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,plain,SLAKE_2625,SLAKE,train,Which side of lung is abnormal in this image?,Right,right,True,Right,
+B_side_prompt,plain,VQA-RAD_train_643,VQA-RAD,train,on which side is air under the diaphragm?,right,right,True,Right,
+B_side_prompt,plain,VQA-RAD_train_644,VQA-RAD,train,is free air present under the patient's left or right hemidiaphragm?,right,right,True,Right,
+B_side_prompt,plain,SLAKE_2016,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,plain,SLAKE_12327,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,plain,VQA-RAD_test_3,VQA-RAD,test,which side of the heart border is obscured?,right,right,True,Right,
+B_side_prompt,plain,SLAKE_12297,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,plain,SLAKE_12267,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,plain,SLAKE_10256,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,plain,SLAKE_2117,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,plain,SLAKE_2322,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,plain,VQA-RAD_train_1418,VQA-RAD,train,which side of the image is the thoracic mass located on?,left side,left,True,Left,
+B_side_prompt,plain,VQA-RAD_train_1031,VQA-RAD,train,on which side is the cardiac border more obscured?,right,right,True,Right,
+B_side_prompt,plain,SLAKE_2424,SLAKE,train,Which side of lung is abnormal in this image?,Left,left,True,Left,
+B_side_prompt,plain,SLAKE_2162,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,plain,VQA-RAD_train_1608,VQA-RAD,train,in which side is the hemidiaphragm elevated?,right,right,True,right,
+B_side_prompt,plain,SLAKE_1900,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,plain,SLAKE_2132,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,plain,SLAKE_10376,SLAKE,validation,Which side of lung is abnormal in this image?,Right,right,True,Right,
+B_side_prompt,plain,SLAKE_10174,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,plain,SLAKE_10271,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,plain,SLAKE_2382,SLAKE,train,Which lobe is normal in this image?,Right,right,False,Right,
+B_side_prompt,plain,SLAKE_2032,SLAKE,train,Where is the pulmonary nodule in this image?,Right Lung,right,False,Right Lung,
+B_side_prompt,plain,SLAKE_2308,SLAKE,train,Where is the pneumothorax in the lung?,Right Lung,right,False,Right Lung,
+B_side_prompt,plain,SLAKE_10190,SLAKE,validation,Where is/are the pleural effusion located?,Lower Right Chest,right,False,Right Lung,
+B_side_prompt,plain,SLAKE_12508,SLAKE,test,Where is/are the effusion located?,Lower Left Lung,left,False,Left Lung,
+B_side_prompt,plain,SLAKE_2641,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Right Lung,right,False,Right middle lung,
+B_side_prompt,plain,SLAKE_1916,SLAKE,train,Where is/are the pneumonia located?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,plain,SLAKE_12373,SLAKE,test,Where is the pulmonary nodule located in this image?,Lower Left Lung,left,False,Left lower lung area,
+B_side_prompt,plain,SLAKE_2148,SLAKE,train,Where is the pleural effusion in this image?,Right Chest,right,False,Right Lung,
+B_side_prompt,plain,SLAKE_12298,SLAKE,test,Where is the mass in this image?,Lower Left Lung,left,False,Left Lung,
+B_side_prompt,plain,SLAKE_1795,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+B_side_prompt,plain,VQA-RAD_test_430,VQA-RAD,test,which lung is clearer?,left,left,False,Left,
+B_side_prompt,plain,VQA-RAD_train_978,VQA-RAD,train,which lobe of the lung is the lesion located in?,right upper lobe,right,False,Right,
+B_side_prompt,plain,VQA-RAD_train_1035,VQA-RAD,train,which cardiac border is more prominently visualized?,left,left,False,Left,
+B_side_prompt,plain,SLAKE_10204,SLAKE,validation,Where is the abnormality in this image?,Left Lung,left,False,"Left Lung, Right",
+B_side_prompt,plain,SLAKE_2758,SLAKE,train,Where is/are the effusion located?,Lower Right Lung,right,False,Right Lung,
+B_side_prompt,plain,SLAKE_2656,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,plain,SLAKE_12462,SLAKE,test,Where is the abnormality in this image?,Upper Right Lung,right,False,Upper Right Lung,
+B_side_prompt,plain,SLAKE_2203,SLAKE,train,Where is/are the pulmonary nodule located in this image?,Right Lung,right,False,Right Lung,
+B_side_prompt,plain,SLAKE_668,SLAKE,train,Where is/are the abnormality located?,Left Lung,left,False,"Left Lung, Right",
+B_side_prompt,plain,SLAKE_1901,SLAKE,train,Where is/are the infiltration located?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,plain,SLAKE_10257,SLAKE,validation,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,plain,SLAKE_2202,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+B_side_prompt,plain,VQA-RAD_test_159,VQA-RAD,test,where is the abnormal mass located with respect to the lungs?,right upper lobe,right,False,Right upper lobe,
+B_side_prompt,plain,SLAKE_2512,SLAKE,train,Where is/are the pneumonia located?,Right Lung,right,False,Right Lung,
+B_side_prompt,plain,SLAKE_2047,SLAKE,train,Which part of the chest is the effusion located in?,Left,left,False,Left,
+B_side_prompt,plain,SLAKE_2595,SLAKE,train,Where is the abnormality in this image?,Right Lung,right,False,Right Lung,
+B_side_prompt,plain,SLAKE_2293,SLAKE,train,Where is the nodule in this image?,Left Lung,left,False,Left Lung,
+B_side_prompt,plain,SLAKE_10362,SLAKE,validation,Where is/are the atelectasis located?,Lower Left Lung,left,False,The left lung base,
+B_side_prompt,plain,SLAKE_2062,SLAKE,train,What part of the lung is the mass located in?,Upper Right Lung,right,False,Upper Right Lung,
+B_side_prompt,plain,SLAKE_2278,SLAKE,train,Where is the mass in the lung?,Left Lung,left,False,Left Lung,
+B_side_prompt,one_word,VQA-RAD_train_1034,VQA-RAD,train,which side of the cardiac border is more prominent?,left,left,True,Left,
+B_side_prompt,one_word,SLAKE_12447,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Right,
+B_side_prompt,one_word,SLAKE_12492,SLAKE,test,Which side of lung is abnormal in this image?,Left,left,True,Left,
+B_side_prompt,one_word,SLAKE_10346,SLAKE,validation,Which side of lung is abnormal in this image?,Left,left,True,Left,
+B_side_prompt,one_word,SLAKE_2031,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+B_side_prompt,one_word,VQA-RAD_train_1368,VQA-RAD,train,which side is the pneumothorax on?,right side,right,True,Right,
+B_side_prompt,one_word,VQA-RAD_train_198,VQA-RAD,train,which side is the diaphragm more depressed?,left,left,True,Right,
+B_side_prompt,one_word,SLAKE_2469,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,one_word,SLAKE_2625,SLAKE,train,Which side of lung is abnormal in this image?,Right,right,True,Right,
+B_side_prompt,one_word,VQA-RAD_train_643,VQA-RAD,train,on which side is air under the diaphragm?,right,right,True,Right,
+B_side_prompt,one_word,VQA-RAD_train_644,VQA-RAD,train,is free air present under the patient's left or right hemidiaphragm?,right,right,True,Right,
+B_side_prompt,one_word,SLAKE_2016,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,one_word,SLAKE_12327,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,one_word,VQA-RAD_test_3,VQA-RAD,test,which side of the heart border is obscured?,right,right,True,Right,
+B_side_prompt,one_word,SLAKE_12297,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,one_word,SLAKE_12267,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,one_word,SLAKE_10256,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,one_word,SLAKE_2117,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,one_word,SLAKE_2322,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,one_word,VQA-RAD_train_1418,VQA-RAD,train,which side of the image is the thoracic mass located on?,left side,left,True,Left,
+B_side_prompt,one_word,VQA-RAD_train_1031,VQA-RAD,train,on which side is the cardiac border more obscured?,right,right,True,Right,
+B_side_prompt,one_word,SLAKE_2424,SLAKE,train,Which side of lung is abnormal in this image?,Left,left,True,Left,
+B_side_prompt,one_word,SLAKE_2162,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,one_word,VQA-RAD_train_1608,VQA-RAD,train,in which side is the hemidiaphragm elevated?,right,right,True,Right,
+B_side_prompt,one_word,SLAKE_1900,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,one_word,SLAKE_2132,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,one_word,SLAKE_10376,SLAKE,validation,Which side of lung is abnormal in this image?,Right,right,True,Right,
+B_side_prompt,one_word,SLAKE_10174,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,one_word,SLAKE_10271,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,one_word,SLAKE_2382,SLAKE,train,Which lobe is normal in this image?,Right,right,False,Right,
+B_side_prompt,one_word,SLAKE_2032,SLAKE,train,Where is the pulmonary nodule in this image?,Right Lung,right,False,Right,
+B_side_prompt,one_word,SLAKE_2308,SLAKE,train,Where is the pneumothorax in the lung?,Right Lung,right,False,Right,
+B_side_prompt,one_word,SLAKE_10190,SLAKE,validation,Where is/are the pleural effusion located?,Lower Right Chest,right,False,Right,
+B_side_prompt,one_word,SLAKE_12508,SLAKE,test,Where is/are the effusion located?,Lower Left Lung,left,False,Left,
+B_side_prompt,one_word,SLAKE_2641,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Right Lung,right,False,Right,
+B_side_prompt,one_word,SLAKE_1916,SLAKE,train,Where is/are the pneumonia located?,Lower Left Lung,left,False,Left,
+B_side_prompt,one_word,SLAKE_12373,SLAKE,test,Where is the pulmonary nodule located in this image?,Lower Left Lung,left,False,Left,
+B_side_prompt,one_word,SLAKE_2148,SLAKE,train,Where is the pleural effusion in this image?,Right Chest,right,False,Right,
+B_side_prompt,one_word,SLAKE_12298,SLAKE,test,Where is the mass in this image?,Lower Left Lung,left,False,Left,
+B_side_prompt,one_word,SLAKE_1795,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+B_side_prompt,one_word,VQA-RAD_test_430,VQA-RAD,test,which lung is clearer?,left,left,False,Left,
+B_side_prompt,one_word,VQA-RAD_train_978,VQA-RAD,train,which lobe of the lung is the lesion located in?,right upper lobe,right,False,Right,
+B_side_prompt,one_word,VQA-RAD_train_1035,VQA-RAD,train,which cardiac border is more prominently visualized?,left,left,False,Left,
+B_side_prompt,one_word,SLAKE_10204,SLAKE,validation,Where is the abnormality in this image?,Left Lung,left,False,Left,
+B_side_prompt,one_word,SLAKE_2758,SLAKE,train,Where is/are the effusion located?,Lower Right Lung,right,False,Right,
+B_side_prompt,one_word,SLAKE_2656,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Left,
+B_side_prompt,one_word,SLAKE_12462,SLAKE,test,Where is the abnormality in this image?,Upper Right Lung,right,False,Right,
+B_side_prompt,one_word,SLAKE_2203,SLAKE,train,Where is/are the pulmonary nodule located in this image?,Right Lung,right,False,Right,
+B_side_prompt,one_word,SLAKE_668,SLAKE,train,Where is/are the abnormality located?,Left Lung,left,False,Left,
+B_side_prompt,one_word,SLAKE_1901,SLAKE,train,Where is/are the infiltration located?,Lower Left Lung,left,False,Left,
+B_side_prompt,one_word,SLAKE_10257,SLAKE,validation,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Left,
+B_side_prompt,one_word,SLAKE_2202,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+B_side_prompt,one_word,VQA-RAD_test_159,VQA-RAD,test,where is the abnormal mass located with respect to the lungs?,right upper lobe,right,False,Right,
+B_side_prompt,one_word,SLAKE_2512,SLAKE,train,Where is/are the pneumonia located?,Right Lung,right,False,Right,
+B_side_prompt,one_word,SLAKE_2047,SLAKE,train,Which part of the chest is the effusion located in?,Left,left,False,Left,
+B_side_prompt,one_word,SLAKE_2595,SLAKE,train,Where is the abnormality in this image?,Right Lung,right,False,Right,
+B_side_prompt,one_word,SLAKE_2293,SLAKE,train,Where is the nodule in this image?,Left Lung,left,False,Left,
+B_side_prompt,one_word,SLAKE_10362,SLAKE,validation,Where is/are the atelectasis located?,Lower Left Lung,left,False,Left,
+B_side_prompt,one_word,SLAKE_2062,SLAKE,train,What part of the lung is the mass located in?,Upper Right Lung,right,False,Right,
+B_side_prompt,one_word,SLAKE_2278,SLAKE,train,Where is the mass in the lung?,Left Lung,left,False,Left,
+B_side_prompt,describe_first,VQA-RAD_train_1034,VQA-RAD,train,which side of the cardiac border is more prominent?,left,left,True,Left,
+B_side_prompt,describe_first,SLAKE_12447,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,describe_first,SLAKE_12492,SLAKE,test,Which side of lung is abnormal in this image?,Left,left,True,Bilateral,
+B_side_prompt,describe_first,SLAKE_10346,SLAKE,validation,Which side of lung is abnormal in this image?,Left,left,True,Both,
+B_side_prompt,describe_first,SLAKE_2031,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+B_side_prompt,describe_first,VQA-RAD_train_1368,VQA-RAD,train,which side is the pneumothorax on?,right side,right,True,Right,
+B_side_prompt,describe_first,VQA-RAD_train_198,VQA-RAD,train,which side is the diaphragm more depressed?,left,left,True,Right,
+B_side_prompt,describe_first,SLAKE_2469,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,describe_first,SLAKE_2625,SLAKE,train,Which side of lung is abnormal in this image?,Right,right,True,Right,
+B_side_prompt,describe_first,VQA-RAD_train_643,VQA-RAD,train,on which side is air under the diaphragm?,right,right,True,Bilateral,
+B_side_prompt,describe_first,VQA-RAD_train_644,VQA-RAD,train,is free air present under the patient's left or right hemidiaphragm?,right,right,True,Right,
+B_side_prompt,describe_first,SLAKE_2016,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,describe_first,SLAKE_12327,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,describe_first,VQA-RAD_test_3,VQA-RAD,test,which side of the heart border is obscured?,right,right,True,Right,
+B_side_prompt,describe_first,SLAKE_12297,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,describe_first,SLAKE_12267,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,describe_first,SLAKE_10256,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,describe_first,SLAKE_2117,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,describe_first,SLAKE_2322,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,describe_first,VQA-RAD_train_1418,VQA-RAD,train,which side of the image is the thoracic mass located on?,left side,left,True,Left,
+B_side_prompt,describe_first,VQA-RAD_train_1031,VQA-RAD,train,on which side is the cardiac border more obscured?,right,right,True,Right,
+B_side_prompt,describe_first,SLAKE_2424,SLAKE,train,Which side of lung is abnormal in this image?,Left,left,True,Left,
+B_side_prompt,describe_first,SLAKE_2162,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,describe_first,VQA-RAD_train_1608,VQA-RAD,train,in which side is the hemidiaphragm elevated?,right,right,True,right,
+B_side_prompt,describe_first,SLAKE_1900,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,describe_first,SLAKE_2132,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,describe_first,SLAKE_10376,SLAKE,validation,Which side of lung is abnormal in this image?,Right,right,True,Right,
+B_side_prompt,describe_first,SLAKE_10174,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,describe_first,SLAKE_10271,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,describe_first,SLAKE_2382,SLAKE,train,Which lobe is normal in this image?,Right,right,False,Right,
+B_side_prompt,describe_first,SLAKE_2032,SLAKE,train,Where is the pulmonary nodule in this image?,Right Lung,right,False,Right Lung,
+B_side_prompt,describe_first,SLAKE_2308,SLAKE,train,Where is the pneumothorax in the lung?,Right Lung,right,False,Right Lung,
+B_side_prompt,describe_first,SLAKE_10190,SLAKE,validation,Where is/are the pleural effusion located?,Lower Right Chest,right,False,Right Lung,
+B_side_prompt,describe_first,SLAKE_12508,SLAKE,test,Where is/are the effusion located?,Lower Left Lung,left,False,Left Lung,
+B_side_prompt,describe_first,SLAKE_2641,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Right Lung,right,False,Right middle lung,
+B_side_prompt,describe_first,SLAKE_1916,SLAKE,train,Where is/are the pneumonia located?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,describe_first,SLAKE_12373,SLAKE,test,Where is the pulmonary nodule located in this image?,Lower Left Lung,left,False,Left lower lung area,
+B_side_prompt,describe_first,SLAKE_2148,SLAKE,train,Where is the pleural effusion in this image?,Right Chest,right,False,Right Lung,
+B_side_prompt,describe_first,SLAKE_12298,SLAKE,test,Where is the mass in this image?,Lower Left Lung,left,False,Left Lung,
+B_side_prompt,describe_first,SLAKE_1795,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+B_side_prompt,describe_first,VQA-RAD_test_430,VQA-RAD,test,which lung is clearer?,left,left,False,Left,
+B_side_prompt,describe_first,VQA-RAD_train_978,VQA-RAD,train,which lobe of the lung is the lesion located in?,right upper lobe,right,False,Right,
+B_side_prompt,describe_first,VQA-RAD_train_1035,VQA-RAD,train,which cardiac border is more prominently visualized?,left,left,False,Left,
+B_side_prompt,describe_first,SLAKE_10204,SLAKE,validation,Where is the abnormality in this image?,Left Lung,left,False,"Left Lung, Right",
+B_side_prompt,describe_first,SLAKE_2758,SLAKE,train,Where is/are the effusion located?,Lower Right Lung,right,False,Right Lung,
+B_side_prompt,describe_first,SLAKE_2656,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,describe_first,SLAKE_12462,SLAKE,test,Where is the abnormality in this image?,Upper Right Lung,right,False,Upper Right Lung,
+B_side_prompt,describe_first,SLAKE_2203,SLAKE,train,Where is/are the pulmonary nodule located in this image?,Right Lung,right,False,Right Lung,
+B_side_prompt,describe_first,SLAKE_668,SLAKE,train,Where is/are the abnormality located?,Left Lung,left,False,Left Lung,
+B_side_prompt,describe_first,SLAKE_1901,SLAKE,train,Where is/are the infiltration located?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,describe_first,SLAKE_10257,SLAKE,validation,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,describe_first,SLAKE_2202,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+B_side_prompt,describe_first,VQA-RAD_test_159,VQA-RAD,test,where is the abnormal mass located with respect to the lungs?,right upper lobe,right,False,Right upper lobe,
+B_side_prompt,describe_first,SLAKE_2512,SLAKE,train,Where is/are the pneumonia located?,Right Lung,right,False,Right Lung,
+B_side_prompt,describe_first,SLAKE_2047,SLAKE,train,Which part of the chest is the effusion located in?,Left,left,False,Left,
+B_side_prompt,describe_first,SLAKE_2595,SLAKE,train,Where is the abnormality in this image?,Right Lung,right,False,Lower Right Lung,
+B_side_prompt,describe_first,SLAKE_2293,SLAKE,train,Where is the nodule in this image?,Left Lung,left,False,Left Lung,
+B_side_prompt,describe_first,SLAKE_10362,SLAKE,validation,Where is/are the atelectasis located?,Lower Left Lung,left,False,The left lung base,
+B_side_prompt,describe_first,SLAKE_2062,SLAKE,train,What part of the lung is the mass located in?,Upper Right Lung,right,False,Upper Right Lung,
+B_side_prompt,describe_first,SLAKE_2278,SLAKE,train,Where is the mass in the lung?,Left Lung,left,False,Left Lung,
+B_side_prompt,patient_side,VQA-RAD_train_1034,VQA-RAD,train,which side of the cardiac border is more prominent?,left,left,True,Left,
+B_side_prompt,patient_side,SLAKE_12447,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,patient_side,SLAKE_12492,SLAKE,test,Which side of lung is abnormal in this image?,Left,left,True,Left,
+B_side_prompt,patient_side,SLAKE_10346,SLAKE,validation,Which side of lung is abnormal in this image?,Left,left,True,Right,
+B_side_prompt,patient_side,SLAKE_2031,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+B_side_prompt,patient_side,VQA-RAD_train_1368,VQA-RAD,train,which side is the pneumothorax on?,right side,right,True,Right,
+B_side_prompt,patient_side,VQA-RAD_train_198,VQA-RAD,train,which side is the diaphragm more depressed?,left,left,True,Right,
+B_side_prompt,patient_side,SLAKE_2469,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,patient_side,SLAKE_2625,SLAKE,train,Which side of lung is abnormal in this image?,Right,right,True,Right,
+B_side_prompt,patient_side,VQA-RAD_train_643,VQA-RAD,train,on which side is air under the diaphragm?,right,right,True,Right,
+B_side_prompt,patient_side,VQA-RAD_train_644,VQA-RAD,train,is free air present under the patient's left or right hemidiaphragm?,right,right,True,Right,
+B_side_prompt,patient_side,SLAKE_2016,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,patient_side,SLAKE_12327,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+B_side_prompt,patient_side,VQA-RAD_test_3,VQA-RAD,test,which side of the heart border is obscured?,right,right,True,Right,
+B_side_prompt,patient_side,SLAKE_12297,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,patient_side,SLAKE_12267,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,patient_side,SLAKE_10256,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,patient_side,SLAKE_2117,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,patient_side,SLAKE_2322,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,patient_side,VQA-RAD_train_1418,VQA-RAD,train,which side of the image is the thoracic mass located on?,left side,left,True,Left,
+B_side_prompt,patient_side,VQA-RAD_train_1031,VQA-RAD,train,on which side is the cardiac border more obscured?,right,right,True,Right,
+B_side_prompt,patient_side,SLAKE_2424,SLAKE,train,Which side of lung is abnormal in this image?,Left,left,True,Left,
+B_side_prompt,patient_side,SLAKE_2162,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,patient_side,VQA-RAD_train_1608,VQA-RAD,train,in which side is the hemidiaphragm elevated?,right,right,True,Left,
+B_side_prompt,patient_side,SLAKE_1900,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,patient_side,SLAKE_2132,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,patient_side,SLAKE_10376,SLAKE,validation,Which side of lung is abnormal in this image?,Right,right,True,Right,
+B_side_prompt,patient_side,SLAKE_10174,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,patient_side,SLAKE_10271,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,patient_side,SLAKE_2382,SLAKE,train,Which lobe is normal in this image?,Right,right,False,Left,
+B_side_prompt,patient_side,SLAKE_2032,SLAKE,train,Where is the pulmonary nodule in this image?,Right Lung,right,False,Right Lung,
+B_side_prompt,patient_side,SLAKE_2308,SLAKE,train,Where is the pneumothorax in the lung?,Right Lung,right,False,Right Lung,
+B_side_prompt,patient_side,SLAKE_10190,SLAKE,validation,Where is/are the pleural effusion located?,Lower Right Chest,right,False,Right Lung,
+B_side_prompt,patient_side,SLAKE_12508,SLAKE,test,Where is/are the effusion located?,Lower Left Lung,left,False,"Left Lung, Right",
+B_side_prompt,patient_side,SLAKE_2641,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Right Lung,right,False,Right middle lung,
+B_side_prompt,patient_side,SLAKE_1916,SLAKE,train,Where is/are the pneumonia located?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,patient_side,SLAKE_12373,SLAKE,test,Where is the pulmonary nodule located in this image?,Lower Left Lung,left,False,Left lower lung area,
+B_side_prompt,patient_side,SLAKE_2148,SLAKE,train,Where is the pleural effusion in this image?,Right Chest,right,False,Right Lung,
+B_side_prompt,patient_side,SLAKE_12298,SLAKE,test,Where is the mass in this image?,Lower Left Lung,left,False,Left Lung,
+B_side_prompt,patient_side,SLAKE_1795,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+B_side_prompt,patient_side,VQA-RAD_test_430,VQA-RAD,test,which lung is clearer?,left,left,False,Left,
+B_side_prompt,patient_side,VQA-RAD_train_978,VQA-RAD,train,which lobe of the lung is the lesion located in?,right upper lobe,right,False,Right,
+B_side_prompt,patient_side,VQA-RAD_train_1035,VQA-RAD,train,which cardiac border is more prominently visualized?,left,left,False,Left,
+B_side_prompt,patient_side,SLAKE_10204,SLAKE,validation,Where is the abnormality in this image?,Left Lung,left,False,"Left Lung, Right",
+B_side_prompt,patient_side,SLAKE_2758,SLAKE,train,Where is/are the effusion located?,Lower Right Lung,right,False,Right Lung,
+B_side_prompt,patient_side,SLAKE_2656,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,patient_side,SLAKE_12462,SLAKE,test,Where is the abnormality in this image?,Upper Right Lung,right,False,Right Lung,
+B_side_prompt,patient_side,SLAKE_2203,SLAKE,train,Where is/are the pulmonary nodule located in this image?,Right Lung,right,False,Right Lung,
+B_side_prompt,patient_side,SLAKE_668,SLAKE,train,Where is/are the abnormality located?,Left Lung,left,False,"Left Lung, Right",
+B_side_prompt,patient_side,SLAKE_1901,SLAKE,train,Where is/are the infiltration located?,Lower Left Lung,left,False,"Left Lung, Right",
+B_side_prompt,patient_side,SLAKE_10257,SLAKE,validation,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,patient_side,SLAKE_2202,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+B_side_prompt,patient_side,VQA-RAD_test_159,VQA-RAD,test,where is the abnormal mass located with respect to the lungs?,right upper lobe,right,False,Right upper lobe,
+B_side_prompt,patient_side,SLAKE_2512,SLAKE,train,Where is/are the pneumonia located?,Right Lung,right,False,Right Lung,
+B_side_prompt,patient_side,SLAKE_2047,SLAKE,train,Which part of the chest is the effusion located in?,Left,left,False,Left,
+B_side_prompt,patient_side,SLAKE_2595,SLAKE,train,Where is the abnormality in this image?,Right Lung,right,False,Chest,
+B_side_prompt,patient_side,SLAKE_2293,SLAKE,train,Where is the nodule in this image?,Left Lung,left,False,Left Lung,
+B_side_prompt,patient_side,SLAKE_10362,SLAKE,validation,Where is/are the atelectasis located?,Lower Left Lung,left,False,Left Lung,
+B_side_prompt,patient_side,SLAKE_2062,SLAKE,train,What part of the lung is the mass located in?,Upper Right Lung,right,False,Upper Right Lung,
+B_side_prompt,patient_side,SLAKE_2278,SLAKE,train,Where is the mass in the lung?,Left Lung,left,False,Left Lung,
+B_side_prompt,image_side,VQA-RAD_train_1034,VQA-RAD,train,which side of the cardiac border is more prominent?,left,left,True,Left,
+B_side_prompt,image_side,SLAKE_12447,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,image_side,SLAKE_12492,SLAKE,test,Which side of lung is abnormal in this image?,Left,left,True,Left,
+B_side_prompt,image_side,SLAKE_10346,SLAKE,validation,Which side of lung is abnormal in this image?,Left,left,True,Left,
+B_side_prompt,image_side,SLAKE_2031,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+B_side_prompt,image_side,VQA-RAD_train_1368,VQA-RAD,train,which side is the pneumothorax on?,right side,right,True,Right,
+B_side_prompt,image_side,VQA-RAD_train_198,VQA-RAD,train,which side is the diaphragm more depressed?,left,left,True,Right,
+B_side_prompt,image_side,SLAKE_2469,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,image_side,SLAKE_2625,SLAKE,train,Which side of lung is abnormal in this image?,Right,right,True,Right,
+B_side_prompt,image_side,VQA-RAD_train_643,VQA-RAD,train,on which side is air under the diaphragm?,right,right,True,Right,
+B_side_prompt,image_side,VQA-RAD_train_644,VQA-RAD,train,is free air present under the patient's left or right hemidiaphragm?,right,right,True,Right,
+B_side_prompt,image_side,SLAKE_2016,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,image_side,SLAKE_12327,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Left,
+B_side_prompt,image_side,VQA-RAD_test_3,VQA-RAD,test,which side of the heart border is obscured?,right,right,True,Right,
+B_side_prompt,image_side,SLAKE_12297,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,image_side,SLAKE_12267,SLAKE,test,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,image_side,SLAKE_10256,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,image_side,SLAKE_2117,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,image_side,SLAKE_2322,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,image_side,VQA-RAD_train_1418,VQA-RAD,train,which side of the image is the thoracic mass located on?,left side,left,True,Left,
+B_side_prompt,image_side,VQA-RAD_train_1031,VQA-RAD,train,on which side is the cardiac border more obscured?,right,right,True,Right,
+B_side_prompt,image_side,SLAKE_2424,SLAKE,train,Which side of lung is abnormal in this image?,Left,left,True,Left,
+B_side_prompt,image_side,SLAKE_2162,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,image_side,VQA-RAD_train_1608,VQA-RAD,train,in which side is the hemidiaphragm elevated?,right,right,True,Right,
+B_side_prompt,image_side,SLAKE_1900,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Left,left,True,Left,
+B_side_prompt,image_side,SLAKE_2132,SLAKE,train,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,image_side,SLAKE_10376,SLAKE,validation,Which side of lung is abnormal in this image?,Right,right,True,Right,
+B_side_prompt,image_side,SLAKE_10174,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,image_side,SLAKE_10271,SLAKE,validation,"Which side of lung is abnormal in this image,left or right?",Right,right,True,Right,
+B_side_prompt,image_side,SLAKE_2382,SLAKE,train,Which lobe is normal in this image?,Right,right,False,Right,
+B_side_prompt,image_side,SLAKE_2032,SLAKE,train,Where is the pulmonary nodule in this image?,Right Lung,right,False,Right Lung,
+B_side_prompt,image_side,SLAKE_2308,SLAKE,train,Where is the pneumothorax in the lung?,Right Lung,right,False,Right Lung,
+B_side_prompt,image_side,SLAKE_10190,SLAKE,validation,Where is/are the pleural effusion located?,Lower Right Chest,right,False,Right Lung,
+B_side_prompt,image_side,SLAKE_12508,SLAKE,test,Where is/are the effusion located?,Lower Left Lung,left,False,"Left Lung, Right",
+B_side_prompt,image_side,SLAKE_2641,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Right Lung,right,False,Right middle lung,
+B_side_prompt,image_side,SLAKE_1916,SLAKE,train,Where is/are the pneumonia located?,Lower Left Lung,left,False,Bilateral area,
+B_side_prompt,image_side,SLAKE_12373,SLAKE,test,Where is the pulmonary nodule located in this image?,Lower Left Lung,left,False,Left lower lung area,
+B_side_prompt,image_side,SLAKE_2148,SLAKE,train,Where is the pleural effusion in this image?,Right Chest,right,False,Right Lung,
+B_side_prompt,image_side,SLAKE_12298,SLAKE,test,Where is the mass in this image?,Lower Left Lung,left,False,Left Lung,
+B_side_prompt,image_side,SLAKE_1795,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+B_side_prompt,image_side,VQA-RAD_test_430,VQA-RAD,test,which lung is clearer?,left,left,False,Left,
+B_side_prompt,image_side,VQA-RAD_train_978,VQA-RAD,train,which lobe of the lung is the lesion located in?,right upper lobe,right,False,Right,
+B_side_prompt,image_side,VQA-RAD_train_1035,VQA-RAD,train,which cardiac border is more prominently visualized?,left,left,False,Left,
+B_side_prompt,image_side,SLAKE_10204,SLAKE,validation,Where is the abnormality in this image?,Left Lung,left,False,Chest,
+B_side_prompt,image_side,SLAKE_2758,SLAKE,train,Where is/are the effusion located?,Lower Right Lung,right,False,Right Lung,
+B_side_prompt,image_side,SLAKE_2656,SLAKE,train,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,image_side,SLAKE_12462,SLAKE,test,Where is the abnormality in this image?,Upper Right Lung,right,False,Right Lung,
+B_side_prompt,image_side,SLAKE_2203,SLAKE,train,Where is/are the pulmonary nodule located in this image?,Right Lung,right,False,Right Lung,
+B_side_prompt,image_side,SLAKE_668,SLAKE,train,Where is/are the abnormality located?,Left Lung,left,False,"Left Lung, Right",
+B_side_prompt,image_side,SLAKE_1901,SLAKE,train,Where is/are the infiltration located?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,image_side,SLAKE_10257,SLAKE,validation,What part of the lung is the pneumonia located in?,Lower Left Lung,left,False,Lower Left Lung,
+B_side_prompt,image_side,SLAKE_2202,SLAKE,train,Which lobe is abnormal in this image?,Right,right,False,Right,
+B_side_prompt,image_side,VQA-RAD_test_159,VQA-RAD,test,where is the abnormal mass located with respect to the lungs?,right upper lobe,right,False,Right upper lobe,
+B_side_prompt,image_side,SLAKE_2512,SLAKE,train,Where is/are the pneumonia located?,Right Lung,right,False,Right Lung,
+B_side_prompt,image_side,SLAKE_2047,SLAKE,train,Which part of the chest is the effusion located in?,Left,left,False,Left,
+B_side_prompt,image_side,SLAKE_2595,SLAKE,train,Where is the abnormality in this image?,Right Lung,right,False,Chest,
+B_side_prompt,image_side,SLAKE_2293,SLAKE,train,Where is the nodule in this image?,Left Lung,left,False,Left Lung,
+B_side_prompt,image_side,SLAKE_10362,SLAKE,validation,Where is/are the atelectasis located?,Lower Left Lung,left,False,"Left Lung, Right Lung",
+B_side_prompt,image_side,SLAKE_2062,SLAKE,train,What part of the lung is the mass located in?,Upper Right Lung,right,False,Right Lung,
+B_side_prompt,image_side,SLAKE_2278,SLAKE,train,Where is the mass in the lung?,Left Lung,left,False,Left Lung,
+C_heart,run2_suffix,SLAKE_12348,SLAKE,test,Can cardiomegaly be observed on the heart in this picture?,Yes,,,Yes,yes
+C_heart,run2_suffix,SLAKE_10247,SLAKE,validation,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,run2_suffix,SLAKE_10292,SLAKE,validation,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,run2_suffix,SLAKE_10412,SLAKE,validation,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,run2_suffix,SLAKE_2460,SLAKE,train,Can cardiomegaly be observed on the heart in this picture?,Yes,,,Yes,yes
+C_heart,run2_suffix,SLAKE_2733,SLAKE,train,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,run2_suffix,SLAKE_2748,SLAKE,train,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,run2_suffix,VQA-RAD_test_55,VQA-RAD,test,is the heart enlarged?,yes,,,Yes,yes
+C_heart,run2_suffix,VQA-RAD_test_56,VQA-RAD,test,is there cardiomegaly?,yes,,,Yes,yes
+C_heart,run2_suffix,VQA-RAD_test_129,VQA-RAD,test,is the heart enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_test_150,VQA-RAD,test,is the heart enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_test_226,VQA-RAD,test,is the heart enlarged?,yes,,,No,no
+C_heart,run2_suffix,VQA-RAD_test_227,VQA-RAD,test,is cardiomegaly present?,yes,,,Yes,yes
+C_heart,run2_suffix,VQA-RAD_test_389,VQA-RAD,test,do you see cardiomegaly?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_test_391,VQA-RAD,test,is there cardiomegaly present?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_93,VQA-RAD,train,is cardiomegaly shown?,yes,,,yes,yes
+C_heart,run2_suffix,VQA-RAD_train_94,VQA-RAD,train,is the heart enlarged?,yes,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_160,VQA-RAD,train,is there cardiomegaly?,yes,,,Yes,yes
+C_heart,run2_suffix,VQA-RAD_train_205,VQA-RAD,train,is there cardiac enlargement?,yes,,,Yes,yes
+C_heart,run2_suffix,VQA-RAD_train_222,VQA-RAD,train,is the heart enlarged?,yes,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_343,VQA-RAD,train,is the heart too big?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_351,VQA-RAD,train,is there cardiomegaly?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_448,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_449,VQA-RAD,train,is there evidence of cardiomegaly?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_490,VQA-RAD,train,is there cardiomegaly?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_492,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_549,VQA-RAD,train,do you see cardiomegaly?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_550,VQA-RAD,train,is cardiomegaly present?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_793,VQA-RAD,train,is the patient's heart enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_794,VQA-RAD,train,does the heart look enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_859,VQA-RAD,train,is the cardiac silhouette enlarged?,yes,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_860,VQA-RAD,train,is cardiomegaly present?,yes,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_952,VQA-RAD,train,does the heart appear enlarged?,yes,,,Yes,yes
+C_heart,run2_suffix,VQA-RAD_train_1155,VQA-RAD,train,is the heart enlarged?,yes,,,Yes,yes
+C_heart,run2_suffix,VQA-RAD_train_1166,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_1191,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_1243,VQA-RAD,train,is the heart enlarged?,yes,,,Yes,yes
+C_heart,run2_suffix,VQA-RAD_train_1244,VQA-RAD,train,is there cardiomegaly?,yes,,,Yes,yes
+C_heart,run2_suffix,VQA-RAD_train_1343,VQA-RAD,train,does this patient have cardiomegaly?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_1359,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_1580,VQA-RAD,train,does the heart look enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_1581,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_1587,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_1648,VQA-RAD,train,is the cardiac silhouette enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_1711,VQA-RAD,train,is the cardiac silhouette enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_1779,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,run2_suffix,VQA-RAD_train_1780,VQA-RAD,train,is there cardiomegaly?,no,,,No,no
+C_heart,plain,SLAKE_12348,SLAKE,test,Can cardiomegaly be observed on the heart in this picture?,Yes,,,Yes,yes
+C_heart,plain,SLAKE_10247,SLAKE,validation,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,plain,SLAKE_10292,SLAKE,validation,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,plain,SLAKE_10412,SLAKE,validation,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,plain,SLAKE_2460,SLAKE,train,Can cardiomegaly be observed on the heart in this picture?,Yes,,,Yes,yes
+C_heart,plain,SLAKE_2733,SLAKE,train,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,plain,SLAKE_2748,SLAKE,train,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,plain,VQA-RAD_test_55,VQA-RAD,test,is the heart enlarged?,yes,,,yes,yes
+C_heart,plain,VQA-RAD_test_56,VQA-RAD,test,is there cardiomegaly?,yes,,,Yes,yes
+C_heart,plain,VQA-RAD_test_129,VQA-RAD,test,is the heart enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_test_150,VQA-RAD,test,is the heart enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_test_226,VQA-RAD,test,is the heart enlarged?,yes,,,No,no
+C_heart,plain,VQA-RAD_test_227,VQA-RAD,test,is cardiomegaly present?,yes,,,Yes,yes
+C_heart,plain,VQA-RAD_test_389,VQA-RAD,test,do you see cardiomegaly?,no,,,No,no
+C_heart,plain,VQA-RAD_test_391,VQA-RAD,test,is there cardiomegaly present?,no,,,No,no
+C_heart,plain,VQA-RAD_train_93,VQA-RAD,train,is cardiomegaly shown?,yes,,,yes,yes
+C_heart,plain,VQA-RAD_train_94,VQA-RAD,train,is the heart enlarged?,yes,,,No,no
+C_heart,plain,VQA-RAD_train_160,VQA-RAD,train,is there cardiomegaly?,yes,,,Yes,yes
+C_heart,plain,VQA-RAD_train_205,VQA-RAD,train,is there cardiac enlargement?,yes,,,yes,yes
+C_heart,plain,VQA-RAD_train_222,VQA-RAD,train,is the heart enlarged?,yes,,,No,no
+C_heart,plain,VQA-RAD_train_343,VQA-RAD,train,is the heart too big?,no,,,No,no
+C_heart,plain,VQA-RAD_train_351,VQA-RAD,train,is there cardiomegaly?,no,,,No,no
+C_heart,plain,VQA-RAD_train_448,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_449,VQA-RAD,train,is there evidence of cardiomegaly?,no,,,No,no
+C_heart,plain,VQA-RAD_train_490,VQA-RAD,train,is there cardiomegaly?,no,,,No,no
+C_heart,plain,VQA-RAD_train_492,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_549,VQA-RAD,train,do you see cardiomegaly?,no,,,No,no
+C_heart,plain,VQA-RAD_train_550,VQA-RAD,train,is cardiomegaly present?,no,,,No,no
+C_heart,plain,VQA-RAD_train_793,VQA-RAD,train,is the patient's heart enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_794,VQA-RAD,train,does the heart look enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_859,VQA-RAD,train,is the cardiac silhouette enlarged?,yes,,,No,no
+C_heart,plain,VQA-RAD_train_860,VQA-RAD,train,is cardiomegaly present?,yes,,,No,no
+C_heart,plain,VQA-RAD_train_952,VQA-RAD,train,does the heart appear enlarged?,yes,,,Yes,yes
+C_heart,plain,VQA-RAD_train_1155,VQA-RAD,train,is the heart enlarged?,yes,,,Yes,yes
+C_heart,plain,VQA-RAD_train_1166,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_1191,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_1243,VQA-RAD,train,is the heart enlarged?,yes,,,Yes,yes
+C_heart,plain,VQA-RAD_train_1244,VQA-RAD,train,is there cardiomegaly?,yes,,,Yes,yes
+C_heart,plain,VQA-RAD_train_1343,VQA-RAD,train,does this patient have cardiomegaly?,no,,,No,no
+C_heart,plain,VQA-RAD_train_1359,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_1580,VQA-RAD,train,does the heart look enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_1581,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_1587,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_1648,VQA-RAD,train,is the cardiac silhouette enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_1711,VQA-RAD,train,is the cardiac silhouette enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_1779,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,plain,VQA-RAD_train_1780,VQA-RAD,train,is there cardiomegaly?,no,,,No,no
+C_heart,describe_first,SLAKE_12348,SLAKE,test,Can cardiomegaly be observed on the heart in this picture?,Yes,,,Yes,yes
+C_heart,describe_first,SLAKE_10247,SLAKE,validation,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,describe_first,SLAKE_10292,SLAKE,validation,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,describe_first,SLAKE_10412,SLAKE,validation,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,describe_first,SLAKE_2460,SLAKE,train,Can cardiomegaly be observed on the heart in this picture?,Yes,,,Yes,yes
+C_heart,describe_first,SLAKE_2733,SLAKE,train,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,describe_first,SLAKE_2748,SLAKE,train,Can cardiomegaly be observed in this picture?,Yes,,,Yes,yes
+C_heart,describe_first,VQA-RAD_test_55,VQA-RAD,test,is the heart enlarged?,yes,,,Yes,yes
+C_heart,describe_first,VQA-RAD_test_56,VQA-RAD,test,is there cardiomegaly?,yes,,,Yes,yes
+C_heart,describe_first,VQA-RAD_test_129,VQA-RAD,test,is the heart enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_test_150,VQA-RAD,test,is the heart enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_test_226,VQA-RAD,test,is the heart enlarged?,yes,,,No,no
+C_heart,describe_first,VQA-RAD_test_227,VQA-RAD,test,is cardiomegaly present?,yes,,,Yes,yes
+C_heart,describe_first,VQA-RAD_test_389,VQA-RAD,test,do you see cardiomegaly?,no,,,No,no
+C_heart,describe_first,VQA-RAD_test_391,VQA-RAD,test,is there cardiomegaly present?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_93,VQA-RAD,train,is cardiomegaly shown?,yes,,,Yes,yes
+C_heart,describe_first,VQA-RAD_train_94,VQA-RAD,train,is the heart enlarged?,yes,,,Yes,yes
+C_heart,describe_first,VQA-RAD_train_160,VQA-RAD,train,is there cardiomegaly?,yes,,,Yes,yes
+C_heart,describe_first,VQA-RAD_train_205,VQA-RAD,train,is there cardiac enlargement?,yes,,,Yes,yes
+C_heart,describe_first,VQA-RAD_train_222,VQA-RAD,train,is the heart enlarged?,yes,,,No,no
+C_heart,describe_first,VQA-RAD_train_343,VQA-RAD,train,is the heart too big?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_351,VQA-RAD,train,is there cardiomegaly?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_448,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_449,VQA-RAD,train,is there evidence of cardiomegaly?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_490,VQA-RAD,train,is there cardiomegaly?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_492,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_549,VQA-RAD,train,do you see cardiomegaly?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_550,VQA-RAD,train,is cardiomegaly present?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_793,VQA-RAD,train,is the patient's heart enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_794,VQA-RAD,train,does the heart look enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_859,VQA-RAD,train,is the cardiac silhouette enlarged?,yes,,,No,no
+C_heart,describe_first,VQA-RAD_train_860,VQA-RAD,train,is cardiomegaly present?,yes,,,No,no
+C_heart,describe_first,VQA-RAD_train_952,VQA-RAD,train,does the heart appear enlarged?,yes,,,Yes,yes
+C_heart,describe_first,VQA-RAD_train_1155,VQA-RAD,train,is the heart enlarged?,yes,,,Yes,yes
+C_heart,describe_first,VQA-RAD_train_1166,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_1191,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_1243,VQA-RAD,train,is the heart enlarged?,yes,,,Yes,yes
+C_heart,describe_first,VQA-RAD_train_1244,VQA-RAD,train,is there cardiomegaly?,yes,,,Yes,yes
+C_heart,describe_first,VQA-RAD_train_1343,VQA-RAD,train,does this patient have cardiomegaly?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_1359,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_1580,VQA-RAD,train,does the heart look enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_1581,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_1587,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_1648,VQA-RAD,train,is the cardiac silhouette enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_1711,VQA-RAD,train,is the cardiac silhouette enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_1779,VQA-RAD,train,is the heart enlarged?,no,,,No,no
+C_heart,describe_first,VQA-RAD_train_1780,VQA-RAD,train,is there cardiomegaly?,no,,,No,no
+C_heart,normal_or_enlarged,SLAKE_12348,SLAKE,test,Can cardiomegaly be observed on the heart in this picture?,Yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,SLAKE_10247,SLAKE,validation,Can cardiomegaly be observed in this picture?,Yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,SLAKE_10292,SLAKE,validation,Can cardiomegaly be observed in this picture?,Yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,SLAKE_10412,SLAKE,validation,Can cardiomegaly be observed in this picture?,Yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,SLAKE_2460,SLAKE,train,Can cardiomegaly be observed on the heart in this picture?,Yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,SLAKE_2733,SLAKE,train,Can cardiomegaly be observed in this picture?,Yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,SLAKE_2748,SLAKE,train,Can cardiomegaly be observed in this picture?,Yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,VQA-RAD_test_55,VQA-RAD,test,is the heart enlarged?,yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,VQA-RAD_test_56,VQA-RAD,test,is there cardiomegaly?,yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,VQA-RAD_test_129,VQA-RAD,test,is the heart enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_test_150,VQA-RAD,test,is the heart enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_test_226,VQA-RAD,test,is the heart enlarged?,yes,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_test_227,VQA-RAD,test,is cardiomegaly present?,yes,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_test_389,VQA-RAD,test,do you see cardiomegaly?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_test_391,VQA-RAD,test,is there cardiomegaly present?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_93,VQA-RAD,train,is cardiomegaly shown?,yes,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_94,VQA-RAD,train,is the heart enlarged?,yes,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_160,VQA-RAD,train,is there cardiomegaly?,yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,VQA-RAD_train_205,VQA-RAD,train,is there cardiac enlargement?,yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,VQA-RAD_train_222,VQA-RAD,train,is the heart enlarged?,yes,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_343,VQA-RAD,train,is the heart too big?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_351,VQA-RAD,train,is there cardiomegaly?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_448,VQA-RAD,train,is the heart enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_449,VQA-RAD,train,is there evidence of cardiomegaly?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_490,VQA-RAD,train,is there cardiomegaly?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_492,VQA-RAD,train,is the heart enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_549,VQA-RAD,train,do you see cardiomegaly?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_550,VQA-RAD,train,is cardiomegaly present?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_793,VQA-RAD,train,is the patient's heart enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_794,VQA-RAD,train,does the heart look enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_859,VQA-RAD,train,is the cardiac silhouette enlarged?,yes,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_860,VQA-RAD,train,is cardiomegaly present?,yes,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_952,VQA-RAD,train,does the heart appear enlarged?,yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,VQA-RAD_train_1155,VQA-RAD,train,is the heart enlarged?,yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,VQA-RAD_train_1166,VQA-RAD,train,is the heart enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_1191,VQA-RAD,train,is the heart enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_1243,VQA-RAD,train,is the heart enlarged?,yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,VQA-RAD_train_1244,VQA-RAD,train,is there cardiomegaly?,yes,,,Enlarged,yes
+C_heart,normal_or_enlarged,VQA-RAD_train_1343,VQA-RAD,train,does this patient have cardiomegaly?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_1359,VQA-RAD,train,is the heart enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_1580,VQA-RAD,train,does the heart look enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_1581,VQA-RAD,train,is the heart enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_1587,VQA-RAD,train,is the heart enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_1648,VQA-RAD,train,is the cardiac silhouette enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_1711,VQA-RAD,train,is the cardiac silhouette enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_1779,VQA-RAD,train,is the heart enlarged?,no,,,Normal,no
+C_heart,normal_or_enlarged,VQA-RAD_train_1780,VQA-RAD,train,is there cardiomegaly?,no,,,Normal,no

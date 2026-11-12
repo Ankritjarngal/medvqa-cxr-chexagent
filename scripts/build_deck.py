@@ -145,26 +145,17 @@ for i, (n, t) in enumerate(tiles):
     text(s, x, y + 0.68, 2.3, 0.4, t, size=14, color=GREY)
 takeaway(s, "Pre-registration: ", "test sets, scorer and success conditions were frozen first, then amended in writing when needed.")
 
-# 7 ---------------------------------------------------------------------------------------------- text-only
-s = base(7, "Baseline tests, run without the image: 58% overall, but left/right and knowledge scores do not hold up",
-         "Runs 2-4: 219 baseline questions, 105 knowledge questions, 120 mirror-image pairs. Item recall scorer v2.",
-         "The first thing we found when testing the model ourselves. The identical answers on mirrored images were the first clue that something was wrong.")
-picture(s, "fig_text_only_results", M, 1.65, CW, 4.1)
-takeaway(s, "Text-only control: ", "the image did not reach the model in these runs (next slide). Mirrored image, same answer in 112 of 120 pairs; knowledge 0.37 vs 0.38 for a copy rule.")
+# 7 ---------------------------------------------------------------------------------------------- perception
+s = base(7, "With the image visible, the model reads left/right and heart size: answers follow the X-ray",
+         "Colab T4, 13 Nov 2026, notebook 03, 788 generations, IMAGE CHECK passed. results/run_6_with_image/. Same questions as the earlier text-only run.",
+         "'Image skipped' is the earlier run in which a software incompatibility stopped the image reaching the model (experiment_log.md, entry 17). It is kept only as a control: "
+         "it shows how much of the score comes from the image. CheXagent's training data includes SLAKE and VQA-RAD, so these are not clean held-out tests.")
+picture(s, "fig_perception_results", M, 1.65, CW, 4.1)
+takeaway(s, "Mirroring the X-ray flips the answer in 78% of pairs (95% CI 69-85%). ",
+         "Left/right 90% vs 45% with the image skipped; heart enlargement found in 17 of 22, 100% of normal hearts called normal.")
 
-# 8 ---------------------------------------------------------------------------------------------- bug
-s = base(8, "Turning point: the image never reached the model, so earlier results are a text-only control",
-         "transformers 4.46.3 passes an empty cache; CheXagent's code only encodes the image when the cache is None. experiment_log.md, entry 17.",
-         "Found when disease naming (Phase 1d) gave one answer for all 130 images. A patch and an IMAGE CHECK were added to every notebook, and all earlier "
-         "documents carry a correction banner.")
-text(s, M, 1.55, 6, 0.35, "What went wrong", size=18, bold=True, color=TEAL)
-picture(s, "fig_bug_cause", M, 1.95, CW, 1.3, align="left")
-text(s, M, 3.6, 6, 0.35, "How we found it and fixed it", size=18, bold=True, color=TEAL)
-picture(s, "fig_bug_fix", M, 4.0, CW, 1.3, align="left")
-takeaway(s, "Still valid: ", "how much of these benchmarks a text-only model solves. Withdrawn: every conclusion about perception. Not yet run: the reruns with the image visible.")
-
-# 9 ---------------------------------------------------------------------------------------------- pipeline
-s = base(9, "Phase 2 design: first name the disease from the image, then retrieve what is known about it",
+# 8 ------------------------------------------------------------------------------------------ pipeline
+s = base(8, "Phase 2 design: first name the disease from the image, then retrieve what is known about it",
          "Corpora: MedlinePlus (US National Library of Medicine, public domain) and medical textbooks (MedRAG); our own BM25 search.",
          "SLAKE's knowledge answers are a lookup keyed by the disease, and the question never names it. The textbooks are copyrighted, so they are downloaded "
          "at run time and never committed to the repository.")
@@ -172,22 +163,22 @@ picture(s, "fig_rag_pipeline", M, 1.6, CW, 2.6)
 text(s, M, 4.45, 8, 0.35, "Why two steps: the answer depends only on the disease", size=18, bold=True, color=TEAL)
 picture(s, "fig_lookup_example", M, 4.9, 8.0, 1.6, align="left")
 
-# 10 --------------------------------------------------------------------------------------------- arms
-s = base(10, "Six arms separate what retrieval adds from what knowing the disease adds",
+# 9 ------------------------------------------------------------------------------------------ arms
+s = base(9, "Six arms separate what retrieval adds from what knowing the disease adds",
          "docs/phase2_rag_plan.md and Amendment 5 of the evaluation protocol.",
          "Oracle arms use SLAKE's own disease label, which a real system would not have, so they are never reported as the result.")
 picture(s, "fig_arms", M, 1.65, CW, 4.1)
 takeaway(s, "Success needs more than a score gain: ", "the system (A6) must beat both the fair baseline (A1) and the guess alone (A5).")
 
-# 11 --------------------------------------------------------------------------------------------- retrieval
-s = base(11, "Retrieval check, run without any model: the corpus holds the answer mainly when the disease is right",
+# 10 ------------------------------------------------------------------------------------------ retrieval
+s = base(10, "Retrieval check, run without any model: the corpus holds the answer mainly when the disease is right",
          "Strict coverage: gold item words inside one sentence of the retrieved text. 50 oracle-evaluable questions; setting frozen on 16 dev questions.",
          "This is an upper limit on what retrieval can give. Prevention answers such as 'keep healthy' are generic and almost never match a source.")
 picture(s, "fig_retrieval_results", M, 1.65, CW, 4.1)
 takeaway(s, "Held-out: ", "29% of gold items found with the true disease, 17% with a wrong disease, 3% from the question alone.")
 
-# 12 --------------------------------------------------------------------------------------------- references
-s = base(12, "References", None, "Full reference list; the same entries are in the project report.")
+# 11 ------------------------------------------------------------------------------------------ references
+s = base(11, "References", None, "Full reference list; the same entries are in the project report.")
 refs = [
     "Chen Z., Varma M., Delbrouck J.-B., et al. CheXagent: Towards a Foundation Model for Chest X-Ray Interpretation. arXiv:2401.12208, 2024.",
     "Xia P., Zhu K., Li H., et al. RULE: Reliable Multimodal RAG for Factuality in Medical Vision Language Models. EMNLP, 2024.",

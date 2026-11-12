@@ -126,6 +126,8 @@ Disease naming on 130 images then produced the same answer for every image, whic
 work so far: \textbf{in every run to date the image never reached the model}, because of a software-version
 incompatibility. The earlier numbers are therefore a text-only control, not a measurement of the model's perception.
 We fixed the problem, added an automatic image check to every notebook, and corrected all earlier documents.
+Repeating the perception tests with the image visible, the model's left/right answer changed side in 78\% of mirrored pairs
+(3\% before) and it found 17 of 22 enlarged hearts (9 before), so the earlier perception conclusions are reversed.
 In parallel we designed a knowledge-grounded retrieval pipeline (name the disease, then retrieve from MedlinePlus and medical
 textbooks) and measured, without any model, how often the corpus holds the gold answer: 29\% of gold items on held-out
 questions with the true disease, 17\% with a wrong disease and 3\% from the question alone.
@@ -314,7 +316,8 @@ admitted non-chest images (Section~\ref{sec:baseline}).}
 \textbf{Important reading note.} Sections~\ref{sec:baseline} to~\ref{sec:diag} report runs in which the model answered from
 the question text alone (see Section~\ref{sec:bug}). They are valid as a \emph{text-only control}: they show how much of
 these benchmarks can be solved without the image. They do \textbf{not} show what the model can or cannot read from an
-X-ray. Conclusions about perception are withdrawn until the runs are repeated with the fix.
+X-ray. Conclusions about perception from these runs are withdrawn; the perception tests have since been repeated with the
+image visible (Section~\ref{sec:withimage}).
 \end{keybox}
 
 \subsection{Zero-shot baseline}\label{sec:baseline}
@@ -384,8 +387,8 @@ if the output log-probabilities do not change by at least 0.01.
 \textbf{Consequences.} All earlier documents now carry a correction banner (Amendment~6 of the protocol, experiment log
 entry~17). The earlier runs remain useful as a text-only control: 58\% overall accuracy, with no image at all, shows how
 much of these benchmarks can be answered from the question wording alone, which is the same shortcut risk that
-PMC-VQA warns about. Conclusions about left/right and heart-size perception are withdrawn until the reruns
-(notebooks 04 and 05, then 01--03).
+PMC-VQA warns about. Conclusions about left/right and heart-size perception from these runs are withdrawn; the perception
+tests were rerun first (next subsection), the other notebooks are still to be rerun.
 
 \begin{figure}[H]
 \centering
@@ -395,6 +398,31 @@ PMC-VQA warns about. Conclusions about left/right and heart-size perception are 
 \includegraphics[width=0.86\linewidth]{fig_bug_fix.pdf}
 \caption{The image-skipping fault, how it was noticed, and the fix.}
 \label{fig:bug}
+\end{figure}
+
+\subsection{Perception tests rerun with the image visible}\label{sec:withimage}
+The perception notebook (03) was rerun on a Colab T4 on 13 November 2026, 788 generations, with the same questions as the text-only run.
+Running it exposed a second, smaller fault that had been hidden by the first: the visual tower holds one float32 parameter
+while the rest is float16, and the model code casts the pixels to the dtype of the first parameter it finds, so the first
+convolution failed. The fix casts the tower to one dtype (experiment log, entry~18). The run then completed with the IMAGE CHECK in place.
+
+In the \textbf{mirror test}, of 99 pairs in which a side was named on both images, 77 swapped (78\%, 95\% interval 69--85\%),
+against 3\% with the image skipped. Accuracy was 82\% on the original image and 68\% on the mirror (against the mirrored answer).
+On the six wordings for 60 side questions, accuracy was 82--95\% (plain wording 90\%, against 45\% with the image skipped) and the
+answer depended on the true side for every wording (Fisher $p<0.001$). For heart size, the plain wording found 17 of 22
+enlarged hearts and called 25 of 25 normal hearts normal (accuracy 89\%, against 53\% for always answering ``no'').
+By the readings fixed in advance, the model does use the image for both properties, and the text-only claim that it cannot read
+left/right is dropped. The swap rate (78\%) sits just under the 80\% line of the pre-registered table, with accuracy clearly above 50\% on both images,
+so it is closest to the row ``the model does read laterality''. Because CheXagent was trained on SLAKE and VQA-RAD, part of this
+may reflect training exposure rather than general ability.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{fig_perception_results.pdf}
+\caption{Perception tests with the image skipped (earlier text-only run) and with the image visible. Left: share of pairs whose
+answer changed side when the X-ray was mirrored (120 pairs). Middle: left/right accuracy, plain wording, 60 questions.
+Right: heart-size questions, plain wording, 47 questions.}
+\label{fig:withimage}
 \end{figure}
 
 % ------------------------------------------------------------------ 6 phase 2
@@ -470,15 +498,15 @@ was also checked, to ensure retrieval cannot affect perception questions.
 \section{Status, limitations and next steps}
 \subsection{Where the work stands}
 Built and tested: the baseline pipeline, all test sets, the scorers and analysis scripts, the retrieval pipeline and corpora
-loaders, the disease-naming and retrieval notebooks, and 121 automated tests (using stand-in models to check the plumbing).
-Not yet done: any model run with the image visible.
+loaders, the disease-naming and retrieval notebooks, and 123 automated tests (using stand-in models to check the plumbing).
+Run with the image visible: the perception tests (notebook 03). Not yet run with the image: disease naming, the retrieval arms, and the baseline and knowledge sets.
 
 \subsection{Next steps}
 \begin{enumerate}
 \item Rerun the disease-naming notebook (04) first with the IMAGE CHECK, then in full, to see whether the model can name the
 disease at all when it sees the image. This sets the ceiling for the whole retrieval system.
 \item Run the retrieval notebook (05) with the disease method chosen in step~1.
-\item Rerun notebooks 01--03 to replace the text-only control with real perception measurements.
+\item Rerun notebooks 01 and 02 to replace the text-only control for the baseline and knowledge sets (notebook 03 is done).
 \item Collect blind 0/1/2 ratings of a sample of answers.
 \item Consider targeted fine-tuning (Phase~3) only if Phase~2 shows a gap worth closing.
 \end{enumerate}
@@ -501,7 +529,8 @@ The most important result so far is a negative and instructive one: in every run
 the safeguards we had set up (a constant-answer floor, identical-answer checks, pre-registered readings), the fault was
 found and traced to a software-version incompatibility, and the earlier numbers were relabelled as a text-only control instead
 of being reported as perception results.
-The next stage is a clean set of runs with the image visible, starting with disease naming.
+The first rerun with the image visible reverses the earlier perception conclusion: the model's left/right answers follow a mirrored
+image and it detects most enlarged hearts. The next stage is the remaining runs with the image visible, starting with disease naming.
 
 % ------------------------------------------------------------------ references
 \begin{thebibliography}{99}\small

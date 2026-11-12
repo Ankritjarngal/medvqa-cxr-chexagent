@@ -449,3 +449,13 @@ that run completes. No result from a run with the image is recorded yet.
 
 **Order change (logged as promised in `docs/next_steps.md`).** Notebook 03 is run before 04 and 05 so that the perception
 result is available for the presentation. No rule, threshold or scorer changes; Amendment 6, point 4 is the only text affected.
+
+## 19. First model results with the image visible: perception diagnostics (13 Nov 2026)
+
+Notebook 03 completed on Colab T4 after the entry-18 fix (788 generations; `results/run_6_with_image/`; analysis in
+`docs/phase1c_findings_with_image.md`). Against the text-only control on the same questions: mirrored X-ray changes the left/right
+answer in 78% of pairs (3% before); left/right accuracy on 60 questions 90% (45%); heart enlargement sensitivity 17/22 with 25/25
+specificity (9/22 and 22/25), accuracy 89% against 53% for always-no. By the readings fixed in advance the model does use the image for
+both properties; the earlier claims that it cannot read them are dropped (Amendment 6). The 78% swap rate is just under the 80% line of
+the registered table and is reported as such. The deck (slide 7) and the report (section 5.5) now show these results; the bug slide was
+removed from the deck and the bug stays documented in the report (section 5.4) and in entries 17 and 18. Not run with the image yet: 01, 02, 04, 05.

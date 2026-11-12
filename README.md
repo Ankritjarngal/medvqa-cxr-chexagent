@@ -118,6 +118,10 @@ for a presentation.
 > withdrawn until everything is rerun with the fixed notebooks (which now stop with an error if the image does not reach the
 > model). Details: [`docs/experiment_log.md`](docs/experiment_log.md) entry 17 and Amendment 6 in
 > [`docs/evaluation_protocol.md`](docs/evaluation_protocol.md).
+>
+> **Update, 13 Nov 2026:** the perception diagnostics (notebook 03) have been rerun with the image visible. Mirroring the X-ray
+> changes the left/right answer in 78% of pairs (3% before) and the model finds 17 of 22 enlarged hearts; see
+> [`docs/phase1c_findings_with_image.md`](docs/phase1c_findings_with_image.md). The other notebooks are still to be rerun.
 
 ## Pilot run 1 (60 questions) and findings
 
