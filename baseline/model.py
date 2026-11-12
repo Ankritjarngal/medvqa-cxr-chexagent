@@ -61,6 +61,25 @@ def patch_image_cache_check(model_dir: str) -> int:
     return 1
 
 
+def align_visual_dtype(model, dtype):
+    """Give CheXagent's visual tower a single dtype.
+
+    The tower registers a float32 position-embedding parameter directly on itself, and its `encode()` casts the input
+    pixels to the dtype of the *first* parameter it finds, which is that one. The SigLIP convolution weights are float16,
+    so with the image branch actually running, the pixels arrive as float32 and the first convolution fails with
+    "Input type (torch.cuda.FloatTensor) and weight type (torch.cuda.HalfTensor) should be the same".
+    Casting the whole tower to `dtype` removes the mismatch. Raises if the tower cannot be found or is still mixed."""
+    towers = [m for m in model.modules() if hasattr(m, "encode") and hasattr(m, "attn_pool")]
+    if len(towers) != 1:
+        raise RuntimeError(f"expected one visual tower, found {len(towers)}; inspect the model code")
+    tower = towers[0]
+    tower.to(dtype=dtype)
+    found = {p.dtype for p in tower.parameters()}
+    if found != {dtype}:
+        raise RuntimeError(f"visual tower still has mixed dtypes: {found}")
+    return tower
+
+
 GENERAL_PROMPT = "{question}"
 LATERALITY_SEVERITY_PROMPT = (
     "{question} Answer concisely based only on what is visible in the image."
@@ -92,6 +111,7 @@ class CheXagentRunner:
         self.model = AutoModelForCausalLM.from_pretrained(
             model_dir, device_map="auto", torch_dtype=self.dtype, trust_remote_code=True
         )
+        align_visual_dtype(self.model, self.dtype)
         self.model.eval()
 
     def ask(self, image_paths: list[str], question: str, max_new_tokens: int = 128) -> str:

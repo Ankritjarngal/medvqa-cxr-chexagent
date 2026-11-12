@@ -55,3 +55,39 @@ def test_patched_condition_is_true_for_none_and_empty_cache_but_not_a_filled_cac
     assert cond(None) and cond(Cache(0))
     assert not cond(Cache(12))          # later decoding steps: no image encoding
     assert not cond(None, has_image_token=False)
+
+
+def test_align_visual_dtype_fixes_mixed_precision_tower():
+    torch = pytest.importorskip("torch")
+    from baseline.model import align_visual_dtype
+
+    class Tower(torch.nn.Module):
+        """Mimics CheXagent's visual tower: a float32 parameter registered on the tower itself comes first in
+        parameters(), while the sub-module is float16, and encode() casts pixels to the first parameter's dtype."""
+        def __init__(self):
+            super().__init__()
+            self.pos_embed = torch.nn.Parameter(torch.zeros(4), requires_grad=False)          # float32, first
+            self.model = torch.nn.Conv2d(3, 2, 1).half()
+            self.attn_pool = torch.nn.Linear(2, 2).half()
+
+        def encode(self, x):
+            x = x.to(dtype=next(self.parameters()).dtype)
+            return self.attn_pool(self.model(x).flatten(2).transpose(1, 2))
+
+    class Wrapper(torch.nn.Module):
+        def __init__(self):
+            super().__init__()
+            self.visual = Tower()
+
+    m = Wrapper()
+    with pytest.raises(RuntimeError):
+        m.visual.encode(torch.zeros(1, 3, 2, 2))                  # reproduces the Colab failure on CPU
+    align_visual_dtype(m, torch.float16)
+    assert m.visual.encode(torch.zeros(1, 3, 2, 2)).dtype == torch.float16
+
+
+def test_align_visual_dtype_fails_loudly_without_a_tower():
+    torch = pytest.importorskip("torch")
+    from baseline.model import align_visual_dtype
+    with pytest.raises(RuntimeError):
+        align_visual_dtype(torch.nn.Linear(1, 1), torch.float16)

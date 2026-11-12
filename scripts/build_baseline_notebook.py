@@ -175,6 +175,19 @@ def patch_image_cache_check(model_dir):
     open(path, "w").write(text.replace(_IMAGE_BRANCH_ORIGINAL, _IMAGE_BRANCH_PATCHED))
     return 1
 
+def align_visual_dtype(model, dtype):
+    """The visual tower keeps a float32 position-embedding parameter and its encode() casts the pixels to the dtype of the
+    first parameter it finds, so once the image branch really runs the pixels are float32 while the SigLIP convolution
+    weights are float16 ("Input type (FloatTensor) and weight type (HalfTensor) should be the same"). Give the tower one dtype."""
+    towers = [m for m in model.modules() if hasattr(m, "encode") and hasattr(m, "attn_pool")]
+    if len(towers) != 1:
+        raise RuntimeError(f"expected one visual tower, found {len(towers)}; inspect the model code")
+    towers[0].to(dtype=dtype)
+    found = {p.dtype for p in towers[0].parameters()}
+    if found != {dtype}:
+        raise RuntimeError(f"visual tower still has mixed dtypes: {found}")
+    return towers[0]
+
 model_dir = snapshot_download(MODEL_NAME, local_dir="CheXagent-2-3b")
 print("Patched version checks:", patch_version_asserts(model_dir))
 print("Image-branch patch in place:", patch_image_cache_check(model_dir))
@@ -183,8 +196,9 @@ tokenizer = AutoTokenizer.from_pretrained(model_dir, trust_remote_code=True)
 model = AutoModelForCausalLM.from_pretrained(
     model_dir, device_map="auto", torch_dtype=DTYPE, trust_remote_code=True
 )
+align_visual_dtype(model, DTYPE)
 model.eval()
-print("Model loaded.")
+print("Model loaded; visual tower dtype:", DTYPE)
 ''')
 
 code(r'''GENERAL_PROMPT = "{question}"

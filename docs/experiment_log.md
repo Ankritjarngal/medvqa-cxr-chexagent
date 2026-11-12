@@ -426,3 +426,26 @@ sanity test that the image changes the output belongs before any perception expe
 
 **Not yet confirmed:** that the patched model uses the image well; the IMAGE CHECK only proves it uses it at all. Whether disease
 naming, laterality and the rest improve is for the reruns to show.
+
+## 18. First Colab run with the image branch active: dtype mismatch in the visual tower (13 Nov 2026)
+
+**What happened.** The first run of a fixed notebook stopped in the IMAGE CHECK with `RuntimeError: Input type
+(torch.cuda.FloatTensor) and weight type (torch.cuda.HalfTensor) should be the same`, raised inside `modeling_visual.py`
+(`encode`, then the SigLIP patch-embedding convolution). The traceback shows `visual.encode` being called, so the image branch
+of entry 17 is now reached: the cache patch works. This error had never appeared before because the image branch never ran.
+
+**Cause (read from `modeling_visual.py`, reproduced on CPU with a toy tower).** `CLIPModel.encode` casts the pixels to the dtype
+of `next(self.parameters())`. The tower registers a float32 position-embedding parameter on itself, which comes first in
+`parameters()`, while the SigLIP weights are float16 (the model is loaded with `torch_dtype=float16` on a T4). The pixels are
+therefore float32 and the first convolution fails.
+
+**Fix.** `align_visual_dtype(model, dtype)` (`baseline/model.py` and the model cell of notebook 01, reused by 02 to 05) casts the
+whole visual tower to the model dtype and raises if the tower is not found or its dtype is still mixed. All five notebooks were
+rebuilt. Tests: `tests/test_model_patch.py` (reproduces the failure on a toy tower, then checks the fix). 123 tests pass.
+
+**Not yet confirmed.** The fix is verified on a toy tower only. The first real confirmation is the IMAGE CHECK passing on Colab.
+Further problems after the visual tower (for example in how image features are merged into the prompt) cannot be excluded until
+that run completes. No result from a run with the image is recorded yet.
+
+**Order change (logged as promised in `docs/next_steps.md`).** Notebook 03 is run before 04 and 05 so that the perception
+result is available for the presentation. No rule, threshold or scorer changes; Amendment 6, point 4 is the only text affected.
