@@ -146,11 +146,11 @@ for i, (n, t) in enumerate(tiles):
 takeaway(s, "Pre-registration: ", "test sets, scorer and success conditions were frozen first, then amended in writing when needed.")
 
 # 7 ---------------------------------------------------------------------------------------------- text-only
-s = base(7, "Our baseline tests: 58% overall, but the left/right and knowledge scores do not hold up",
+s = base(7, "Baseline tests, run without the image: 58% overall, but left/right and knowledge scores do not hold up",
          "Runs 2-4: 219 baseline questions, 105 knowledge questions, 120 mirror-image pairs. Item recall scorer v2.",
          "The first thing we found when testing the model ourselves. The identical answers on mirrored images were the first clue that something was wrong.")
 picture(s, "fig_text_only_results", M, 1.65, CW, 4.1)
-takeaway(s, "Mirrored image, same answer ", "in 112 of 120 pairs. Knowledge answers: no better than a fixed common answer (0.37 vs 0.38).")
+takeaway(s, "Text-only control: ", "the image did not reach the model in these runs (next slide). Mirrored image, same answer in 112 of 120 pairs; knowledge 0.37 vs 0.38 for a copy rule.")
 
 # 8 ---------------------------------------------------------------------------------------------- bug
 s = base(8, "Turning point: the image never reached the model, so earlier results are a text-only control",
@@ -161,7 +161,7 @@ text(s, M, 1.55, 6, 0.35, "What went wrong", size=18, bold=True, color=TEAL)
 picture(s, "fig_bug_cause", M, 1.95, CW, 1.3, align="left")
 text(s, M, 3.6, 6, 0.35, "How we found it and fixed it", size=18, bold=True, color=TEAL)
 picture(s, "fig_bug_fix", M, 4.0, CW, 1.3, align="left")
-takeaway(s, "Still valid: ", "how much of these benchmarks a text-only model solves. Withdrawn: every conclusion about perception.")
+takeaway(s, "Still valid: ", "how much of these benchmarks a text-only model solves. Withdrawn: every conclusion about perception. Not yet run: the reruns with the image visible.")
 
 # 9 ---------------------------------------------------------------------------------------------- pipeline
 s = base(9, "Phase 2 design: first name the disease from the image, then retrieve what is known about it",

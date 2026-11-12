@@ -173,8 +173,8 @@ def fig_text_only_results():
     x = np.arange(len(subs) + 1)
     model = [kk[kk.knowledge_subtype == s].r.mean() for s in subs] + [kk.r.mean()]
     fl = [floor[s] for s in subs] + [floor["all"]]
-    ax.bar(x - 0.2, model, 0.38, color=TEAL, label="model (no image)")
-    ax.bar(x + 0.2, fl, 0.38, color=LINE, label="fixed common answer")
+    ax.bar(x - 0.2, model, 0.38, color=TEAL, label="CheXagent, text only (image skipped)")
+    ax.bar(x + 0.2, fl, 0.38, color=LINE, label="copy rule: most common answer")
     ax.set_xticks(x, subs + ["all"])
     ax.tick_params(axis="x", labelsize=11.5)
     ax.set_ylim(0, 1.2)
