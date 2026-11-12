@@ -118,7 +118,7 @@ def fig_papers_matrix():
     ax.text(0.1, y, "This project", va="center", fontsize=14, fontweight="bold", color=TEAL)
     for j, m in enumerate([1, 1, 1, 0.5, 1]):
         ax.scatter([x0 + j * cw + cw / 2], [y], s=150, color=TEAL if m == 1 else "white", edgecolor=TEAL, linewidth=1.8)
-    ax.text(x0 + 5 * cw + 0.15, y, "none of the six papers combines these (hollow = planned)", va="center", fontsize=12.2,
+    ax.text(x0 + 5 * cw + 0.15, y, "none of the six papers combines these", va="center", fontsize=12.2,
             color=TEAL, fontweight="bold")
     save(fig, "fig_papers_matrix")
 
