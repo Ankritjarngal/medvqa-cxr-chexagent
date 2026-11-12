@@ -1,7 +1,7 @@
 flowchart LR
   A1("<div style='width:470px'>CheXagent is weakest on left/right and severity</div>") --> B1("<div style='width:520px'>Test perception alone: mirror-image and heart-size tests</div>"):::accent
   A2("<div style='width:470px'>Naive retrieval makes answers worse (RULE)</div>") --> B2("<div style='width:520px'>Short passages, no-harm check, disease-name-only arm</div>"):::accent
-  A3("<div style='width:470px'>Automatic scores disagree with clinicians</div>") --> B3("<div style='width:520px'>Blind 0-1-2 rating and a constant-answer floor</div>"):::accent
+  A3("<div style='width:470px'>Some questions need no image (PMC-VQA)</div>") --> B3("<div style='width:520px'>Constant-answer floor: a no-image guess the model must beat</div>"):::accent
   A4("<div style='width:470px'>No reviewed paper retrieves textbook knowledge</div>") --> B4("<div style='width:520px'>BM25 over MedlinePlus and medical textbooks</div>"):::accent
   linkStyle default stroke:#6B7785,stroke-width:2px
 classDef accent fill:#0F8B8D,stroke:#0F8B8D,color:#FFFFFF;

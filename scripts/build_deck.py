@@ -123,7 +123,7 @@ takeaway(s, "CheXagent ", "is our baseline, RULE warns about retrieval, Med-Flam
 
 # 5 ---------------------------------------------------------------------------------------------- gaps
 s = base(5, "Each finding in the literature became a concrete design decision",
-         "CheXagent: 77-79% on fine-grained reasoning. RULE: naive retrieval over-trust. Med-Flamingo: clinician rating.",
+         "CheXagent: 77-79% on fine-grained reasoning. RULE: naive retrieval over-trust. PMC-VQA: many questions answerable from text.",
          "This slide bridges the literature review and the experiments.")
 text(s, M, 1.55, 5.5, 0.3, "What the papers show", size=14, color=GREY)
 text(s, 6.9, 1.55, 5.5, 0.3, "What we decided to do", size=14, color=GREY)
